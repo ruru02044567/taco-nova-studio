@@ -46,8 +46,15 @@
 
 ## git 設定備註
 
-這台機器沒有設 global `user.name`／`user.email`，所以第一筆 commit 用了 repo-local 身分
-`Paperclip Agent (Video) <video-agent@paperclip.local>`。賢賢要換成自己的，在這個資料夾下跑：
+這台機器沒有設 global `user.name`／`user.email`，所以這個 repo 設了 repo-local 身分
+`Paperclip Agent <agent@paperclip.local>`。
+
+一開始設的是 `Paperclip Agent (Video)`，但 repo-local 設定是**所有 agent 共用**的 ——
+結果 CMP-7（內容部）的 commit 也被蓋上「Video」的名字，變成張冠李戴。
+所以改成中性的 `Paperclip Agent`：分不出是哪個 agent，至少不會指錯人。
+要追是誰做的，看 commit message 裡的票號（`CMP-7`、`CMP-11`…）比看作者名可靠。
+
+賢賢要換成自己的，在這個資料夾下跑：
 
 ```
 git config user.name "你的名字"
