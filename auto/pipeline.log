@@ -1,0 +1,339 @@
+[2026-08-08 12:33:52] 還沒有 schedule.json，跳過
+[2026-08-08 12:39:19] 處理 D1S1：Big Dog Got The Tiny Bed 🛏️😳（預定 08-08 08:00，晚 4.7h）
+[2026-08-08 12:40:09]   $ make_scene.py C:\Users\TUF Gaming\Desktop\我的專案\財富密碼\auto\clips\d1s1_scene.txt C:\Use -> rc=0
+[2026-08-08 12:40:09]   場景圖 OK：d1s1_scene.jpg
+[2026-08-08 12:40:27]   $ make_video_cloud.py C:\Users\TUF Gaming\Desktop\我的專案\財富密碼\auto\clips\d1s1_scene.jpg C:\Use -> rc=1
+[2026-08-08 12:40:27]   雲端失敗 → 改用本機
+[2026-08-08 12:53:37]   $ make_video_local.py C:\Users\TUF Gaming\Desktop\我的專案\財富密碼\auto\clips\d1s1_scene.jpg C:\Use -> rc=1
+[2026-08-08 12:53:37]     | segA done in 6.3 min
+[2026-08-08 12:53:37]     | segB done in 6.3 min
+[2026-08-08 12:53:37]   影片沒生出來，下次再試
+[2026-08-08 13:38:33] 處理 D1S1：Big Dog Got The Tiny Bed 🛏️😳（預定 08-08 08:00，晚 5.6h）
+[2026-08-08 13:38:33]   場景圖 OK：d1s1_scene.jpg
+[2026-08-08 13:38:33]   影片 OK：d1s1.mp4
+[2026-08-08 13:39:35]   $ publish_video.py C:\Users\TUF Gaming\Desktop\我的專案\財富密碼\auto\clips\d1s1.mp4 C:\Users\TUF -> rc=0
+[2026-08-08 13:39:35]     | file selected
+[2026-08-08 13:39:35]     | details filled
+[2026-08-08 13:39:35]     | compliance: {'VIDEO_MADE_FOR_KIDS_NOT_MFK': 'true', 'VIDEO_AGE_RESTRICTION_NONE': 'true', 'VIDEO_HAS_ALTERED_CONTENT_YES': 'true'}
+[2026-08-08 13:39:35]     | PUBLISHED https://youtube.com/shorts/VZsKMcX2jG0
+[2026-08-08 13:39:35]   已發布：https://youtube.com/shorts/VZsKMcX2jG0
+[2026-08-08 13:45:01] 目前沒有到期的工作
+[2026-08-08 14:05:01] 目前沒有到期的工作
+[2026-08-08 14:25:01] 目前沒有到期的工作
+[2026-08-08 14:45:01] 目前沒有到期的工作
+[2026-08-08 15:05:01] 目前沒有到期的工作
+[2026-08-08 15:25:01] 目前沒有到期的工作
+[2026-08-08 15:45:01] 目前沒有到期的工作
+[2026-08-08 16:05:01] 目前沒有到期的工作
+[2026-08-08 16:25:01] 目前沒有到期的工作
+[2026-08-08 16:45:01] 目前沒有到期的工作
+[2026-08-08 18:40:37] 目前沒有到期的工作
+[2026-08-08 18:45:01] 目前沒有到期的工作
+[2026-08-08 19:05:01] 目前沒有到期的工作
+[2026-08-08 19:25:01] 目前沒有到期的工作
+[2026-08-08 19:45:01] 目前沒有到期的工作
+[2026-08-08 20:05:01] 處理 D1S2：Big Dog Got The Tiny Bed 🛏️😳（預定 08-08 20:00，晚 0.1h）
+[2026-08-08 20:05:03] Edge/CDP 沒開，啟動中
+[2026-08-08 20:05:06] CDP 就緒
+[2026-08-08 20:06:02]   $ make_scene.py C:\Users\TUF Gaming\Desktop\我的專案\財富密碼\auto\clips\d1s2_scene.txt C:\Use -> rc=0
+[2026-08-08 20:06:02]   場景圖 OK：d1s2_scene.jpg
+[2026-08-08 20:14:30]   $ make_video_cloud.py C:\Users\TUF Gaming\Desktop\我的專案\財富密碼\auto\clips\d1s2_scene.jpg C:\Use -> rc=1
+[2026-08-08 20:14:30]   雲端失敗 → 改用本機
+[2026-08-08 20:24:48]   $ make_video_local.py C:\Users\TUF Gaming\Desktop\我的專案\財富密碼\auto\clips\d1s2_scene.jpg C:\Use -> rc=0
+[2026-08-08 20:24:48]   影片 OK：d1s2.mp4
+[2026-08-08 20:25:47]   $ publish_video.py C:\Users\TUF Gaming\Desktop\我的專案\財富密碼\auto\clips\d1s2.mp4 C:\Users\TUF -> rc=0
+[2026-08-08 20:25:47]     | file selected
+[2026-08-08 20:25:47]     | details filled
+[2026-08-08 20:25:47]     | compliance: {'VIDEO_MADE_FOR_KIDS_NOT_MFK': 'true', 'VIDEO_AGE_RESTRICTION_NONE': 'true', 'VIDEO_HAS_ALTERED_CONTENT_YES': 'true'}
+[2026-08-08 20:25:47]     | PUBLISHED https://youtube.com/shorts/L4bJzZNmKvk
+[2026-08-08 20:25:47]   已發布：https://youtube.com/shorts/L4bJzZNmKvk
+[2026-08-08 20:45:01] 目前沒有到期的工作
+[2026-08-08 21:05:01] 目前沒有到期的工作
+[2026-08-08 21:25:01] 目前沒有到期的工作
+[2026-08-08 21:45:01] 目前沒有到期的工作
+[2026-08-08 22:00:59] 處理 D1S1：Taco Tried To Hide A Black Hole Under The Rug 😂🕳️（預定 08-08 08:00，晚 14.0h）
+[2026-08-08 22:00:59]   超過容忍 6h，改為立即補做（不再等原時段）
+[2026-08-08 22:00:59]   場景圖 OK：d1s1_scene.jpg
+[2026-08-08 22:00:59]   影片 OK（Veo）：d1s1.mp4
+[2026-08-08 22:01:00]   ⏸ 已送待審（未發布）：d1s1.mp4　→ 賢賢過目後跑 `pipeline.py ok d1s1`
+[2026-08-08 22:02:07] 處理 D1S1：Taco Tried To Hide A Black Hole Under The Rug 😂🕳️（預定 08-08 08:00，晚 14.0h）
+[2026-08-08 22:02:07]   超過容忍 6h，改為立即補做（不再等原時段）
+[2026-08-08 22:02:45]   $ make_scene.py C:\Users\TUF Gaming\Desktop\我的專案\財富密碼\auto\clips\d1s1_scene.txt C:\Use -> rc=1
+[2026-08-08 22:02:45]   場景圖失敗，下次再試
+[2026-08-08 22:03:19] 處理 D1S1：Taco Tried To Hide A Black Hole Under The Rug 😂🕳️（預定 08-08 08:00，晚 14.1h）
+[2026-08-08 22:03:19]   超過容忍 6h，改為立即補做（不再等原時段）
+[2026-08-08 22:03:55]   $ make_scene.py C:\Users\TUF Gaming\Desktop\我的專案\財富密碼\auto\clips\d1s1_scene.txt C:\Use -> rc=1
+[2026-08-08 22:03:55]     |     raise rewrite_error(error, f"{parsed_st['apiName']}: {error}") from None
+[2026-08-08 22:03:55]     | playwright._impl._errors.TimeoutError: Locator.type: Timeout 30000ms exceeded.
+[2026-08-08 22:03:55]     | Call log:
+[2026-08-08 22:03:55]     |   - waiting for locator("div[contenteditable='true'], rich-textarea div").first
+[2026-08-08 22:03:55]     |     - locator resolved to <div dir="auto" role="textbox" data-gramm="false" aria-multiline="true" contenteditable="true" aria-label="請輸入 Gemini 提示詞" d
+[2026-08-08 22:03:55]     |   - elementHandle.type("Photorealistic photo, 9:16 vertical. THE JOKE OF THIS IMAGE: a perfectly round pitch-black hole has opened in the living room 
+[2026-08-08 22:03:55]   場景圖失敗，下次再試
+[2026-08-08 22:04:51] 處理 D1S1：Taco Tried To Hide A Black Hole Under The Rug 😂🕳️（預定 08-08 08:00，晚 14.1h）
+[2026-08-08 22:04:51]   超過容忍 6h，改為立即補做（不再等原時段）
+[2026-08-08 22:05:01] 處理 D1S1：Taco Tried To Hide A Black Hole Under The Rug 😂🕳️（預定 08-08 08:00，晚 14.1h）
+[2026-08-08 22:05:01]   超過容忍 6h，改為立即補做（不再等原時段）
+[2026-08-08 22:05:04]   $ make_scene.py C:\Users\TUF Gaming\Desktop\我的專案\財富密碼\auto\clips\d1s1_scene.txt C:\Use -> rc=1
+[2026-08-08 22:05:04]     |     ...<3 lines>...
+[2026-08-08 22:05:04]     |     )
+[2026-08-08 22:05:04]     |     ^
+[2026-08-08 22:05:04]     |   File "C:\Users\TUF Gaming\AppData\Local\Programs\Python\Python313\Lib\site-packages\playwright\_impl\_connection.py", line 632, in wrap_api_call
+[2026-08-08 22:05:04]     |     raise rewrite_error(error, f"{parsed_st['apiName']}: {error}") from None
+[2026-08-08 22:05:04]     | playwright._impl._errors.Error: Page.evaluate: Execution context was destroyed, most likely because of a navigation
+[2026-08-08 22:05:04]   場景圖失敗，下次再試
+[2026-08-08 22:05:29]   $ make_scene.py C:\Users\TUF Gaming\Desktop\我的專案\財富密碼\auto\clips\d1s1_scene.txt C:\Use -> rc=0
+[2026-08-08 22:05:29]     | attempt 1: prompt sent
+[2026-08-08 22:05:29]     | saved C:\Users\TUF Gaming\Desktop\我的專案\財富密碼\auto\clips\d1s1_scene.jpg
+[2026-08-08 22:05:29]   場景圖 OK：d1s1_scene.jpg
+[2026-08-08 22:06:39] 處理 D1S1：Taco Tried To Hide A Black Hole Under The Rug 😂🕳️（預定 08-08 08:00，晚 14.1h）
+[2026-08-08 22:06:39]   超過容忍 6h，改為立即補做（不再等原時段）
+[2026-08-08 22:06:39]   場景圖 OK：d1s1_scene.jpg
+[2026-08-08 22:06:51]   $ make_video_cloud.py C:\Users\TUF Gaming\Desktop\我的專案\財富密碼\auto\clips\d1s1_scene.jpg C:\Use -> rc=1
+[2026-08-08 22:06:51]     |     self._check_running()
+[2026-08-08 22:06:51]     |     ~~~~~~~~~~~~~~~~~~~^^
+[2026-08-08 22:06:51]     |   File "C:\Users\TUF Gaming\AppData\Local\Programs\Python\Python313\Lib\asyncio\base_events.py", line 637, in _check_running
+[2026-08-08 22:06:51]     |     raise RuntimeError('This event loop is already running')
+[2026-08-08 22:06:51]     | RuntimeError: This event loop is already running
+[2026-08-08 22:06:51]     | <sys>:0: RuntimeWarning: coroutine 'PipeTransport.wait_until_stopped' was never awaited
+[2026-08-08 22:06:51]   Veo 失敗（第 1 次），1 小時後再試。不改用本機。
+[2026-08-08 22:13:08]   $ make_video_cloud.py C:\Users\TUF Gaming\Desktop\我的專案\財富密碼\auto\clips\d1s1_scene.jpg C:\Use -> rc=1
+[2026-08-08 22:13:08]     |     ...<3 lines>...
+[2026-08-08 22:13:08]     |     )
+[2026-08-08 22:13:08]     |     ^
+[2026-08-08 22:13:08]     |   File "C:\Users\TUF Gaming\AppData\Local\Programs\Python\Python313\Lib\site-packages\playwright\_impl\_connection.py", line 632, in wrap_api_call
+[2026-08-08 22:13:08]     |     raise rewrite_error(error, f"{parsed_st['apiName']}: {error}") from None
+[2026-08-08 22:13:08]     | playwright._impl._errors.Error: Page.evaluate: Execution context was destroyed, most likely because of a navigation
+[2026-08-08 22:13:08]   Veo 失敗（第 1 次），1 小時後再試。不改用本機。
+[2026-08-08 22:25:01] 處理 D1S1：Taco Tried To Hide A Black Hole Under The Rug 😂🕳️（預定 08-08 08:00，晚 14.4h）
+[2026-08-08 22:25:01]   超過容忍 6h，改為立即補做（不再等原時段）
+[2026-08-08 22:25:01]   Veo 上次失敗，2026-08-08T23:13 之後再試
+[2026-08-08 22:45:01] 處理 D1S1：Taco Tried To Hide A Black Hole Under The Rug 😂🕳️（預定 08-08 08:00，晚 14.8h）
+[2026-08-08 22:45:01]   超過容忍 6h，改為立即補做（不再等原時段）
+[2026-08-08 22:45:01]   Veo 上次失敗，2026-08-08T23:13 之後再試
+[2026-08-08 23:05:01] 處理 D1S1：Taco Tried To Hide A Black Hole Under The Rug 😂🕳️（預定 08-08 08:00，晚 15.1h）
+[2026-08-08 23:05:01]   超過容忍 6h，改為立即補做（不再等原時段）
+[2026-08-08 23:05:01]   Veo 上次失敗，2026-08-08T23:13 之後再試
+[2026-08-08 23:25:01] 處理 D1S1：Taco Tried To Hide A Black Hole Under The Rug 😂🕳️（預定 08-08 08:00，晚 15.4h）
+[2026-08-08 23:25:01]   超過容忍 6h，改為立即補做（不再等原時段）
+[2026-08-08 23:25:01]   場景圖 OK：d1s1_scene.jpg
+[2026-08-08 23:27:16]   $ make_video_cloud.py C:\Users\TUF Gaming\Desktop\我的專案\財富密碼\auto\clips\d1s1_scene.jpg C:\Use -> rc=1
+[2026-08-08 23:27:16]     | video mode entered
+[2026-08-08 23:27:16]     |   aspect attempt 1: 顯示比例：直向 (9:16)
+[2026-08-08 23:27:16]     | aspect OK: 顯示比例：直向 (9:16)
+[2026-08-08 23:27:16]     | scene attached
+[2026-08-08 23:27:16]     |   send attempt 1: 還沒真的送出（框內有字=True, 提交鍵=False）
+[2026-08-08 23:27:16]     |   send attempt 2: 還沒真的送出（框內有字=True, 提交鍵=False）
+[2026-08-08 23:27:16]     |   send attempt 3: 還沒真的送出（框內有字=True, 提交鍵=False）
+[2026-08-08 23:27:16]     | FAILED: prompt 送不出去
+[2026-08-08 23:27:16]   Veo 失敗（第 2 次），1 小時後再試。不改用本機。
+[2026-08-08 23:45:01] 處理 D1S1：Taco Tried To Hide A Black Hole Under The Rug 😂🕳️（預定 08-08 08:00，晚 15.8h）
+[2026-08-08 23:45:01]   超過容忍 6h，改為立即補做（不再等原時段）
+[2026-08-08 23:45:01]   Veo 上次失敗，2026-08-09T00:27 之後再試
+[2026-08-09 00:05:01] 處理 D1S1：Taco Tried To Hide A Black Hole Under The Rug 😂🕳️（預定 08-08 08:00，晚 16.1h）
+[2026-08-09 00:05:01]   超過容忍 6h，改為立即補做（不再等原時段）
+[2026-08-09 00:05:01]   Veo 上次失敗，2026-08-09T00:27 之後再試
+[2026-08-09 00:25:01] 處理 D1S1：Taco Tried To Hide A Black Hole Under The Rug 😂🕳️（預定 08-08 08:00，晚 16.4h）
+[2026-08-09 00:25:01]   超過容忍 6h，改為立即補做（不再等原時段）
+[2026-08-09 00:25:01]   Veo 上次失敗，2026-08-09T00:27 之後再試
+[2026-08-09 00:45:01] 處理 D1S1：Taco Tried To Hide A Black Hole Under The Rug 😂🕳️（預定 08-08 08:00，晚 16.8h）
+[2026-08-09 00:45:01]   超過容忍 6h，改為立即補做（不再等原時段）
+[2026-08-09 00:45:01]   場景圖 OK：d1s1_scene.jpg
+[2026-08-09 00:47:15]   $ make_video_cloud.py C:\Users\TUF Gaming\Desktop\我的專案\財富密碼\auto\clips\d1s1_scene.jpg C:\Use -> rc=1
+[2026-08-09 00:47:15]     | video mode entered
+[2026-08-09 00:47:15]     |   aspect attempt 1: 顯示比例：直向 (9:16)
+[2026-08-09 00:47:15]     | aspect OK: 顯示比例：直向 (9:16)
+[2026-08-09 00:47:15]     | scene attached
+[2026-08-09 00:47:15]     |   send attempt 1: 還沒真的送出（框內有字=True, 提交鍵=False）
+[2026-08-09 00:47:15]     | prompt sent (attempt 2)
+[2026-08-09 00:47:15]     | FAILED: Veo 回錯誤／額度
+[2026-08-09 00:47:15]   Veo 失敗（第 3 次），1 小時後再試。不改用本機。
+[2026-08-09 01:05:01] 處理 D1S1：Taco Tried To Hide A Black Hole Under The Rug 😂🕳️（預定 08-08 08:00，晚 17.1h）
+[2026-08-09 01:05:01]   超過容忍 6h，改為立即補做（不再等原時段）
+[2026-08-09 01:05:01]   Veo 上次失敗，2026-08-09T01:47 之後再試
+[2026-08-09 01:25:01] 處理 D1S1：Taco Tried To Hide A Black Hole Under The Rug 😂🕳️（預定 08-08 08:00，晚 17.4h）
+[2026-08-09 01:25:01]   超過容忍 6h，改為立即補做（不再等原時段）
+[2026-08-09 01:25:01]   Veo 上次失敗，2026-08-09T01:47 之後再試
+[2026-08-09 01:45:01] 處理 D1S1：Taco Tried To Hide A Black Hole Under The Rug 😂🕳️（預定 08-08 08:00，晚 17.8h）
+[2026-08-09 01:45:01]   超過容忍 6h，改為立即補做（不再等原時段）
+[2026-08-09 01:45:01]   Veo 上次失敗，2026-08-09T01:47 之後再試
+[2026-08-09 02:05:01] 處理 D1S1：Taco Tried To Hide A Black Hole Under The Rug 😂🕳️（預定 08-08 08:00，晚 18.1h）
+[2026-08-09 02:05:01]   超過容忍 6h，改為立即補做（不再等原時段）
+[2026-08-09 02:05:01]   場景圖 OK：d1s1_scene.jpg
+[2026-08-09 02:06:50]   $ make_video_cloud.py C:\Users\TUF Gaming\Desktop\我的專案\財富密碼\auto\clips\d1s1_scene.jpg C:\Use -> rc=0
+[2026-08-09 02:06:50]     | video mode entered
+[2026-08-09 02:06:50]     |   aspect attempt 1: 顯示比例：直向 (9:16)
+[2026-08-09 02:06:50]     | aspect OK: 顯示比例：直向 (9:16)
+[2026-08-09 02:06:50]     | scene attached
+[2026-08-09 02:06:50]     | prompt sent (attempt 1)
+[2026-08-09 02:06:50]     | saved C:\Users\TUF Gaming\Desktop\我的專案\財富密碼\auto\clips\d1s1.mp4
+[2026-08-09 02:06:50]   影片 OK（Veo）：d1s1.mp4
+[2026-08-09 02:06:51]   ⏸ 已送待審（未發布）：d1s1.mp4　→ 賢賢過目後跑 `pipeline.py ok d1s1`
+[2026-08-09 02:25:01] ⏸ D1S1 還在等賢賢過目，先不動作
+[2026-08-09 02:45:02] ⏸ D1S1 還在等賢賢過目，先不動作
+[2026-08-09 03:05:01] ⏸ D1S1 還在等賢賢過目，先不動作
+[2026-08-09 03:25:01] ⏸ D1S1 還在等賢賢過目，先不動作
+[2026-08-09 03:45:01] ⏸ D1S1 還在等賢賢過目，先不動作
+[2026-08-09 04:05:01] ⏸ D1S1 還在等賢賢過目，先不動作
+[2026-08-09 04:25:01] ⏸ D1S1 還在等賢賢過目，先不動作
+[2026-08-09 04:45:01] ⏸ D1S1 還在等賢賢過目，先不動作
+[2026-08-09 05:05:02] ⏸ D1S1 還在等賢賢過目，先不動作
+[2026-08-09 05:25:01] ⏸ D1S1 還在等賢賢過目，先不動作
+[2026-08-09 05:45:01] ⏸ D1S1 還在等賢賢過目，先不動作
+[2026-08-09 06:05:02] ⏸ D1S1 還在等賢賢過目，先不動作
+[2026-08-09 06:25:01] ⏸ D1S1 還在等賢賢過目，先不動作
+[2026-08-09 06:45:01] ⏸ D1S1 還在等賢賢過目，先不動作
+[2026-08-09 07:05:01] ⏸ D1S1 還在等賢賢過目，先不動作
+[2026-08-09 07:25:01] ⏸ D1S1 還在等賢賢過目，先不動作
+[2026-08-09 07:45:01] ⏸ D1S1 還在等賢賢過目，先不動作
+[2026-08-09 08:05:03] ⏸ D1S1 還在等賢賢過目，先不動作
+[2026-08-09 08:25:02] ⏸ D1S1 還在等賢賢過目，先不動作
+[2026-08-09 08:45:02] ⏸ D1S1 還在等賢賢過目，先不動作
+[2026-08-09 10:13:43] Edge/CDP 沒開，啟動中
+[2026-08-09 10:13:46] CDP 就緒
+[2026-08-09 11:24:53] 賢賢核准 D1S1，發布中
+[2026-08-09 11:25:50]   $ publish_video.py C:\Users\TUF Gaming\Desktop\我的專案\財富密碼\auto\clips\d1s1.mp4 C:\Users\TUF -> rc=0
+[2026-08-09 11:25:50]     | file selected
+[2026-08-09 11:25:50]     | details filled
+[2026-08-09 11:25:50]     | compliance: {'VIDEO_MADE_FOR_KIDS_NOT_MFK': 'true', 'VIDEO_AGE_RESTRICTION_NONE': 'true', 'VIDEO_HAS_ALTERED_CONTENT_YES': 'true'}
+[2026-08-09 11:25:50]     | PUBLISHED https://youtube.com/shorts/y5r4mi_rjLo
+[2026-08-09 11:25:50]   已發布：https://youtube.com/shorts/y5r4mi_rjLo
+[2026-08-09 16:34:55] 目前沒有到期的工作
+[2026-08-09 16:59:04] 目前沒有到期的工作
+[2026-08-09 18:21:20] Edge/CDP 沒開，啟動中
+[2026-08-09 18:21:23] CDP 就緒
+[2026-08-10 01:35:48] 目前沒有到期的工作
+[2026-08-10 01:40:38] 目前沒有到期的工作
+[2026-08-10 01:45:01] 目前沒有到期的工作
+[2026-08-10 02:05:01] 目前沒有到期的工作
+[2026-08-10 02:25:01] 目前沒有到期的工作
+[2026-08-10 02:45:01] 目前沒有到期的工作
+[2026-08-10 03:05:01] 目前沒有到期的工作
+[2026-08-10 03:25:01] 目前沒有到期的工作
+[2026-08-10 03:45:01] 目前沒有到期的工作
+[2026-08-10 04:05:02] 目前沒有到期的工作
+[2026-08-10 04:25:01] 目前沒有到期的工作
+[2026-08-10 04:45:01] 目前沒有到期的工作
+[2026-08-10 05:05:01] 目前沒有到期的工作
+[2026-08-10 05:25:01] 目前沒有到期的工作
+[2026-08-10 05:45:01] 目前沒有到期的工作
+[2026-08-10 06:05:01] 目前沒有到期的工作
+[2026-08-10 06:25:01] 目前沒有到期的工作
+[2026-08-10 06:45:01] 目前沒有到期的工作
+[2026-08-10 07:05:01] 目前沒有到期的工作
+[2026-08-10 07:25:01] 目前沒有到期的工作
+[2026-08-10 07:45:01] 目前沒有到期的工作
+[2026-08-10 08:05:01] 處理 D2S1：Day 2: Chihuahua Wipes Red Wine And Makes It 3x Worse 🍷😳（預定 08-10 08:00，晚 0.1h）
+[2026-08-10 08:05:22]   $ make_scene.py C:\Users\TUF Gaming\Desktop\我的專案\財富密碼\auto\clips\d2s1_scene.txt C:\Use -> rc=0
+[2026-08-10 08:05:22]     | attempt 1: prompt sent
+[2026-08-10 08:05:22]     | saved C:\Users\TUF Gaming\Desktop\我的專案\財富密碼\auto\clips\d2s1_scene.jpg
+[2026-08-10 08:05:22]   場景圖 OK：d2s1_scene.jpg
+[2026-08-10 08:09:27] 處理 D2S1：Day 2: Chihuahua Wipes Red Wine And Makes It 3x Worse 🍷😳（預定 08-10 08:00，晚 0.2h）
+[2026-08-10 08:09:27]   場景圖 OK：d2s1_scene.jpg
+[2026-08-10 08:09:31]   $ make_video_cloud.py C:\Users\TUF Gaming\Desktop\我的專案\財富密碼\auto\clips\d2s1_scene.jpg C:\Use -> rc=1
+[2026-08-10 08:09:31]     |   File "C:\Users\TUF Gaming\AppData\Local\Programs\Python\Python313\Lib\site-packages\playwright\_impl\_page.py", line 472, in evaluate
+[2026-08-10 08:09:31]     |     return await self._main_frame.evaluate(expression, arg)
+[2026-08-10 08:09:31]     |            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[2026-08-10 08:09:31]     |   File "C:\Users\TUF Gaming\AppData\Local\Programs\Python\Python313\Lib\site-packages\playwright\_impl\_frame.py", line 345, in evaluate
+[2026-08-10 08:09:31]     |     await self._channel.send(
+[2026-08-10 08:09:31]     |     ...<6 lines>...
+[2026-08-10 08:09:31]     |     )
+[2026-08-10 08:09:31]     |   File "C:\Users\TUF Gaming\AppData\Local\Programs\Python\Python313\Lib\site-packages\playwright\_impl\_connection.py", line 76, in send
+[2026-08-10 08:09:31]     |     return await self._connection.wrap_api_call(
+[2026-08-10 08:09:31]     |            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[2026-08-10 08:09:31]     |     ...<3 lines>...
+[2026-08-10 08:09:31]     |     )
+[2026-08-10 08:09:31]     |     ^
+[2026-08-10 08:09:31]     |   File "C:\Users\TUF Gaming\AppData\Local\Programs\Python\Python313\Lib\site-packages\playwright\_impl\_connection.py", line 632, in wrap_api_call
+[2026-08-10 08:09:31]     |     raise rewrite_error(error, f"{parsed_st['apiName']}: {error}") from None
+[2026-08-10 08:09:31]     | playwright._impl._errors.Error: Page.evaluate: Execution context was destroyed, most likely because of a navigation
+[2026-08-10 08:09:31]   Veo 失敗（第 1 次），1 小時後再試。不改用本機。
+[2026-08-10 08:10:46]   $ make_video_cloud.py C:\Users\TUF Gaming\Desktop\我的專案\財富密碼\auto\clips\d2s1_scene.jpg C:\Use -> rc=1
+[2026-08-10 08:10:46]     |   File "C:\Users\TUF Gaming\AppData\Local\Programs\Python\Python313\Lib\site-packages\playwright\_impl\_page.py", line 472, in evaluate
+[2026-08-10 08:10:46]     |     return await self._main_frame.evaluate(expression, arg)
+[2026-08-10 08:10:46]     |            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[2026-08-10 08:10:46]     |   File "C:\Users\TUF Gaming\AppData\Local\Programs\Python\Python313\Lib\site-packages\playwright\_impl\_frame.py", line 345, in evaluate
+[2026-08-10 08:10:46]     |     await self._channel.send(
+[2026-08-10 08:10:46]     |     ...<6 lines>...
+[2026-08-10 08:10:46]     |     )
+[2026-08-10 08:10:46]     |   File "C:\Users\TUF Gaming\AppData\Local\Programs\Python\Python313\Lib\site-packages\playwright\_impl\_connection.py", line 76, in send
+[2026-08-10 08:10:46]     |     return await self._connection.wrap_api_call(
+[2026-08-10 08:10:46]     |            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[2026-08-10 08:10:46]     |     ...<3 lines>...
+[2026-08-10 08:10:46]     |     )
+[2026-08-10 08:10:46]     |     ^
+[2026-08-10 08:10:46]     |   File "C:\Users\TUF Gaming\AppData\Local\Programs\Python\Python313\Lib\site-packages\playwright\_impl\_connection.py", line 632, in wrap_api_call
+[2026-08-10 08:10:46]     |     raise rewrite_error(error, f"{parsed_st['apiName']}: {error}") from None
+[2026-08-10 08:10:46]     | playwright._impl._errors.Error: Page.evaluate: Execution context was destroyed, most likely because of a navigation
+[2026-08-10 08:10:46]   Veo 失敗（第 1 次），1 小時後再試。不改用本機。
+[2026-08-10 08:25:02] 處理 D2S1：Day 2: Chihuahua Wipes Red Wine And Makes It 3x Worse 🍷😳（預定 08-10 08:00，晚 0.4h）
+[2026-08-10 08:25:02]   Veo 上次失敗，2026-08-10T09:10 之後再試
+[2026-08-10 08:45:01] 處理 D2S1：Day 2: Chihuahua Wipes Red Wine And Makes It 3x Worse 🍷😳（預定 08-10 08:00，晚 0.8h）
+[2026-08-10 08:45:01]   Veo 上次失敗，2026-08-10T09:10 之後再試
+[2026-08-10 09:05:01] 處理 D2S1：Day 2: Chihuahua Wipes Red Wine And Makes It 3x Worse 🍷😳（預定 08-10 08:00，晚 1.1h）
+[2026-08-10 09:05:01]   Veo 上次失敗，2026-08-10T09:10 之後再試
+[2026-08-10 09:25:01] 處理 D2S1：Day 2: Chihuahua Sits On Melted Chocolate To Hide It 🍫😳（預定 08-10 08:00，晚 1.4h）
+[2026-08-10 09:25:01]   場景圖 OK：d2s1_scene.jpg
+[2026-08-10 10:05:01] 目前沒有到期的工作
+[2026-08-10 12:46:51] 目前沒有到期的工作
+[2026-08-10 13:05:01] 目前沒有到期的工作
+[2026-08-10 13:25:01] 目前沒有到期的工作
+[2026-08-10 13:45:01] 目前沒有到期的工作
+[2026-08-10 14:05:01] 目前沒有到期的工作
+[2026-08-10 14:25:01] 目前沒有到期的工作
+[2026-08-10 14:45:01] 目前沒有到期的工作
+[2026-08-10 15:05:01] 目前沒有到期的工作
+[2026-08-10 15:25:01] 目前沒有到期的工作
+[2026-08-10 15:45:01] 目前沒有到期的工作
+[2026-08-10 17:21:14] 處理 D3S1：Day 3: Chihuahua Floods The House, Brings One Tiny Towel 🌊😂（預定 08-11 08:00，晚 -14.6h）
+[2026-08-10 17:21:40]   $ make_scene.py C:\Users\TUF Gaming\Desktop\我的專案\財富密碼\auto\clips\d3s1_scene.txt C:\Use -> rc=0
+[2026-08-10 17:21:40]     | attempt 1: prompt sent
+[2026-08-10 17:21:40]     | saved C:\Users\TUF Gaming\Desktop\我的專案\財富密碼\auto\clips\d3s1_scene.jpg
+[2026-08-10 17:21:40]   場景圖 OK：d3s1_scene.jpg
+[2026-08-10 17:22:31]   $ make_video_cloud.py C:\Users\TUF Gaming\Desktop\我的專案\財富密碼\auto\clips\d3s1_scene.jpg C:\Use -> rc=5
+[2026-08-10 17:22:31]     | video mode entered via side rail (attempt 1)
+[2026-08-10 17:22:31]     |   aspect attempt 1: 顯示比例：直向 (9:16)
+[2026-08-10 17:22:31]     | aspect OK: 顯示比例：直向 (9:16)
+[2026-08-10 17:22:31]     | scene attached
+[2026-08-10 17:22:31]     | FAILED: Gemini 服務錯誤 → 發生錯誤 (1155)
+[2026-08-10 17:22:31]   Veo 失敗（第 1 次，服務抽風），6 分鐘後再試。不改用本機。
+[2026-08-10 17:25:01] 處理 D3S1：Day 3: Chihuahua Floods The House, Brings One Tiny Towel 🌊😂（預定 08-11 08:00，晚 -14.6h）
+[2026-08-10 17:25:01]   Veo 上次失敗，2026-08-10T17:28 之後再試
+[2026-08-10 17:45:01] 處理 D3S1：Day 3: Chihuahua Floods The House, Brings One Tiny Towel 🌊😂（預定 08-11 08:00，晚 -14.2h）
+[2026-08-10 17:45:01]   場景圖 OK：d3s1_scene.jpg
+[2026-08-10 18:25:01] 處理 D3S1：Day 3: Chihuahua Floods The House, Brings One Tiny Towel 🌊😂（預定 08-11 08:00，晚 -13.6h）
+[2026-08-10 18:25:01]   場景圖 OK：d3s1_scene.jpg
+[2026-08-10 19:05:01] 處理 D3S1：Day 3: Chihuahua Floods The House, Brings One Tiny Towel 🌊😂（預定 08-11 08:00，晚 -12.9h）
+[2026-08-10 19:05:01]   場景圖 OK：d3s1_scene.jpg
+[2026-08-10 19:45:01] 處理 D3S1：Day 3: Chihuahua Floods The House, Brings One Tiny Towel 🌊😂（預定 08-11 08:00，晚 -12.2h）
+[2026-08-10 19:45:01]   場景圖 OK：d3s1_scene.jpg
+[2026-08-10 19:47:01]   $ make_video_cloud.py C:\Users\TUF Gaming\Desktop\我的專案\財富密碼\auto\clips\d3s1_scene.jpg C:\Use -> rc=4
+[2026-08-10 19:47:01]     | 蓋掉過期的鎖（40 分鐘沒更新，前一支應該已經死了）
+[2026-08-10 19:47:01]     | video mode entered via side rail (attempt 1)
+[2026-08-10 19:47:01]     |   aspect attempt 1: 顯示比例：直向 (9:16)
+[2026-08-10 19:47:01]     | aspect OK: 顯示比例：直向 (9:16)
+[2026-08-10 19:47:01]     | scene attached
+[2026-08-10 19:47:01]     |   send attempt 1: 靜默還原了（框內有字=False, 影片模式=False, 附件=True）
+[2026-08-10 19:47:01]     |   send attempt 2: 靜默還原了（框內有字=False, 影片模式=False, 附件=False）
+[2026-08-10 19:47:01]     |   send attempt 3: 靜默還原了（框內有字=False, 影片模式=False, 附件=False）
+[2026-08-10 19:47:01]     | FAILED: prompt 送不出去（場景圖／影片模式已掉，需要整條重跑）
+[2026-08-10 19:47:01]   Veo 失敗（第 2 次，服務抽風），6 分鐘後再試。不改用本機。
+[2026-08-10 20:05:01] 處理 D3S1：Day 3: Chihuahua Floods The House, Brings One Tiny Towel 🌊😂（預定 08-11 08:00，晚 -11.9h）
+[2026-08-10 20:05:01]   場景圖 OK：d3s1_scene.jpg
+[2026-08-10 20:07:07]   $ make_video_cloud.py C:\Users\TUF Gaming\Desktop\我的專案\財富密碼\auto\clips\d3s1_scene.jpg C:\Use -> rc=4
+[2026-08-10 20:07:07]     | video mode entered via side rail (attempt 1)
+[2026-08-10 20:07:07]     |   aspect attempt 1: 顯示比例：直向 (9:16)
+[2026-08-10 20:07:07]     | aspect OK: 顯示比例：直向 (9:16)
+[2026-08-10 20:07:07]     | scene attached
+[2026-08-10 20:07:07]     |   send attempt 1: 靜默還原了（框內有字=False, 影片模式=False, 附件=True）
+[2026-08-10 20:07:07]     |   send attempt 2: 靜默還原了（框內有字=False, 影片模式=False, 附件=True）
+[2026-08-10 20:07:07]     |   send attempt 3: 靜默還原了（框內有字=False, 影片模式=False, 附件=True）
+[2026-08-10 20:07:07]     | FAILED: prompt 送不出去（場景圖／影片模式已掉，需要整條重跑）
+[2026-08-10 20:07:07]   Veo 失敗（第 3 次，服務抽風），21 分鐘後再試。不改用本機。
+[2026-08-10 20:25:01] 處理 D3S1：Day 3: Chihuahua Floods The House, Brings One Tiny Towel 🌊😂（預定 08-11 08:00，晚 -11.6h）
+[2026-08-10 20:25:01]   Veo 上次失敗，2026-08-11T15:05 之後再試
+[2026-08-10 20:45:01] 處理 D3S1：Day 3: Chihuahua Floods The House, Brings One Tiny Towel 🌊😂（預定 08-11 08:00，晚 -11.2h）
+[2026-08-10 20:45:01]   Veo 上次失敗，2026-08-11T15:05 之後再試
+[2026-08-10 21:05:01] 目前沒有到期的工作
+[2026-08-10 21:25:01] 目前沒有到期的工作
+[2026-08-10 21:45:01] 目前沒有到期的工作

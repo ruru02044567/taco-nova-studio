@@ -1,0 +1,75 @@
+"""用 Gemini 生場景圖（免費、不佔影片額度）。用法：python make_scene.py <prompt.txt> <out.jpg>"""
+import base64
+import sys
+import time
+
+from playwright.sync_api import sync_playwright
+
+prompt_file, out = sys.argv[1], sys.argv[2]
+prompt = open(prompt_file, encoding="utf-8").read().strip()
+
+GRAB = """
+() => {
+    const imgs = Array.from(document.querySelectorAll('img'))
+        .filter(i => i.naturalWidth > 400 && i.naturalHeight > 400);
+    if (!imgs.length) return null;
+    const img = imgs[imgs.length - 1];
+    const c = document.createElement('canvas');
+    c.width = img.naturalWidth; c.height = img.naturalHeight;
+    c.getContext('2d').drawImage(img, 0, 0);
+    return c.toDataURL('image/jpeg', 0.95);
+}
+"""
+
+
+def new_chat(page):
+    page.goto("https://gemini.google.com/app", wait_until="domcontentloaded")
+    # 等輸入框真的出現，不要用固定秒數賭它載好了
+    try:
+        page.locator("div[contenteditable='true'], rich-textarea div").first.wait_for(timeout=30000)
+    except Exception:
+        pass
+    time.sleep(2)
+
+
+def grab(page):
+    """抓圖。送出 prompt 後 Gemini 會換網址，撞到導航就當這次沒抓到，不要讓整支腳本死掉。"""
+    try:
+        return page.evaluate(GRAB)
+    except Exception:
+        return None
+
+
+with sync_playwright() as pw:
+    b = pw.chromium.connect_over_cdp("http://localhost:9222")
+    ctx = b.contexts[0]
+    page = next((p for p in ctx.pages if "gemini.google.com" in p.url), None) or ctx.new_page()
+    page.bring_to_front()
+
+    for attempt in range(3):
+        new_chat(page)
+        box = page.locator("div[contenteditable='true'], rich-textarea div").first
+        box.click()
+        # 不能用 box.type()：那是逐字打字，2000 字以上會撞 30 秒逾時。
+        # insert_text 是一次整段塞進去，長 prompt 也是瞬間完成。
+        page.keyboard.insert_text(prompt[:4000])
+        time.sleep(1.5)
+        page.keyboard.press("Enter")
+        print(f"attempt {attempt + 1}: prompt sent")
+
+        data = None
+        for _ in range(24):          # 最多等 120 秒
+            time.sleep(5)
+            data = grab(page)
+            if data:
+                break
+        if data:
+            base64.b64decode(data.split(",", 1)[1])
+            with open(out, "wb") as f:
+                f.write(base64.b64decode(data.split(",", 1)[1]))
+            print("saved", out)
+            sys.exit(0)
+        print("no image this attempt, retrying")
+
+    print("FAILED: no image after 3 attempts")
+    sys.exit(1)

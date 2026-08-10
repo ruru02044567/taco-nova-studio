@@ -1,0 +1,4 @@
+file 'C:/Users/TUF Gaming/Desktop/我的專案/財富密碼/auto/clips12/q1.mp4'
+file 'C:/Users/TUF Gaming/Desktop/我的專案/財富密碼/auto/clips12/q2.mp4'
+file 'C:/Users/TUF Gaming/Desktop/我的專案/財富密碼/auto/clips12/q3.mp4'
+file 'C:/Users/TUF Gaming/Desktop/我的專案/財富密碼/auto/clips12/q4.mp4'
