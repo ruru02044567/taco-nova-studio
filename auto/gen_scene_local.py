@@ -56,7 +56,7 @@ NEG = (
 
 def build(prompt, seed, ip_weight, ip_start, tag, ckpt=CKPT,
           steps=STEPS, cfg=CFG, width=W, height=H, ip_type="linear", ref=REF_DUO,
-          donor=None, cn_strength=0.75, cn_end=0.85):
+          donor=None, cn_strength=0.75, cn_end=0.85, depth=None):
     """IP-Adapter 鎖角色 ＋（可選）ControlNet 深度圖鎖構圖。
 
     2026-08-11 三輪實測的結論，決定了為什麼一定要有 donor 這條路：
@@ -91,7 +91,24 @@ def build(prompt, seed, ip_weight, ip_start, tag, ckpt=CKPT,
     }
 
     pos, neg = ["2", 0], ["3", 0]
-    if donor:
+
+    # depth：吃 make_depth.py 事先抽好的深度圖。
+    # 不要在同一個 workflow 裡現抽 —— DA3 ＋ SDXL ＋ IP-Adapter ＋ ControlNet
+    # 一起載，這台 16GB 的機器會直接 Fatal Python error 把 ComfyUI 幹掉（8/11 實測）。
+    if depth:
+        wf["13"] = {"class_type": "LoadImage", "inputs": {"image": depth}}
+        wf["16"] = {"class_type": "ControlNetLoader",
+                    "inputs": {"control_net_name":
+                               "xinsir_controlnet_union_sdxl_promax.safetensors"}}
+        wf["17"] = {"class_type": "SetUnionControlNetType",
+                    "inputs": {"control_net": ["16", 0], "type": "depth"}}
+        wf["20"] = {"class_type": "ControlNetApplyAdvanced",
+                    "inputs": {"positive": ["2", 0], "negative": ["3", 0],
+                               "control_net": ["17", 0], "image": ["13", 0],
+                               "strength": cn_strength, "start_percent": 0.0,
+                               "end_percent": cn_end, "vae": ["1", 2]}}
+        pos, neg = ["20", 0], ["20", 1]
+    elif donor:
         wf["30"] = {"class_type": "LoadImage", "inputs": {"image": donor}}
         wf["31"] = {"class_type": "ImageScale",
                     "inputs": {"image": ["30", 0], "width": width, "height": height,
@@ -171,8 +188,11 @@ def main():
     ap.add_argument("--steps", type=int, default=STEPS)
     ap.add_argument("--cfg", type=float, default=CFG)
     ap.add_argument("--tag", default="scene")
-    ap.add_argument("--donor", help="構圖模板圖（放在 ComfyUI/input），抽深度圖給 ControlNet")
+    ap.add_argument("--donor", help="構圖模板圖（放在 ComfyUI/input），現場抽深度圖給 ControlNet。記憶體吃緊時改用 --depth")
+    ap.add_argument("--depth", help="make_depth.py 事先抽好的深度圖檔名（省下 DA3 的記憶體）")
     ap.add_argument("--cn-strength", type=float, default=0.75)
+    ap.add_argument("--cn-end", type=float, default=0.85,
+                    help="ControlNet 管到第幾成步數就放手。深度圖是灰白的，管太久連顏色都會被帶成灰白（實測紅酒漬變白泡沫），調低讓後半段自由上色")
     ap.add_argument("--ref", default=REF_DUO,
                     help="IP-Adapter 參考圖。雙狗圖會讓模型把兩隻的特徵混成一團"
                          "（實測：哈士奇會變成小型犬、吉娃娃會被染成棕白），"
@@ -202,7 +222,8 @@ def main():
 
     wf = build(text, args.seed, args.ip_weight, args.ip_start, args.tag,
                ckpt=args.ckpt, steps=args.steps, cfg=args.cfg, ref=args.ref,
-               donor=args.donor, cn_strength=args.cn_strength)
+               donor=args.donor, cn_strength=args.cn_strength,
+               cn_end=args.cn_end, depth=args.depth)
     imgs = C.run(wf, tag=args.tag)
     if not imgs:
         print("[X] 生成失敗")
