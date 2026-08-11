@@ -51,6 +51,44 @@ RECIPES = {
         ("paws-more/Paw 1_Wood_Trot-Walk.wav", 7.9, -14, "atempo=1.2", False),
         ("claw-scratch/nails_on_towel_single_003.mp3", 8.9, -18, None, False),
     ],
+
+    # D4 麵粉：開場已成災 → 慌張撥麵粉 → 袋子噴更多 → 坐定裝無辜（哈士奇全程在睡）
+    # 這支的聲音重點跟黑洞不同：沒有低頻怪物，全部是「乾的、細的、粉狀的」。
+    # 低頻只留房間底噪，任何 boom 都會讓麵粉聽起來像石頭。
+    "flour": [
+        # ── bed 層：安靜的午後客廳。哈士奇的鼻息當第二層底 ──
+        # ⚠️ 第一版把 bed 鋪在 -38/-41，開頭兩秒整體只有 -52dB，
+        # 量出來 LRA 11.0 LU（目標 ≤5）、整體 -16 LUFS（目標 -14）。
+        # 而且 Shorts 開頭沒聲音很危險 —— 觀眾會以為影片壞掉直接滑走。
+        # 「留白」要靠事件密度做，不是靠把底噪也關掉。bed 整體提 8dB。
+        ("roomtone/Hvac,Cooling unit,Refrigerator,Int,Drone,Rattle,Roomtone,Loop.mp3",
+         0.0, -30, "highpass=f=90,lowpass=f=6000", True),
+        ("amb-birds/AMB SUBURB Solo Bird Call, Early Morning, Distant Traffic Passbys, Montreal, Canada, LOOP.mp3",
+         0.0, -33, "lowpass=f=1300", True),
+        # ── 0-2s：定格，只有眼睛動。事件少但底要在，開頭不能是死寂 ──
+        ("dog-sleep/G4F SFX06 - HORSES - Snort 03.mp3", 0.5, -19, "atempo=0.7,lowpass=f=900", False),
+        ("fabric-fine/Blanket-Lift_06.mp3", 1.1, -17, "atempo=1.4,highpass=f=400", False),   # 空氣裡的粉塵
+        ("dirt/Impacts Soft - Short, Crack.mp3", 1.6, -19, "atempo=1.6,highpass=f=400", False),  # 粉粒落地
+        # ── 2-6s：慌張撥麵粉。爪子刮木地板＋粉末推動，兩軌交錯製造忙亂感 ──
+        ("paws-more/Paw 1_Wood_Trot-Walk.wav", 2.1, -12, "atempo=1.25", False),
+        ("claw-scratch/nails_on_towel_single_003.mp3", 2.5, -14, "highpass=f=300", False),
+        ("dirt/Impacts Soft - Short, Crack.mp3", 2.9, -15, "atempo=1.3,highpass=f=250", False),
+        ("fabric-fine/Blanket-Lift_06.wav", 3.3, -13, "atempo=0.85", False),                 # 胸口壓上粉堆
+        ("claw-scratch/nails_on_ceramic_tile_single_001.mp3", 3.8, -16, "lowpass=f=5000", False),
+        ("cloth-drag/CLOTHING_MATERIAL_MOVEMENT_08.wav", 4.3, -12, "atempo=0.8", False),     # 拖麵粉袋
+        ("dirt/Drop Soft - Single Plank, Drop 02.mp3", 4.9, -14, "atempo=1.2", False),
+        ("paws-more/Paw 1_Wood_Trot-Walk.wav", 5.4, -13, "atempo=1.15", False),
+        # ── 6-8s：反效果，袋子又噴一團。全片最重的一下，但要「鬆」不要「硬」 ──
+        ("whoosh/Organic_Whoosh_14.mp3", 6.1, -7, "asetrate=48000*0.85,aresample=48000,highpass=f=200", False),
+        ("dirt/Impacts Soft - Short, Crack.mp3", 6.35, -11, "atempo=0.9", False),            # 粉堆塌下來
+        ("fabric-fine/Blanket-Lift_06.mp3", 6.6, -10, "atempo=1.8,highpass=f=500", False),   # 粉塵騰空
+        ("dog-small/Dog_German Short-Haired Pointer_Bark and Whimper_Fienup_001.mp3",
+         7.1, -13, "atrim=0:0.5,atempo=1.4,highpass=f=350", False),                          # 打噴嚏（截短當噴嚏用）
+        ("dirt/Drop Soft - Single Plank, Drop 02.mp3", 7.5, -16, "atempo=1.5", False),       # 噴嚏後落粉
+        # ── 8-10s：坐定裝無辜。收乾淨，只留呼吸，讓定格更有戲 ──
+        ("paws-more/Paw 1_Wood_Trot-Walk.wav", 8.2, -17, "atempo=0.9", False),
+        ("dog-sleep/G4F SFX06 - HORSES - Snort 03.mp3", 9.1, -22, "atempo=0.65,lowpass=f=800", False),
+    ],
 }
 
 

@@ -20,6 +20,7 @@
 import atexit
 import os
 import sys
+import threading
 import time
 from pathlib import Path
 
@@ -39,6 +40,32 @@ def acquire(who="unknown"):
     LOCK.write_text(f"{who} pid={os.getpid()} {time.strftime('%H:%M:%S')}",
                     encoding="utf-8")
     atexit.register(release)
+    _start_heartbeat(who)
+
+
+def _start_heartbeat(who):
+    """每分鐘更新鎖檔時間戳，證明自己還活著。
+
+    沒有這個的話，跑超過 STALE_MIN（30 分）的工作會被別人當成死掉、
+    把鎖蓋掉接手 —— 正是這支檔案開頭在講的那場災難，只是換成我們自己當受害者。
+    daemon thread：主程式結束就跟著死，不會卡住 exit。
+    """
+    me = os.getpid()
+
+    def beat():
+        while True:
+            time.sleep(60)
+            try:
+                if not LOCK.exists():
+                    return                      # 已經 release 了
+                if f"pid={me}" not in LOCK.read_text(encoding="utf-8", errors="replace"):
+                    return                      # 鎖已經易主，別亂蓋回去
+                LOCK.write_text(f"{who} pid={me} {time.strftime('%H:%M:%S')}",
+                                encoding="utf-8")
+            except Exception:
+                return
+
+    threading.Thread(target=beat, daemon=True).start()
 
 
 def release():

@@ -44,5 +44,15 @@
   "d9s1": {
     "scene": "C:\\Users\\TUF Gaming\\Desktop\\我的專案\\財富密碼\\auto\\clips\\d9s1_scene.jpg",
     "veo_fails": 0
+  },
+  "d4s1": {
+    "scene": "C:\\Users\\TUF Gaming\\Desktop\\我的專案\\財富密碼\\auto\\clips\\d4s1_scene.jpg",
+    "veo_fails": 1,
+    "video": "C:\\Users\\TUF Gaming\\Desktop\\我的專案\\財富密碼\\待審核\\d4s1-麵粉-有聲.mp4",
+    "awaiting_review": true,
+    "approved": false,
+    "published": false,
+    "source": "本機 Wan 2.2 兩段接龍（Gemini 場景圖起始）＋ flour 音效配方",
+    "made_at": "2026-08-11T17:03:42"
   }
 }

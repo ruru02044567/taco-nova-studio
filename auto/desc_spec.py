@@ -46,14 +46,25 @@ def check(desc):
         problems.append(f"要有 1./2./3. 三條，目前只有 {len(numbered)} 條")
 
     # 核心檢查：第 2 條必須是第三人稱劇情描述
+    #
+    # ⚠️ 這裡踩過一次坑（2026-08-11）：第一版用 `startswith` 檢查開頭是不是
+    # Taco／The chihuahua，結果把 19 支排程裡的 11 支全擋下來 —— 因為合格的寫法
+    # 常常是「An entire bag of flour has exploded... and Taco is a walking white ghost」，
+    # 主詞在句子中間。差點讓產線在額度回來那天每 20 分鐘失敗一次、永不前進。
+    #
+    # 正確判準是看整句：有沒有第三人稱主詞，以及有沒有第一人稱代名詞。
     line2 = next((ln for ln in lines if ln.startswith("2.")), "")
     if line2:
         body = line2[2:].strip()
-        if not any(body.startswith(p) for p in THIRD_PERSON):
+        low = " " + body.lower() + " "
+        has_third = any(n in low for n in ("taco", "chihuahua", "husky", "nova"))
+        has_first = any(f in low for f in (" i ", " i'm", " i've", " my ", " me ", " i am"))
+        if has_first or not has_third:
             problems.append(
-                "第 2 條必須是**第三人稱劇情描述**（用 Taco / The chihuahua / The husky 開頭，"
-                "說清楚畫面發生什麼事）。這是兩支高流量片的共同特徵，"
-                "也是演算法唯一讀得懂內容的線索 —— 不要換成 Taco 的第一人稱吐槽")
+                "第 2 條必須是**第三人稱劇情描述**（句中要出現 Taco／chihuahua／husky／Nova，"
+                "而且不能用 i／my 這種第一人稱），說清楚畫面發生什麼事。"
+                "這是兩支高流量片的共同特徵，也是演算法唯一讀得懂內容的線索"
+                " —— 不要換成 Taco 的第一人稱吐槽")
         elif len(body) < 60:
             problems.append(f"第 2 條的劇情描述太短（{len(body)} 字元），高流量版都在 90~130 字元")
 

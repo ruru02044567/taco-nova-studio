@@ -113,6 +113,38 @@ def veo_backoff_h(out, fails):
     return VEO_BACKOFF_H[min(fails, len(VEO_BACKOFF_H)) - 1]
 
 
+def ensure_comfy():
+    """確保本機 ComfyUI 活著（生圖／生片的 fallback 要用）。
+
+    注意：comfy_api.py 刻意設計成「不會自己啟動也不會關閉」伺服器 ——
+    因為這台機器踩過「兩支腳本各自開伺服器又關掉，後結束的把前一支
+    排隊中的工作殺掉」。所以啟動這件事只由 pipeline 這個唯一的自動化主體做，
+    而且只在沒開的時候開，開了就不關（卡通農場那邊也在共用同一個伺服器）。
+    """
+    try:
+        urllib.request.urlopen("http://127.0.0.1:8188/system_stats", timeout=4)
+        return True
+    except Exception:
+        pass
+    log("  ComfyUI 沒開，啟動中")
+    subprocess.Popen(
+        [str(LOCAL_GEN / "venv/Scripts/python.exe"), "main.py",
+         "--listen", "127.0.0.1", "--port", "8188", "--disable-auto-launch"],
+        cwd=str(LOCAL_GEN / "ComfyUI"),
+        stdout=open(LOCAL_GEN / "comfyui.log", "w", encoding="utf-8"),
+        stderr=subprocess.STDOUT)
+    for _ in range(24):
+        time.sleep(5)
+        try:
+            urllib.request.urlopen("http://127.0.0.1:8188/system_stats", timeout=4)
+            log("  ComfyUI 就緒")
+            return True
+        except Exception:
+            continue
+    log("  ComfyUI 起不來")
+    return False
+
+
 def run(script, *args, timeout=1800):
     """跑 scratchpad 裡的工具腳本。"""
     cmd = [sys.executable, str(SCRATCH / script), *[str(a) for a in args]]
@@ -264,7 +296,11 @@ def cmd_tick():
                 # 提前生好、也審過了，但還沒到發布時刻 → 等
                 mins = (planned - datetime.now()).total_seconds() / 60
                 log(f"✅ {k.upper()} 已核准，等 {planned:%m-%d %H:%M} 發布（還有 {mins:.0f} 分鐘）")
-                return
+                # 這裡以前是 return，等於「有一支在等發布時間」就讓整個 tick 收工。
+                # 配上 LEAD_HOURS=16（提前 16 小時生好）之後就變成災難：
+                # 核准完到發布之間那 16 小時，產線每 20 分鐘醒來、看到這支在等、直接收工，
+                # 下一支永遠不會開始生。改成 continue —— 這支只是在等時鐘，不該擋住別人。
+                continue
             if ensure_edge():
                 log(f"處理已核准的 {k.upper()}：{it['title'][:50]}")
                 publish(k, it, v, state)
@@ -308,8 +344,23 @@ def cmd_tick():
         prompt_file.write_text(item["scenePrompt"], encoding="utf-8")
         ok, _ = run("make_scene.py", prompt_file, scene)
         if not ok or not scene.exists():
-            log("  場景圖失敗，下次再試")
-            return
+            # Gemini 生圖卡住就直接改用本機，不要停在這裡等下一輪。
+            # 賢賢 2026-08-11 定的方向：本機管線已經夠好，不要再被雲端綁住。
+            # 品質確實差一截（黑點眉生不出來），但有圖才有片，卡住等於整條產線停擺。
+            log("  Gemini 生圖失敗 → 改用本機生圖")
+            if not ensure_comfy():
+                log("  本機 ComfyUI 起不來，下次再試")
+                return
+            ok2, _ = run("gen_scene_local.py",
+                         "--prompt-file", prompt_file, "--out", scene,
+                         "--ref", "taco_face.png", "--tag", key, timeout=900)
+            if not ok2 or not scene.exists():
+                log("  本機生圖也失敗，下次再試")
+                return
+            st["scene_source"] = "local"
+            log("  場景圖 OK（本機）")
+        else:
+            st["scene_source"] = "gemini"
     st["scene"] = str(scene)
     state[key] = st
     save(STATE, state)

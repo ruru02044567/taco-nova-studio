@@ -24,7 +24,14 @@ NEG = ("blurry, low quality, worst quality, cartoon, anime, 3d render, text, let
        "captions, watermark, subtitles, deformed, extra limbs, extra legs, mutated, jpeg artifacts, "
        "static image, overexposed, human, person, hand, arm, fingers, smartphone, phone, "
        "two huskies, three dogs, multiple dogs, duplicate dog, extra dog, cloned animal, "
-       "second husky, melting face, morphing face, warping, distorted face, changing breed")
+       "second husky, melting face, morphing face, warping, distorted face, changing breed, "
+       # 2026-08-11 加：D4 麵粉片在粉堆裡長出一隻「幻覺幼犬」（有鼻子、眼點、四趾爪子），
+       # 佔畫面 1/4、持續 7 秒。原本的 "three dogs / extra dog" 擋不住 ——
+       # 因為它不是一隻完整的狗，是「材料堆裡浮現出動物的形狀」，要直接點名這件事。
+       "animal shape hidden in the pile, face emerging from powder, puppy in the flour, "
+       "creature buried in the mess, pareidolia, hidden face, "
+       # 粉塵被生成灰褐色像煙，而且從畫面後方升起（跟前景的袋子對不上）
+       "smoke, grey dust, dark haze, fog, steam, dust cloud from behind")
 
 
 def api(path, data=None, timeout=30):
