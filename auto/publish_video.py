@@ -11,6 +11,20 @@ video, title_file, desc_file = sys.argv[1], sys.argv[2], sys.argv[3]
 title = open(title_file, encoding="utf-8").read().strip()
 desc = open(desc_file, encoding="utf-8").read().strip()
 
+# 發布前擋一次文案格式。8/11 實測：說明第 2 條少了第三人稱劇情描述的兩支片，
+# 觀看數從萬級掉到 50~60。那條是演算法唯一讀得懂內容的線索，不能再被誤刪。
+# 真的要硬發就加 --force（例如刻意做 A/B 測試時）。
+if "--force" not in sys.argv:
+    import desc_spec
+    ok, problems = desc_spec.check(desc)
+    if not ok:
+        print("FAILED: 說明文案不符合高流量版格式，拒絕發布")
+        for p in problems:
+            print("  -", p)
+        print("  （確定要照發就加 --force）")
+        sys.exit(9)
+    print("說明文案格式檢查：通過")
+
 WANT = ["VIDEO_MADE_FOR_KIDS_NOT_MFK", "VIDEO_AGE_RESTRICTION_NONE", "VIDEO_HAS_ALTERED_CONTENT_YES"]
 
 
@@ -29,12 +43,27 @@ def click_exact(page, text):
     )
 
 
+TACO_CHANNEL_ID = "UC4Bf0lB05GrYF8Q4l6NnjEA"      # Taco & Nova
+
 with sync_playwright() as pw:
     b = pw.chromium.connect_over_cdp("http://localhost:9222")
     ctx = b.contexts[0]
     page = next((p for p in ctx.pages if "youtube.com" in p.url and "gemini" not in p.url), None) \
         or ctx.new_page()
     page.bring_to_front()
+
+    # ⚠ 2026-08-11 新增：發布前先確認頻道。
+    # 這個 Edge profile 現在有兩個頻道（Taco & Nova ＋ 卡通農場的「小雲硯」），
+    # 瀏覽器停在哪個頻道就會發到哪個頻道，而 YouTube 的頻道切換擋自動化、只能人工切。
+    # 沒有這道檢查的話，只要有人切過頻道忘了切回來，下一支狗狗片就會發到兒童頻道去。
+    page.goto("https://studio.youtube.com/", wait_until="domcontentloaded")
+    time.sleep(10)
+    if TACO_CHANNEL_ID not in page.url:
+        print("FAILED: 目前作用中的頻道不是 Taco & Nova，中止發布")
+        print(f"  現在的 Studio 網址：{page.url[:110]}")
+        print("  → 請先到 youtube.com/channel_switcher 手動切回 Taco & Nova 再重跑")
+        sys.exit(2)
+    print("頻道確認：Taco & Nova")
 
     page.goto("https://www.youtube.com/upload", wait_until="domcontentloaded")
     time.sleep(6)
