@@ -19,6 +19,8 @@ import urllib.request
 from datetime import datetime, timedelta
 from pathlib import Path
 
+sys.stdout.reconfigure(encoding="utf-8")
+
 HERE = Path(__file__).parent
 PROJECT = HERE.parent
 CHAR = PROJECT / "character"
@@ -43,6 +45,20 @@ SCRATCH = Path(os.environ.get("GBOT_DIR", HERE))   # gbot.py 等工具放這
 LOCAL_GEN = Path(r"C:\Users\TUF Gaming\ai-video-local")
 EDGE = r"C:\Program Files (x86)\Microsoft\Edge\Application\msedge.exe"
 PROFILE = r"C:\Users\TUF Gaming\.config\gemini-bot-profile"
+
+# 2026-08-13 加：這台機器有兩個 Python，套件裝在不同地方。
+#   系統 Python  → playwright（所有瀏覽器自動化：發布、Gemini 生圖）
+#   ComfyUI venv → torch / diffusers（生圖生片）
+# run() 原本一律用 sys.executable，也就是「誰跑 pipeline.py 就用誰」——
+# 8/13 10:37 用 venv 跑，publish_video.py 立刻 ModuleNotFoundError: playwright。
+# 需要瀏覽器的腳本改成明確指定系統 Python，不要靠呼叫者記得。
+SYS_PY = Path(r"C:\Users\TUF Gaming\AppData\Local\Programs\Python\Python313\python.exe")
+BROWSER_SCRIPTS = {"publish_video.py", "gbot.py", "studio_stats.py",
+                   "update_desc.py", "update_title.py", "video_stats.py", "video_reach.py"}
+
+# G-Brain 的專案索引。2026-08-12 起 G-Brain 已停用搬離，這個檔不存在，
+# 存在時才會去回寫（見 publish()）。復原 G-Brain 後不用改程式，自動恢復。
+GBRAIN_INDEX = Path(r"C:\Users\TUF Gaming\.claude\G-Brain\01-專案\_索引.md")
 
 # 發布時段（台北時間，小時）
 SLOT_HOURS = {1: 8, 2: 20, 3: 0}
@@ -146,8 +162,14 @@ def ensure_comfy():
 
 
 def run(script, *args, timeout=1800):
-    """跑 scratchpad 裡的工具腳本。"""
-    cmd = [sys.executable, str(SCRATCH / script), *[str(a) for a in args]]
+    """跑 scratchpad 裡的工具腳本。
+
+    需要瀏覽器（playwright）的腳本一律用系統 Python，其餘沿用呼叫者的直譯器。
+    """
+    py = sys.executable
+    if script in BROWSER_SCRIPTS and SYS_PY.exists():
+        py = str(SYS_PY)
+    cmd = [py, str(SCRATCH / script), *[str(a) for a in args]]
     env = dict(os.environ, PYTHONIOENCODING="utf-8")
     # encoding 一定要指定 utf-8：不指定的話 Windows 會用 cp950 解碼子腳本的輸出，
     # 只要對方印出一個中文字就 UnicodeDecodeError，錯誤訊息整段被吃掉、只剩 rc=1。
@@ -210,6 +232,20 @@ def publish(key, item, st, state):
         state[key] = st
         save(STATE, state)
         log(f"  已發布：{url}")
+        # 把進度回寫到 G-Brain 的專案索引（2026-08-11 加）。
+        # 起因：索引一直寫著「萬事俱備，只差開拍」，那時候其實已經發了 6 支 ——
+        # 別的對話視窗會照著那句話做事。會過期的根因是「做完沒回寫」，靠人記得沒用。
+        # ⚠️ 整段包在 try 裡：回寫失敗絕對不能影響「已經發布成功」這個事實，
+        # 也不能讓 publish() 回傳 False（那會讓產線以為沒發出去而重試）。
+        #
+        # 2026-08-13：G-Brain 已停用搬離，索引檔不存在，這支每次都印一行 SKIP。
+        # 無害，但那是每次發布都會出現的雜訊，會蓋掉真正該看的訊息。
+        # 改成「索引檔在才呼叫」——腳本本身保留，G-Brain 復原後自動恢復回寫。
+        if GBRAIN_INDEX.exists():
+            try:
+                run("sync_gbrain.py", timeout=60)
+            except Exception as e:
+                log(f"  （回寫 G-Brain 索引失敗，不影響發布）{type(e).__name__}: {e}")
         return True
     log("  發布失敗，下次再試")
     return False

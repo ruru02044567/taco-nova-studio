@@ -1,0 +1,76 @@
+{
+  "archived-d1s1": {
+    "video": "C:\\Users\\TUF Gaming\\Desktop\\我的專案\\財富密碼\\auto\\clips\\d1s1.mp4",
+    "published": true,
+    "url": "https://youtube.com/shorts/VZsKMcX2jG0",
+    "at": "2026-08-08T13:39:35"
+  },
+  "archived-d1s2": {
+    "video": "C:\\Users\\TUF Gaming\\Desktop\\我的專案\\財富密碼\\auto\\clips\\d1s2.mp4",
+    "published": true,
+    "url": "https://youtube.com/shorts/L4bJzZNmKvk",
+    "at": "2026-08-08T20:25:47"
+  },
+  "d1s1": {
+    "scene": "C:\\Users\\TUF Gaming\\Desktop\\我的專案\\財富密碼\\auto\\clips\\d1s1_scene.jpg",
+    "veo_fails": 0,
+    "veo_retry_after": "2026-08-09T01:47:15",
+    "video": "C:\\Users\\TUF Gaming\\Desktop\\我的專案\\財富密碼\\auto\\clips\\d1s1.mp4",
+    "source": "veo",
+    "awaiting_review": false,
+    "approved": true,
+    "published": true,
+    "url": "https://youtube.com/shorts/y5r4mi_rjLo",
+    "at": "2026-08-09T11:25:50"
+  },
+  "d2s1": {
+    "video": "C:\\Users\\TUF Gaming\\Desktop\\我的專案\\財富密碼\\待審核\\d2s1-巧克力-有聲.mp4",
+    "awaiting_review": false,
+    "approved": true,
+    "published": true,
+    "url": "https://youtube.com/shorts/MIWNqt3w3qM",
+    "at": "2026-08-10T09:50:23",
+    "source": "本機 ComfyUI 5 秒單段＋Sonniss 音效（Veo 當天逾時）"
+  },
+  "d3s1": {
+    "video": "C:\\Users\\TUF Gaming\\Desktop\\我的專案\\財富密碼\\auto\\clips\\d3s1.mp4",
+    "awaiting_review": false,
+    "approved": true,
+    "published": true,
+    "url": "https://youtube.com/shorts/HrzwXbVRsWI",
+    "at": "2026-08-10T20:55:10",
+    "source": "本機 ComfyUI 四鏡 12 秒（Veo 免費額度已用完，賢賢 8/10 晚指示直接發）"
+  },
+  "d9s1": {
+    "scene": "C:\\Users\\TUF Gaming\\Desktop\\我的專案\\財富密碼\\auto\\clips\\d9s1_scene.jpg",
+    "veo_fails": 0
+  },
+  "d4s1": {
+    "scene": "C:\\Users\\TUF Gaming\\Desktop\\我的專案\\財富密碼\\auto\\clips\\d4s1_scene.jpg",
+    "veo_fails": 1,
+    "video": "C:\\Users\\TUF Gaming\\Desktop\\我的專案\\財富密碼\\待審核\\d4s1-甩身-有聲.mp4",
+    "awaiting_review": false,
+    "approved": true,
+    "published": true,
+    "source": "Gemini 場景圖 d4s1_scene.jpg（未重生）→ 本機 Wan 2.2 單段 i2v 121 幀 @24fps = 5.04 秒（make_video_local_5s.py, seed 424243, prompt V2）→ flour_shake 音效 → -16.2 LUFS",
+    "source_history": "2026-08-11 v4 麵粉版（已作廢）：Gemini 場景圖（無商標）→ 本機 Wan 2.2 兩段接龍 i2v → 自製音效 → -14.7 LUFS",
+    "made_at": "2026-08-13T02:05:00",
+    "note": "實際發布的是甩身版（單段，非接龍）。舊版一律勿發：d4s1-麵粉-有聲.mp4 有幻覺幼犬；d4s1-麵粉-最終版.mp4 與 d4s1-麵粉-精剪7秒.mp4 因規則 10（吐白粉讀法）判 REGENERATE。黑名單見 auto\\rejected.json。",
+    "url": "https://youtube.com/shorts/PLzHqmJDGYo",
+    "at": "2026-08-13T10:48:33"
+  },
+  "d5s1": {
+    "scene": "C:\\Users\\TUF Gaming\\Desktop\\我的專案\\財富密碼\\auto\\clips\\d5s1_scene.jpg",
+    "veo_fails": 0,
+    "video": "C:\\Users\\TUF Gaming\\Desktop\\我的專案\\財富密碼\\待審核\\d5s1-岩漿-有聲.mp4",
+    "awaiting_review": false,
+    "approved": true,
+    "published": true,
+    "source": "Gemini 場景圖 → 本機 Wan 2.2 兩段接龍 i2v → 慢速開頭做動量對比 → lava 音效配方 → -13.7 LUFS",
+    "made_at": "2026-08-11T22:45:04",
+    "note": "8/11 深夜手動生。10.17 秒對齊 D4S1 片長（保住實驗 #1 的片長變數）。黑點眉已改用「圓點不是眉毛線」的寫法，場景圖第一版左右不對稱已重生修正。",
+    "url": "https://youtube.com/shorts/F0v-ud9W96s",
+    "at": "2026-08-11T22:58:27",
+    "publish_note": "賢賢 8/11 23:0x 指示「現在就發」，未等 8-13 08:00 的排定時段。"
+  }
+}

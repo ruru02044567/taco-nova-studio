@@ -1,0 +1,107 @@
+{
+  "version": "2026-08-15.1",
+  "updated": "2026-08-15T00:40:00+08:00",
+  "benchmark_source": "LOCAL-AI-STUDIO/PRODUCTION/MODEL_CAPABILITY.md",
+  "_note": "分數 0-10，以 Veo/雲端 = 10 為錨點（d1s1 黑洞 5.1 萬觀看那支的量測值）。evidence 欄位是這個分數的來源：tested = 這個專案真的生過並量過；partial = 有相關實測但沒針對這一項驗；inferred = 從已知規律推的，還沒實測。inferred 的分數只能拿來擋掉明顯做不到的事，不可以拿來當「證明」。",
+
+  "thresholds": {
+    "local_ok": 8,
+    "local_test": 5,
+    "local_test_max_m": 2
+  },
+
+  "defaults": {
+    "unmatched_model": "VEO",
+    "_why": "比對不到就走 Veo。誤判成本不對稱：誤走 Veo 只是多花 15 點，誤走本機是浪費 5-12 分鐘算力再加一輪審片"
+  },
+
+  "local_best_config": {
+    "model_file": "wan22_5b_turbo_Q4_K_M.gguf",
+    "steps": 8,
+    "shift": 8.0,
+    "length": 121,
+    "sampler": "euler",
+    "scheduler": "simple",
+    "cfg": 1.0,
+    "minutes_per_clip": 6.5,
+    "_why": "steps 8 是成本效果比的轉折點：對 steps 4 全面勝出（動作 +38%、流暢 +7%、光流解釋率 +38%、角色細節 +9%）只多花 30% 時間。再往上角色穩定度開始退步"
+  },
+
+  "tasks": {
+    "靜態表情": {"m_level": 0, "local": 8, "veo": 10, "evidence": "tested",
+      "keywords": ["裝無辜", "站著", "坐著", "看鏡頭", "不動", "定格", "靜止", "innocent"],
+      "note": "D2/D5/D6/D7 四支都過 gate。本機的強項"},
+
+    "眼神變化": {"m_level": 1, "local": 6, "veo": 10, "evidence": "partial",
+      "keywords": ["眼神", "看向", "瞄", "眨眼", "眼睛"],
+      "note": "眼球轉動在 v09 有生出來，但沒有針對「眼神方向可控性」單獨驗過"},
+
+    "頭部轉動": {"m_level": 1, "local": 8, "veo": 10, "evidence": "tested",
+      "keywords": ["轉頭", "抬頭", "低頭", "歪頭", "回頭"],
+      "note": "十二支本機片全部都有自然的轉頭，這是它唯一穩定生得出來的動作"},
+
+    "微笑": {"m_level": 1, "local": null, "veo": 9, "evidence": "untested",
+      "keywords": ["微笑", "笑", "smile"],
+      "note": "❓ 從沒測過。本機 prompt 一律要求 mouth stays closed（避免臉部崩壞），等於刻意繞開了表情"},
+
+    "奸詐微笑": {"m_level": 1, "local": null, "veo": 9, "evidence": "untested",
+      "keywords": ["奸笑", "壞笑", "奸詐", "得意", "smirk"],
+      "note": "❓ 從沒測過。這是頻道人設的核心表情，值得專門排一輪實驗"},
+
+    "小幅度動作": {"m_level": 2, "local": 1, "veo": 9, "evidence": "tested",
+      "keywords": ["甩身", "抖", "抖動", "聳肩", "擺尾", "shake"],
+      "note": "⛔ 12 支全滅。D6 六個版本＋三顆 seed＋steps 4/6/8/10/16/24 六種步數，prompt 明寫『這是全片唯一的大動作、必須清楚發生』，一次都沒生出來"},
+
+    "走路": {"m_level": 2, "local": 2, "veo": 9, "evidence": "tested",
+      "keywords": ["走", "走路", "走過", "走向", "踱步", "walk"],
+      "note": "⚠️ 分數低不是因為生不出來，是因為『不可控』。模型會自己讓狗走向鏡頭，而 never walks toward the camera 這類否定句完全無效（v07/v08 實測）。要它走它不走，不要它走它一直走"},
+
+    "拿取物品": {"m_level": 2, "local": 1, "veo": 8, "evidence": "tested",
+      "keywords": ["叼", "拿", "咬起", "撿", "叼起", "pick up"],
+      "note": "⛔ 局部單肢動作會長出第三條腿（v02 實測，t1.5-3.0）。全身同步動作才不會"},
+
+    "抬頭": {"m_level": 2, "local": 8, "veo": 10, "evidence": "tested",
+      "keywords": ["抬頭", "仰頭", "look up"],
+      "note": "跟頭部轉動同一類，穩定"},
+
+    "物件掉落": {"m_level": 2, "local": 1, "veo": 8, "evidence": "tested",
+      "keywords": ["掉", "掉落", "落下", "沉下", "下沉", "倒下", "fall"],
+      "note": "⛔ D7 v01 要拖鞋下沉，實際演成反向浮起（曝露面積 +23%），2.7 秒後融解成灰塊佔全片 45%。物理連續性是本機的死穴"},
+
+    "丟東西": {"m_level": 3, "local": 0, "veo": 8, "evidence": "inferred",
+      "keywords": ["丟", "扔", "拋", "throw"],
+      "note": "推論：需要局部肢體動作（已證明會長腿）＋物件拋物線（已證明物理不連續）。兩個死穴疊加"},
+
+    "物件互動": {"m_level": 3, "local": 1, "veo": 8, "evidence": "tested",
+      "keywords": ["互動", "碰", "推", "撥", "玩", "踩"],
+      "note": "⛔ D7 連兩版失敗後改走「災難已成＋裝無辜」的靜態構圖才過關"},
+
+    "Portal傳送": {"m_level": 2, "local": 6, "veo": 9, "evidence": "tested",
+      "keywords": ["傳送門", "portal", "漩渦", "發光", "旋轉"],
+      "note": "⚠️ 分兩件事：發光漩渦『存在並旋轉』本機做得到（D7 v03 過關）；漩渦『吞掉東西』做不到（見物件掉落）"},
+
+    "跑步": {"m_level": 4, "local": 1, "veo": 9, "evidence": "inferred",
+      "keywords": ["跑", "衝", "奔", "run", "跑過"],
+      "note": "推論：連受控的走路都做不到，跑步是更大幅度的四肢協調"},
+
+    "跳躍": {"m_level": 4, "local": 0, "veo": 8, "evidence": "inferred",
+      "keywords": ["跳", "躍", "彈起", "jump"],
+      "note": "推論：需要離地的物理連續性，跟物件掉落同一個死穴"},
+
+    "追逐": {"m_level": 4, "local": 0, "veo": 8, "evidence": "inferred",
+      "keywords": ["追", "追逐", "追著", "chase"],
+      "note": "推論：跑步 × 兩隻狗同時動。本機從沒讓兩隻狗同時動過（Nova 一律鎖成睡著）"},
+
+    "快速動作": {"m_level": 4, "local": 1, "veo": 8, "evidence": "tested",
+      "keywords": ["快速", "急", "瞬間", "猛然", "突然"],
+      "note": "⛔ 速度抖動（jerk）實測有硬天花板 0.47，steps 從 8 加到 24 完全沒有改善。快動作只會把抖動放大"},
+
+    "複雜角色互動": {"m_level": 5, "local": 0, "veo": 7, "evidence": "inferred",
+      "keywords": ["互相", "一起", "兩隻", "對看", "打鬧", "舔"],
+      "note": "推論：所有本機成功案例的配角都是『睡著不動』。兩隻同時動從沒測過，而 prompt 沒鎖到的角色一定崩（v05 實測）"},
+
+    "連續劇情": {"m_level": 5, "local": 1, "veo": 7, "evidence": "tested",
+      "keywords": ["然後", "接著", "先", "再", "最後", "三個鏡頭", "分鏡"],
+      "note": "⛔ 8/9 三次實測：接龍第二段每次都崩（長人手／增生第二隻狗／換品種）。要多鏡頭只能每鏡各生一張場景圖分開跑再剪"}
+  }
+}

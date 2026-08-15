@@ -1,0 +1,16 @@
+EXP-07 無 IP-Adapter 權重掃描（拆開 EXP-06 的變數污染）
+
+唯一變數：IP-Adapter 有 / 無
+對照組：sweep_V2/（同權重、有 IPA 0.65、EXP-03 產出）
+
+固定條件
+  底模型        RealVisXL_V5.0_Lightning_fp16.safetensors
+  LoRA          nova_lora_V2_step1500.safetensors（權重 [0.0, 0.15, 0.25, 0.35, 0.45]）
+  ControlNet    xinsir union promax（depth）強度 0.7 end 0.5
+  深度圖         d9s1_depth_clean.png
+  seed          424242（固定，非時間戳）
+  解析度         768x1152
+  sampler       dpmpp_sde / karras   steps 6  cfg 1.8
+  positive / negative  與 23_sweep_v2.py 完全相同
+
+耗時：0.00=18s, 0.15=18s, 0.25=20s, 0.35=20s, 0.45=20s

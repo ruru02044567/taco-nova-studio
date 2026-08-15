@@ -1,0 +1,78 @@
+{
+  "_說明": "不可發布的影片黑名單。publish_video.py 每次發布前都會比對，命中就拒發（rc=8）。刻意要發就加 --force。比對用檔名（不分大小寫），不看資料夾，因為同一支片常被複製到多個位置。",
+  "_建立": "2026-08-13。起因：待審核\\ 裡同時躺著 5 個 d4s1 版本，其中 3 個已判定不可發，但『哪支能發』只寫在 .md 註記裡，程式讀不到，路徑打錯就會發到被退回的版本。",
+  "rejected": [
+    {
+      "file": "d4s1-麵粉-最終版.mp4",
+      "reason": "PUBLISH_GATE 規則 10 判 REGENERATE：3.0–6.0 秒白粉扇形的擴散起點在鼻口，讀起來像從嘴裡噴白粉",
+      "ruled_at": "2026-08-13",
+      "ref": "LOCAL-AI-STUDIO\\PRODUCTION\\PUBLISH_GATE.md"
+    },
+    {
+      "file": "d4s1-麵粉-精剪7秒.mp4",
+      "reason": "與最終版同一個問題，只是節奏更快。規則 10 判 REGENERATE",
+      "ruled_at": "2026-08-13",
+      "ref": "LOCAL-AI-STUDIO\\PRODUCTION\\PUBLISH_GATE.md"
+    },
+    {
+      "file": "d4s1-麵粉-有聲.mp4",
+      "reason": "舊版，畫面有幻覺幼犬",
+      "ruled_at": "2026-08-11",
+      "ref": "auto\\state.json 的 d4s1.note"
+    },
+    {
+      "file": "d6s1-cand-v01.mp4",
+      "reason": "PUBLISH_GATE 判 REGENERATE：8 條硬性規則不過（1/3/4/5/6/8 ＋ Nova 體型倍率）。核心是 t1.0-t2.5 約 1.7 秒 Taco 整隻融解成長吻大型犬、眼珠消失由額頭黑點頂替眼位，且片尾收在只剩一顆黑點的狀態",
+      "ruled_at": "2026-08-13",
+      "ref": "LOCAL-AI-STUDIO\\PRODUCTION\\_gate_d6s1\\report_fail\\d6s1-cand-v01.md"
+    },
+    {
+      "file": "d6s1-cand-v02.mp4",
+      "reason": "PUBLISH_GATE 判 REGENERATE：規則 1/3/5/8/10 不過。最嚴重是 t1.5-t3.0 連續四幀憑空多出第三條前腿（持續 1.5 秒、畫面正中央）＋頸背融解成無毛白團塊＋項圈飄到背上；規則 10 從 v01 的 PASS 退步成 FAIL（下巴垂墜 0-1-1-2 道遞增、出現平滑流體邊緣，命中 v01 report 預先登記的直接 FAIL 條件）",
+      "ruled_at": "2026-08-13",
+      "ref": "LOCAL-AI-STUDIO\\PRODUCTION\\_gate_d6s1\\report_fail\\d6s1-cand-v02.md"
+    },
+    {
+      "file": "d6s1-cand-v08.mp4",
+      "reason": "PUBLISH_GATE 判 REGENERATE：規則 1/3/5 不過。t1.7 之後額頭黑點從 2 顆增生到 4-5 顆並散佈到臉頰，後段臉部結構崩解；且全程持續走向鏡頭，片尾成大特寫、盆栽被擠出畫面",
+      "ruled_at": "2026-08-14",
+      "ref": "LOCAL-AI-STUDIO\\PRODUCTION\\_gate_d6s1\\v08\\_sheet.jpg"
+    },
+    {
+      "file": "d7s1-cand-v01.mp4",
+      "reason": "四代理獨立審片判 REGENERATE，5 個 BLOCKER：① 0-1.6s 拖鞋反向「站起來」（曝露面積 55.3→68.0，+23%），視覺上是傳送門把鞋吐出來，與標題相反 ② 真正下沉只有 0.2 秒（2.30-2.50s，佔全片 4%）③ 2.7s 後拖鞋融解成無結構灰塊，鞋底／車縫線／絨布紋理全失，持續至片尾佔全片 45%，踩規則 5 與規則 6 ④ 末幀拖鞋仍整隻躺在畫面上，沒被吞掉 ⑤ 色度量測顯示紫光沒照到拖鞋（拖鞋 U130/V131 近中性灰，光圈外地板 U143/V150 反而更紫），拖鞋讀起來像貼上去的 PNG 圖層",
+      "ruled_at": "2026-08-14",
+      "ref": "LOCAL-AI-STUDIO\\\\PRODUCTION\\\\_gate_d7s1\\\\v01"
+    },
+    {
+      "file": "d7s1-cand-v02.mp4",
+      "reason": "四代理獨立審片一致判 REGENERATE。① Taco 額頭是三顆黑點不是兩顆（首幀就有、全片持續、大小不一不對稱），根因追溯為場景圖 d7s1_scene_b1.jpg 本身就畫成三顆 ② 3.9-4.2 秒整組臉部標記重組：三顆變兩顆、圓點變不規則團塊、位置從額頭滑到眉骨，頭頂憑空長出一道深色斜紋，頭骨變窄吻部拉長，且維持到末幀（Shorts loop 時被看最多次的一格）③ 那道斜紋配上轉頭低頭的肢體語法，有被讀成「頭上有傷在畏縮」的風險，觸及規則 10 傷害動物紅線。踩 PUBLISH_GATE 規則 1／3／7／8／10",
+      "ruled_at": "2026-08-14",
+      "ref": "LOCAL-AI-STUDIO\\\\PRODUCTION\\\\_gate_d7s1\\\\v02"
+    },
+    {
+      "file": "d7s1_scene_b1.jpg",
+      "reason": "場景圖本身就把 Taco 的黑點眉畫成三顆（左小、中大、右大），是 d7s1-cand-v02 三顆黑點的根因。用這張當起始圖的 i2v 一定生出三顆點，不要再拿來生片。教訓：場景圖的角色辨識物一定要裁頭部放大逐顆數過再用，掃視全圖看不出來",
+      "ruled_at": "2026-08-14",
+      "ref": "LOCAL-AI-STUDIO\\\\PRODUCTION\\\\_gate_d7s1\\\\v02"
+    }
+  ],
+  "superseded": [
+    {
+      "file": "d4s1-麵粉-v2-無幻覺.mp4",
+      "reason": "中間版本，已被後續版本取代",
+      "ruled_at": "2026-08-11"
+    },
+    {
+      "file": "d4s1-麵粉-甩身v5.mp4",
+      "reason": "白天版甩身，動作演成往前走。已被夜間 seed 424243 版取代",
+      "ruled_at": "2026-08-13",
+      "ref": "LOCAL-AI-STUDIO\\NIGHT_RD\\NIGHT_R&D_REPORT.md"
+    },
+    {
+      "file": "d6s1-cand-v10.mp4",
+      "reason": "t1.25 仰頭扭曲、臉部拉長，畫面穩定度不如 v09；動作仍非甩身",
+      "ruled_at": "2026-08-14"
+    }
+  ]
+}

@@ -1,15 +1,85 @@
 """上傳並公開發布到 Taco & Nova 頻道，含合規設定。
 用法：python publish_video.py <video.mp4> <title.txt> <desc.txt>
 成功時會印出一行含 youtube.com/shorts/ 的網址。
+
+⚠ 必須用**系統 Python**跑（playwright 裝在那裡），不是 ComfyUI 的 venv：
+   C:\\Users\\TUF Gaming\\AppData\\Local\\Programs\\Python\\Python313\\python.exe
 """
+import json
 import sys
 import time
+from pathlib import Path
 
-from playwright.sync_api import sync_playwright
+sys.stdout.reconfigure(encoding="utf-8")
+
+# 2026-08-13 加：playwright 找不到時給出「該怎麼辦」，不要只丟 ModuleNotFoundError。
+# 8/13 10:37 那次發布失敗就是這個 —— pipeline.py 用 sys.executable 呼叫子腳本，
+# 而它自己是被 ComfyUI 的 venv 跑起來的，那個 venv 沒裝 playwright。
+# 堆疊訊息看不出根因，浪費了一輪重試。
+try:
+    from playwright.sync_api import sync_playwright
+except ModuleNotFoundError:
+    print("FAILED: 這個 Python 沒有 playwright，無法發布")
+    print(f"  目前用的是：{sys.executable}")
+    print(r"  → 請改用系統 Python：C:\Users\TUF Gaming\AppData\Local\Programs\Python\Python313\python.exe")
+    sys.exit(7)
+
+HERE = Path(__file__).parent
 
 video, title_file, desc_file = sys.argv[1], sys.argv[2], sys.argv[3]
 title = open(title_file, encoding="utf-8").read().strip()
 desc = open(desc_file, encoding="utf-8").read().strip()
+
+# ── 2026-08-13 加：發布前擋掉已判定不可發的版本 ─────────────────
+# 起因：待審核\ 裡同時躺著 5 個 d4s1 版本，其中 3 個已判 REGENERATE 或有幻覺幼犬，
+# 但「哪支能發」只寫在 .md 註記和人腦裡，程式讀不到。
+# 這支腳本是所有發布的唯一出口（pipeline 自動發、手動發都經過這裡），擋在這最有效。
+def _check_not_blacklisted(path):
+    f = HERE / "rejected.json"
+    if not f.exists():
+        return
+    try:
+        data = json.loads(f.read_text(encoding="utf-8"))
+    except Exception as e:
+        print(f"  （rejected.json 讀不起來，跳過黑名單檢查）{type(e).__name__}: {e}")
+        return
+    name = Path(path).name.lower()
+    for bucket, label in (("rejected", "已判定不可發"), ("superseded", "已被更新版本取代")):
+        for item in data.get(bucket, []):
+            if item.get("file", "").lower() == name:
+                print(f"FAILED: 這支{label}，拒絕發布")
+                print(f"  檔案：{Path(path).name}")
+                print(f"  原因：{item.get('reason', '（未記錄）')}")
+                if item.get("ref"):
+                    print(f"  依據：{item['ref']}")
+                print("  （確定要照發就加 --force）")
+                sys.exit(8)
+
+
+# 同一個檔案已經發布過就不要再發一次 —— state.json 記著每支已發影片的路徑。
+def _check_not_already_published(path):
+    f = HERE / "state.json"
+    if not f.exists():
+        return
+    try:
+        state = json.loads(f.read_text(encoding="utf-8"))
+    except Exception:
+        return
+    name = Path(path).name.lower()
+    for key, v in state.items():
+        if not isinstance(v, dict) or not v.get("published") or not v.get("url"):
+            continue
+        if Path(v.get("video", "")).name.lower() == name:
+            print(f"FAILED: 這支已經發布過了，拒絕重複發布")
+            print(f"  檔案：{Path(path).name}")
+            print(f"  {key.upper()} 於 {v.get('at', '?')} 發布：{v['url']}")
+            print("  （確定要再發一次就加 --force）")
+            sys.exit(8)
+
+
+if "--force" not in sys.argv:
+    _check_not_blacklisted(video)
+    _check_not_already_published(video)
 
 # 發布前擋一次文案格式。8/11 實測：說明第 2 條少了第三人稱劇情描述的兩支片，
 # 觀看數從萬級掉到 50~60。那條是演算法唯一讀得懂內容的線索，不能再被誤刪。
@@ -54,16 +124,35 @@ with sync_playwright() as pw:
 
     # ⚠ 2026-08-11 新增：發布前先確認頻道。
     # 這個 Edge profile 現在有兩個頻道（Taco & Nova ＋ 卡通農場的「小雲硯」），
-    # 瀏覽器停在哪個頻道就會發到哪個頻道，而 YouTube 的頻道切換擋自動化、只能人工切。
+    # 瀏覽器停在哪個頻道就會發到哪個頻道。
     # 沒有這道檢查的話，只要有人切過頻道忘了切回來，下一支狗狗片就會發到兒童頻道去。
+    #
+    # ⚠ 8/11 深夜修：原本是 `sleep(10)` 之後看一次 URL 就判定，結果**誤擋了一次發布** ——
+    # Studio 冷啟動要 10 秒以上才會從 studio.youtube.com/ 重導向到 /channel/<id>，
+    # 那一瞬間 URL 裡當然沒有頻道 ID。檢查沒有錯，是等太短。
+    # 改成輪詢等重導向（最多 45 秒），並額外核對畫面上的頻道名稱 ——
+    # 只看 URL 會被「還沒導完」騙，兩個都對才算數。這是把檢查改嚴，不是放寬。
     page.goto("https://studio.youtube.com/", wait_until="domcontentloaded")
-    time.sleep(10)
+    for _ in range(15):
+        time.sleep(3)
+        if TACO_CHANNEL_ID in page.url:
+            break
     if TACO_CHANNEL_ID not in page.url:
         print("FAILED: 目前作用中的頻道不是 Taco & Nova，中止發布")
         print(f"  現在的 Studio 網址：{page.url[:110]}")
         print("  → 請先到 youtube.com/channel_switcher 手動切回 Taco & Nova 再重跑")
         sys.exit(2)
-    print("頻道確認：Taco & Nova")
+    chan_name = page.evaluate("""() => {
+        for (const s of ['#channel-name', 'ytcp-account-section #entity-name', '#entity-name']) {
+            const el = document.querySelector(s);
+            if (el && (el.innerText || '').trim()) return el.innerText.trim();
+        }
+        return null;
+    }""")
+    if chan_name and "Taco" not in chan_name:
+        print(f"FAILED: 網址是 Taco & Nova 但畫面顯示的頻道是「{chan_name}」，中止發布")
+        sys.exit(2)
+    print(f"頻道確認：Taco & Nova（畫面顯示：{chan_name}）")
 
     page.goto("https://www.youtube.com/upload", wait_until="domcontentloaded")
     time.sleep(6)

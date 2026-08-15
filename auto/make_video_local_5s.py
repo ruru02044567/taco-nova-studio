@@ -15,6 +15,41 @@ from pathlib import Path
 sys.stdout.reconfigure(encoding="utf-8")
 
 scene, prompt_file, out = Path(sys.argv[1]), Path(sys.argv[2]), Path(sys.argv[3])
+
+# --seed：2026-08-13 加。原本 seed 寫死成 int(stamp) % 900000，也就是每次跑都不一樣，
+# 而且不會印出來 —— 生出好結果重現不了，生出壞結果也分不清是 prompt 問題還是 seed 運氣。
+# 不給 --seed 就維持原本的時間戳行為，完全向後相容。
+SEED = None
+if "--seed" in sys.argv:
+    SEED = int(sys.argv[sys.argv.index("--seed") + 1])
+# --steps：2026-08-14 加。原本寫死 4（Turbo 蒸餾模型的建議值）。
+# 2026-08-15 預設改成 8：單變數實驗（_exp_20260814，六種步數）證明 steps 8 對 steps 4
+# 是**全面勝出**，沒有任何一項退步 —— 動作幅度 +38%、速度抖動 −7%、光流解釋率 +38%、
+# 連角色細節保留率都更好 +9%，代價只有多 30% 的時間（5.0 → 6.5 分鐘）。
+# 再往上（10/16/24）動作還會漲，但角色穩定度開始退步，所以 8 是轉折點不是最高分。
+# 詳見 LOCAL-AI-STUDIO/PRODUCTION/MODEL_CAPABILITY.md 第六節。
+STEPS = 8
+if "--steps" in sys.argv:
+    STEPS = int(sys.argv[sys.argv.index("--steps") + 1])
+# --shift / --length / --sampler / --scheduler：2026-08-14 晚上加，為了跑單變數實驗。
+# 這四個原本都寫死在下面的工作流字典裡，改一次要動一次程式碼，等於沒辦法乾淨地
+# 「只改一個變數」。全部拉成參數，不給就是原本的值，向後相容。
+# ⚠️ length 必須是 4n+1（Wan 的潛在空間時間軸是 4 倍壓縮），給 80 會直接報錯。
+SHIFT = 8.0
+if "--shift" in sys.argv:
+    SHIFT = float(sys.argv[sys.argv.index("--shift") + 1])
+LENGTH = 121
+if "--length" in sys.argv:
+    LENGTH = int(sys.argv[sys.argv.index("--length") + 1])
+    if LENGTH % 4 != 1:
+        print(f"FAILED: length 必須是 4n+1，{LENGTH} 不合法")
+        sys.exit(1)
+SAMPLER = "euler"
+if "--sampler" in sys.argv:
+    SAMPLER = sys.argv[sys.argv.index("--sampler") + 1]
+SCHEDULER = "simple"
+if "--scheduler" in sys.argv:
+    SCHEDULER = sys.argv[sys.argv.index("--scheduler") + 1]
 HERE = Path(r"C:\Users\TUF Gaming\ai-video-local")
 COMFY = HERE / "ComfyUI"
 API = "http://127.0.0.1:8188"
@@ -31,7 +66,7 @@ NEG = ("blurry, low quality, worst quality, cartoon, anime, 3d render, text, let
        "animal shape hidden in the pile, face emerging from powder, puppy in the flour, "
        "creature buried in the mess, pareidolia, hidden face, "
        # 粉塵被生成灰褐色像煙，而且從畫面後方升起（跟前景的袋子對不上）
-       "smoke, grey dust, dark haze, fog, steam, dust cloud from behind")
+       "smoke, grey dust, dark haze, fog, steam, dust cloud from behind, airborne dust, floating particles, powder in the air, dust plume, haze, mist, atmospheric fog, smoke rising, cloud of dust")
 
 
 def api(path, data=None, timeout=30):
@@ -78,7 +113,7 @@ print("起始圖已備好")
 
 g = {
     "1": {"class_type": "UnetLoaderGGUF", "inputs": {"unet_name": "wan22_5b_turbo_Q4_K_M.gguf"}},
-    "2": {"class_type": "ModelSamplingSD3", "inputs": {"model": ["1", 0], "shift": 8.0}},
+    "2": {"class_type": "ModelSamplingSD3", "inputs": {"model": ["1", 0], "shift": SHIFT}},
     "3": {"class_type": "CLIPLoader",
           "inputs": {"clip_name": "umt5_xxl_fp8_e4m3fn_scaled.safetensors",
                      "type": "wan", "device": "default"}},
@@ -87,12 +122,13 @@ g = {
     "6": {"class_type": "VAELoader", "inputs": {"vae_name": "wan2.2_vae.safetensors"}},
     "12": {"class_type": "LoadImage", "inputs": {"image": s704.name}},
     "7": {"class_type": "Wan22ImageToVideoLatent",
-          "inputs": {"vae": ["6", 0], "width": 704, "height": 1280, "length": 121,
+          "inputs": {"vae": ["6", 0], "width": 704, "height": 1280, "length": LENGTH,
                      "batch_size": 1, "start_image": ["12", 0]}},
     "8": {"class_type": "KSampler",
           "inputs": {"model": ["2", 0], "positive": ["4", 0], "negative": ["5", 0],
-                     "latent_image": ["7", 0], "seed": int(stamp) % 900000, "steps": 4,
-                     "cfg": 1.0, "sampler_name": "euler", "scheduler": "simple", "denoise": 1.0}},
+                     "latent_image": ["7", 0],
+                     "seed": SEED if SEED is not None else int(stamp) % 900000, "steps": STEPS,
+                     "cfg": 1.0, "sampler_name": SAMPLER, "scheduler": SCHEDULER, "denoise": 1.0}},
     "9": {"class_type": "VAEDecodeTiled",
           "inputs": {"samples": ["8", 0], "vae": ["6", 0], "tile_size": 256, "overlap": 64,
                      "temporal_size": 64, "temporal_overlap": 8}},
@@ -102,8 +138,18 @@ g = {
                                                  "format": "mp4", "codec": "h264"}},
 }
 
+# 2026-08-14：生成前先叫 ComfyUI 放掉上一輪的模型與快取。VRAM 只有 8.5G，
+# 連續跑多支時第二支開始常常卡在換頁上，速度差一倍以上。
+try:
+    api("/free", {"unload_models": True, "free_memory": True}, timeout=60)
+except Exception as e:
+    print(f"  （/free 沒成功，不影響生成：{e}）", flush=True)
+
 t0 = time.time()
 pid = api("/prompt", {"prompt": g})["prompt_id"]
+print(f"  seed = {SEED if SEED is not None else int(stamp) % 900000}"
+      f"{'（指定）' if SEED is not None else '（時間戳隨機）'} / steps = {STEPS}"
+      f" / shift = {SHIFT} / length = {LENGTH} / {SAMPLER}+{SCHEDULER}", flush=True)
 print("已排入佇列，開始算圖…", flush=True)
 
 src = None

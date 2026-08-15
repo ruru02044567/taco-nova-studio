@@ -17,6 +17,8 @@ import sys
 
 import comfy_api as C
 
+sys.stdout.reconfigure(encoding="utf-8")
+
 src = sys.argv[1]
 out_name = sys.argv[2] if len(sys.argv) > 2 else "depth_" + src
 

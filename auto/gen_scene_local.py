@@ -22,6 +22,8 @@ import sys
 
 import comfy_api as C
 
+sys.stdout.reconfigure(encoding="utf-8")
+
 CKPT = "RealVisXL_V5.0_Lightning_fp16.safetensors"
 REF_DUO = "duo_full.png"        # 放進 ComfyUI/input 的方形參考圖
 

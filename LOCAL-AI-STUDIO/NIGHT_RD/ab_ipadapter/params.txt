@@ -1,0 +1,19 @@
+EXP-06 最小化 A/B —— IP-Adapter 是不是 Nova 身份的瓶頸
+
+A 組  ControlNet + Nova V2 LoRA 0.45，無 IP-Adapter   耗時 24 秒
+B 組  ControlNet + Nova V2 LoRA 0.35 + IP-Adapter 0.65 耗時 30 秒
+
+固定條件（兩組完全相同）
+  底模型          RealVisXL_V5.0_Lightning_fp16.safetensors
+  LoRA 檔          nova_lora_V2_step1500.safetensors
+  ControlNet      xinsir_controlnet_union_sdxl_promax（depth）
+  ControlNet 強度  0.7  end_percent 0.5
+  深度圖           d9s1_depth_clean.png
+  IP-Adapter 參考  duo_full.png（僅 B 組使用）
+  IP-Adapter 權重  0.65  start_at 0.25（僅 B 組）
+  seed            424242（固定，非時間戳）
+  解析度           768x1152
+  sampler         dpmpp_sde / karras
+  steps / cfg     6 / 1.8
+  positive        見 prompt_positive.txt（兩組一字不差）
+  negative        見 prompt_negative.txt（兩組一字不差）

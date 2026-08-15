@@ -9,6 +9,8 @@ from playwright.sync_api import sync_playwright
 
 from browser_lock import acquire
 
+sys.stdout.reconfigure(encoding="utf-8")
+
 acquire("make_video_cloud")      # 排程器和手動操作會搶同一個 Edge，先卡位再說
 
 scene, prompt_file, out = sys.argv[1], sys.argv[2], sys.argv[3]

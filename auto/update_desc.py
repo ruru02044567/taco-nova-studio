@@ -18,6 +18,8 @@ from playwright.sync_api import sync_playwright
 
 from browser_lock import acquire
 
+sys.stdout.reconfigure(encoding="utf-8")
+
 acquire("update_desc")
 
 vid, desc_file = sys.argv[1], sys.argv[2]

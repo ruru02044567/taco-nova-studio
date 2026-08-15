@@ -20,6 +20,8 @@ from PIL import Image, ImageFilter
 
 import comfy_api as C
 
+sys.stdout.reconfigure(encoding="utf-8")
+
 src = sys.argv[1]
 out_name = sys.argv[2]
 floor_from = float(sys.argv[3]) if len(sys.argv) > 3 else 0.55

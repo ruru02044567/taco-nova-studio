@@ -1,0 +1,858 @@
+{
+  "root": "C:\\Users\\TUF Gaming\\Desktop\\我的專案\\財富密碼",
+  "scanned_files": 311,
+  "files_with_hits": 91,
+  "skipped_oversize": [],
+  "excluded_path_fragments": [
+    "\\_trainlib\\",
+    "\\node_modules\\",
+    "\\.git\\",
+    "\\__pycache__\\",
+    "\\venv\\",
+    "\\site-packages\\",
+    "\\full_audit_bundle\\"
+  ],
+  "by_pattern_counts": {
+    "PUBLISH_GATE": 8,
+    "approved": 6,
+    "awaiting": 5,
+    "awaiting_review": 5,
+    "encoding\\s*=\\s*['\\\"]utf-8": 70,
+    "json\\.dump": 20,
+    "json\\.load": 17,
+    "pipeline\\.py": 13,
+    "publish_video": 10,
+    "published": 6,
+    "state\\.json": 12,
+    "utf-8-sig": 1
+  },
+  "by_pattern": {
+    "approved": [
+      "auto\\pipeline.py",
+      "本機生圖測試\\獨立驗證-程式碼審查.md",
+      "LOCAL-AI-STUDIO\\PRODUCTION\\PRODUCTION_QUEUE.md",
+      "02-技術選型\\選型-產線與人力.md",
+      "LOCAL-AI-STUDIO\\FAILURE_DATABASE.md",
+      "爆款研究\\scripts\\raw\\cba3d3c470.txt"
+    ],
+    "awaiting": [
+      "auto\\pipeline.py",
+      "本機生圖測試\\獨立驗證-程式碼審查.md",
+      "auto\\sync_gbrain.py",
+      "LOCAL-AI-STUDIO\\PRODUCTION\\PRODUCTION_QUEUE.md",
+      "接手-下次開機.md"
+    ],
+    "awaiting_review": [
+      "auto\\pipeline.py",
+      "本機生圖測試\\獨立驗證-程式碼審查.md",
+      "auto\\sync_gbrain.py",
+      "LOCAL-AI-STUDIO\\PRODUCTION\\PRODUCTION_QUEUE.md",
+      "接手-下次開機.md"
+    ],
+    "encoding\\s*=\\s*['\\\"]utf-8": [
+      "auto\\pipeline.py",
+      "本機生圖測試\\獨立驗證-程式碼審查.md",
+      "auto\\sync_gbrain.py",
+      "auto\\_舊版備份\\merge_schedule.py",
+      "爆款研究\\scripts\\merge.py",
+      "auto\\_舊版備份\\make12.py",
+      "auto\\_舊版備份\\make15.py",
+      "auto\\_舊版備份\\make_video_local.py",
+      "auto\\make_video_local_5s.py",
+      "auto\\publish_video.py",
+      "sfx\\fetch_index.py",
+      "爆款研究\\scripts\\build_html.py",
+      "爆款研究\\scripts\\enrich.py",
+      "爆款研究\\scripts\\enrich2.py",
+      "爆款研究\\scripts\\report2.py",
+      "爆款研究\\scripts\\verify2.py",
+      "LOCAL-AI-STUDIO\\NIGHT_RD\\20_build_nova_v2.py",
+      "LOCAL-AI-STUDIO\\NIGHT_RD\\21_precompute_v2.py",
+      "LOCAL-AI-STUDIO\\NIGHT_RD\\22_train_v2.py",
+      "LOCAL-AI-STUDIO\\NIGHT_RD\\28_eye_zoom.py",
+      "LOCAL-AI-STUDIO\\train\\01_precompute.py",
+      "LOCAL-AI-STUDIO\\train\\02_train_lora.py",
+      "sfx\\pick.py",
+      "爆款研究\\scripts\\filter.py",
+      "01-企劃\\開拍前-prompt模板.md",
+      "LOCAL-AI-STUDIO\\NIGHT_RD\\10_make_flour_start.py",
+      "LOCAL-AI-STUDIO\\NIGHT_RD\\11_flour_start_masked.py",
+      "LOCAL-AI-STUDIO\\NIGHT_RD\\23_sweep_v2.py",
+      "LOCAL-AI-STUDIO\\NIGHT_RD\\24_contrast_test.py",
+      "LOCAL-AI-STUDIO\\NIGHT_RD\\24b_contrast_short.py",
+      "LOCAL-AI-STUDIO\\NIGHT_RD\\25_noipa_test.py",
+      "LOCAL-AI-STUDIO\\NIGHT_RD\\26_ab_ipadapter.py",
+      "LOCAL-AI-STUDIO\\NIGHT_RD\\27_noipa_sweep.py",
+      "LOCAL-AI-STUDIO\\train\\03_test_lora.py",
+      "LOCAL-AI-STUDIO\\train\\04_build_sheets.py",
+      "LOCAL-AI-STUDIO\\train\\05_diagnose.py",
+      "LOCAL-AI-STUDIO\\train\\06_scale_sweep.py",
+      "LOCAL-AI-STUDIO\\train\\07_make_scene.py",
+      "LOCAL-AI-STUDIO\\train\\08_abcd_test.py",
+      "LOCAL-AI-STUDIO\\train\\09_extract_frames.py",
+      "auto\\_舊版備份\\diag_menu.py",
+      "auto\\_舊版備份\\finish_d5s1.py",
+      "auto\\_舊版備份\\finish_d9s1.py",
+      "auto\\_舊版備份\\make_scene_ref.py",
+      "auto\\_舊版備份\\set_about.py",
+      "auto\\_舊版備份\\test_click.py",
+      "auto\\_舊版備份\\test_send.py",
+      "auto\\_舊版備份\\upload_branding.py",
+      "auto\\_舊版備份\\veo_diag.py",
+      "auto\\_舊版備份\\wait_and_gen_scene.py",
+      "auto\\_舊版備份\\watch_video.py",
+      "auto\\browser_lock.py",
+      "auto\\clean_depth.py",
+      "auto\\daily_report.py",
+      "auto\\desc_spec.py",
+      "auto\\diag.py",
+      "auto\\gbot.py",
+      "auto\\gen_scene_local.py",
+      "auto\\make_depth.py",
+      "auto\\make_scene.py",
+      "auto\\make_video_cloud.py",
+      "auto\\momentum.py",
+      "auto\\studio_stats.py",
+      "auto\\update_desc.py",
+      "auto\\update_title.py",
+      "auto\\video_reach.py",
+      "auto\\video_stats.py",
+      "sfx\\mix.py",
+      "sfx\\wave_compare.py",
+      "video-01\\assemble.py"
+    ],
+    "json\\.dump": [
+      "auto\\pipeline.py",
+      "auto\\_舊版備份\\merge_schedule.py",
+      "爆款研究\\scripts\\merge.py",
+      "auto\\_舊版備份\\make12.py",
+      "auto\\_舊版備份\\make15.py",
+      "auto\\_舊版備份\\make_video_local.py",
+      "auto\\make_video_local_5s.py",
+      "sfx\\fetch_index.py",
+      "爆款研究\\scripts\\build_html.py",
+      "爆款研究\\scripts\\enrich.py",
+      "爆款研究\\scripts\\enrich2.py",
+      "爆款研究\\scripts\\report2.py",
+      "爆款研究\\scripts\\verify2.py",
+      "LOCAL-AI-STUDIO\\NIGHT_RD\\20_build_nova_v2.py",
+      "LOCAL-AI-STUDIO\\NIGHT_RD\\21_precompute_v2.py",
+      "LOCAL-AI-STUDIO\\NIGHT_RD\\22_train_v2.py",
+      "LOCAL-AI-STUDIO\\train\\01_precompute.py",
+      "LOCAL-AI-STUDIO\\train\\02_train_lora.py",
+      "auto\\comfy_api.py",
+      "爆款研究\\scripts\\filter.py"
+    ],
+    "json\\.load": [
+      "auto\\pipeline.py",
+      "本機生圖測試\\獨立驗證-程式碼審查.md",
+      "auto\\sync_gbrain.py",
+      "auto\\_舊版備份\\merge_schedule.py",
+      "爆款研究\\scripts\\merge.py",
+      "auto\\_舊版備份\\make12.py",
+      "auto\\_舊版備份\\make15.py",
+      "auto\\_舊版備份\\make_video_local.py",
+      "auto\\make_video_local_5s.py",
+      "sfx\\fetch_index.py",
+      "爆款研究\\scripts\\build_html.py",
+      "爆款研究\\scripts\\enrich.py",
+      "爆款研究\\scripts\\enrich2.py",
+      "爆款研究\\scripts\\report2.py",
+      "爆款研究\\scripts\\verify2.py",
+      "auto\\comfy_api.py",
+      "sfx\\pick.py"
+    ],
+    "pipeline\\.py": [
+      "auto\\pipeline.py",
+      "本機生圖測試\\獨立驗證-程式碼審查.md",
+      "auto\\sync_gbrain.py",
+      "LOCAL-AI-STUDIO\\PRODUCTION\\PRODUCTION_QUEUE.md",
+      "02-技術選型\\選型-產線與人力.md",
+      "接手-下次開機.md",
+      "auto\\README.md",
+      "03-歷史交接\\交接-2026-08-11-傍晚.md",
+      "03-歷史交接\\交接-2026-08-13.md",
+      "LOCAL-AI-STUDIO\\PROJECT_AUDIT.md",
+      "導覽.md",
+      "03-歷史交接\\交接-2026-08-10.md",
+      "待審核\\d1s1-說明.txt"
+    ],
+    "publish_video": [
+      "auto\\pipeline.py",
+      "本機生圖測試\\獨立驗證-程式碼審查.md",
+      "LOCAL-AI-STUDIO\\PRODUCTION\\PRODUCTION_QUEUE.md",
+      "02-技術選型\\選型-產線與人力.md",
+      "LOCAL-AI-STUDIO\\PRODUCTION\\BEST_KNOWN_WORKFLOW.md",
+      "auto\\README.md",
+      "auto\\publish_video.py",
+      "LOCAL-AI-STUDIO\\PROJECT_AUDIT.md",
+      "02-技術選型\\選型-結論與建議.md",
+      "LOCAL-AI-STUDIO\\WORKFLOW_PLAN.md"
+    ],
+    "published": [
+      "auto\\pipeline.py",
+      "本機生圖測試\\獨立驗證-程式碼審查.md",
+      "auto\\sync_gbrain.py",
+      "02-技術選型\\選型-產線與人力.md",
+      "auto\\publish_video.py",
+      "02-技術選型\\選型-歸因對抗檢驗.md"
+    ],
+    "state\\.json": [
+      "auto\\pipeline.py",
+      "本機生圖測試\\獨立驗證-程式碼審查.md",
+      "auto\\sync_gbrain.py",
+      "02-技術選型\\選型-產線與人力.md",
+      "auto\\_舊版備份\\merge_schedule.py",
+      "接手-下次開機.md",
+      "LOCAL-AI-STUDIO\\PRODUCTION\\BEST_KNOWN_WORKFLOW.md",
+      "auto\\README.md",
+      "02-技術選型\\選型-歸因對抗檢驗.md",
+      "03-歷史交接\\交接-2026-08-11-傍晚.md",
+      "LOCAL-AI-STUDIO\\FAILURE_DATABASE.md",
+      "導覽.md"
+    ],
+    "PUBLISH_GATE": [
+      "LOCAL-AI-STUDIO\\PRODUCTION\\PRODUCTION_QUEUE.md",
+      "LOCAL-AI-STUDIO\\PRODUCTION\\BEST_KNOWN_WORKFLOW.md",
+      "03-歷史交接\\交接-2026-08-13.md",
+      "LOCAL-AI-STUDIO\\NIGHT_RD\\28_eye_zoom.py",
+      "LOCAL-AI-STUDIO\\NIGHT_RD\\REPORT_2026-08-13.md",
+      "LOCAL-AI-STUDIO\\NIGHT_RD\\REPORT_EXP-07_2026-08-13.md",
+      "LOCAL-AI-STUDIO\\PRODUCTION\\PUBLISH_GATE.md",
+      "LOCAL-AI-STUDIO\\PRODUCTION\\R&D_QUEUE.md"
+    ],
+    "utf-8-sig": [
+      "爆款研究\\scripts\\merge.py"
+    ]
+  },
+  "py_md_hits": [
+    {
+      "file": "auto\\pipeline.py",
+      "hits": [
+        "approved",
+        "awaiting",
+        "awaiting_review",
+        "encoding\\s*=\\s*['\\\"]utf-8",
+        "json\\.dump",
+        "json\\.load",
+        "pipeline\\.py",
+        "publish_video",
+        "published",
+        "state\\.json"
+      ]
+    },
+    {
+      "file": "本機生圖測試\\獨立驗證-程式碼審查.md",
+      "hits": [
+        "approved",
+        "awaiting",
+        "awaiting_review",
+        "encoding\\s*=\\s*['\\\"]utf-8",
+        "json\\.load",
+        "pipeline\\.py",
+        "publish_video",
+        "published",
+        "state\\.json"
+      ]
+    },
+    {
+      "file": "auto\\sync_gbrain.py",
+      "hits": [
+        "awaiting",
+        "awaiting_review",
+        "encoding\\s*=\\s*['\\\"]utf-8",
+        "json\\.load",
+        "pipeline\\.py",
+        "published",
+        "state\\.json"
+      ]
+    },
+    {
+      "file": "LOCAL-AI-STUDIO\\PRODUCTION\\PRODUCTION_QUEUE.md",
+      "hits": [
+        "PUBLISH_GATE",
+        "approved",
+        "awaiting",
+        "awaiting_review",
+        "pipeline\\.py",
+        "publish_video"
+      ]
+    },
+    {
+      "file": "02-技術選型\\選型-產線與人力.md",
+      "hits": [
+        "approved",
+        "pipeline\\.py",
+        "publish_video",
+        "published",
+        "state\\.json"
+      ]
+    },
+    {
+      "file": "auto\\_舊版備份\\merge_schedule.py",
+      "hits": [
+        "encoding\\s*=\\s*['\\\"]utf-8",
+        "json\\.dump",
+        "json\\.load",
+        "state\\.json"
+      ]
+    },
+    {
+      "file": "接手-下次開機.md",
+      "hits": [
+        "awaiting",
+        "awaiting_review",
+        "pipeline\\.py",
+        "state\\.json"
+      ]
+    },
+    {
+      "file": "爆款研究\\scripts\\merge.py",
+      "hits": [
+        "encoding\\s*=\\s*['\\\"]utf-8",
+        "json\\.dump",
+        "json\\.load",
+        "utf-8-sig"
+      ]
+    },
+    {
+      "file": "LOCAL-AI-STUDIO\\PRODUCTION\\BEST_KNOWN_WORKFLOW.md",
+      "hits": [
+        "PUBLISH_GATE",
+        "publish_video",
+        "state\\.json"
+      ]
+    },
+    {
+      "file": "auto\\README.md",
+      "hits": [
+        "pipeline\\.py",
+        "publish_video",
+        "state\\.json"
+      ]
+    },
+    {
+      "file": "auto\\_舊版備份\\make12.py",
+      "hits": [
+        "encoding\\s*=\\s*['\\\"]utf-8",
+        "json\\.dump",
+        "json\\.load"
+      ]
+    },
+    {
+      "file": "auto\\_舊版備份\\make15.py",
+      "hits": [
+        "encoding\\s*=\\s*['\\\"]utf-8",
+        "json\\.dump",
+        "json\\.load"
+      ]
+    },
+    {
+      "file": "auto\\_舊版備份\\make_video_local.py",
+      "hits": [
+        "encoding\\s*=\\s*['\\\"]utf-8",
+        "json\\.dump",
+        "json\\.load"
+      ]
+    },
+    {
+      "file": "auto\\make_video_local_5s.py",
+      "hits": [
+        "encoding\\s*=\\s*['\\\"]utf-8",
+        "json\\.dump",
+        "json\\.load"
+      ]
+    },
+    {
+      "file": "auto\\publish_video.py",
+      "hits": [
+        "encoding\\s*=\\s*['\\\"]utf-8",
+        "publish_video",
+        "published"
+      ]
+    },
+    {
+      "file": "sfx\\fetch_index.py",
+      "hits": [
+        "encoding\\s*=\\s*['\\\"]utf-8",
+        "json\\.dump",
+        "json\\.load"
+      ]
+    },
+    {
+      "file": "爆款研究\\scripts\\build_html.py",
+      "hits": [
+        "encoding\\s*=\\s*['\\\"]utf-8",
+        "json\\.dump",
+        "json\\.load"
+      ]
+    },
+    {
+      "file": "爆款研究\\scripts\\enrich.py",
+      "hits": [
+        "encoding\\s*=\\s*['\\\"]utf-8",
+        "json\\.dump",
+        "json\\.load"
+      ]
+    },
+    {
+      "file": "爆款研究\\scripts\\enrich2.py",
+      "hits": [
+        "encoding\\s*=\\s*['\\\"]utf-8",
+        "json\\.dump",
+        "json\\.load"
+      ]
+    },
+    {
+      "file": "爆款研究\\scripts\\report2.py",
+      "hits": [
+        "encoding\\s*=\\s*['\\\"]utf-8",
+        "json\\.dump",
+        "json\\.load"
+      ]
+    },
+    {
+      "file": "爆款研究\\scripts\\verify2.py",
+      "hits": [
+        "encoding\\s*=\\s*['\\\"]utf-8",
+        "json\\.dump",
+        "json\\.load"
+      ]
+    },
+    {
+      "file": "02-技術選型\\選型-歸因對抗檢驗.md",
+      "hits": [
+        "published",
+        "state\\.json"
+      ]
+    },
+    {
+      "file": "03-歷史交接\\交接-2026-08-11-傍晚.md",
+      "hits": [
+        "pipeline\\.py",
+        "state\\.json"
+      ]
+    },
+    {
+      "file": "03-歷史交接\\交接-2026-08-13.md",
+      "hits": [
+        "PUBLISH_GATE",
+        "pipeline\\.py"
+      ]
+    },
+    {
+      "file": "LOCAL-AI-STUDIO\\FAILURE_DATABASE.md",
+      "hits": [
+        "approved",
+        "state\\.json"
+      ]
+    },
+    {
+      "file": "LOCAL-AI-STUDIO\\NIGHT_RD\\20_build_nova_v2.py",
+      "hits": [
+        "encoding\\s*=\\s*['\\\"]utf-8",
+        "json\\.dump"
+      ]
+    },
+    {
+      "file": "LOCAL-AI-STUDIO\\NIGHT_RD\\21_precompute_v2.py",
+      "hits": [
+        "encoding\\s*=\\s*['\\\"]utf-8",
+        "json\\.dump"
+      ]
+    },
+    {
+      "file": "LOCAL-AI-STUDIO\\NIGHT_RD\\22_train_v2.py",
+      "hits": [
+        "encoding\\s*=\\s*['\\\"]utf-8",
+        "json\\.dump"
+      ]
+    },
+    {
+      "file": "LOCAL-AI-STUDIO\\NIGHT_RD\\28_eye_zoom.py",
+      "hits": [
+        "PUBLISH_GATE",
+        "encoding\\s*=\\s*['\\\"]utf-8"
+      ]
+    },
+    {
+      "file": "LOCAL-AI-STUDIO\\PROJECT_AUDIT.md",
+      "hits": [
+        "pipeline\\.py",
+        "publish_video"
+      ]
+    },
+    {
+      "file": "LOCAL-AI-STUDIO\\train\\01_precompute.py",
+      "hits": [
+        "encoding\\s*=\\s*['\\\"]utf-8",
+        "json\\.dump"
+      ]
+    },
+    {
+      "file": "LOCAL-AI-STUDIO\\train\\02_train_lora.py",
+      "hits": [
+        "encoding\\s*=\\s*['\\\"]utf-8",
+        "json\\.dump"
+      ]
+    },
+    {
+      "file": "auto\\comfy_api.py",
+      "hits": [
+        "json\\.dump",
+        "json\\.load"
+      ]
+    },
+    {
+      "file": "sfx\\pick.py",
+      "hits": [
+        "encoding\\s*=\\s*['\\\"]utf-8",
+        "json\\.load"
+      ]
+    },
+    {
+      "file": "導覽.md",
+      "hits": [
+        "pipeline\\.py",
+        "state\\.json"
+      ]
+    },
+    {
+      "file": "爆款研究\\scripts\\filter.py",
+      "hits": [
+        "encoding\\s*=\\s*['\\\"]utf-8",
+        "json\\.dump"
+      ]
+    },
+    {
+      "file": "01-企劃\\開拍前-prompt模板.md",
+      "hits": [
+        "encoding\\s*=\\s*['\\\"]utf-8"
+      ]
+    },
+    {
+      "file": "02-技術選型\\選型-結論與建議.md",
+      "hits": [
+        "publish_video"
+      ]
+    },
+    {
+      "file": "03-歷史交接\\交接-2026-08-10.md",
+      "hits": [
+        "pipeline\\.py"
+      ]
+    },
+    {
+      "file": "LOCAL-AI-STUDIO\\NIGHT_RD\\10_make_flour_start.py",
+      "hits": [
+        "encoding\\s*=\\s*['\\\"]utf-8"
+      ]
+    },
+    {
+      "file": "LOCAL-AI-STUDIO\\NIGHT_RD\\11_flour_start_masked.py",
+      "hits": [
+        "encoding\\s*=\\s*['\\\"]utf-8"
+      ]
+    },
+    {
+      "file": "LOCAL-AI-STUDIO\\NIGHT_RD\\23_sweep_v2.py",
+      "hits": [
+        "encoding\\s*=\\s*['\\\"]utf-8"
+      ]
+    },
+    {
+      "file": "LOCAL-AI-STUDIO\\NIGHT_RD\\24_contrast_test.py",
+      "hits": [
+        "encoding\\s*=\\s*['\\\"]utf-8"
+      ]
+    },
+    {
+      "file": "LOCAL-AI-STUDIO\\NIGHT_RD\\24b_contrast_short.py",
+      "hits": [
+        "encoding\\s*=\\s*['\\\"]utf-8"
+      ]
+    },
+    {
+      "file": "LOCAL-AI-STUDIO\\NIGHT_RD\\25_noipa_test.py",
+      "hits": [
+        "encoding\\s*=\\s*['\\\"]utf-8"
+      ]
+    },
+    {
+      "file": "LOCAL-AI-STUDIO\\NIGHT_RD\\26_ab_ipadapter.py",
+      "hits": [
+        "encoding\\s*=\\s*['\\\"]utf-8"
+      ]
+    },
+    {
+      "file": "LOCAL-AI-STUDIO\\NIGHT_RD\\27_noipa_sweep.py",
+      "hits": [
+        "encoding\\s*=\\s*['\\\"]utf-8"
+      ]
+    },
+    {
+      "file": "LOCAL-AI-STUDIO\\NIGHT_RD\\REPORT_2026-08-13.md",
+      "hits": [
+        "PUBLISH_GATE"
+      ]
+    },
+    {
+      "file": "LOCAL-AI-STUDIO\\NIGHT_RD\\REPORT_EXP-07_2026-08-13.md",
+      "hits": [
+        "PUBLISH_GATE"
+      ]
+    },
+    {
+      "file": "LOCAL-AI-STUDIO\\PRODUCTION\\PUBLISH_GATE.md",
+      "hits": [
+        "PUBLISH_GATE"
+      ]
+    },
+    {
+      "file": "LOCAL-AI-STUDIO\\PRODUCTION\\R&D_QUEUE.md",
+      "hits": [
+        "PUBLISH_GATE"
+      ]
+    },
+    {
+      "file": "LOCAL-AI-STUDIO\\WORKFLOW_PLAN.md",
+      "hits": [
+        "publish_video"
+      ]
+    },
+    {
+      "file": "LOCAL-AI-STUDIO\\train\\03_test_lora.py",
+      "hits": [
+        "encoding\\s*=\\s*['\\\"]utf-8"
+      ]
+    },
+    {
+      "file": "LOCAL-AI-STUDIO\\train\\04_build_sheets.py",
+      "hits": [
+        "encoding\\s*=\\s*['\\\"]utf-8"
+      ]
+    },
+    {
+      "file": "LOCAL-AI-STUDIO\\train\\05_diagnose.py",
+      "hits": [
+        "encoding\\s*=\\s*['\\\"]utf-8"
+      ]
+    },
+    {
+      "file": "LOCAL-AI-STUDIO\\train\\06_scale_sweep.py",
+      "hits": [
+        "encoding\\s*=\\s*['\\\"]utf-8"
+      ]
+    },
+    {
+      "file": "LOCAL-AI-STUDIO\\train\\07_make_scene.py",
+      "hits": [
+        "encoding\\s*=\\s*['\\\"]utf-8"
+      ]
+    },
+    {
+      "file": "LOCAL-AI-STUDIO\\train\\08_abcd_test.py",
+      "hits": [
+        "encoding\\s*=\\s*['\\\"]utf-8"
+      ]
+    },
+    {
+      "file": "LOCAL-AI-STUDIO\\train\\09_extract_frames.py",
+      "hits": [
+        "encoding\\s*=\\s*['\\\"]utf-8"
+      ]
+    },
+    {
+      "file": "auto\\_舊版備份\\diag_menu.py",
+      "hits": [
+        "encoding\\s*=\\s*['\\\"]utf-8"
+      ]
+    },
+    {
+      "file": "auto\\_舊版備份\\finish_d5s1.py",
+      "hits": [
+        "encoding\\s*=\\s*['\\\"]utf-8"
+      ]
+    },
+    {
+      "file": "auto\\_舊版備份\\finish_d9s1.py",
+      "hits": [
+        "encoding\\s*=\\s*['\\\"]utf-8"
+      ]
+    },
+    {
+      "file": "auto\\_舊版備份\\make_scene_ref.py",
+      "hits": [
+        "encoding\\s*=\\s*['\\\"]utf-8"
+      ]
+    },
+    {
+      "file": "auto\\_舊版備份\\set_about.py",
+      "hits": [
+        "encoding\\s*=\\s*['\\\"]utf-8"
+      ]
+    },
+    {
+      "file": "auto\\_舊版備份\\test_click.py",
+      "hits": [
+        "encoding\\s*=\\s*['\\\"]utf-8"
+      ]
+    },
+    {
+      "file": "auto\\_舊版備份\\test_send.py",
+      "hits": [
+        "encoding\\s*=\\s*['\\\"]utf-8"
+      ]
+    },
+    {
+      "file": "auto\\_舊版備份\\upload_branding.py",
+      "hits": [
+        "encoding\\s*=\\s*['\\\"]utf-8"
+      ]
+    },
+    {
+      "file": "auto\\_舊版備份\\veo_diag.py",
+      "hits": [
+        "encoding\\s*=\\s*['\\\"]utf-8"
+      ]
+    },
+    {
+      "file": "auto\\_舊版備份\\wait_and_gen_scene.py",
+      "hits": [
+        "encoding\\s*=\\s*['\\\"]utf-8"
+      ]
+    },
+    {
+      "file": "auto\\_舊版備份\\watch_video.py",
+      "hits": [
+        "encoding\\s*=\\s*['\\\"]utf-8"
+      ]
+    },
+    {
+      "file": "auto\\browser_lock.py",
+      "hits": [
+        "encoding\\s*=\\s*['\\\"]utf-8"
+      ]
+    },
+    {
+      "file": "auto\\clean_depth.py",
+      "hits": [
+        "encoding\\s*=\\s*['\\\"]utf-8"
+      ]
+    },
+    {
+      "file": "auto\\daily_report.py",
+      "hits": [
+        "encoding\\s*=\\s*['\\\"]utf-8"
+      ]
+    },
+    {
+      "file": "auto\\desc_spec.py",
+      "hits": [
+        "encoding\\s*=\\s*['\\\"]utf-8"
+      ]
+    },
+    {
+      "file": "auto\\diag.py",
+      "hits": [
+        "encoding\\s*=\\s*['\\\"]utf-8"
+      ]
+    },
+    {
+      "file": "auto\\gbot.py",
+      "hits": [
+        "encoding\\s*=\\s*['\\\"]utf-8"
+      ]
+    },
+    {
+      "file": "auto\\gen_scene_local.py",
+      "hits": [
+        "encoding\\s*=\\s*['\\\"]utf-8"
+      ]
+    },
+    {
+      "file": "auto\\make_depth.py",
+      "hits": [
+        "encoding\\s*=\\s*['\\\"]utf-8"
+      ]
+    },
+    {
+      "file": "auto\\make_scene.py",
+      "hits": [
+        "encoding\\s*=\\s*['\\\"]utf-8"
+      ]
+    },
+    {
+      "file": "auto\\make_video_cloud.py",
+      "hits": [
+        "encoding\\s*=\\s*['\\\"]utf-8"
+      ]
+    },
+    {
+      "file": "auto\\momentum.py",
+      "hits": [
+        "encoding\\s*=\\s*['\\\"]utf-8"
+      ]
+    },
+    {
+      "file": "auto\\studio_stats.py",
+      "hits": [
+        "encoding\\s*=\\s*['\\\"]utf-8"
+      ]
+    },
+    {
+      "file": "auto\\update_desc.py",
+      "hits": [
+        "encoding\\s*=\\s*['\\\"]utf-8"
+      ]
+    },
+    {
+      "file": "auto\\update_title.py",
+      "hits": [
+        "encoding\\s*=\\s*['\\\"]utf-8"
+      ]
+    },
+    {
+      "file": "auto\\video_reach.py",
+      "hits": [
+        "encoding\\s*=\\s*['\\\"]utf-8"
+      ]
+    },
+    {
+      "file": "auto\\video_stats.py",
+      "hits": [
+        "encoding\\s*=\\s*['\\\"]utf-8"
+      ]
+    },
+    {
+      "file": "sfx\\mix.py",
+      "hits": [
+        "encoding\\s*=\\s*['\\\"]utf-8"
+      ]
+    },
+    {
+      "file": "sfx\\wave_compare.py",
+      "hits": [
+        "encoding\\s*=\\s*['\\\"]utf-8"
+      ]
+    },
+    {
+      "file": "video-01\\assemble.py",
+      "hits": [
+        "encoding\\s*=\\s*['\\\"]utf-8"
+      ]
+    },
+    {
+      "file": "待審核\\d1s1-說明.txt",
+      "hits": [
+        "pipeline\\.py"
+      ]
+    },
+    {
+      "file": "爆款研究\\scripts\\raw\\cba3d3c470.txt",
+      "hits": [
+        "approved"
+      ]
+    }
+  ]
+}

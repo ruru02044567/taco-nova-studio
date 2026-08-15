@@ -1,0 +1,30 @@
+BEST SEED: 424243  (prompt V2)
+
+VIDEO:  C:\Users\TUF Gaming\Desktop\我的專案\財富密碼\LOCAL-AI-STUDIO\NIGHT_RD\BEST_d4s1_shake_seed424243.mp4
+SHEET:  C:\Users\TUF Gaming\Desktop\我的專案\財富密碼\LOCAL-AI-STUDIO\NIGHT_RD\sheets\SHEET_v2_seed424243.jpg
+COMPARE:C:\Users\TUF Gaming\Desktop\我的專案\財富密碼\LOCAL-AI-STUDIO\NIGHT_RD\sheets\_COMPARE_3版.jpg
+
+SCORE:  77 / 100
+        A Taco Identity      17/20
+        B Nova Identity      10/10
+        C Scene Stability    10/10
+        D Full-body Shake    17/25
+        E Flour From Fur      5/15   <- 最弱項
+        F No Mouth Flour     10/10
+        G Motion Quality      4/5
+        H Overall Story       4/5
+
+STATUS: PASS — 通過 Publish Gate 十項，可發布
+        規則 10（非預期讀法）✅ 通過，頭全程抬高、無嘴部粉塵
+        比白天版只有改善沒有退化
+
+規格:   1080x1920 / 24fps / 121 幀 / 5.04 秒
+
+其他兩顆:
+        424242 -> 56 分 REJECT（向前撲，畫面高度變化 60%）
+        424244 -> 67 分 REJECT（鼻子靠近地面，頭頂位置降到 0.25）
+
+下一步:  改「起始圖」不要再改 prompt。
+        E 項弱的根因推測在起始圖狗身上麵粉附著不夠厚，i2v 沒東西可甩。
+        建議先生一張「Taco 全身厚厚覆蓋麵粉」的起始圖，
+        再跑同一組 prompt V2 + seed 424243。
