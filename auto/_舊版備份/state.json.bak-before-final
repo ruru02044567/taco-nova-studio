@@ -1,0 +1,58 @@
+{
+  "archived-d1s1": {
+    "video": "C:\\Users\\TUF Gaming\\Desktop\\我的專案\\財富密碼\\auto\\clips\\d1s1.mp4",
+    "published": true,
+    "url": "https://youtube.com/shorts/VZsKMcX2jG0",
+    "at": "2026-08-08T13:39:35"
+  },
+  "archived-d1s2": {
+    "video": "C:\\Users\\TUF Gaming\\Desktop\\我的專案\\財富密碼\\auto\\clips\\d1s2.mp4",
+    "published": true,
+    "url": "https://youtube.com/shorts/L4bJzZNmKvk",
+    "at": "2026-08-08T20:25:47"
+  },
+  "d1s1": {
+    "scene": "C:\\Users\\TUF Gaming\\Desktop\\我的專案\\財富密碼\\auto\\clips\\d1s1_scene.jpg",
+    "veo_fails": 0,
+    "veo_retry_after": "2026-08-09T01:47:15",
+    "video": "C:\\Users\\TUF Gaming\\Desktop\\我的專案\\財富密碼\\auto\\clips\\d1s1.mp4",
+    "source": "veo",
+    "awaiting_review": false,
+    "approved": true,
+    "published": true,
+    "url": "https://youtube.com/shorts/y5r4mi_rjLo",
+    "at": "2026-08-09T11:25:50"
+  },
+  "d2s1": {
+    "video": "C:\\Users\\TUF Gaming\\Desktop\\我的專案\\財富密碼\\待審核\\d2s1-巧克力-有聲.mp4",
+    "awaiting_review": false,
+    "approved": true,
+    "published": true,
+    "url": "https://youtube.com/shorts/MIWNqt3w3qM",
+    "at": "2026-08-10T09:50:23",
+    "source": "本機 ComfyUI 5 秒單段＋Sonniss 音效（Veo 當天逾時）"
+  },
+  "d3s1": {
+    "video": "C:\\Users\\TUF Gaming\\Desktop\\我的專案\\財富密碼\\auto\\clips\\d3s1.mp4",
+    "awaiting_review": false,
+    "approved": true,
+    "published": true,
+    "url": "https://youtube.com/shorts/HrzwXbVRsWI",
+    "at": "2026-08-10T20:55:10",
+    "source": "本機 ComfyUI 四鏡 12 秒（Veo 免費額度已用完，賢賢 8/10 晚指示直接發）"
+  },
+  "d9s1": {
+    "scene": "C:\\Users\\TUF Gaming\\Desktop\\我的專案\\財富密碼\\auto\\clips\\d9s1_scene.jpg",
+    "veo_fails": 0
+  },
+  "d4s1": {
+    "scene": "C:\\Users\\TUF Gaming\\Desktop\\我的專案\\財富密碼\\auto\\clips\\d4s1_scene.jpg",
+    "veo_fails": 1,
+    "video": "C:\\Users\\TUF Gaming\\Desktop\\我的專案\\財富密碼\\待審核\\d4s1-麵粉-有聲.mp4",
+    "awaiting_review": true,
+    "approved": false,
+    "published": false,
+    "source": "本機 Wan 2.2 兩段接龍（Gemini 場景圖起始）＋ flour 音效配方",
+    "made_at": "2026-08-11T17:03:42"
+  }
+}

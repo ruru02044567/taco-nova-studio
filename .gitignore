@@ -27,3 +27,14 @@ Thumbs.db
 desktop.ini
 .DS_Store
 __pycache__/
+
+# ── LoRA 訓練產物與快取：不進版控（2026-08-18 加）────────
+# 中繼 checkpoint 共約 700 MB、訓練集 153 MB。正式版 LoRA 在
+# ai-video-local\ComfyUI\models\loras\，備份策略待 CEO 決定（見懸念清單）。
+LOCAL-AI-STUDIO/DATASET/
+LOCAL-AI-STUDIO/_trainlib/
+LOCAL-AI-STUDIO/**/out_nova*/
+LOCAL-AI-STUDIO/**/out_taco*/
+LOCAL-AI-STUDIO/**/cache_*/
+*.safetensors
+*.pt

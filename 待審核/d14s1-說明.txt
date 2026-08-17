@@ -1,0 +1,47 @@
+Taco Turns Everything He Touches Into GOLD 🐶✨
+
+official statement from Taco:
+1. i touched ONE bowl. now the household is rich. you are welcome 💰
+2. everything i touch turns to solid gold - my dinner bowl, the kibble, the tray, all of it
+3. the remote is next. i am just letting it feel safe first 😌
+Nova slept through the entire gold rush, so her share is legally mine now ✨
+what would YOUR dog do? 👇
+#Shorts #FunnyDogs #Chihuahua #Husky #DogComedy
+
+生成方式：全本機（FLUX 場景圖 + PIL 補角色特徵 → Wan 2.2 i2v）
+影片：C:\Users\TUF Gaming\Desktop\我的專案\財富密碼\待審核\d14s1-點金手-有聲.mp4
+核准發布： python pipeline.py ok d14s1
+
+⚠️ 發布前有一個要你決定的事（STOP BEFORE MODIFYING）：
+WHY：schedule.json 的 D14 description 提到「毯子也變金」「Nova 尾巴已變金」，
+     這兩個畫面在改寫版裡不存在（毯子戲是本機死穴砍掉了、金尾尖 FLUX 沒生出來）。
+     pipeline.py ok 發布時會直接抓 schedule.json 的文案，照原樣發會文不對題。
+FILE：auto\schedule.json（day 14 的 description 欄）
+EXACT CHANGE：換成上面這份新文案（第 1、3 句與 Nova 句改寫，其餘不動）
+RISK：低。只動文字欄位，不碰 prompt；改壞頂多文案錯字。
+ROLLBACK：原文完整備份在 auto\clips\d14s1_desc_original.txt
+你可以：(a) 說「文案照新版改」我來改 → 再跑 ok d14s1
+       (b) 自己改完再跑 ok d14s1
+       (c) 沿用原文案直接 ok（不建議，會文不對題）
+
+製作紀錄：
+- 起始圖：FLUX schnell seed 1053085121 本機生成 → PIL 手工補黑點眉／銀吊牌／金托盤
+  （SDXL+LoRA 0.70 能生黑點眉但構圖被 LoRA 拉回獨照，金道具與 Nova 全消失，A/B 詳見
+   auto\clips\d14s1_scene_flux.txt）
+- 影片：Wan 2.2 5B Turbo，seed 141001，steps 8，6.3 分鐘
+- 黑點眉全程存活（手繪進起始圖的紅利，對比 d8s1 的 2.5 秒退化）
+- Nova 沒照 prompt 睡死，自己睡迷糊坐起來理毛——但眼睛全程閉著（沒有 d8s1 的琥珀眼問題），
+  劇情反而更好笑，我判定保留。你看片時特別看一下這段接不接受。
+- 迴力鏢剪輯（正播 0-2.6s + 反播），循環縫 0.4x 相鄰幀基準，肉眼不可見
+- 音效：金光「叮」對齊 2.6s 轉折點蓋剪接縫，-14.4 LUFS
+
+多代理審片（四鏡頭）結果與處置：
+- ❌→✅ 已修：4.0s 處 Nova 尾巴旁憑空閃現「小動物臉」（D4 麵粉幽靈犬同類增生，三個
+  鏡頭獨立抓到）。已做幀級修補：患部區域用前後乾淨幀時間插值取代（幀 23-30，
+  虛化背景區羽化遮罩），修補後複檢乾淨。原始未修母帶保留在 d14s1-v01.mp4。
+- ⚠️ 已知未修（快速播放下不明顯，你過目時自行判斷）：
+  1. 銀吊牌中段（約 0.8-4.4s）從實心圓牌變成空心絲圈再變回——在對焦熱區，循環時
+     每 5.2 秒閃一次
+  2. 黑點眉在瞇眼笑頂點（1.6s 與鏡像 3.6s）右點短暫淡出、左點微拖尾，各約 0.4 秒
+  3. Nova 鼻色偏肝粉不是黑鼻、耳緣有橘銅色斑（可能是窗光）、瞇眼縫色偏深褐
+  4. Taco 中段微張嘴露下齒——審片的觀眾鏡頭判定「比設定的閉嘴笑更機歪、人設更到位」

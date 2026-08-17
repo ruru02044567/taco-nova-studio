@@ -471,3 +471,36 @@
 [2026-08-17 16:39:56]     | saved C:\Users\TUF Gaming\Desktop\我的專案\財富密碼\auto\clips\d8s1.mp4
 [2026-08-17 16:39:56]   影片 OK（本機 Wan 2.2，steps 8）：d8s1.mp4
 [2026-08-17 16:39:57]   ⏸ 已送待審（未發布）：d8s1.mp4　→ 賢賢過目後跑 `pipeline.py ok d8s1`
+[2026-08-18 02:35:56] Edge/CDP 沒開，啟動中
+[2026-08-18 02:35:59] CDP 就緒
+[2026-08-18 02:35:59] 賢賢核准 D8S1，發布中
+[2026-08-18 02:36:49]   $ publish_video.py C:\Users\TUF Gaming\Desktop\我的專案\財富密碼\待審核\d8s1-粉紅史萊姆-有聲.mp4 C:\Users\T -> rc=2
+[2026-08-18 02:36:49]     | 說明文案格式檢查：通過
+[2026-08-18 02:36:49]     | FAILED: 目前作用中的頻道不是 Taco & Nova，中止發布
+[2026-08-18 02:36:49]     |   現在的 Studio 網址：https://studio.youtube.com/
+[2026-08-18 02:36:49]     |   → 請先到 youtube.com/channel_switcher 手動切回 Taco & Nova 再重跑
+[2026-08-18 02:36:49]   發布失敗，下次再試
+[2026-08-18 02:38:09] 賢賢核准 D8S1，發布中
+[2026-08-18 02:39:09]   $ publish_video.py C:\Users\TUF Gaming\Desktop\我的專案\財富密碼\待審核\d8s1-粉紅史萊姆-有聲.mp4 C:\Users\T -> rc=0
+[2026-08-18 02:39:09]     | 說明文案格式檢查：通過
+[2026-08-18 02:39:09]     | 頻道確認：Taco & Nova（畫面顯示：Taco & Nova）
+[2026-08-18 02:39:09]     | file selected
+[2026-08-18 02:39:09]     | details filled
+[2026-08-18 02:39:09]     | compliance: {'VIDEO_MADE_FOR_KIDS_NOT_MFK': 'true', 'VIDEO_AGE_RESTRICTION_NONE': 'true', 'VIDEO_HAS_ALTERED_CONTENT_YES': 'true'}
+[2026-08-18 02:39:09]     | PUBLISHED https://youtube.com/shorts/3tZ2uyLMrPc
+[2026-08-18 02:39:09]   已發布：https://youtube.com/shorts/3tZ2uyLMrPc
+[2026-08-18 02:39:50] 賢賢核准 D14S1，發布中
+[2026-08-18 02:39:50]   $ publish_video.py C:\Users\TUF Gaming\Desktop\我的專案\財富密碼\待審核\d14s1-點金手-有聲.mp4 C:\Users\TU -> rc=9
+[2026-08-18 02:39:50]     | FAILED: 說明文案不符合高流量版格式，拒絕發布
+[2026-08-18 02:39:50]     |   - 第 2 條必須是**第三人稱劇情描述**（句中要出現 Taco／chihuahua／husky／Nova，而且不能用 i／my 這種第一人稱），說清楚畫面發生什麼事。這是兩支高流量片的共同特徵，也是演算法唯一讀得懂內容的線索 —— 不要換成 Taco 的第一人稱吐槽
+[2026-08-18 02:39:50]     |   （確定要照發就加 --force）
+[2026-08-18 02:39:50]   發布失敗，下次再試
+[2026-08-18 02:40:29] 賢賢核准 D14S1，發布中
+[2026-08-18 02:41:28]   $ publish_video.py C:\Users\TUF Gaming\Desktop\我的專案\財富密碼\待審核\d14s1-點金手-有聲.mp4 C:\Users\TU -> rc=0
+[2026-08-18 02:41:28]     | 說明文案格式檢查：通過
+[2026-08-18 02:41:28]     | 頻道確認：Taco & Nova（畫面顯示：Taco & Nova）
+[2026-08-18 02:41:28]     | file selected
+[2026-08-18 02:41:28]     | details filled
+[2026-08-18 02:41:28]     | compliance: {'VIDEO_MADE_FOR_KIDS_NOT_MFK': 'true', 'VIDEO_AGE_RESTRICTION_NONE': 'true', 'VIDEO_HAS_ALTERED_CONTENT_YES': 'true'}
+[2026-08-18 02:41:28]     | PUBLISHED https://youtube.com/shorts/HDURmpns0b0
+[2026-08-18 02:41:28]   已發布：https://youtube.com/shorts/HDURmpns0b0

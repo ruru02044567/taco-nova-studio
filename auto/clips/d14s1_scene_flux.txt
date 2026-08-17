@@ -1,0 +1,35 @@
+D14S1 場景圖來源紀錄（2026-08-17 深夜）
+=====================================
+
+生成鏈：FLUX.1-schnell 本機（gen_flux.py）→ PIL 手工特徵修正 → d14s1_scene.png
+
+一、FLUX 生成
+  模型：flux1-schnell-Q4_K_S.gguf（ai-video-local）
+  尺寸：704x1280（Wan 原生尺寸，不需再裁）
+  steps 4 / cfg 1.0 / euler+simple
+  中選 seed：1053085121（d14flux_00003_.png，四選一）
+  淘汰原因：00001/00004 遙控器複製成兩支、00002 Nova 分裂成多隻
+
+  prompt（原文）：
+  Photorealistic vertical 9:16 smartphone photo taken at floor level, eye-level pet angle, in a bright modern living room with light wood floor, a grey fabric sofa, green potted plants and warm afternoon window light. Centre frame, sharp focus: a tiny pure snow-white smooth-coat chihuahua sitting upright facing the camera with a smug closed-mouth grin, exactly two identical small solid black round dots on his forehead, one directly above each eye, perfectly round and symmetrical, his face and body pure white with no brown, tan or cream markings anywhere, oversized pointy erect triangular ears, wearing a thin blue collar with a small round silver tag. Scattered on the wood floor around him, unmistakably transformed into heavy polished solid gold, mirror-bright and gleaming in the window light: a TV remote control, a single slipper, and a dog food bowl with the kibble inside turned to gold nuggets. Everything else in the room has completely normal colours. In the background, slightly out of focus, a large fluffy grey and white Siberian husky, much bigger than the chihuahua, fast asleep curled up on the floor with her eyes fully closed, and the very tip of her tail has turned into gleaming solid gold. Exactly two animals in the image: one chihuahua and one husky. No humans, no text, no watermark, no phone visible.
+
+二、PIL 手工特徵修正（腳本邏輯備份在本檔，執行檔在 session scratchpad）
+  1. 黑點眉：FLUX 生不出來（今晚 bench/flux-taco-01 與本輪四張全數缺失），
+     手工補繪兩顆：中心 (313,607) / (409,605)、半徑 7.5px 輕橢圓、
+     GaussianBlur 2.0 軟邊、色 (34,31,28)、不透明度 0.9。
+     位置與大小照 taco-ref-v5-max.jpg 校準（約眼距 0.4 上方、頭寬 5%）。
+  2. 吊牌 金→銀：box(325,770,372,822) 內橘黃色素去飽和 0.12x ＋ 提亮。
+  3. 項圈小金扣→銀：box(296,738,334,800) 同法。
+  4. 橘托盤→金：box(540,982,704,1080)、hue 10-34° 且 sat≥0.55 → hue+16°。
+     （框刻意避開碗底，第一版咬到碗的反光出現接縫，已修正）
+  5. 銅碗不動（本來就讀得成金色）。
+
+三、已知取捨
+  - 遙控器維持黑色（FLUX 拒絕生成金遙控器；劇情解讀＝還沒被 Taco 碰到，成立）
+  - Nova 金尾尖沒生出來（砍掉此細節，不影響主 joke）
+  - 原排程的金拖鞋 FLUX 生成了金托盤，視覺上仍是「金色容器」，保留
+
+四、結論（給下一輪）
+  FLUX 構圖強但黑點眉／金屬小物顏色一定要後製；
+  SDXL+LoRA0.70 反過來：黑點眉能生、構圖被 LoRA 拉回獨照（金道具與 Nova 全消失）。
+  「FLUX 構圖 ＋ PIL 補特徵」是目前本機起始圖的最短可行路徑。

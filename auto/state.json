@@ -240,7 +240,7 @@
     "video": "C:\\Users\\TUF Gaming\\Desktop\\我的專案\\財富密碼\\待審核\\d8s1-粉紅史萊姆-有聲.mp4",
     "source": "Gemini 場景圖 d8s1_scene.jpg → 本機 Wan 2.2 單段 i2v (make_video_local_5s.py, seed 56232, steps 8, 704x1280) → lanczos 1080x1920 → 迴力鏢剪輯(正播0-2.40s+反播回首幀) → slime 音效 → -14.78 LUFS",
     "local_fails": 0,
-    "awaiting_review": true,
+    "awaiting_review": false,
     "gate_candidates": [
       {
         "id": "v01",
@@ -277,6 +277,74 @@
         "file": "auto/clips/d8s1-final.mp4 → 待審核/d8s1-粉紅史萊姆-有聲.mp4",
         "at": "2026-08-17T16:57:54"
       }
-    ]
+    ],
+    "approved": true,
+    "published": true,
+    "url": "https://youtube.com/shorts/3tZ2uyLMrPc",
+    "at": "2026-08-18T02:39:09"
+  },
+  "d14s1": {
+    "model_selection": {
+      "motion_class": "M2",
+      "matched_tasks": [
+        "走路"
+      ],
+      "bottleneck": "走路",
+      "local_min_score": 2,
+      "needs_human": true,
+      "policy_version": "2026-08-16.1",
+      "model": "BLOCKED",
+      "rewrite_hint": "搬到生圖階段：起始圖就畫在目的地，影片只演「到了之後的反應」。真要移動就寫 walks from left to right across the frame, camera stays at the same distance（否定句無效，只能寫正面）",
+      "playbook": {
+        "搬到生圖階段": "物件交接／狀態改變（東西到了誰身上、東西已經倒了）交給生圖，靜態圖不用管物理而且免費。影片只演反應。實測後人手和增生狗都消失了。"
+      },
+      "reason": "動作複雜度 M2；瓶頸任務「走路」本機只有 2 分 < 5 → ⛔ 本機做不到，這輪不生。改劇本繞開，不要硬拍。",
+      "note": "⚠️ 此 BLOCKED 是誤判（唯讀記錄用，未擋下生產）：靜態 prompt 的保護鎖定句 never stepping/never walking 被關鍵字比對誤認成「走路」動作。實際影片零走動、已產出並過審片。守門員盲區之二：除了英文動作詞漏擋（d8s1 v01），否定鎖定句也會誤擋。"
+    },
+    "scene_source": "local_flux_pil",
+    "scene": "C:\\Users\\TUF Gaming\\Desktop\\我的專案\\財富密碼\\auto\\clips\\d14s1_scene.png",
+    "video": "C:\\Users\\TUF Gaming\\Desktop\\我的專案\\財富密碼\\待審核\\d14s1-點金手-有聲.mp4",
+    "source": "FLUX schnell 本機場景圖 (seed 1053085121, 704x1280) → PIL 手工補特徵(黑點眉/銀吊牌/金托盤, 詳 d14s1_scene_flux.txt) → 本機 Wan 2.2 單段 i2v (make_video_local_5s.py, seed 141001, steps 8) → lanczos 1080x1920 → 迴力鏢剪輯(正播0-2.60s+反播回首幀, 125幀5.208s) → gold 音效(mix_d14s1.py) → -14.3 LUFS",
+    "local_fails": 0,
+    "awaiting_review": false,
+    "note_schedule_desc": "發布前 schedule.json d14 description 需改寫（見 待審核/d14s1-說明.txt），未經 CEO 同意不動 schedule.json",
+    "gate_candidates": [
+      {
+        "id": "v01",
+        "seed": 141001,
+        "steps": 8,
+        "scene": "d14s1_scene.png (FLUX+PIL, 2026-08-17 23:0x)",
+        "prompt": "d14s1_video_static.txt —— 照 d8s1_video_static 骨架，只拍收尾段：金物件全靜態、四腳釘死、Nova 睡死",
+        "gate": "PASS（多代理審片四鏡頭：物件線 FAIL 的幽靈臉已幀級修補，複檢乾淨；餘 WARN 已揭露）",
+        "verdict": "AWAITING_CEO",
+        "note": "黑點眉（PIL 繪入起始圖）全程存活無退化，僅瞇眼頂點(1.6s/鏡像3.6s)右點短暫淡出各約0.4秒。Taco 全程坐定、臉型完整、0.6s 單眼眨眼 4.5s 鏡像再現；中段微張嘴露下齒（審片觀眾鏡頭判定人設加分）。Nova 未照 prompt 睡死而是睡迷糊坐起理毛（Wan 不聽指令的已知天花板），但眼睛全程閉合→無 d8s1 琥珀眼問題，臉部結構每幀完整，判定為劇情增益保留；WARN：鼻色肝粉非黑、耳緣橘銅斑。金碗/金飼料/金托盤全程穩定、黑遙控器不動（劇情設定=還沒被點金）。審片抓到的硬傷：幀23-30 Nova 尾巴旁增生小動物臉（D4 幽靈犬同類）→ 已用前後乾淨幀時間插值修補（羽化遮罩、虛化區），未修原始母帶保留 d14s1-v01.mp4。銀吊牌中段實心變空心絲圈為已知未修 WARN。jerk 0.194 首次追平 Veo(0.191)，歷來本機 0.47。",
+        "spec": "1080x1920 / 24fps / 125 幀 / 5.208 秒 / h264 yuv420p / AAC 48kHz 立體聲 / 4.08 MB",
+        "audio": "自建 gold 配方（sfx/mix_d14s1.py，金光叮聲對齊 2.6s 迴力鏢轉折）→ -14.3 LUFS",
+        "measurements": {
+          "frame_brightness_range": "144.6-148.4",
+          "adjacent_frame_delta_avg": 1.9,
+          "adjacent_frame_delta_max": 3.93,
+          "first_last_frame_delta": 0.53,
+          "blackdetect": "none",
+          "charstab": {
+            "detail_keep": 0.985,
+            "detail_min": 0.985,
+            "drift": 0.038
+          },
+          "flow": {
+            "motion": 0.0938,
+            "jerk": 0.194,
+            "flow_ok": 0.333,
+            "note": "jerk 0.194 追平 Veo 基準 0.191，本機歷來卡 0.47"
+          }
+        },
+        "file": "auto/clips/d14s1-final.mp4 → 待審核/d14s1-點金手-有聲.mp4",
+        "at": "2026-08-17T23:16:45"
+      }
+    ],
+    "approved": true,
+    "published": true,
+    "url": "https://youtube.com/shorts/HDURmpns0b0",
+    "at": "2026-08-18T02:41:28"
   }
 }
