@@ -216,5 +216,67 @@
       }
     ],
     "note": "定位為「災難已成＋裝無辜」靜態構圖。演出「拖鞋被吞」的路線連續兩版失敗（本機 Wan 2.2 做不到需要物理連續性的漸進消失），依第六階段停止無效重試改走已驗證公式。迴力鏢剪輯解掉 loop 硬跳（末幀對首幀差 33.97→0.66，9.7 倍→0.2 倍）。文案第 2 條原寫三段劇本，已改為描述實際畫面。"
+  },
+  "d8s1": {
+    "model_selection": {
+      "model": "LOCAL_WAN_TRIAL",
+      "motion_class": "M3",
+      "matched_tasks": [
+        "靜態表情",
+        "奸詐微笑",
+        "丟東西"
+      ],
+      "bottleneck": "奸詐微笑",
+      "local_min_score": null,
+      "reason": "動作複雜度 M3；「奸詐微笑」本機從來沒測過，能力表是空的。全本機模式沒有退路可退 → 本機試拍一支，順便把這格填進能力表；結果好壞都要回填 MODEL_CAPABILITY.md。",
+      "needs_benchmark": [
+        "奸詐微笑"
+      ],
+      "needs_human": true,
+      "policy_version": "2026-08-16.1"
+    },
+    "scene_source": "gemini",
+    "scene": "C:\\Users\\TUF Gaming\\Desktop\\我的專案\\財富密碼\\auto\\clips\\d8s1_scene.jpg",
+    "video": "C:\\Users\\TUF Gaming\\Desktop\\我的專案\\財富密碼\\待審核\\d8s1-粉紅史萊姆-有聲.mp4",
+    "source": "Gemini 場景圖 d8s1_scene.jpg → 本機 Wan 2.2 單段 i2v (make_video_local_5s.py, seed 56232, steps 8, 704x1280) → lanczos 1080x1920 → 迴力鏢剪輯(正播0-2.40s+反播回首幀) → slime 音效 → -14.78 LUFS",
+    "local_fails": 0,
+    "awaiting_review": true,
+    "gate_candidates": [
+      {
+        "id": "v01",
+        "seed": 55616,
+        "steps": 8,
+        "scene": "d8s1_scene.jpg (Gemini, 2026-08-17 16:33)",
+        "prompt": "schedule.json videoPrompt 第一段（含叼毯子蓋住 puddle）",
+        "gate": "FAIL",
+        "verdict": "REGENERATE",
+        "note": "規則5＋規則8 FAIL：prompt 的 folded throw blanket 生成失敗，變成一件深藍色帶紅黑條紋與黃色圖案的布料貼在狗身上與周圍（像穿外套／睡袋），左前肢被布料吞掉；藍項圈與銀吊牌在 t4.0 已消失；吻部由尖細變短寬、頭型變圓（規則1/3 疑慮）。通過項：黑點眉全程兩顆、Nova 維持哈士奇藍眼、場景無漂移、無黑畫面、亮度無異常幀（相鄰幀變化平均 0.39/最大 1.66）。根因：videoPrompt 含「拿取物品＋物件互動」，本機能力表各只有 1 分（死穴）；plan_model 未擋下是因為關鍵字「叼/拿」為中文而 videoPrompt 為英文 grabs...in his teeth —— 即 LOCAL_VIDEO_ENGINE_AUDIT 第六節記載的守門失效，本次為第一個實際受害案例。",
+        "spec": "1080x1920 / 24fps / 121 幀 / 5.042 秒 / h264 yuv420p / 無音軌 / 5.87 MB",
+        "file": "auto/clips/d8s1.mp4（保留為失敗證據，不刪）",
+        "at": "2026-08-17T16:39:56"
+      },
+      {
+        "id": "v02",
+        "seed": 56232,
+        "steps": 8,
+        "scene": "d8s1_scene.jpg（同 v01，未改場景圖）",
+        "prompt": "d8s1_video_static.txt —— 照 D6S1 v06 骨架重寫的純靜態版，拿掉毯子物件互動",
+        "gate": "PASS（迴力鏢剪輯後）",
+        "verdict": "AWAITING_CEO",
+        "note": "只改 prompt 一個變數（守「每版只動一個變數」紀律）。原始 v02 全片十條規則皆過，但黑點眉自 t≈2.5s 起漸進退化：末幀變成一大一小的傾斜橢圓，不符角色驗收清單的「大小相同、左右對稱」。時間序列抽幀確認 0–1.8s 完全合格 → 改用 D7S1 已驗證的迴力鏢剪輯（正播 0–2.40s ＋ 反播回首幀，114 幀 4.75 秒），全片落在合格區間，且首末幀亮度差由 8.19 降到 0.07（loop 完全無縫）。⚠️ 殘留未解項：Nova 雙眼為琥珀／淺褐色而非設定的藍眼，首末幀一致（非片中漂移，源頭在場景圖或 i2v），不符角色驗收清單但未踩「變成博美／狐狸犬」的禁止條款 —— 交 CEO 判定。",
+        "spec": "1080x1920 / 24fps / 114 幀 / 4.757 秒 / h264 yuv420p / AAC 48kHz 立體聲 / 4.23 MB",
+        "audio": "自建 slime 配方（sfx/mix_d8s1.py，對齊迴力鏢弧線）→ -14.78 LUFS / TP -1.22 dBTP / LRA 2.60",
+        "measurements": {
+          "frame_brightness_range": "135.7-143.7",
+          "adjacent_frame_delta_avg": 0.26,
+          "adjacent_frame_delta_max": 1.7,
+          "first_last_frame_delta": 0.07,
+          "blackdetect": "none",
+          "abnormal_frames": 0
+        },
+        "file": "auto/clips/d8s1-final.mp4 → 待審核/d8s1-粉紅史萊姆-有聲.mp4",
+        "at": "2026-08-17T16:57:54"
+      }
+    ]
   }
 }

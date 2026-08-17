@@ -10,13 +10,22 @@
     新規則：先判斷動作複雜度 → 查能力表 → 選模型。
     方便但做不好的模型不叫自動化。
 
+2026-08-16 改為全本機（賢賢定案）：
+    Veo 這條出路關掉了，所以這支程式的輸出從「選哪個模型」變成
+    「這個劇本本機拍不拍得出來」。本機做不到時不再退 Veo，而是回 BLOCKED
+    並附上改寫方向 —— 因為現在唯一的出路是改劇本，不是換模型。
+
+    這支程式的價值反而變大了：以前判錯只是多花 15 點雲端額度，
+    現在判錯是白燒 6.5 分鐘算力再加一輪審片。
+
 能力分數與門檻全部放在 model_policy.json，這支程式只做判斷不存資料。
 模型變強了就重跑 benchmark 更新那個檔，程式不用動。
+（policy 的 veo 欄位保留當分數錨點，但不再是可選的出路。）
 
 用法：
     python plan_model.py --text "Taco 把拖鞋叼起來丟進傳送門"
     python plan_model.py --shot d8s1 --text "..."      # 順便寫進 state.json
-    python plan_model.py --shot d8s1 --text "..." --force-model VEO   # 人工覆寫
+    python plan_model.py --shot d8s1 --text "..." --force-model LOCAL_WAN   # 人工覆寫
 """
 import json
 import sys
@@ -65,53 +74,65 @@ def decide(text, force=None):
 
     # 能力表上還是空格（local: null）＝這件事我們從來沒測過。
     # 這種情況不可以用猜的填一個分數然後照它走 —— 那就變成把推測當成證據。
-    # 正確處理是把它標成「待 benchmark」：正式片先走 Veo 確保交得出來，
-    # 同時提醒該花一支的成本把這格補起來，能力表才會長大（賢賢的規則十三）。
+    # 舊版遇到這格是退 Veo 確保交得出來；全本機之後沒有這條退路了，
+    # 改成「試拍一次順便把這格填起來」，並標 needs_human 讓人知道這支是在補能力表。
     unknown = [k for k in hits if tasks[k]["local"] is None]
     if unknown:
         return {
-            "model": force or "VEO",
+            "model": force or "LOCAL_WAN_TRIAL",
             "motion_class": f"M{m}",
             "matched_tasks": hits,
             "bottleneck": unknown[0],
             "local_min_score": None,
             "reason": f"動作複雜度 M{m}；「{'、'.join(unknown)}」本機從來沒測過，"
-                      f"能力表是空的。正式片先走 Veo；"
-                      f"想省錢的話另外排一輪 benchmark 把這格填起來再說。",
+                      f"能力表是空的。全本機模式沒有退路可退 → 本機試拍一支，"
+                      f"順便把這格填進能力表；結果好壞都要回填 MODEL_CAPABILITY.md。",
             "needs_benchmark": unknown,
-            "needs_human": False,
+            "needs_human": True,
             "policy_version": POLICY["version"],
         }
 
     # 取所有命中任務裡「本機最不行」的那一項當瓶頸 —— 一支片只要有一個鏡頭做不到就是做不到
     worst = min(hits, key=lambda k: tasks[k]["local"])
     local_min = tasks[worst]["local"]
+    rewrite = tasks[worst].get("rewrite")
 
-    if force:
-        model, reason = force, f"人工指定 {force}（自動判斷原為瓶頸 {worst}={local_min}）"
-    elif local_min >= thr["local_ok"]:
-        model = "LOCAL_WAN"
-        reason = (f"動作複雜度 M{m}；瓶頸任務「{worst}」本機 {local_min} 分 "
-                  f"≥ {thr['local_ok']} → 本機可正式使用")
-    elif local_min >= thr["local_test"] and m <= thr["local_test_max_m"]:
-        model = "LOCAL_WAN_TRIAL"
-        reason = (f"動作複雜度 M{m}；瓶頸任務「{worst}」本機 {local_min} 分，"
-                  f"可以先本機試拍，但不保證能用；失敗一次就換 Veo，不要重試同一條 workflow")
-    else:
-        model = "VEO"
-        reason = (f"動作複雜度 M{m}；瓶頸任務「{worst}」本機只有 {local_min} 分 "
-                  f"< {thr['local_test']} → 本機做不到，直接用 Veo，不要浪費算力試")
-
-    return {
-        "model": model,
+    out = {
         "motion_class": f"M{m}",
         "matched_tasks": hits,
         "bottleneck": worst,
         "local_min_score": local_min,
-        "reason": reason,
         "needs_human": False,
         "policy_version": POLICY["version"],
     }
+
+    if force:
+        out["model"] = force
+        out["reason"] = f"人工指定 {force}（自動判斷原為瓶頸 {worst}={local_min}）"
+    elif local_min >= thr["local_ok"]:
+        out["model"] = "LOCAL_WAN"
+        out["reason"] = (f"動作複雜度 M{m}；瓶頸任務「{worst}」本機 {local_min} 分 "
+                         f"≥ {thr['local_ok']} → 本機可正式使用")
+    elif local_min >= thr["local_test"] and m <= thr["local_test_max_m"]:
+        out["model"] = "LOCAL_WAN_TRIAL"
+        out["reason"] = (f"動作複雜度 M{m}；瓶頸任務「{worst}」本機 {local_min} 分，"
+                         f"可以先本機試拍，但不保證能用；失敗一次就改劇本，"
+                         f"不要重試同一條 workflow（實測重試不會變好）")
+    else:
+        # 全本機模式的核心分支：本機做不到就擋下來要求改劇本。
+        # 舊版這裡是 return VEO —— 那條路已經關了，而「照生讓審片擋」等於
+        # 每次白燒 6.5 分鐘算力再加一輪審片，事前就知道會浪費的事不該做。
+        out["model"] = "BLOCKED"
+        out["needs_human"] = True
+        out["rewrite_hint"] = rewrite
+        play = POLICY.get("rewrite_playbook", {})
+        out["playbook"] = {k: play[k] for k in play
+                           if not k.startswith("_") and rewrite and k in rewrite}
+        out["reason"] = (f"動作複雜度 M{m}；瓶頸任務「{worst}」本機只有 {local_min} 分 "
+                         f"< {thr['local_test']} → ⛔ 本機做不到，這輪不生。"
+                         f"改劇本繞開，不要硬拍。")
+
+    return out
 
 
 if __name__ == "__main__":
@@ -129,8 +150,12 @@ if __name__ == "__main__":
     print(f"  命中任務     {', '.join(d['matched_tasks']) or '（無）'}")
     print(f"  MODEL_SELECTION = {d['model']}")
     print(f"  理由         {d['reason']}")
+    if d.get("rewrite_hint"):
+        print(f"\n  ✏️ 建議改寫   {d['rewrite_hint']}")
+        for name, how in d.get("playbook", {}).items():
+            print(f"     └ {name}：{how}")
     if d["needs_human"]:
-        print("  ⚠️ 需要人確認")
+        print("\n  ⚠️ 需要賢賢確認")
 
     if shot:
         st = json.loads(STATE.read_text(encoding="utf-8")) if STATE.exists() else {}

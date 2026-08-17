@@ -447,27 +447,3 @@
 [2026-08-13 10:48:33]   已發布：https://youtube.com/shorts/PLzHqmJDGYo
 [2026-08-13 10:48:33]   $ sync_gbrain.py  -> rc=0
 [2026-08-13 10:48:33]     | SKIP: 找不到 C:\Users\TUF Gaming\.claude\G-Brain\01-專案\_索引.md
-[2026-08-13 12:33:09] Edge/CDP 沒開，啟動中
-[2026-08-13 12:33:12] CDP 就緒
-[2026-08-17 16:29:42] 處理 D8S1：Taco Is Glued To The Floor By Pink Slime 💗😳（預定 08-16 08:00，晚 32.5h）
-[2026-08-17 16:29:42]   超過容忍 6h，改為立即補做（不再等原時段）
-[2026-08-17 16:29:42]   模型判斷：LOCAL_WAN_TRIAL（M3，瓶頸「奸詐微笑」）
-[2026-08-17 16:29:44] Edge/CDP 沒開，啟動中
-[2026-08-17 16:29:47] CDP 就緒
-[2026-08-17 16:33:36]   $ make_scene.py C:\Users\TUF Gaming\Desktop\我的專案\財富密碼\auto\clips\d8s1_scene.txt C:\Use -> rc=0
-[2026-08-17 16:33:36]     | 蓋掉過期的鎖（3210 分鐘沒更新，前一支應該已經死了）
-[2026-08-17 16:33:36]     | attempt 1: prompt sent
-[2026-08-17 16:33:36]     | no image this attempt, retrying
-[2026-08-17 16:33:36]     | attempt 2: prompt sent
-[2026-08-17 16:33:36]     | saved C:\Users\TUF Gaming\Desktop\我的專案\財富密碼\auto\clips\d8s1_scene.jpg
-[2026-08-17 16:33:36]   場景圖 OK：d8s1_scene.jpg
-[2026-08-17 16:39:56]   $ make_video_local_5s.py C:\Users\TUF Gaming\Desktop\我的專案\財富密碼\auto\clips\d8s1_scene.jpg C:\Use -> rc=0
-[2026-08-17 16:39:56]     | ComfyUI 已在跑
-[2026-08-17 16:39:56]     | 起始圖已備好
-[2026-08-17 16:39:56]     |   （/free 沒成功，不影響生成：Expecting value: line 1 column 1 (char 0)）
-[2026-08-17 16:39:56]     |   seed = 55616（時間戳隨機） / steps = 8 / shift = 8.0 / length = 121 / euler+simple
-[2026-08-17 16:39:56]     | 已排入佇列，開始算圖…
-[2026-08-17 16:39:56]     | 算完了，花了 6.3 分鐘
-[2026-08-17 16:39:56]     | saved C:\Users\TUF Gaming\Desktop\我的專案\財富密碼\auto\clips\d8s1.mp4
-[2026-08-17 16:39:56]   影片 OK（本機 Wan 2.2，steps 8）：d8s1.mp4
-[2026-08-17 16:39:57]   ⏸ 已送待審（未發布）：d8s1.mp4　→ 賢賢過目後跑 `pipeline.py ok d8s1`

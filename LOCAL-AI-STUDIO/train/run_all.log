@@ -1,0 +1,203 @@
+
+═══════════════════════════════════
+▶ 1/5  Nova LoRA 訓練（1000 步）   17:51:28
+═══════════════════════════════════
+載入快取 C:\Users\TUF Gaming\Desktop\我的專案\財富密碼\LOCAL-AI-STUDIO\train\cache_nova\cache.pt
+   5 筆訓練樣本
+載入 UNet（fp16，凍結）…
+   [VRAM 4.88/峰值 4.88 GB] UNet 就緒
+   LoRA 可訓練參數 23,224,320（rank 16 / alpha 8）
+   [VRAM 4.97/峰值 4.97 GB] LoRA 掛載後
+開始訓練：1000 步，每 250 步存一次
+──────────────────────────────────────────────────────────────
+step     1/1000  loss 0.2564  avg25 0.2564  3.65s/步  剩 60.8 分  [VRAM 5.16/峰值 5.53 GB] 
+step     2/1000  loss 0.0035  avg25 0.1300  2.76s/步  剩 46.0 分  [VRAM 5.16/峰值 5.70 GB] 
+step     3/1000  loss 0.0590  avg25 0.1063  2.56s/步  剩 42.6 分  [VRAM 5.16/峰值 5.72 GB] 
+step     4/1000  loss 0.0395  avg25 0.0896  2.44s/步  剩 40.5 分  [VRAM 5.16/峰值 5.72 GB] 
+step     5/1000  loss 0.3442  avg25 0.1405  2.38s/步  剩 39.5 分  [VRAM 5.16/峰值 5.72 GB] 
+step    25/1000  loss 0.0171  avg25 0.2088  2.01s/步  剩 32.7 分  [VRAM 5.16/峰值 5.72 GB] 
+step    50/1000  loss 0.0031  avg25 0.1533  1.95s/步  剩 30.9 分  [VRAM 5.16/峰值 5.72 GB] 
+step    75/1000  loss 0.0049  avg25 0.1562  1.89s/步  剩 29.1 分  [VRAM 5.16/峰值 5.72 GB] 
+step   100/1000  loss 0.0539  avg25 0.2090  1.85s/步  剩 27.7 分  [VRAM 5.16/峰值 5.72 GB] 
+step   125/1000  loss 0.0080  avg25 0.1151  1.82s/步  剩 26.5 分  [VRAM 5.16/峰值 5.72 GB] 
+step   150/1000  loss 0.1286  avg25 0.1570  1.84s/步  剩 26.1 分  [VRAM 5.16/峰值 5.72 GB] 
+step   175/1000  loss 0.0950  avg25 0.1407  1.82s/步  剩 25.0 分  [VRAM 5.16/峰值 5.72 GB] 
+step   200/1000  loss 0.0677  avg25 0.1304  1.83s/步  剩 24.3 分  [VRAM 5.16/峰值 5.72 GB] 
+step   225/1000  loss 0.0558  avg25 0.0980  1.83s/步  剩 23.6 分  [VRAM 5.16/峰值 5.72 GB] 
+step   250/1000  loss 0.3497  avg25 0.1605  1.83s/步  剩 22.9 分  [VRAM 5.16/峰值 5.72 GB] 
+   💾 存檔 nova_lora_V1_step250.safetensors  (44.5 MB)
+step   275/1000  loss 0.0386  avg25 0.1275  1.84s/步  剩 22.2 分  [VRAM 5.16/峰值 5.72 GB] 
+step   300/1000  loss 0.2461  avg25 0.1725  1.83s/步  剩 21.3 分  [VRAM 5.16/峰值 5.72 GB] 
+step   325/1000  loss 0.2374  avg25 0.1545  1.83s/步  剩 20.5 分  [VRAM 5.16/峰值 5.72 GB] 
+step   350/1000  loss 0.3004  avg25 0.1584  1.82s/步  剩 19.8 分  [VRAM 5.16/峰值 5.72 GB] 
+step   375/1000  loss 0.0055  avg25 0.1174  1.83s/步  剩 19.0 分  [VRAM 5.16/峰值 5.72 GB] 
+step   400/1000  loss 0.0145  avg25 0.1304  1.83s/步  剩 18.3 分  [VRAM 5.16/峰值 5.72 GB] 
+step   425/1000  loss 0.2363  avg25 0.1679  1.84s/步  剩 17.6 分  [VRAM 5.16/峰值 5.72 GB] 
+step   450/1000  loss 0.0302  avg25 0.1771  1.83s/步  剩 16.8 分  [VRAM 5.16/峰值 5.72 GB] 
+step   475/1000  loss 0.1241  avg25 0.1431  1.82s/步  剩 16.0 分  [VRAM 5.16/峰值 5.72 GB] 
+step   500/1000  loss 0.0095  avg25 0.1469  1.82s/步  剩 15.2 分  [VRAM 5.16/峰值 5.72 GB] 
+   💾 存檔 nova_lora_V1_step500.safetensors  (44.5 MB)
+step   525/1000  loss 0.0669  avg25 0.1063  1.82s/步  剩 14.4 分  [VRAM 5.16/峰值 5.72 GB] 
+step   550/1000  loss 0.2046  avg25 0.1044  1.82s/步  剩 13.6 分  [VRAM 5.16/峰值 5.72 GB] 
+step   575/1000  loss 0.0184  avg25 0.1360  1.81s/步  剩 12.8 分  [VRAM 5.16/峰值 5.72 GB] 
+step   600/1000  loss 0.1780  avg25 0.1039  1.81s/步  剩 12.0 分  [VRAM 5.16/峰值 5.72 GB] 
+step   625/1000  loss 0.0124  avg25 0.1320  1.79s/步  剩 11.2 分  [VRAM 5.16/峰值 5.72 GB] 
+step   650/1000  loss 0.3275  avg25 0.1542  1.78s/步  剩 10.4 分  [VRAM 5.16/峰值 5.72 GB] 
+step   675/1000  loss 0.0082  avg25 0.1247  1.76s/步  剩 9.5 分  [VRAM 5.16/峰值 5.72 GB] 
+step   700/1000  loss 0.1630  avg25 0.1161  1.75s/步  剩 8.7 分  [VRAM 5.16/峰值 5.72 GB] 
+step   725/1000  loss 0.2928  avg25 0.1660  1.74s/步  剩 8.0 分  [VRAM 5.16/峰值 5.72 GB] 
+step   750/1000  loss 0.0820  avg25 0.1722  1.72s/步  剩 7.2 分  [VRAM 5.16/峰值 5.72 GB] 
+   💾 存檔 nova_lora_V1_step750.safetensors  (44.5 MB)
+step   775/1000  loss 0.2417  avg25 0.1528  1.71s/步  剩 6.4 分  [VRAM 5.16/峰值 5.72 GB] 
+step   800/1000  loss 0.0068  avg25 0.1005  1.70s/步  剩 5.7 分  [VRAM 5.16/峰值 5.72 GB] 
+step   825/1000  loss 0.0038  avg25 0.0807  1.70s/步  剩 4.9 分  [VRAM 5.16/峰值 5.72 GB] 
+step   850/1000  loss 0.0080  avg25 0.1115  1.69s/步  剩 4.2 分  [VRAM 5.16/峰值 5.72 GB] 
+step   875/1000  loss 0.0099  avg25 0.0920  1.68s/步  剩 3.5 分  [VRAM 5.16/峰值 5.72 GB] 
+step   900/1000  loss 0.2199  avg25 0.0906  1.67s/步  剩 2.8 分  [VRAM 5.16/峰值 5.72 GB] 
+step   925/1000  loss 0.0049  avg25 0.1112  1.66s/步  剩 2.1 分  [VRAM 5.16/峰值 5.72 GB] 
+step   950/1000  loss 0.2397  avg25 0.1571  1.66s/步  剩 1.4 分  [VRAM 5.16/峰值 5.72 GB] 
+step   975/1000  loss 0.0040  avg25 0.1300  1.65s/步  剩 0.7 分  [VRAM 5.16/峰值 5.72 GB] 
+step  1000/1000  loss 0.3301  avg25 0.0877  1.64s/步  剩 0.0 分  [VRAM 5.16/峰值 5.72 GB] 
+   💾 存檔 nova_lora_V1_step1000.safetensors  (44.5 MB)
+──────────────────────────────────────────────────────────────
+✅ 完成 1000 步，耗時 27.4 分（1.64 秒/步）
+   [VRAM 5.16/峰值 5.72 GB] 結束
+
+═══════════════════════════════════
+▶ 2/5  Taco 預算快取   18:19:12
+═══════════════════════════════════
+找到 5 張訓練圖
+載入 SDXL base（只為了取 VAE 與文字編碼器）…
+  (torch.frombuffer(im.tobytes(), dtype=torch.uint8)
+計算文字嵌入…
+   taco_01_closeup.png                (77, 2048)  pooled (1280,)
+   taco_04_front_fullbody.png         (77, 2048)  pooled (1280,)
+   taco_05_front_fullbody.png         (77, 2048)  pooled (1280,)
+   taco_02_front_squint.jpg           (77, 2048)  pooled (1280,)
+   taco_03_34side_openmouth.jpg       (77, 2048)  pooled (1280,)
+計算 VAE 潛在向量（fp32 避免 NaN）…
+   taco_01_closeup.png                768x768  →  latent (4, 96, 96)
+   taco_04_front_fullbody.png         768x768  →  latent (4, 96, 96)
+   taco_05_front_fullbody.png         512x1088  →  latent (4, 136, 64)
+   taco_02_front_squint.jpg           576x1024  →  latent (4, 128, 72)
+   taco_03_34side_openmouth.jpg       576x1024  →  latent (4, 128, 72)
+✅ 快取完成：C:\Users\TUF Gaming\Desktop\我的專案\財富密碼\LOCAL-AI-STUDIO\train\cache_taco\cache.pt  (2.2 MB)
+   觸發詞：t4codog
+
+═══════════════════════════════════
+▶ 3/5  Taco LoRA 訓練（1000 步）   18:19:36
+═══════════════════════════════════
+載入快取 C:\Users\TUF Gaming\Desktop\我的專案\財富密碼\LOCAL-AI-STUDIO\train\cache_taco\cache.pt
+   5 筆訓練樣本
+載入 UNet（fp16，凍結）…
+   [VRAM 4.88/峰值 4.88 GB] UNet 就緒
+   LoRA 可訓練參數 23,224,320（rank 16 / alpha 8）
+   [VRAM 4.97/峰值 4.97 GB] LoRA 掛載後
+開始訓練：1000 步，每 250 步存一次
+──────────────────────────────────────────────────────────────
+step     1/1000  loss 0.2130  avg25 0.2130  2.83s/步  剩 47.2 分  [VRAM 5.16/峰值 5.53 GB] 
+step     2/1000  loss 0.0024  avg25 0.1077  2.12s/步  剩 35.3 分  [VRAM 5.16/峰值 5.70 GB] 
+step     3/1000  loss 0.0534  avg25 0.0896  1.94s/步  剩 32.3 分  [VRAM 5.16/峰值 5.70 GB] 
+step     4/1000  loss 0.0309  avg25 0.0749  1.83s/步  剩 30.4 分  [VRAM 5.16/峰值 5.70 GB] 
+step     5/1000  loss 0.2988  avg25 0.1197  1.79s/步  剩 29.7 分  [VRAM 5.16/峰值 5.70 GB] 
+step    25/1000  loss 0.0167  avg25 0.1839  1.49s/步  剩 24.1 分  [VRAM 5.16/峰值 5.70 GB] 
+step    50/1000  loss 0.0033  avg25 0.1338  1.44s/步  剩 22.8 分  [VRAM 5.16/峰值 5.70 GB] 
+step    75/1000  loss 0.0058  avg25 0.1405  1.43s/步  剩 22.0 分  [VRAM 5.16/峰值 5.70 GB] 
+step   100/1000  loss 0.0417  avg25 0.1890  1.43s/步  剩 21.4 分  [VRAM 5.16/峰值 5.70 GB] 
+step   125/1000  loss 0.0090  avg25 0.1021  1.42s/步  剩 20.7 分  [VRAM 5.16/峰值 5.70 GB] 
+step   150/1000  loss 0.1167  avg25 0.1422  1.42s/步  剩 20.1 分  [VRAM 5.16/峰值 5.70 GB] 
+step   175/1000  loss 0.0751  avg25 0.1257  1.41s/步  剩 19.4 分  [VRAM 5.16/峰值 5.70 GB] 
+step   200/1000  loss 0.0504  avg25 0.1145  1.41s/步  剩 18.8 分  [VRAM 5.16/峰值 5.70 GB] 
+step   225/1000  loss 0.0511  avg25 0.0879  1.41s/步  剩 18.2 分  [VRAM 5.16/峰值 5.70 GB] 
+step   250/1000  loss 0.3185  avg25 0.1445  1.41s/步  剩 17.6 分  [VRAM 5.16/峰值 5.70 GB] 
+   💾 存檔 taco_lora_V1_step250.safetensors  (44.5 MB)
+step   275/1000  loss 0.0300  avg25 0.1167  1.41s/步  剩 17.1 分  [VRAM 5.16/峰值 5.70 GB] 
+step   300/1000  loss 0.2234  avg25 0.1538  1.41s/步  剩 16.5 分  [VRAM 5.16/峰值 5.70 GB] 
+step   325/1000  loss 0.1900  avg25 0.1373  1.41s/步  剩 15.9 分  [VRAM 5.16/峰值 5.70 GB] 
+step   350/1000  loss 0.2530  avg25 0.1397  1.41s/步  剩 15.3 分  [VRAM 5.16/峰值 5.70 GB] 
+step   375/1000  loss 0.0064  avg25 0.1053  1.41s/步  剩 14.7 分  [VRAM 5.16/峰值 5.70 GB] 
+step   400/1000  loss 0.0158  avg25 0.1193  1.41s/步  剩 14.1 分  [VRAM 5.16/峰值 5.70 GB] 
+step   425/1000  loss 0.1920  avg25 0.1521  1.41s/步  剩 13.5 分  [VRAM 5.16/峰值 5.70 GB] 
+step   450/1000  loss 0.0314  avg25 0.1603  1.41s/步  剩 12.9 分  [VRAM 5.16/峰值 5.70 GB] 
+step   475/1000  loss 0.1113  avg25 0.1296  1.41s/步  剩 12.3 分  [VRAM 5.16/峰值 5.70 GB] 
+step   500/1000  loss 0.0105  avg25 0.1380  1.41s/步  剩 11.8 分  [VRAM 5.16/峰值 5.70 GB] 
+   💾 存檔 taco_lora_V1_step500.safetensors  (44.5 MB)
+step   525/1000  loss 0.0688  avg25 0.0968  1.41s/步  剩 11.2 分  [VRAM 5.16/峰值 5.70 GB] 
+step   550/1000  loss 0.1873  avg25 0.0923  1.41s/步  剩 10.6 分  [VRAM 5.16/峰值 5.70 GB] 
+step   575/1000  loss 0.0141  avg25 0.1250  1.41s/步  剩 10.0 分  [VRAM 5.16/峰值 5.70 GB] 
+step   600/1000  loss 0.1678  avg25 0.0979  1.41s/步  剩 9.4 分  [VRAM 5.16/峰值 5.70 GB] 
+step   625/1000  loss 0.0094  avg25 0.1241  1.41s/步  剩 8.8 分  [VRAM 5.16/峰值 5.70 GB] 
+step   650/1000  loss 0.2942  avg25 0.1381  1.41s/步  剩 8.2 分  [VRAM 5.16/峰值 5.70 GB] 
+step   675/1000  loss 0.0065  avg25 0.1107  1.41s/步  剩 7.6 分  [VRAM 5.16/峰值 5.70 GB] 
+step   700/1000  loss 0.1534  avg25 0.1050  1.41s/步  剩 7.1 分  [VRAM 5.16/峰值 5.70 GB] 
+step   725/1000  loss 0.2603  avg25 0.1462  1.41s/步  剩 6.5 分  [VRAM 5.16/峰值 5.70 GB] 
+step   750/1000  loss 0.0640  avg25 0.1561  1.41s/步  剩 5.9 分  [VRAM 5.16/峰值 5.70 GB] 
+   💾 存檔 taco_lora_V1_step750.safetensors  (44.5 MB)
+step   775/1000  loss 0.2082  avg25 0.1394  1.41s/步  剩 5.3 分  [VRAM 5.16/峰值 5.70 GB] 
+step   800/1000  loss 0.0050  avg25 0.0893  1.41s/步  剩 4.7 分  [VRAM 5.16/峰值 5.70 GB] 
+step   825/1000  loss 0.0027  avg25 0.0699  1.41s/步  剩 4.1 分  [VRAM 5.16/峰值 5.70 GB] 
+step   850/1000  loss 0.0070  avg25 0.1066  1.41s/步  剩 3.5 分  [VRAM 5.16/峰值 5.70 GB] 
+step   875/1000  loss 0.0079  avg25 0.0837  1.41s/步  剩 2.9 分  [VRAM 5.16/峰值 5.70 GB] 
+step   900/1000  loss 0.1907  avg25 0.0812  1.41s/步  剩 2.4 分  [VRAM 5.16/峰值 5.70 GB] 
+step   925/1000  loss 0.0039  avg25 0.1015  1.41s/步  剩 1.8 分  [VRAM 5.16/峰值 5.70 GB] 
+step   950/1000  loss 0.2212  avg25 0.1408  1.41s/步  剩 1.2 分  [VRAM 5.16/峰值 5.70 GB] 
+step   975/1000  loss 0.0044  avg25 0.1144  1.41s/步  剩 0.6 分  [VRAM 5.16/峰值 5.70 GB] 
+step  1000/1000  loss 0.2972  avg25 0.0814  1.41s/步  剩 0.0 分  [VRAM 5.16/峰值 5.70 GB] 
+   💾 存檔 taco_lora_V1_step1000.safetensors  (44.5 MB)
+──────────────────────────────────────────────────────────────
+✅ 完成 1000 步，耗時 23.6 分（1.41 秒/步）
+   [VRAM 5.16/峰值 5.70 GB] 結束
+
+═══════════════════════════════════
+▶ 4/5  Nova 測試生成   18:43:30
+═══════════════════════════════════
+找到 4 個 checkpoint：['step1000', 'step250', 'step500', 'step750']
+載入底模型…
+C:\Users\TUF Gaming\Desktop\我的專案\財富密碼\LOCAL-AI-STUDIO\_trainlib\diffusers\pipelines\stable_diffusion_xl\pipeline_stable_diffusion_xl.py:748: FutureWarning: `upcast_vae` is deprecated and will be removed in version 1.0.0. `upcast_vae` is deprecated. Please use `pipe.vae.to(torch.float32)`. For more details, please refer to: https://github.com/huggingface/diffusers/pull/12619#issue-3606633695.
+  deprecate(
+── 對照組（無 LoRA）──
+   01_front_sit_seed424242
+   02_side_stand_seed424242
+   03_closeup_seed424242
+   04_running_seed424242
+   05_night_seed424242
+   06_duo_seed424242
+── nova_lora_V1_step1000.safetensors（scale 0.8）──
+Traceback (most recent call last):
+  File "C:\Users\TUF Gaming\Desktop\我的專案\財富密碼\LOCAL-AI-STUDIO\train\03_test_lora.py", line 110, in <module>
+    sys.exit(main())
+             ~~~~^^
+  File "C:\Users\TUF Gaming\Desktop\我的專案\財富密碼\LOCAL-AI-STUDIO\train\03_test_lora.py", line 91, in main
+    pipe.load_lora_weights(str(ck), adapter_name="c")
+    ~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\TUF Gaming\Desktop\我的專案\財富密碼\LOCAL-AI-STUDIO\_trainlib\diffusers\loaders\lora_pipeline.py", line 648, in load_lora_weights
+    raise ValueError("Invalid LoRA checkpoint. Make sure all LoRA param names contain `'lora'` substring.")
+ValueError: Invalid LoRA checkpoint. Make sure all LoRA param names contain `'lora'` substring.
+
+═══════════════════════════════════
+▶ 5/5  Taco 測試生成   18:46:44
+═══════════════════════════════════
+找到 4 個 checkpoint：['step1000', 'step250', 'step500', 'step750']
+載入底模型…
+C:\Users\TUF Gaming\Desktop\我的專案\財富密碼\LOCAL-AI-STUDIO\_trainlib\diffusers\pipelines\stable_diffusion_xl\pipeline_stable_diffusion_xl.py:748: FutureWarning: `upcast_vae` is deprecated and will be removed in version 1.0.0. `upcast_vae` is deprecated. Please use `pipe.vae.to(torch.float32)`. For more details, please refer to: https://github.com/huggingface/diffusers/pull/12619#issue-3606633695.
+  deprecate(
+── 對照組（無 LoRA）──
+   01_front_sit_seed424242
+   02_side_stand_seed424242
+   03_closeup_seed424242
+   04_running_seed424242
+   05_night_seed424242
+   06_mess_seed424242
+── taco_lora_V1_step1000.safetensors（scale 0.8）──
+Traceback (most recent call last):
+  File "C:\Users\TUF Gaming\Desktop\我的專案\財富密碼\LOCAL-AI-STUDIO\train\03_test_lora.py", line 110, in <module>
+    sys.exit(main())
+             ~~~~^^
+  File "C:\Users\TUF Gaming\Desktop\我的專案\財富密碼\LOCAL-AI-STUDIO\train\03_test_lora.py", line 91, in main
+    pipe.load_lora_weights(str(ck), adapter_name="c")
+    ~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\TUF Gaming\Desktop\我的專案\財富密碼\LOCAL-AI-STUDIO\_trainlib\diffusers\loaders\lora_pipeline.py", line 648, in load_lora_weights
+    raise ValueError("Invalid LoRA checkpoint. Make sure all LoRA param names contain `'lora'` substring.")
+ValueError: Invalid LoRA checkpoint. Make sure all LoRA param names contain `'lora'` substring.
+
+🏁 全部完成 18:49:59

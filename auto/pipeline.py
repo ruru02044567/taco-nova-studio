@@ -19,6 +19,10 @@ import urllib.request
 from datetime import datetime, timedelta
 from pathlib import Path
 
+# 開拍前判斷「這鏡本機拍不拍得出來」。全本機之後這步不能省 ——
+# 判錯的代價從「多花 15 點雲端額度」變成「白燒 6.5 分鐘算力再加一輪審片」。
+import plan_model
+
 sys.stdout.reconfigure(encoding="utf-8")
 
 HERE = Path(__file__).parent
@@ -40,6 +44,15 @@ REVIEW.mkdir(parents=True, exist_ok=True)
 VEO_BACKOFF_H = [0.1, 0.1, 0.35, 0.35, 1, 1, 2, 2]   # 6分、6分、20分、20分、1時…
 # 連續失敗幾次就不要再自動重試，等人來看
 VEO_MAX_FAILS = 8
+# ⚠️ 2026-08-16 起產線不再呼叫 Veo（賢賢定案：影片全本機生成）。
+# 上面兩個常數和 veo_backoff_h() 留著沒刪，是因為 make_video_cloud.py／veo_quota.py
+# 還在，手動要救急時可以直接叫。自動排程這條路上已經沒有任何地方會走到它們。
+#
+# 本機生片的失敗次數只**記錄**、不拿來停產線。
+# 8/16 曾加過 LOCAL_MAX_FAILS = 3，同日撤回：那個 3 是拍腦袋定的，沒有任何實測依據，
+# 而「幾次算撞牆」正是 LOCAL_VIDEO_ENGINE_BENCHMARK 要量出來的東西之一。
+# 在有數據之前，寧可沒有閾值，也不要有一個假裝有根據的閾值。
+# 擋掉「注定失敗」的片是 plan_model 的 BLOCKED 在做，不靠這個計數。
 
 SCRATCH = Path(os.environ.get("GBOT_DIR", HERE))   # gbot.py 等工具放這
 LOCAL_GEN = Path(r"C:\Users\TUF Gaming\ai-video-local")
@@ -355,15 +368,27 @@ def cmd_tick():
     if late_h > LATE_TOLERANCE_H:
         log(f"  超過容忍 {LATE_TOLERANCE_H}h，改為立即補做（不再等原時段）")
 
-    # Veo 剛失敗過就先別急著再試，等額度回來
-    nxt = st.get("veo_retry_after")
-    if nxt and datetime.now() < datetime.fromisoformat(nxt):
-        log(f"  Veo 上次失敗，{nxt[:16]} 之後再試")
+    # 這鏡本機拍不拍得出來？拍不出來就不要浪費算力，直接請賢賢改劇本。
+    # 2026-08-16 全本機之後，plan_model 的輸出從「選模型」變成「能不能拍」。
+    plan = plan_model.decide(item.get("videoPrompt") or item["title"])
+    if plan["model"] == "BLOCKED":
+        st["blocked"] = plan
+        state[key] = st
+        save(STATE, state)
+        log(f"  ⛔ 本機做不到（瓶頸「{plan['bottleneck']}」{plan['local_min_score']} 分），這輪不生")
+        log(f"     建議改寫：{plan.get('rewrite_hint') or '（無）'}")
+        log("     改完 schedule.json 的 videoPrompt 再跑一次就會繼續")
         return
-    if st.get("veo_fails", 0) >= VEO_MAX_FAILS:
-        log(f"  Veo 連續失敗 {st['veo_fails']} 次，停止自動重試 —— 等賢賢處理")
-        return
+    st["model_selection"] = plan
+    # 一律用 .get()：劇本比對不到任何已知任務時，decide() 回的 dict 沒有 bottleneck 這個鍵
+    # （D11S1 就是這種），寫成 plan['bottleneck'] 會讓整條產線 KeyError 掛在這裡。
+    log(f"  模型判斷：{plan['model']}"
+        f"（{plan.get('motion_class') or '未分類'}，"
+        f"瓶頸「{plan.get('bottleneck') or '比對不到已知任務，當沒測過處理'}」）")
 
+    # Edge 起不來就這輪不做。2026-08-16 曾短暫改成「靜默改走本機生圖」，當天撤回：
+    # 那是沒有測試依據的降級，而且本機生圖畫不出 Taco 的黑點眉 —— 片子照樣生、照樣送審，
+    # 招牌卻不見了。停下來吵人，好過安靜地變爛。
     if not ensure_edge():
         return
 
@@ -402,38 +427,43 @@ def cmd_tick():
     save(STATE, state)
     log(f"  場景圖 OK：{scene.name}")
 
-    # 3) 影片 —— 只走 Veo。本機 ComfyUI 畫面會歪掉，不准拿來發布。
+    # 3) 影片 —— 全本機 Wan 2.2 單段 5 秒（賢賢 2026-08-16 定案，不再走 Veo）。
+    #    為什麼單段：8/9 三次實測接龍第二段每次都崩（長人手／增生第二隻狗／換品種）。
+    #    舊註解寫「本機畫面會歪掉不准發布」是 8/8 的鐵律，8/11 已經解除
+    #    （9,882 觀看那支就是本機生的，198 觀看那支反而是純 Veo），只是程式碼一直沒跟上。
     video = CLIPS / f"{key}.mp4"
-    if video.exists() and st.get("source") != "veo":
+    if video.exists() and st.get("source") not in ("local", "veo"):
         log("  發現來路不明的同名影片，砍掉重生")
         video.unlink()
     if not video.exists():
+        if not ensure_comfy():
+            log("  本機 ComfyUI 起不來，下次再試（不算失敗次數）")
+            return
         vp = CLIPS / f"{key}_video.txt"
         vp.write_text(item["videoPrompt"], encoding="utf-8")
-        ok, out = run("make_video_cloud.py", scene, vp, video, timeout=1200)
-        if not ok and "SKIP:" in out:
-            # 有人在手動跑（對話視窗裡），瀏覽器讓給他。這不是 Veo 失敗，不要累計次數，
-            # 否則手動操作一久，產線就自己把 veo_fails 撞到上限停擺。
-            log("  遙控瀏覽器被別人佔用，這輪讓路（不算失敗）")
-            return
+        steps = plan_model.POLICY["local_best_config"]["steps"]
+        # timeout 抓 30 分鐘：704×1280 單段實測 6.5–7.8 分鐘，冷載入模型再加幾分鐘。
+        # 給得寬是因為 timeout 砍掉的是「還在跑的正常工作」，比失敗更難查。
+        ok, out = run("make_video_local_5s.py", scene, vp, video,
+                      "--steps", str(steps), timeout=1800)
         if not ok or not video.exists():
-            fails = st.get("veo_fails", 0) + 1
-            wait_h = veo_backoff_h(out, fails)
-            st["veo_fails"] = fails
-            st["veo_retry_after"] = (datetime.now() + timedelta(hours=wait_h)).isoformat(timespec="seconds")
+            # 只記錄，不擋。這個數字是 benchmark 的原始資料（失敗率要靠它算），
+            # 但「幾次算撞牆」在量出來之前不設閾值。
+            fails = st.get("local_fails", 0) + 1
+            st["local_fails"] = fails
+            st["local_last_error"] = out[-300:] if out else ""
             state[key] = st
             save(STATE, state)
-            why = "額度用完，等重置" if "額度用完" in out else "服務抽風"
-            log(f"  Veo 失敗（第 {fails} 次，{why}），{wait_h * 60:.0f} 分鐘後再試。不改用本機。")
+            log(f"  本機生片失敗（這支累計第 {fails} 次），下次 tick 再試")
             return
-    st.update({"video": str(video), "source": "veo", "veo_fails": 0})
-    log(f"  影片 OK（Veo）：{video.name}")
+    st.update({"video": str(video), "source": "local", "local_fails": 0})
+    log(f"  影片 OK（本機 Wan 2.2，steps {plan_model.POLICY['local_best_config']['steps']}）：{video.name}")
 
     # 4) 送待審，等賢賢看過才發
     st["awaiting_review"] = True
     state[key] = st
     save(STATE, state)
-    to_review(key, item, video, "Veo")
+    to_review(key, item, video, "本機 Wan 2.2")
 
 
 def cmd_review():
