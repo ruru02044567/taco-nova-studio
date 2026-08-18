@@ -35,7 +35,7 @@ import mix  # noqa: E402
 RECIPE = [
     # 空氣感：勉強高於數位靜音的噪聲地板，不是「環境音」
     ("roomtone/Hvac,Cooling unit,Refrigerator,Int,Drone,Rattle,Roomtone,Loop.mp3",
-     0.0, -45, "highpass=f=120,lowpass=f=4000", True),
+     0.0, -45, "highpass=f=120,lowpass=f=4000,afade=t=in:st=0:d=1.5", True),
 
     # S1 轉頭看 Nova → 吊牌輕碰
     ("ceramic/Apparel,bracelet,silver,ceramic,glass,leather,shake,single,bright,alternate.M.wav",
@@ -45,15 +45,16 @@ RECIPE = [
      5.30, -27, "atrim=0:0.25,highpass=f=650", False),
 
     # 剪接點 6.16s：濕黏一聲「啪唧」——動作發生在剪接裡，聲音替畫面補完
-    ("liquid/mud_splat_heavy_03.mp3", 6.10, -17, "atempo=0.7,lowpass=f=2200", False),
+    # ⚠ 用預渲染檔：ffmpeg 7.1.1 的 atempo 會讓後面的 adelay 整個失效（NOPTS 地雷），
+    #    配方 extra 裡禁用 atempo／atrim，變速素材一律先渲染進 lib\_prerendered\
+    ("_prerendered/mud_splat_slow70.wav", 6.10, -17, "", False),
 
     # S2 抬頭轉向鏡頭 → 吊牌
     ("ceramic/Apparel,bracelet,silver,ceramic,glass,leather,shake,single,bright,alternate.M.wav",
      8.75, -25, "atrim=0:0.3,highpass=f=650", False),
 
     # 結尾 punchline：Nova 的嗚咽吐槽（真狗聲，全片最大聲，音高壓低裝大狗）
-    ("dog-whimper/EFX INT Dog Wimper 06 A.M.wav",
-     11.05, -13, "atrim=0.2:1.5,atempo=0.85,lowpass=f=2500", False),
+    ("_prerendered/nova_whimper_at1105.wav", 0.0, -6, "", False),  # 延遲已烤進檔案（見下註）
 ]
 
 if __name__ == "__main__":

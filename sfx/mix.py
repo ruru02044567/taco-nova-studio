@@ -10,6 +10,7 @@ Veo 給的音軌實測只有 -47dB（等於無聲），所以整條音訊由我�
 用法：python mix.py <影片> <輸出> [配方名稱]
 """
 import json
+import re
 import subprocess
 import sys
 from pathlib import Path
@@ -410,6 +411,15 @@ def build(video, out, recipe, target_lufs=-14.0):
         if not src.exists():
             print(f"  ! 缺檔跳過：{rel}")
             continue
+        # ── 硬閘門（2026-08-19）：ffmpeg 7.1.1 的 atempo 輸出 NOPTS 幀，
+        # 會讓後面的 adelay 被 atrim 抵銷＝整個事件音靜默消失、全堆回 0 秒。
+        # 8/18 賢賢聽出的「四支片聲音超奇怪」根因就是它。
+        # extra 裡禁用 atempo 與非零起點 atrim；變速／裁段素材先渲染進
+        # lib\_prerendered\ 再引用。寧可炸在這裡，不准靜默壞在成品裡。
+        if extra and ("atempo" in extra or re.search(r"atrim=(?!0[:,])", extra)):
+            print(f"  ✗ 配方錯誤（{rel}）：extra 含 atempo／非零起點 atrim，"
+                  f"adelay 會失效（NOPTS 地雷）。請預渲染進 _prerendered\\ 再引用。")
+            return False
         if loop:
             inputs += ["-stream_loop", "-1", "-i", str(src)]
         else:
