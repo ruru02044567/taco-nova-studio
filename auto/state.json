@@ -1,366 +1,374 @@
 {
-  "archived-d1s1": {
-    "video": "C:\\Users\\TUF Gaming\\Desktop\\我的專案\\財富密碼\\auto\\clips\\d1s1.mp4",
-    "published": true,
-    "url": "https://youtube.com/shorts/VZsKMcX2jG0",
-    "at": "2026-08-08T13:39:35"
+ "archived-d1s1": {
+  "video": "C:\\Users\\TUF Gaming\\Desktop\\我的專案\\財富密碼\\auto\\clips\\d1s1.mp4",
+  "published": true,
+  "url": "https://youtube.com/shorts/VZsKMcX2jG0",
+  "at": "2026-08-08T13:39:35"
+ },
+ "archived-d1s2": {
+  "video": "C:\\Users\\TUF Gaming\\Desktop\\我的專案\\財富密碼\\auto\\clips\\d1s2.mp4",
+  "published": true,
+  "url": "https://youtube.com/shorts/L4bJzZNmKvk",
+  "at": "2026-08-08T20:25:47"
+ },
+ "d1s1": {
+  "scene": "C:\\Users\\TUF Gaming\\Desktop\\我的專案\\財富密碼\\auto\\clips\\d1s1_scene.jpg",
+  "veo_fails": 0,
+  "veo_retry_after": "2026-08-09T01:47:15",
+  "video": "C:\\Users\\TUF Gaming\\Desktop\\我的專案\\財富密碼\\auto\\clips\\d1s1.mp4",
+  "source": "veo",
+  "awaiting_review": false,
+  "approved": true,
+  "published": true,
+  "url": "https://youtube.com/shorts/y5r4mi_rjLo",
+  "at": "2026-08-09T11:25:50"
+ },
+ "d2s1": {
+  "video": "C:\\Users\\TUF Gaming\\Desktop\\我的專案\\財富密碼\\待審核\\d2s1-巧克力-有聲.mp4",
+  "awaiting_review": false,
+  "approved": true,
+  "published": true,
+  "url": "https://youtube.com/shorts/MIWNqt3w3qM",
+  "at": "2026-08-10T09:50:23",
+  "source": "local",
+  "source_note": "本機 ComfyUI 5 秒單段＋Sonniss 音效（Veo 當天逾時）"
+ },
+ "d3s1": {
+  "video": "C:\\Users\\TUF Gaming\\Desktop\\我的專案\\財富密碼\\auto\\clips\\d3s1.mp4",
+  "awaiting_review": false,
+  "approved": true,
+  "published": true,
+  "url": "https://youtube.com/shorts/HrzwXbVRsWI",
+  "at": "2026-08-10T20:55:10",
+  "source": "local",
+  "source_note": "本機 ComfyUI 四鏡 12 秒（Veo 免費額度已用完，賢賢 8/10 晚指示直接發）"
+ },
+ "d9s1": {
+  "scene": "C:\\Users\\TUF Gaming\\Desktop\\我的專案\\財富密碼\\auto\\clips\\d9s1_scene.jpg",
+  "veo_fails": 0,
+  "model_selection": {
+   "motion_class": "M0",
+   "matched_tasks": [
+    "靜態表情"
+   ],
+   "bottleneck": "靜態表情",
+   "local_min_score": 8,
+   "needs_human": false,
+   "policy_version": "2026-08-16.1",
+   "model": "LOCAL_WAN",
+   "reason": "動作複雜度 M0；瓶頸任務「靜態表情」本機 8 分 ≥ 8 → 本機可正式使用"
   },
-  "archived-d1s2": {
-    "video": "C:\\Users\\TUF Gaming\\Desktop\\我的專案\\財富密碼\\auto\\clips\\d1s2.mp4",
-    "published": true,
-    "url": "https://youtube.com/shorts/L4bJzZNmKvk",
-    "at": "2026-08-08T20:25:47"
+  "video": "C:\\Users\\TUF Gaming\\Desktop\\我的專案\\財富密碼\\auto\\clips\\d9s1.mp4",
+  "source": "local",
+  "local_fails": 0,
+  "awaiting_review": true
+ },
+ "d4s1": {
+  "scene": "C:\\Users\\TUF Gaming\\Desktop\\我的專案\\財富密碼\\auto\\clips\\d4s1_scene.jpg",
+  "veo_fails": 1,
+  "video": "C:\\Users\\TUF Gaming\\Desktop\\我的專案\\財富密碼\\待審核\\d4s1-甩身-有聲.mp4",
+  "awaiting_review": false,
+  "approved": true,
+  "published": true,
+  "source": "local",
+  "source_history": "2026-08-11 v4 麵粉版（已作廢）：Gemini 場景圖（無商標）→ 本機 Wan 2.2 兩段接龍 i2v → 自製音效 → -14.7 LUFS",
+  "made_at": "2026-08-13T02:05:00",
+  "note": "實際發布的是甩身版（單段，非接龍）。舊版一律勿發：d4s1-麵粉-有聲.mp4 有幻覺幼犬；d4s1-麵粉-最終版.mp4 與 d4s1-麵粉-精剪7秒.mp4 因規則 10（吐白粉讀法）判 REGENERATE。黑名單見 auto\\rejected.json。",
+  "url": "https://youtube.com/shorts/PLzHqmJDGYo",
+  "at": "2026-08-13T10:48:33",
+  "source_note": "Gemini 場景圖 d4s1_scene.jpg（未重生）→ 本機 Wan 2.2 單段 i2v 121 幀 @24fps = 5.04 秒（make_video_local_5s.py, seed 424243, prompt V2）→ flour_shake 音效 → -16.2 LUFS"
+ },
+ "d5s1": {
+  "scene": "C:\\Users\\TUF Gaming\\Desktop\\我的專案\\財富密碼\\auto\\clips\\d5s1_scene.jpg",
+  "veo_fails": 0,
+  "video": "C:\\Users\\TUF Gaming\\Desktop\\我的專案\\財富密碼\\待審核\\d5s1-岩漿-有聲.mp4",
+  "awaiting_review": false,
+  "approved": true,
+  "published": true,
+  "source": "local",
+  "made_at": "2026-08-11T22:45:04",
+  "note": "8/11 深夜手動生。10.17 秒對齊 D4S1 片長（保住實驗 #1 的片長變數）。黑點眉已改用「圓點不是眉毛線」的寫法，場景圖第一版左右不對稱已重生修正。",
+  "url": "https://youtube.com/shorts/F0v-ud9W96s",
+  "at": "2026-08-11T22:58:27",
+  "publish_note": "賢賢 8/11 23:0x 指示「現在就發」，未等 8-13 08:00 的排定時段。",
+  "source_note": "Gemini 場景圖 → 本機 Wan 2.2 兩段接龍 i2v → 慢速開頭做動量對比 → lava 音效配方 → -13.7 LUFS"
+ },
+ "d6s1": {
+  "scene": "C:\\Users\\TUF Gaming\\Desktop\\我的專案\\財富密碼\\auto\\clips\\d6s1_scene.jpg",
+  "scene_source": "gemini",
+  "veo_fails": 0,
+  "awaiting_review": false,
+  "approved": true,
+  "published": true,
+  "gate_candidates": [
+   {
+    "id": "v01",
+    "video": "auto\\clips\\d6s1-cand-v01.mp4",
+    "seed": 424244,
+    "gate": "FAIL",
+    "verdict": "REGENERATE",
+    "failed_rules": [
+     1,
+     3,
+     4,
+     5,
+     6,
+     8,
+     "Nova體型倍率"
+    ],
+    "nova_breed": "哈士奇 PASS（11 幀零失誤）",
+    "nova_size_ratio": "約 2 倍（規格 3 倍）",
+    "nova_eyes": "閉眼睡覺，免驗瞳色",
+    "report": "LOCAL-AI-STUDIO\\PRODUCTION\\_gate_d6s1\\report_fail\\d6s1-cand-v01.md"
+   },
+   {
+    "id": "v02",
+    "video": "auto\\clips\\d6s1-cand-v02.mp4",
+    "seed": 424244,
+    "prompt_change": "套用 d4s1 成功版寫法：5 秒時間軸、camera never moves、head held high/snout clear/mouth closed、Nova 鎖死不准醒、體型與植物本體鎖定句",
+    "gate": "FAIL",
+    "verdict": "REGENERATE",
+    "failed_rules": [
+     1,
+     3,
+     5,
+     8,
+     10
+    ],
+    "fixed_vs_v01": [
+     4,
+     6,
+     "Nova體型倍率",
+     "Taco不再融解成大型犬"
+    ],
+    "new_problems": [
+     "第三條前腿(t1.5-t3.0)",
+     "頸背融解",
+     "項圈飄到背上",
+     "規則10從PASS退步成FAIL"
+    ],
+    "nova_breed": "哈士奇 PASS",
+    "nova_size_ratio": "約 2.5-3.0 倍 PASS",
+    "nova_eyes": "全程睡覺沒醒，t4.0 後有琥珀色瞇線但依規則免驗",
+    "report": "LOCAL-AI-STUDIO\\PRODUCTION\\_gate_d6s1\\report_fail\\d6s1-cand-v02.md"
+   },
+   {
+    "id": "v08",
+    "video": "auto\\\\clips\\\\d6s1-cand-v08.mp4",
+    "seed": 424245,
+    "steps": 6,
+    "scene": "v2",
+    "gate": "FAIL",
+    "verdict": "REGENERATE",
+    "failed_rules": [
+     1,
+     3,
+     5
+    ],
+    "note": "t1.7 後黑點增生 4-5 顆、後段臉崩、持續走向鏡頭。一次改三個變數，無法歸因"
+   },
+   {
+    "id": "v09",
+    "video": "auto\\\\clips\\\\d6s1-cand-v09.mp4",
+    "seed": 424244,
+    "steps": 4,
+    "scene": "v2",
+    "gate": "PASS",
+    "verdict": "PUBLISH",
+    "note": "十條全過。唯一缺點：prompt 寫的甩身沒生出來，全程站定只有轉頭"
+   },
+   {
+    "id": "v10",
+    "video": "auto\\\\clips\\\\d6s1-cand-v10.mp4",
+    "seed": 424247,
+    "steps": 4,
+    "scene": "v2",
+    "gate": "FAIL",
+    "verdict": "REJECT",
+    "failed_rules": [
+     3,
+     5
+    ],
+    "note": "t1.25 仰頭扭曲、臉部拉長；動作仍非甩身"
+   }
+  ],
+  "source": "local",
+  "made_at": "2026-08-14T08:00:00",
+  "note": "v09 採用。v08（v2場景圖+加強鎖定句+steps6）因黑點增生至4-5顆判 REGENERATE；v10（seed 424247）t1.25 仰頭扭曲較差。v09/v10 兩顆 seed 都沒生出甩身動作，故不再抽 seed，改走「站定裝無辜」並同步修正文案（原文案寫 shakes the soil off，畫面沒有，已改）。gate 十條全過。",
+  "video": "C:\\Users\\TUF Gaming\\Desktop\\我的專案\\財富密碼\\待審核\\d6s1-盆栽-有聲.mp4",
+  "url": "https://youtube.com/shorts/uzL5_WgI8K8",
+  "at": "2026-08-14T08:32:00",
+  "source_note": "Gemini 場景圖 d6s1_scene_v2.jpg（改用 v2：根球連藤蔓掛在盆口，解決盆栽合理性）→ 本機 Wan 2.2 單段 i2v 121 幀 @24fps（make_video_local_5s.py, seed 424244, steps 4）→ 開頭 0.8 秒放慢成 1.6 秒做動量對比（2.7→3.1 倍）→ soil_still 音效配方 → -15.8 LUFS / LRA 2.7"
+ },
+ "d7s1": {
+  "scene": "C:\\Users\\TUF Gaming\\Desktop\\我的專案\\財富密碼\\auto\\clips\\d7s1_scene_c2.jpg",
+  "scene_source": "gemini",
+  "video": "C:\\Users\\TUF Gaming\\Desktop\\我的專案\\財富密碼\\待審核\\d7s1-傳送門-有聲.mp4",
+  "awaiting_review": false,
+  "approved": true,
+  "published": true,
+  "url": "https://youtube.com/shorts/kCEOCyZRGI8",
+  "at": "2026-08-14T12:05:00",
+  "source": "local",
+  "gate_candidates": [
+   {
+    "id": "v01",
+    "seed": 424244,
+    "scene": "v3",
+    "gate": "FAIL",
+    "verdict": "REGENERATE",
+    "note": "四代理審片 5 BLOCKER：拖鞋 0-1.6s 反向浮起（曝露面積+23%）、真正下沉只有 0.2 秒、2.7s 後融解成灰塊佔全片 45%、末幀鞋仍在、紫光沒照到鞋（色度量測 U130/V131 近中性灰）"
+   },
+   {
+    "id": "v02",
+    "seed": 424244,
+    "scene": "b1",
+    "gate": "FAIL",
+    "verdict": "REGENERATE",
+    "note": "四代理審片一致 FAIL：黑點三顆（根因為場景圖 b1 本身就三顆）＋3.9-4.2s 整臉重組長出疤狀斜線並停到末幀"
+   },
+   {
+    "id": "v03",
+    "seed": 424250,
+    "scene": "c2",
+    "gate": "PASS",
+    "verdict": "PUBLISH",
+    "note": "四代理審片全數 PASS、零 BLOCKER。黑點 121 幀程式化偵測全為兩顆；末幀臉與首幀同一張；推近經分區配準確認是真 dolly-in（背景1.055<Nova1.10<Taco1.18<門1.24）"
+   }
+  ],
+  "note": "定位為「災難已成＋裝無辜」靜態構圖。演出「拖鞋被吞」的路線連續兩版失敗（本機 Wan 2.2 做不到需要物理連續性的漸進消失），依第六階段停止無效重試改走已驗證公式。迴力鏢剪輯解掉 loop 硬跳（末幀對首幀差 33.97→0.66，9.7 倍→0.2 倍）。文案第 2 條原寫三段劇本，已改為描述實際畫面。",
+  "source_note": "Gemini 場景圖 d7s1_scene_c2.jpg（第 3 輪、第 6 張才過關）→ 本機 Wan 2.2 單段 i2v（make_video_local_5s.py, seed 424250, steps 4）→ 迴力鏢剪輯（首幀凍 0.4s ＋ 正播至 4.5s ＋ 反播回首幀，9.375 秒）→ portal_boomerang 音效 → -14.7 LUFS / LRA 6.2"
+ },
+ "d8s1": {
+  "model_selection": {
+   "model": "LOCAL_WAN_TRIAL",
+   "motion_class": "M3",
+   "matched_tasks": [
+    "靜態表情",
+    "奸詐微笑",
+    "丟東西"
+   ],
+   "bottleneck": "奸詐微笑",
+   "local_min_score": null,
+   "reason": "動作複雜度 M3；「奸詐微笑」本機從來沒測過，能力表是空的。全本機模式沒有退路可退 → 本機試拍一支，順便把這格填進能力表；結果好壞都要回填 MODEL_CAPABILITY.md。",
+   "needs_benchmark": [
+    "奸詐微笑"
+   ],
+   "needs_human": true,
+   "policy_version": "2026-08-16.1"
   },
-  "d1s1": {
-    "scene": "C:\\Users\\TUF Gaming\\Desktop\\我的專案\\財富密碼\\auto\\clips\\d1s1_scene.jpg",
-    "veo_fails": 0,
-    "veo_retry_after": "2026-08-09T01:47:15",
-    "video": "C:\\Users\\TUF Gaming\\Desktop\\我的專案\\財富密碼\\auto\\clips\\d1s1.mp4",
-    "source": "veo",
-    "awaiting_review": false,
-    "approved": true,
-    "published": true,
-    "url": "https://youtube.com/shorts/y5r4mi_rjLo",
-    "at": "2026-08-09T11:25:50"
-  },
-  "d2s1": {
-    "video": "C:\\Users\\TUF Gaming\\Desktop\\我的專案\\財富密碼\\待審核\\d2s1-巧克力-有聲.mp4",
-    "awaiting_review": false,
-    "approved": true,
-    "published": true,
-    "url": "https://youtube.com/shorts/MIWNqt3w3qM",
-    "at": "2026-08-10T09:50:23",
-    "source": "本機 ComfyUI 5 秒單段＋Sonniss 音效（Veo 當天逾時）"
-  },
-  "d3s1": {
-    "video": "C:\\Users\\TUF Gaming\\Desktop\\我的專案\\財富密碼\\auto\\clips\\d3s1.mp4",
-    "awaiting_review": false,
-    "approved": true,
-    "published": true,
-    "url": "https://youtube.com/shorts/HrzwXbVRsWI",
-    "at": "2026-08-10T20:55:10",
-    "source": "本機 ComfyUI 四鏡 12 秒（Veo 免費額度已用完，賢賢 8/10 晚指示直接發）"
-  },
-  "d9s1": {
-    "scene": "C:\\Users\\TUF Gaming\\Desktop\\我的專案\\財富密碼\\auto\\clips\\d9s1_scene.jpg",
-    "veo_fails": 0,
-    "model_selection": {
-      "motion_class": "M0",
-      "matched_tasks": [
-        "靜態表情"
-      ],
-      "bottleneck": "靜態表情",
-      "local_min_score": 8,
-      "needs_human": false,
-      "policy_version": "2026-08-16.1",
-      "model": "LOCAL_WAN",
-      "reason": "動作複雜度 M0；瓶頸任務「靜態表情」本機 8 分 ≥ 8 → 本機可正式使用"
+  "scene_source": "gemini",
+  "scene": "C:\\Users\\TUF Gaming\\Desktop\\我的專案\\財富密碼\\auto\\clips\\d8s1_scene.jpg",
+  "video": "C:\\Users\\TUF Gaming\\Desktop\\我的專案\\財富密碼\\待審核\\d8s1-粉紅史萊姆-有聲.mp4",
+  "source": "local",
+  "local_fails": 0,
+  "awaiting_review": false,
+  "gate_candidates": [
+   {
+    "id": "v01",
+    "seed": 55616,
+    "steps": 8,
+    "scene": "d8s1_scene.jpg (Gemini, 2026-08-17 16:33)",
+    "prompt": "schedule.json videoPrompt 第一段（含叼毯子蓋住 puddle）",
+    "gate": "FAIL",
+    "verdict": "REGENERATE",
+    "note": "規則5＋規則8 FAIL：prompt 的 folded throw blanket 生成失敗，變成一件深藍色帶紅黑條紋與黃色圖案的布料貼在狗身上與周圍（像穿外套／睡袋），左前肢被布料吞掉；藍項圈與銀吊牌在 t4.0 已消失；吻部由尖細變短寬、頭型變圓（規則1/3 疑慮）。通過項：黑點眉全程兩顆、Nova 維持哈士奇藍眼、場景無漂移、無黑畫面、亮度無異常幀（相鄰幀變化平均 0.39/最大 1.66）。根因：videoPrompt 含「拿取物品＋物件互動」，本機能力表各只有 1 分（死穴）；plan_model 未擋下是因為關鍵字「叼/拿」為中文而 videoPrompt 為英文 grabs...in his teeth —— 即 LOCAL_VIDEO_ENGINE_AUDIT 第六節記載的守門失效，本次為第一個實際受害案例。",
+    "spec": "1080x1920 / 24fps / 121 幀 / 5.042 秒 / h264 yuv420p / 無音軌 / 5.87 MB",
+    "file": "auto/clips/d8s1.mp4（保留為失敗證據，不刪）",
+    "at": "2026-08-17T16:39:56"
+   },
+   {
+    "id": "v02",
+    "seed": 56232,
+    "steps": 8,
+    "scene": "d8s1_scene.jpg（同 v01，未改場景圖）",
+    "prompt": "d8s1_video_static.txt —— 照 D6S1 v06 骨架重寫的純靜態版，拿掉毯子物件互動",
+    "gate": "PASS（迴力鏢剪輯後）",
+    "verdict": "AWAITING_CEO",
+    "note": "只改 prompt 一個變數（守「每版只動一個變數」紀律）。原始 v02 全片十條規則皆過，但黑點眉自 t≈2.5s 起漸進退化：末幀變成一大一小的傾斜橢圓，不符角色驗收清單的「大小相同、左右對稱」。時間序列抽幀確認 0–1.8s 完全合格 → 改用 D7S1 已驗證的迴力鏢剪輯（正播 0–2.40s ＋ 反播回首幀，114 幀 4.75 秒），全片落在合格區間，且首末幀亮度差由 8.19 降到 0.07（loop 完全無縫）。⚠️ 殘留未解項：Nova 雙眼為琥珀／淺褐色而非設定的藍眼，首末幀一致（非片中漂移，源頭在場景圖或 i2v），不符角色驗收清單但未踩「變成博美／狐狸犬」的禁止條款 —— 交 CEO 判定。",
+    "spec": "1080x1920 / 24fps / 114 幀 / 4.757 秒 / h264 yuv420p / AAC 48kHz 立體聲 / 4.23 MB",
+    "audio": "自建 slime 配方（sfx/mix_d8s1.py，對齊迴力鏢弧線）→ -14.78 LUFS / TP -1.22 dBTP / LRA 2.60",
+    "measurements": {
+     "frame_brightness_range": "135.7-143.7",
+     "adjacent_frame_delta_avg": 0.26,
+     "adjacent_frame_delta_max": 1.7,
+     "first_last_frame_delta": 0.07,
+     "blackdetect": "none",
+     "abnormal_frames": 0
     },
-    "video": "C:\\Users\\TUF Gaming\\Desktop\\我的專案\\財富密碼\\auto\\clips\\d9s1.mp4",
-    "source": "local",
-    "local_fails": 0,
-    "awaiting_review": true
+    "file": "auto/clips/d8s1-final.mp4 → 待審核/d8s1-粉紅史萊姆-有聲.mp4",
+    "at": "2026-08-17T16:57:54"
+   }
+  ],
+  "approved": true,
+  "published": true,
+  "url": "https://youtube.com/shorts/3tZ2uyLMrPc",
+  "at": "2026-08-18T02:39:09",
+  "source_note": "Gemini 場景圖 d8s1_scene.jpg → 本機 Wan 2.2 單段 i2v (make_video_local_5s.py, seed 56232, steps 8, 704x1280) → lanczos 1080x1920 → 迴力鏢剪輯(正播0-2.40s+反播回首幀) → slime 音效 → -14.78 LUFS"
+ },
+ "d14s1": {
+  "model_selection": {
+   "motion_class": "M2",
+   "matched_tasks": [
+    "走路"
+   ],
+   "bottleneck": "走路",
+   "local_min_score": 2,
+   "needs_human": true,
+   "policy_version": "2026-08-16.1",
+   "model": "BLOCKED",
+   "rewrite_hint": "搬到生圖階段：起始圖就畫在目的地，影片只演「到了之後的反應」。真要移動就寫 walks from left to right across the frame, camera stays at the same distance（否定句無效，只能寫正面）",
+   "playbook": {
+    "搬到生圖階段": "物件交接／狀態改變（東西到了誰身上、東西已經倒了）交給生圖，靜態圖不用管物理而且免費。影片只演反應。實測後人手和增生狗都消失了。"
+   },
+   "reason": "動作複雜度 M2；瓶頸任務「走路」本機只有 2 分 < 5 → ⛔ 本機做不到，這輪不生。改劇本繞開，不要硬拍。",
+   "note": "⚠️ 此 BLOCKED 是誤判（唯讀記錄用，未擋下生產）：靜態 prompt 的保護鎖定句 never stepping/never walking 被關鍵字比對誤認成「走路」動作。實際影片零走動、已產出並過審片。守門員盲區之二：除了英文動作詞漏擋（d8s1 v01），否定鎖定句也會誤擋。"
   },
-  "d4s1": {
-    "scene": "C:\\Users\\TUF Gaming\\Desktop\\我的專案\\財富密碼\\auto\\clips\\d4s1_scene.jpg",
-    "veo_fails": 1,
-    "video": "C:\\Users\\TUF Gaming\\Desktop\\我的專案\\財富密碼\\待審核\\d4s1-甩身-有聲.mp4",
-    "awaiting_review": false,
-    "approved": true,
-    "published": true,
-    "source": "Gemini 場景圖 d4s1_scene.jpg（未重生）→ 本機 Wan 2.2 單段 i2v 121 幀 @24fps = 5.04 秒（make_video_local_5s.py, seed 424243, prompt V2）→ flour_shake 音效 → -16.2 LUFS",
-    "source_history": "2026-08-11 v4 麵粉版（已作廢）：Gemini 場景圖（無商標）→ 本機 Wan 2.2 兩段接龍 i2v → 自製音效 → -14.7 LUFS",
-    "made_at": "2026-08-13T02:05:00",
-    "note": "實際發布的是甩身版（單段，非接龍）。舊版一律勿發：d4s1-麵粉-有聲.mp4 有幻覺幼犬；d4s1-麵粉-最終版.mp4 與 d4s1-麵粉-精剪7秒.mp4 因規則 10（吐白粉讀法）判 REGENERATE。黑名單見 auto\\rejected.json。",
-    "url": "https://youtube.com/shorts/PLzHqmJDGYo",
-    "at": "2026-08-13T10:48:33"
-  },
-  "d5s1": {
-    "scene": "C:\\Users\\TUF Gaming\\Desktop\\我的專案\\財富密碼\\auto\\clips\\d5s1_scene.jpg",
-    "veo_fails": 0,
-    "video": "C:\\Users\\TUF Gaming\\Desktop\\我的專案\\財富密碼\\待審核\\d5s1-岩漿-有聲.mp4",
-    "awaiting_review": false,
-    "approved": true,
-    "published": true,
-    "source": "Gemini 場景圖 → 本機 Wan 2.2 兩段接龍 i2v → 慢速開頭做動量對比 → lava 音效配方 → -13.7 LUFS",
-    "made_at": "2026-08-11T22:45:04",
-    "note": "8/11 深夜手動生。10.17 秒對齊 D4S1 片長（保住實驗 #1 的片長變數）。黑點眉已改用「圓點不是眉毛線」的寫法，場景圖第一版左右不對稱已重生修正。",
-    "url": "https://youtube.com/shorts/F0v-ud9W96s",
-    "at": "2026-08-11T22:58:27",
-    "publish_note": "賢賢 8/11 23:0x 指示「現在就發」，未等 8-13 08:00 的排定時段。"
-  },
-  "d6s1": {
-    "scene": "C:\\Users\\TUF Gaming\\Desktop\\我的專案\\財富密碼\\auto\\clips\\d6s1_scene.jpg",
-    "scene_source": "gemini",
-    "veo_fails": 0,
-    "awaiting_review": false,
-    "approved": true,
-    "published": true,
-    "gate_candidates": [
-      {
-        "id": "v01",
-        "video": "auto\\clips\\d6s1-cand-v01.mp4",
-        "seed": 424244,
-        "gate": "FAIL",
-        "verdict": "REGENERATE",
-        "failed_rules": [
-          1,
-          3,
-          4,
-          5,
-          6,
-          8,
-          "Nova體型倍率"
-        ],
-        "nova_breed": "哈士奇 PASS（11 幀零失誤）",
-        "nova_size_ratio": "約 2 倍（規格 3 倍）",
-        "nova_eyes": "閉眼睡覺，免驗瞳色",
-        "report": "LOCAL-AI-STUDIO\\PRODUCTION\\_gate_d6s1\\report_fail\\d6s1-cand-v01.md"
-      },
-      {
-        "id": "v02",
-        "video": "auto\\clips\\d6s1-cand-v02.mp4",
-        "seed": 424244,
-        "prompt_change": "套用 d4s1 成功版寫法：5 秒時間軸、camera never moves、head held high/snout clear/mouth closed、Nova 鎖死不准醒、體型與植物本體鎖定句",
-        "gate": "FAIL",
-        "verdict": "REGENERATE",
-        "failed_rules": [
-          1,
-          3,
-          5,
-          8,
-          10
-        ],
-        "fixed_vs_v01": [
-          4,
-          6,
-          "Nova體型倍率",
-          "Taco不再融解成大型犬"
-        ],
-        "new_problems": [
-          "第三條前腿(t1.5-t3.0)",
-          "頸背融解",
-          "項圈飄到背上",
-          "規則10從PASS退步成FAIL"
-        ],
-        "nova_breed": "哈士奇 PASS",
-        "nova_size_ratio": "約 2.5-3.0 倍 PASS",
-        "nova_eyes": "全程睡覺沒醒，t4.0 後有琥珀色瞇線但依規則免驗",
-        "report": "LOCAL-AI-STUDIO\\PRODUCTION\\_gate_d6s1\\report_fail\\d6s1-cand-v02.md"
-      },
-      {
-        "id": "v08",
-        "video": "auto\\\\clips\\\\d6s1-cand-v08.mp4",
-        "seed": 424245,
-        "steps": 6,
-        "scene": "v2",
-        "gate": "FAIL",
-        "verdict": "REGENERATE",
-        "failed_rules": [
-          1,
-          3,
-          5
-        ],
-        "note": "t1.7 後黑點增生 4-5 顆、後段臉崩、持續走向鏡頭。一次改三個變數，無法歸因"
-      },
-      {
-        "id": "v09",
-        "video": "auto\\\\clips\\\\d6s1-cand-v09.mp4",
-        "seed": 424244,
-        "steps": 4,
-        "scene": "v2",
-        "gate": "PASS",
-        "verdict": "PUBLISH",
-        "note": "十條全過。唯一缺點：prompt 寫的甩身沒生出來，全程站定只有轉頭"
-      },
-      {
-        "id": "v10",
-        "video": "auto\\\\clips\\\\d6s1-cand-v10.mp4",
-        "seed": 424247,
-        "steps": 4,
-        "scene": "v2",
-        "gate": "FAIL",
-        "verdict": "REJECT",
-        "failed_rules": [
-          3,
-          5
-        ],
-        "note": "t1.25 仰頭扭曲、臉部拉長；動作仍非甩身"
-      }
-    ],
-    "source": "Gemini 場景圖 d6s1_scene_v2.jpg（改用 v2：根球連藤蔓掛在盆口，解決盆栽合理性）→ 本機 Wan 2.2 單段 i2v 121 幀 @24fps（make_video_local_5s.py, seed 424244, steps 4）→ 開頭 0.8 秒放慢成 1.6 秒做動量對比（2.7→3.1 倍）→ soil_still 音效配方 → -15.8 LUFS / LRA 2.7",
-    "made_at": "2026-08-14T08:00:00",
-    "note": "v09 採用。v08（v2場景圖+加強鎖定句+steps6）因黑點增生至4-5顆判 REGENERATE；v10（seed 424247）t1.25 仰頭扭曲較差。v09/v10 兩顆 seed 都沒生出甩身動作，故不再抽 seed，改走「站定裝無辜」並同步修正文案（原文案寫 shakes the soil off，畫面沒有，已改）。gate 十條全過。",
-    "video": "C:\\Users\\TUF Gaming\\Desktop\\我的專案\\財富密碼\\待審核\\d6s1-盆栽-有聲.mp4",
-    "url": "https://youtube.com/shorts/uzL5_WgI8K8",
-    "at": "2026-08-14T08:32:00"
-  },
-  "d7s1": {
-    "scene": "C:\\Users\\TUF Gaming\\Desktop\\我的專案\\財富密碼\\auto\\clips\\d7s1_scene_c2.jpg",
-    "scene_source": "gemini",
-    "video": "C:\\Users\\TUF Gaming\\Desktop\\我的專案\\財富密碼\\待審核\\d7s1-傳送門-有聲.mp4",
-    "awaiting_review": false,
-    "approved": true,
-    "published": true,
-    "url": "https://youtube.com/shorts/kCEOCyZRGI8",
-    "at": "2026-08-14T12:05:00",
-    "source": "Gemini 場景圖 d7s1_scene_c2.jpg（第 3 輪、第 6 張才過關）→ 本機 Wan 2.2 單段 i2v（make_video_local_5s.py, seed 424250, steps 4）→ 迴力鏢剪輯（首幀凍 0.4s ＋ 正播至 4.5s ＋ 反播回首幀，9.375 秒）→ portal_boomerang 音效 → -14.7 LUFS / LRA 6.2",
-    "gate_candidates": [
-      {
-        "id": "v01",
-        "seed": 424244,
-        "scene": "v3",
-        "gate": "FAIL",
-        "verdict": "REGENERATE",
-        "note": "四代理審片 5 BLOCKER：拖鞋 0-1.6s 反向浮起（曝露面積+23%）、真正下沉只有 0.2 秒、2.7s 後融解成灰塊佔全片 45%、末幀鞋仍在、紫光沒照到鞋（色度量測 U130/V131 近中性灰）"
-      },
-      {
-        "id": "v02",
-        "seed": 424244,
-        "scene": "b1",
-        "gate": "FAIL",
-        "verdict": "REGENERATE",
-        "note": "四代理審片一致 FAIL：黑點三顆（根因為場景圖 b1 本身就三顆）＋3.9-4.2s 整臉重組長出疤狀斜線並停到末幀"
-      },
-      {
-        "id": "v03",
-        "seed": 424250,
-        "scene": "c2",
-        "gate": "PASS",
-        "verdict": "PUBLISH",
-        "note": "四代理審片全數 PASS、零 BLOCKER。黑點 121 幀程式化偵測全為兩顆；末幀臉與首幀同一張；推近經分區配準確認是真 dolly-in（背景1.055<Nova1.10<Taco1.18<門1.24）"
-      }
-    ],
-    "note": "定位為「災難已成＋裝無辜」靜態構圖。演出「拖鞋被吞」的路線連續兩版失敗（本機 Wan 2.2 做不到需要物理連續性的漸進消失），依第六階段停止無效重試改走已驗證公式。迴力鏢剪輯解掉 loop 硬跳（末幀對首幀差 33.97→0.66，9.7 倍→0.2 倍）。文案第 2 條原寫三段劇本，已改為描述實際畫面。"
-  },
-  "d8s1": {
-    "model_selection": {
-      "model": "LOCAL_WAN_TRIAL",
-      "motion_class": "M3",
-      "matched_tasks": [
-        "靜態表情",
-        "奸詐微笑",
-        "丟東西"
-      ],
-      "bottleneck": "奸詐微笑",
-      "local_min_score": null,
-      "reason": "動作複雜度 M3；「奸詐微笑」本機從來沒測過，能力表是空的。全本機模式沒有退路可退 → 本機試拍一支，順便把這格填進能力表；結果好壞都要回填 MODEL_CAPABILITY.md。",
-      "needs_benchmark": [
-        "奸詐微笑"
-      ],
-      "needs_human": true,
-      "policy_version": "2026-08-16.1"
+  "scene_source": "local_flux_pil",
+  "scene": "C:\\Users\\TUF Gaming\\Desktop\\我的專案\\財富密碼\\auto\\clips\\d14s1_scene.png",
+  "video": "C:\\Users\\TUF Gaming\\Desktop\\我的專案\\財富密碼\\待審核\\d14s1-點金手-有聲.mp4",
+  "source": "local",
+  "local_fails": 0,
+  "awaiting_review": false,
+  "note_schedule_desc": "發布前 schedule.json d14 description 需改寫（見 待審核/d14s1-說明.txt），未經 CEO 同意不動 schedule.json",
+  "gate_candidates": [
+   {
+    "id": "v01",
+    "seed": 141001,
+    "steps": 8,
+    "scene": "d14s1_scene.png (FLUX+PIL, 2026-08-17 23:0x)",
+    "prompt": "d14s1_video_static.txt —— 照 d8s1_video_static 骨架，只拍收尾段：金物件全靜態、四腳釘死、Nova 睡死",
+    "gate": "PASS（多代理審片四鏡頭：物件線 FAIL 的幽靈臉已幀級修補，複檢乾淨；餘 WARN 已揭露）",
+    "verdict": "AWAITING_CEO",
+    "note": "黑點眉（PIL 繪入起始圖）全程存活無退化，僅瞇眼頂點(1.6s/鏡像3.6s)右點短暫淡出各約0.4秒。Taco 全程坐定、臉型完整、0.6s 單眼眨眼 4.5s 鏡像再現；中段微張嘴露下齒（審片觀眾鏡頭判定人設加分）。Nova 未照 prompt 睡死而是睡迷糊坐起理毛（Wan 不聽指令的已知天花板），但眼睛全程閉合→無 d8s1 琥珀眼問題，臉部結構每幀完整，判定為劇情增益保留；WARN：鼻色肝粉非黑、耳緣橘銅斑。金碗/金飼料/金托盤全程穩定、黑遙控器不動（劇情設定=還沒被點金）。審片抓到的硬傷：幀23-30 Nova 尾巴旁增生小動物臉（D4 幽靈犬同類）→ 已用前後乾淨幀時間插值修補（羽化遮罩、虛化區），未修原始母帶保留 d14s1-v01.mp4。銀吊牌中段實心變空心絲圈為已知未修 WARN。jerk 0.194 首次追平 Veo(0.191)，歷來本機 0.47。",
+    "spec": "1080x1920 / 24fps / 125 幀 / 5.208 秒 / h264 yuv420p / AAC 48kHz 立體聲 / 4.08 MB",
+    "audio": "自建 gold 配方（sfx/mix_d14s1.py，金光叮聲對齊 2.6s 迴力鏢轉折）→ -14.3 LUFS",
+    "measurements": {
+     "frame_brightness_range": "144.6-148.4",
+     "adjacent_frame_delta_avg": 1.9,
+     "adjacent_frame_delta_max": 3.93,
+     "first_last_frame_delta": 0.53,
+     "blackdetect": "none",
+     "charstab": {
+      "detail_keep": 0.985,
+      "detail_min": 0.985,
+      "drift": 0.038
+     },
+     "flow": {
+      "motion": 0.0938,
+      "jerk": 0.194,
+      "flow_ok": 0.333,
+      "note": "jerk 0.194 追平 Veo 基準 0.191，本機歷來卡 0.47"
+     }
     },
-    "scene_source": "gemini",
-    "scene": "C:\\Users\\TUF Gaming\\Desktop\\我的專案\\財富密碼\\auto\\clips\\d8s1_scene.jpg",
-    "video": "C:\\Users\\TUF Gaming\\Desktop\\我的專案\\財富密碼\\待審核\\d8s1-粉紅史萊姆-有聲.mp4",
-    "source": "Gemini 場景圖 d8s1_scene.jpg → 本機 Wan 2.2 單段 i2v (make_video_local_5s.py, seed 56232, steps 8, 704x1280) → lanczos 1080x1920 → 迴力鏢剪輯(正播0-2.40s+反播回首幀) → slime 音效 → -14.78 LUFS",
-    "local_fails": 0,
-    "awaiting_review": false,
-    "gate_candidates": [
-      {
-        "id": "v01",
-        "seed": 55616,
-        "steps": 8,
-        "scene": "d8s1_scene.jpg (Gemini, 2026-08-17 16:33)",
-        "prompt": "schedule.json videoPrompt 第一段（含叼毯子蓋住 puddle）",
-        "gate": "FAIL",
-        "verdict": "REGENERATE",
-        "note": "規則5＋規則8 FAIL：prompt 的 folded throw blanket 生成失敗，變成一件深藍色帶紅黑條紋與黃色圖案的布料貼在狗身上與周圍（像穿外套／睡袋），左前肢被布料吞掉；藍項圈與銀吊牌在 t4.0 已消失；吻部由尖細變短寬、頭型變圓（規則1/3 疑慮）。通過項：黑點眉全程兩顆、Nova 維持哈士奇藍眼、場景無漂移、無黑畫面、亮度無異常幀（相鄰幀變化平均 0.39/最大 1.66）。根因：videoPrompt 含「拿取物品＋物件互動」，本機能力表各只有 1 分（死穴）；plan_model 未擋下是因為關鍵字「叼/拿」為中文而 videoPrompt 為英文 grabs...in his teeth —— 即 LOCAL_VIDEO_ENGINE_AUDIT 第六節記載的守門失效，本次為第一個實際受害案例。",
-        "spec": "1080x1920 / 24fps / 121 幀 / 5.042 秒 / h264 yuv420p / 無音軌 / 5.87 MB",
-        "file": "auto/clips/d8s1.mp4（保留為失敗證據，不刪）",
-        "at": "2026-08-17T16:39:56"
-      },
-      {
-        "id": "v02",
-        "seed": 56232,
-        "steps": 8,
-        "scene": "d8s1_scene.jpg（同 v01，未改場景圖）",
-        "prompt": "d8s1_video_static.txt —— 照 D6S1 v06 骨架重寫的純靜態版，拿掉毯子物件互動",
-        "gate": "PASS（迴力鏢剪輯後）",
-        "verdict": "AWAITING_CEO",
-        "note": "只改 prompt 一個變數（守「每版只動一個變數」紀律）。原始 v02 全片十條規則皆過，但黑點眉自 t≈2.5s 起漸進退化：末幀變成一大一小的傾斜橢圓，不符角色驗收清單的「大小相同、左右對稱」。時間序列抽幀確認 0–1.8s 完全合格 → 改用 D7S1 已驗證的迴力鏢剪輯（正播 0–2.40s ＋ 反播回首幀，114 幀 4.75 秒），全片落在合格區間，且首末幀亮度差由 8.19 降到 0.07（loop 完全無縫）。⚠️ 殘留未解項：Nova 雙眼為琥珀／淺褐色而非設定的藍眼，首末幀一致（非片中漂移，源頭在場景圖或 i2v），不符角色驗收清單但未踩「變成博美／狐狸犬」的禁止條款 —— 交 CEO 判定。",
-        "spec": "1080x1920 / 24fps / 114 幀 / 4.757 秒 / h264 yuv420p / AAC 48kHz 立體聲 / 4.23 MB",
-        "audio": "自建 slime 配方（sfx/mix_d8s1.py，對齊迴力鏢弧線）→ -14.78 LUFS / TP -1.22 dBTP / LRA 2.60",
-        "measurements": {
-          "frame_brightness_range": "135.7-143.7",
-          "adjacent_frame_delta_avg": 0.26,
-          "adjacent_frame_delta_max": 1.7,
-          "first_last_frame_delta": 0.07,
-          "blackdetect": "none",
-          "abnormal_frames": 0
-        },
-        "file": "auto/clips/d8s1-final.mp4 → 待審核/d8s1-粉紅史萊姆-有聲.mp4",
-        "at": "2026-08-17T16:57:54"
-      }
-    ],
-    "approved": true,
-    "published": true,
-    "url": "https://youtube.com/shorts/3tZ2uyLMrPc",
-    "at": "2026-08-18T02:39:09"
-  },
-  "d14s1": {
-    "model_selection": {
-      "motion_class": "M2",
-      "matched_tasks": [
-        "走路"
-      ],
-      "bottleneck": "走路",
-      "local_min_score": 2,
-      "needs_human": true,
-      "policy_version": "2026-08-16.1",
-      "model": "BLOCKED",
-      "rewrite_hint": "搬到生圖階段：起始圖就畫在目的地，影片只演「到了之後的反應」。真要移動就寫 walks from left to right across the frame, camera stays at the same distance（否定句無效，只能寫正面）",
-      "playbook": {
-        "搬到生圖階段": "物件交接／狀態改變（東西到了誰身上、東西已經倒了）交給生圖，靜態圖不用管物理而且免費。影片只演反應。實測後人手和增生狗都消失了。"
-      },
-      "reason": "動作複雜度 M2；瓶頸任務「走路」本機只有 2 分 < 5 → ⛔ 本機做不到，這輪不生。改劇本繞開，不要硬拍。",
-      "note": "⚠️ 此 BLOCKED 是誤判（唯讀記錄用，未擋下生產）：靜態 prompt 的保護鎖定句 never stepping/never walking 被關鍵字比對誤認成「走路」動作。實際影片零走動、已產出並過審片。守門員盲區之二：除了英文動作詞漏擋（d8s1 v01），否定鎖定句也會誤擋。"
-    },
-    "scene_source": "local_flux_pil",
-    "scene": "C:\\Users\\TUF Gaming\\Desktop\\我的專案\\財富密碼\\auto\\clips\\d14s1_scene.png",
-    "video": "C:\\Users\\TUF Gaming\\Desktop\\我的專案\\財富密碼\\待審核\\d14s1-點金手-有聲.mp4",
-    "source": "FLUX schnell 本機場景圖 (seed 1053085121, 704x1280) → PIL 手工補特徵(黑點眉/銀吊牌/金托盤, 詳 d14s1_scene_flux.txt) → 本機 Wan 2.2 單段 i2v (make_video_local_5s.py, seed 141001, steps 8) → lanczos 1080x1920 → 迴力鏢剪輯(正播0-2.60s+反播回首幀, 125幀5.208s) → gold 音效(mix_d14s1.py) → -14.3 LUFS",
-    "local_fails": 0,
-    "awaiting_review": false,
-    "note_schedule_desc": "發布前 schedule.json d14 description 需改寫（見 待審核/d14s1-說明.txt），未經 CEO 同意不動 schedule.json",
-    "gate_candidates": [
-      {
-        "id": "v01",
-        "seed": 141001,
-        "steps": 8,
-        "scene": "d14s1_scene.png (FLUX+PIL, 2026-08-17 23:0x)",
-        "prompt": "d14s1_video_static.txt —— 照 d8s1_video_static 骨架，只拍收尾段：金物件全靜態、四腳釘死、Nova 睡死",
-        "gate": "PASS（多代理審片四鏡頭：物件線 FAIL 的幽靈臉已幀級修補，複檢乾淨；餘 WARN 已揭露）",
-        "verdict": "AWAITING_CEO",
-        "note": "黑點眉（PIL 繪入起始圖）全程存活無退化，僅瞇眼頂點(1.6s/鏡像3.6s)右點短暫淡出各約0.4秒。Taco 全程坐定、臉型完整、0.6s 單眼眨眼 4.5s 鏡像再現；中段微張嘴露下齒（審片觀眾鏡頭判定人設加分）。Nova 未照 prompt 睡死而是睡迷糊坐起理毛（Wan 不聽指令的已知天花板），但眼睛全程閉合→無 d8s1 琥珀眼問題，臉部結構每幀完整，判定為劇情增益保留；WARN：鼻色肝粉非黑、耳緣橘銅斑。金碗/金飼料/金托盤全程穩定、黑遙控器不動（劇情設定=還沒被點金）。審片抓到的硬傷：幀23-30 Nova 尾巴旁增生小動物臉（D4 幽靈犬同類）→ 已用前後乾淨幀時間插值修補（羽化遮罩、虛化區），未修原始母帶保留 d14s1-v01.mp4。銀吊牌中段實心變空心絲圈為已知未修 WARN。jerk 0.194 首次追平 Veo(0.191)，歷來本機 0.47。",
-        "spec": "1080x1920 / 24fps / 125 幀 / 5.208 秒 / h264 yuv420p / AAC 48kHz 立體聲 / 4.08 MB",
-        "audio": "自建 gold 配方（sfx/mix_d14s1.py，金光叮聲對齊 2.6s 迴力鏢轉折）→ -14.3 LUFS",
-        "measurements": {
-          "frame_brightness_range": "144.6-148.4",
-          "adjacent_frame_delta_avg": 1.9,
-          "adjacent_frame_delta_max": 3.93,
-          "first_last_frame_delta": 0.53,
-          "blackdetect": "none",
-          "charstab": {
-            "detail_keep": 0.985,
-            "detail_min": 0.985,
-            "drift": 0.038
-          },
-          "flow": {
-            "motion": 0.0938,
-            "jerk": 0.194,
-            "flow_ok": 0.333,
-            "note": "jerk 0.194 追平 Veo 基準 0.191，本機歷來卡 0.47"
-          }
-        },
-        "file": "auto/clips/d14s1-final.mp4 → 待審核/d14s1-點金手-有聲.mp4",
-        "at": "2026-08-17T23:16:45"
-      }
-    ],
-    "approved": true,
-    "published": true,
-    "url": "https://youtube.com/shorts/HDURmpns0b0",
-    "at": "2026-08-18T02:41:28"
-  }
+    "file": "auto/clips/d14s1-final.mp4 → 待審核/d14s1-點金手-有聲.mp4",
+    "at": "2026-08-17T23:16:45"
+   }
+  ],
+  "approved": true,
+  "published": true,
+  "url": "https://youtube.com/shorts/HDURmpns0b0",
+  "at": "2026-08-18T02:41:28",
+  "source_note": "FLUX schnell 本機場景圖 (seed 1053085121, 704x1280) → PIL 手工補特徵(黑點眉/銀吊牌/金托盤, 詳 d14s1_scene_flux.txt) → 本機 Wan 2.2 單段 i2v (make_video_local_5s.py, seed 141001, steps 8) → lanczos 1080x1920 → 迴力鏢剪輯(正播0-2.60s+反播回首幀, 125幀5.208s) → gold 音效(mix_d14s1.py) → -14.3 LUFS"
+ }
 }
