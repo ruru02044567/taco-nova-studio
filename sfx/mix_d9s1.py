@@ -32,19 +32,15 @@ sys.path.insert(0, str(Path(__file__).resolve().parent))
 import mix  # noqa: E402
 
 # (檔案, 起始秒, dB, ffmpeg 濾鏡, 是否全程鋪底)
-# v6（2026-08-19 音樂驅動版）：實測對標三支＝歡樂 BGM 鋪滿（平均 -19.5~-22.9dB、
-# 節奏直紋＋低頻地基），不是稀疏寫實派。改法：
-#   - CC0 快樂拍手循環鋪滿 12 秒（素材本身 -23dB，0dB 增益直接對齊對標量級）
-#   - BGM 在結尾 10.9s 起自動壓低一半，讓 Nova 的低嗚穿出來（punchline）
-#   - 吊牌細針聲全撤（在拍手節奏裡聽不見，留著只是雜訊）
-#   - Nova 低嗚 v2：保留泛音（頻譜課：諧波扇形才像生物），只降調不濾波
+# v7（2026-08-19 對標解剖定版）：時間軸＝S1a 2.1 + Nova鉤子 0.6 + S1b 2.94 +
+# 酒杯特寫 1.0 + S2 5.04 = 11.71s，動作中斷收尾（8/8 對標不定格）。
+# 增益整體 +5：對標峰值打到 -0.5~-2.4dB（防爆表交給 limiter）。
 RECIPE = [
-    ("_prerendered/bgm_happyclappy12.wav", 0.0, 0,
-     "volume=enable='between(t,10.9,12)':volume=0.5", True),
-    # 特寫插入鏡（5.0-6.0s）：whoosh 帶切入＋玻璃杯「叮」點題（畫面正是酒杯）
-    ("_prerendered/whoosh_at490.wav", 0.0, -12, "", False),
-    ("_prerendered/ting_at510.wav",   0.0, -9, "", False),
-    ("_prerendered/nova_whine_v2_at1105.wav", 0.0, -2, "", False),
+    ("_prerendered/bgm_happyclappy_nofade.wav", 0.0, 6,
+     "volume=enable='between(t,10.9,12.17)':volume=0.5", True),
+    ("_prerendered/whoosh_at554.wav", 0.0, -7, "", False),
+    ("_prerendered/ting_at574.wav",   0.0, -4, "", False),
+    ("_prerendered/nova_whine_at1125.wav", 0.0, 4, "", False),
 ]
 
 if __name__ == "__main__":
