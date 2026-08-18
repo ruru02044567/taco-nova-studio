@@ -520,3 +520,21 @@
 [2026-08-18 19:02:22]     | saved C:\Users\TUF Gaming\Desktop\我的專案\財富密碼\auto\clips\d9s1.mp4
 [2026-08-18 19:02:22]   影片 OK（本機 Wan 2.2，steps 8）：d9s1.mp4
 [2026-08-18 19:02:23]   ⏸ 已送待審（未發布）：d9s1.mp4　→ 賢賢過目後跑 `pipeline.py ok d9s1`
+[2026-08-18 19:28:01]   $ preflight.py C:\Users\TUF Gaming\Desktop\我的專案\財富密碼\auto\clips\d9s1-final.mp4 --key  -> rc=0
+[2026-08-18 19:28:01]     | ── preflight d9s1-final.mp4 ──
+[2026-08-18 19:28:01]     |   ✓ 檔案大小: 4.4 MB
+[2026-08-18 19:28:01]     |   ✓ 黑名單: d9s1-final.mp4 不在 12 筆黑名單中
+[2026-08-18 19:28:01]     |   ✓ 有聲音軌: aac
+[2026-08-18 19:28:01]     |   ✓ 音量: mean_volume -15.8 dB
+[2026-08-18 19:28:01]     |   ✓ 時長 3–60s: 6.2 s
+[2026-08-18 19:28:01]     |   ✓ 直式畫面: 1080x1920
+[2026-08-18 19:28:01]     | ── 全部通過 ──
+[2026-08-18 19:28:01] 賢賢核准 D9S1，發布中
+[2026-08-18 19:29:03]   $ publish_video.py C:\Users\TUF Gaming\Desktop\我的專案\財富密碼\auto\clips\d9s1-final.mp4 C:\Use -> rc=0
+[2026-08-18 19:29:03]     | 說明文案格式檢查：通過
+[2026-08-18 19:29:03]     | 頻道確認：Taco & Nova（畫面顯示：Taco & Nova）
+[2026-08-18 19:29:03]     | file selected
+[2026-08-18 19:29:03]     | details filled
+[2026-08-18 19:29:03]     | compliance: {'VIDEO_MADE_FOR_KIDS_NOT_MFK': 'true', 'VIDEO_AGE_RESTRICTION_NONE': 'true', 'VIDEO_HAS_ALTERED_CONTENT_YES': 'true'}
+[2026-08-18 19:29:03]     | PUBLISHED https://youtube.com/shorts/FGYr7aMaMs8
+[2026-08-18 19:29:03]   已發布：https://youtube.com/shorts/FGYr7aMaMs8
