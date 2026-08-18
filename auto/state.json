@@ -43,7 +43,23 @@
   },
   "d9s1": {
     "scene": "C:\\Users\\TUF Gaming\\Desktop\\我的專案\\財富密碼\\auto\\clips\\d9s1_scene.jpg",
-    "veo_fails": 0
+    "veo_fails": 0,
+    "model_selection": {
+      "motion_class": "M0",
+      "matched_tasks": [
+        "靜態表情"
+      ],
+      "bottleneck": "靜態表情",
+      "local_min_score": 8,
+      "needs_human": false,
+      "policy_version": "2026-08-16.1",
+      "model": "LOCAL_WAN",
+      "reason": "動作複雜度 M0；瓶頸任務「靜態表情」本機 8 分 ≥ 8 → 本機可正式使用"
+    },
+    "video": "C:\\Users\\TUF Gaming\\Desktop\\我的專案\\財富密碼\\auto\\clips\\d9s1.mp4",
+    "source": "local",
+    "local_fails": 0,
+    "awaiting_review": true
   },
   "d4s1": {
     "scene": "C:\\Users\\TUF Gaming\\Desktop\\我的專案\\財富密碼\\auto\\clips\\d4s1_scene.jpg",

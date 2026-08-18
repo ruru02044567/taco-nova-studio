@@ -504,3 +504,19 @@
 [2026-08-18 02:41:28]     | compliance: {'VIDEO_MADE_FOR_KIDS_NOT_MFK': 'true', 'VIDEO_AGE_RESTRICTION_NONE': 'true', 'VIDEO_HAS_ALTERED_CONTENT_YES': 'true'}
 [2026-08-18 02:41:28]     | PUBLISHED https://youtube.com/shorts/HDURmpns0b0
 [2026-08-18 02:41:28]   已發布：https://youtube.com/shorts/HDURmpns0b0
+[2026-08-18 18:55:59] 處理 D9S1：Taco Wiped Up The Red Wine And Made It 3x Worse 😳🍷（預定 08-17 08:00，晚 34.9h）
+[2026-08-18 18:55:59]   超過容忍 6h，改為立即補做（不再等原時段）
+[2026-08-18 18:55:59]   模型判斷：LOCAL_WAN（M0，瓶頸「靜態表情」）
+[2026-08-18 18:56:01] Edge/CDP 沒開，啟動中
+[2026-08-18 18:56:04] CDP 就緒
+[2026-08-18 18:56:04]   場景圖 OK：d9s1_scene.jpg
+[2026-08-18 19:02:22]   $ make_video_local_5s.py C:\Users\TUF Gaming\Desktop\我的專案\財富密碼\auto\clips\d9s1_scene.jpg C:\Use -> rc=0
+[2026-08-18 19:02:22]     | ComfyUI 已在跑
+[2026-08-18 19:02:22]     | 起始圖已備好
+[2026-08-18 19:02:22]     |   （/free 沒成功，不影響生成：Expecting value: line 1 column 1 (char 0)）
+[2026-08-18 19:02:22]     |   seed = 50565（時間戳隨機） / steps = 8 / shift = 8.0 / length = 121 / euler+simple
+[2026-08-18 19:02:22]     | 已排入佇列，開始算圖…
+[2026-08-18 19:02:22]     | 算完了，花了 6.3 分鐘
+[2026-08-18 19:02:22]     | saved C:\Users\TUF Gaming\Desktop\我的專案\財富密碼\auto\clips\d9s1.mp4
+[2026-08-18 19:02:22]   影片 OK（本機 Wan 2.2，steps 8）：d9s1.mp4
+[2026-08-18 19:02:23]   ⏸ 已送待審（未發布）：d9s1.mp4　→ 賢賢過目後跑 `pipeline.py ok d9s1`
