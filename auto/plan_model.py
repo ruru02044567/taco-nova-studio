@@ -28,6 +28,7 @@
     python plan_model.py --shot d8s1 --text "..." --force-model LOCAL_WAN   # 人工覆寫
 """
 import json
+import re
 import sys
 from pathlib import Path
 
@@ -37,6 +38,25 @@ HERE = Path(__file__).parent
 POLICY = json.loads((HERE / "model_policy.json").read_text(encoding="utf-8"))
 STATE = HERE / "state.json"
 
+# 否定子句在劇本裡是安全咒語（does not walk anywhere / no third dog...），
+# 不是動作計畫，比對前先剝掉，否則「不要做 X」會被當成「要做 X」擋下來。
+# 8/18 實案：d9s1 改寫版的 does not walk anywhere 撞進「走路」。
+_NEG = re.compile(
+    r"\b(?:does not|do not|doesn't|don't|never|without|no longer|not)\b[^,.;]*",
+    re.IGNORECASE,
+)
+
+
+def _match(kw, text):
+    """英文關鍵字用單字邊界比對，中文維持子字串。
+
+    子字串比對在英文必誤傷（8/18 實案：press 誤中 unimpressed），
+    但中文沒有詞界，只能子字串。
+    """
+    if re.fullmatch(r"[a-z0-9' ]+", kw):
+        return re.search(r"\b" + re.escape(kw) + r"\b", text) is not None
+    return kw in text
+
 
 def classify(text):
     """把劇本描述比對到能力表上的任務類型。
@@ -45,10 +65,10 @@ def classify(text):
     結果必須可重現、可稽核。比對不到就回空，由上層退到「人工判斷」，
     不要讓它自己猜 —— 猜錯的代價是燒掉半小時算力生一支必崩的片。
     """
-    t = text.lower()
+    t = _NEG.sub(" ", text.lower())
     hits = []
     for task, spec in POLICY["tasks"].items():
-        if any(k.lower() in t for k in spec["keywords"]):
+        if any(_match(k.lower(), t) for k in spec["keywords"]):
             hits.append(task)
     return hits
 

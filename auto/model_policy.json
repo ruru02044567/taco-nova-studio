@@ -2,7 +2,7 @@
  "version": "2026-08-16.1",
  "updated": "2026-08-18",
  "benchmark_source": "LOCAL-AI-STUDIO/PRODUCTION/MODEL_CAPABILITY.md",
- "_note": "分數 0-10，以 Veo/雲端 = 10 為錨點（d1s1 黑洞 5.1 萬觀看那支的量測值）。evidence 欄位是這個分數的來源：tested = 這個專案真的生過並量過；partial = 有相關實測但沒針對這一項驗；inferred = 從已知規律推的，還沒實測。inferred 的分數只能拿來擋掉明顯做不到的事，不可以拿來當「證明」。 ｜ 2026-08-18：補英文關鍵字（原本 87/100 是中文，但 schedule.json 的 videoPrompt 全英文，導致低分任務永遠命中不了、守門形同虛設）。「連續劇情」刻意不補英文，避免時間碼分鏡讓 19 支全數 BLOCKED。 ｜ 同日勘誤：複雜角色互動移除 each other/both dogs/two dogs——這三個詞誤中所有 prompt 共用的『EXACTLY TWO DOGS』安全樣板，會把 19 支全數誤鎖。",
+ "_note": "分數 0-10，以 Veo/雲端 = 10 為錨點（d1s1 黑洞 5.1 萬觀看那支的量測值）。evidence 欄位是這個分數的來源：tested = 這個專案真的生過並量過；partial = 有相關實測但沒針對這一項驗；inferred = 從已知規律推的，還沒實測。inferred 的分數只能拿來擋掉明顯做不到的事，不可以拿來當「證明」。 ｜ 2026-08-18：補英文關鍵字（原本 87/100 是中文，但 schedule.json 的 videoPrompt 全英文，導致低分任務永遠命中不了、守門形同虛設）。「連續劇情」刻意不補英文，避免時間碼分鏡讓 19 支全數 BLOCKED。 ｜ 同日勘誤：複雜角色互動移除 each other/both dogs/two dogs——這三個詞誤中所有 prompt 共用的『EXACTLY TWO DOGS』安全樣板，會把 19 支全數誤鎖。 ｜ 高分任務（靜態表情/眼神變化/頭部轉動）同步補英文——否則照公式改寫的安全劇本會『比對不到』退人工。",
  "generation_mode": "LOCAL_ONLY",
  "_mode_why": "2026-08-16 賢賢定案：影片一律本機生成，不再走 Veo。veo 欄位保留當對照基準（分數的錨點是它），但不再是可選的出路 —— 本機做不到的鏡頭改成擋下來要求改劇本，不是換模型。",
  "thresholds": {
@@ -47,7 +47,20 @@
     "不動",
     "定格",
     "靜止",
-    "innocent"
+    "innocent",
+    "perfectly still",
+    "frozen",
+    "freeze",
+    "freezes",
+    "holds the pose",
+    "holding the pose",
+    "stares into the lens",
+    "stare into the lens",
+    "guilty stare",
+    "stays exactly where",
+    "stays sitting",
+    "stays standing",
+    "motionless"
    ],
    "note": "D2/D5/D6/D7 四支都過 gate。本機的強項"
   },
@@ -61,7 +74,17 @@
     "看向",
     "瞄",
     "眨眼",
-    "眼睛"
+    "眼睛",
+    "blink",
+    "blinks",
+    "blinking",
+    "glances",
+    "glance",
+    "eyes darting",
+    "gaze",
+    "looks at the camera",
+    "eyes going wide",
+    "eyes widen"
    ],
    "note": "眼球轉動在 v09 有生出來，但沒有針對「眼神方向可控性」單獨驗過"
   },
@@ -75,7 +98,21 @@
     "抬頭",
     "低頭",
     "歪頭",
-    "回頭"
+    "回頭",
+    "turns his head",
+    "turns her head",
+    "turns its head",
+    "turning his head",
+    "tilts his head",
+    "tilts its head",
+    "looks up",
+    "looks down",
+    "looks away",
+    "looks back",
+    "lifts his head",
+    "lowers his head",
+    "turns to look",
+    "head turn"
    ],
    "note": "十二支本機片全部都有自然的轉頭，這是它唯一穩定生得出來的動作"
   },
@@ -187,7 +224,12 @@
     "drags",
     "dragging",
     "holds in its mouth",
-    "gripped in"
+    "gripped in",
+    "pulls",
+    "pulling",
+    "tugs",
+    "tugging",
+    "yanks"
    ],
    "note": "⛔ 局部單肢動作會長出第三條腿（v02 實測，t1.5-3.0）。全身同步動作才不會",
    "rewrite": "搬到生圖階段：起始圖直接畫成「東西已經在嘴裡／已經在爪下」，影片只演叼著它抬頭得意。物件交接是本機的死穴，但對生圖毫無難度"
