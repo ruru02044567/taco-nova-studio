@@ -62,13 +62,16 @@ def main():
             blocked.append(key)
     published.sort(key=lambda x: x["at"])
 
-    # ── metrics.jsonl 補登（append-only，URL 去重）──
-    lines = METRICS.read_text(encoding="utf-8").splitlines() if METRICS.exists() else []
+    # ── metrics.jsonl 補登（真 append-only：只用附加模式寫新行，絕不重寫整檔）──
+    raw = METRICS.read_text(encoding="utf-8") if METRICS.exists() else ""
+    lines = raw.splitlines()
     known_urls, max_rel = set(), 0
     for ln in lines:
         try:
             rec = json.loads(ln)
         except Exception:
+            continue
+        if not isinstance(rec, dict):
             continue
         if rec.get("event") == "publish":
             known_urls.add(rec.get("url"))
@@ -76,10 +79,11 @@ def main():
         if m:
             max_rel = max(max_rel, int(m.group(1)))
 
-    added = []
+    added, new_lines = [], []
     for p in published:
         if p["url"] in known_urls:
             continue
+        known_urls.add(p["url"])
         max_rel += 1
         rec = {
             "date": p["at"][:10],
@@ -89,29 +93,44 @@ def main():
             "event": "publish",
             "platform": "youtube_shorts",
             "url": p["url"],
+            "title": p["title"] or None,
             "views": None, "impressions": None, "ctr": None, "retention": None,
             "source": "auto/state.json（sync_ledger.py 自動補登）",
             "note": "效能數據待補",
         }
-        lines.append(json.dumps(rec, ensure_ascii=False))
+        ln = json.dumps(rec, ensure_ascii=False)
+        lines.append(ln)
+        new_lines.append(ln)
         added.append(f"REL-{max_rel:03d} {p['key']}")
-    if added:
-        METRICS.write_text("\n".join(lines) + "\n", encoding="utf-8")
+    if new_lines:
+        with open(METRICS, "a", encoding="utf-8") as f:
+            if raw and not raw.endswith("\n"):
+                f.write("\n")
+            f.write("\n".join(new_lines) + "\n")
 
-    # ── REL 對照（含剛補的）──
-    url_rel = {}
+    # ── REL 對照與最新量測（含剛補的）──
+    url_rel, url_views = {}, {}
     for ln in lines:
         try:
             rec = json.loads(ln)
         except Exception:
             continue
+        if not isinstance(rec, dict):
+            continue
         if rec.get("event") == "publish":
             url_rel[rec.get("url")] = rec.get("rel", "")
+        elif rec.get("event") == "measure" and rec.get("views") is not None:
+            url_views[rec.get("url")] = (rec["views"], rec.get("date", ""))
 
     # ── LEDGER_AUTO.md 整檔重生 ──
     now = datetime.now().strftime("%Y-%m-%d %H:%M")
+    def views_cell(url):
+        v = url_views.get(url)
+        return f"{v[0]:,}（{v[1][5:]}）" if v else "—"
+
     rows = "\n".join(
-        f"| {url_rel.get(p['url'], '?')} | {p['key']} | {p['at'][:16].replace('T', ' ')} | {p['title']} | {p['url']} |"
+        f"| {url_rel.get(p['url'], '?')} | {p['key']} | {p['at'][:16].replace('T', ' ')} | "
+        f"{p['title']} | {views_cell(p['url'])} | {p['url']} |"
         for p in published
     )
     LEDGER.write_text(f"""# LEDGER_AUTO — 公司即時帳本（腳本生成，勿手改）
@@ -128,8 +147,8 @@ def main():
 
 ## 發布明細
 
-| REL | key | 發布時間 | 標題 | URL |
-|---|---|---|---|---|
+| REL | key | 發布時間 | 標題 | 最新觀看（量測日） | URL |
+|---|---|---|---|---|---|
 {rows}
 """, encoding="utf-8")
 

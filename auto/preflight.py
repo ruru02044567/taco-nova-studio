@@ -38,7 +38,8 @@ def ffprobe_json(path):
     p = subprocess.run(
         ["ffprobe", "-v", "quiet", "-print_format", "json",
          "-show_streams", "-show_format", str(path)],
-        capture_output=True, text=True, timeout=120)
+        capture_output=True, text=True, timeout=120,
+        encoding="utf-8", errors="replace")
     if p.returncode != 0 or not p.stdout.strip():
         return None
     return json.loads(p.stdout)
@@ -48,7 +49,8 @@ def mean_volume_db(path):
     p = subprocess.run(
         ["ffmpeg", "-nostats", "-i", str(path), "-map", "0:a:0",
          "-af", "volumedetect", "-f", "null", "-"],
-        capture_output=True, text=True, timeout=300)
+        capture_output=True, text=True, timeout=300,
+        encoding="utf-8", errors="replace")
     m = re.search(r"mean_volume:\s*(-?[\d.]+)\s*dB", p.stderr)
     return float(m.group(1)) if m else None
 
@@ -62,27 +64,36 @@ def main():
     src = Path(args.video)
     results = []  # (name, ok, detail)
 
-    # 1. 檔案存在
-    if not src.exists():
-        print(f"✗ 檔案不存在：{src}")
+    # 1. 檔案存在（Path("") 會變成 "."，exists() 誤回 True，所以用 is_file）
+    if not args.video or not src.is_file():
+        print(f"✗ 檔案不存在或不是檔案：{args.video!r}")
         sys.exit(1)
     size_mb = src.stat().st_size / 2**20
     results.append(("檔案大小", size_mb > 0.5, f"{size_mb:.1f} MB"))
 
-    # 黑名單（先查，JSON 壞掉要大聲失敗）
-    key = args.key or re.match(r"(d\d+s\d+)", src.stem.replace("archived-", "")) and \
-        re.match(r"(archived-)?(d\d+s\d+)", src.stem).group(0)
+    # key 僅供訊息顯示；黑名單比對用「檔名」——因為同一個 key 常同時有被拒版與已發布好版
+    key = args.key
+    if not key:
+        m = re.match(r"(archived-)?(d\d+s\d+)", src.stem)
+        key = m.group(2) if m else None
+
+    # 黑名單（逐檔檔名比對；JSON 壞掉要大聲失敗，不得靜默跳過）
     if REJECTED.exists():
         try:
-            rejected = json.loads(REJECTED.read_text(encoding="utf-8"))
+            data = json.loads(REJECTED.read_text(encoding="utf-8"))
+            banned = [str(it.get("file", "")) for it in
+                      (data.get("rejected", []) + data.get("superseded", []))
+                      if isinstance(it, dict)]
         except Exception as e:
             print(f"✗✗ rejected.json 解析失敗（{e}）——依規定硬停，不得靜默跳過黑名單")
             sys.exit(3)
-        rejected_keys = set(rejected if isinstance(rejected, list) else rejected.keys())
-        if key and any(key == rk or str(rk).startswith(str(key)) for rk in rejected_keys):
-            print(f"✗✗ {key} 在黑名單 rejected.json 內，禁止發布")
+        hit = next((b for b in banned if b and b.lower() == src.name.lower()), None)
+        if hit:
+            print(f"✗✗ {src.name} 在黑名單 rejected.json 內（{hit}），禁止發布")
             sys.exit(2)
-        results.append(("黑名單", True, f"{key or '（無 key）'} 不在 {len(rejected_keys)} 筆黑名單中"))
+        results.append(("黑名單", True, f"{src.name} 不在 {len(banned)} 筆黑名單中"))
+    else:
+        results.append(("黑名單", True, "⚠ rejected.json 不存在，本項未檢查"))
 
     # 複製到英文暫存（避開 ffmpeg 中文路徑靜默失敗）
     with tempfile.TemporaryDirectory(prefix="preflight_") as td:

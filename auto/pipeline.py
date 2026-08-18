@@ -493,12 +493,28 @@ def cmd_ok():
         print("找不到待審的片子")
         return
     st = state[key]
+    # 已發布的不准重打 ok：重發同支會靠 publish_video 的檔名比對兜底，但不該走到那層
+    if st.get("published"):
+        print(f"{key} 已在 {st.get('at', '?')} 發布過（{st.get('url', '')}），不重發")
+        return
+    # 發布前程式閘門（2026-08-18 加）：無聲原片、靜音軌、超時長、黑名單在這裡硬擋。
+    # 起因：8/18 前的流程裡，state 的 video 若還指著無聲原片，會被原樣發上去。
+    # preflight 未過就不標核准、不發布，片子留在待審狀態等修好再 ok 一次。
+    ok_pf, out_pf = run("preflight.py", st.get("video", ""), "--key", key, timeout=600)
+    print(out_pf.strip())
+    if not ok_pf:
+        log(f"  ✗ {key.upper()} preflight 未過，不發布。"
+            f"通常是還沒做成片：python auto\\finish_video.py {key}")
+        return
     st["approved"] = True
     st["awaiting_review"] = False
     state[key] = st
     save(STATE, state)
     item = next((i for i in sched["schedule"] if f"d{i['day']}s{i['slot']}" == key), None)
-    if item and ensure_edge():
+    if item is None:
+        log(f"  ⚠ {key} 不在 schedule.json（archived？）——已標核准但無法自動發布，需人工處理")
+        return
+    if ensure_edge():
         log(f"賢賢核准 {key.upper()}，發布中")
         publish(key, item, st, state)
 

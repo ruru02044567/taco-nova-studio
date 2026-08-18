@@ -57,6 +57,9 @@ def main():
         print(f"[X] prompt 太短（{len(prompt)} 字元），像是空檔")
         sys.exit(1)
 
+    if not WORKFLOW.is_file():
+        print(f"[X] 找不到 FLUX workflow：{WORKFLOW}")
+        sys.exit(1)
     wf = json.loads(WORKFLOW.read_text(encoding="utf-8"))
     wf["4"]["inputs"]["text"] = prompt
     wf["6"]["inputs"]["width"] = args.width
