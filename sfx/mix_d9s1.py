@@ -40,10 +40,10 @@ import mix  # noqa: E402
 # 剪接點 6.16s 刻意無聲：畫面上沒有東西掉落或噴濺（規則 11）。
 RECIPE = [
     ("roomtone/Hvac,Cooling unit,Refrigerator,Int,Drone,Rattle,Roomtone,Loop.mp3",
-     0.0, -45, "highpass=f=120,lowpass=f=4000,afade=t=in:st=0:d=1.5", True),
-    ("_prerendered/tag_at205.wav",        0.0,  -4, "", False),
-    ("_prerendered/tag_at875.wav",        0.0,  -7, "", False),
-    ("_prerendered/nova_whine_at1105.wav", 0.0,  -8, "", False),
+     0.0, -21, "highpass=f=120,lowpass=f=4000,afade=t=in:st=0.8:d=1.5", True),
+    ("_prerendered/tag_at205.wav",        0.0,  -1, "aecho=0.8:0.88:32:0.18,lowpass=f=7000", False),
+    ("_prerendered/tag_at875.wav",        0.0,  -4, "aecho=0.8:0.88:32:0.18,lowpass=f=7000", False),
+    ("_prerendered/nova_whine_at1105.wav", 0.0,  -5, "aecho=0.8:0.88:32:0.18,lowpass=f=7000", False),
 ]
 
 if __name__ == "__main__":
