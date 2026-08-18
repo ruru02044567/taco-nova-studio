@@ -32,29 +32,18 @@ sys.path.insert(0, str(Path(__file__).resolve().parent))
 import mix  # noqa: E402
 
 # (檔案, 起始秒, dB, ffmpeg 濾鏡, 是否全程鋪底)
+# v3（2026-08-19 規則 11/12 版）：三個事件全部「延遲烤進檔案」start=0，
+# 不用 adelay（atempo/NOPTS 地雷徹底繞開）。每聲都有畫面根據：
+#   2.05s 吊牌微響 ＝ S1 轉頭（項圈吊牌看得見）——新素材（車鑰匙微動），不再用舊手鍊聲
+#   8.75s 吊牌微響 ＝ S2 轉頭（同一顆吊牌，同檔不同段）
+#  11.05s Nova 低嗚 ＝ 結尾吐槽（閉嘴能發的音；降音高 0.88 裝大狗）——新素材 Wimper 26
+# 剪接點 6.16s 刻意無聲：畫面上沒有東西掉落或噴濺（規則 11）。
 RECIPE = [
-    # 空氣感：勉強高於數位靜音的噪聲地板，不是「環境音」
     ("roomtone/Hvac,Cooling unit,Refrigerator,Int,Drone,Rattle,Roomtone,Loop.mp3",
      0.0, -45, "highpass=f=120,lowpass=f=4000,afade=t=in:st=0:d=1.5", True),
-
-    # S1 轉頭看 Nova → 吊牌輕碰
-    ("ceramic/Apparel,bracelet,silver,ceramic,glass,leather,shake,single,bright,alternate.M.wav",
-     2.05, -24, "atrim=0:0.3,highpass=f=650", False),
-    # S1 撇頭 → 更輕的一聲
-    ("ceramic/Apparel,bracelet,silver,ceramic,glass,leather,shake,single,bright,alternate.M.wav",
-     5.30, -27, "atrim=0:0.25,highpass=f=650", False),
-
-    # 剪接點 6.16s：濕黏一聲「啪唧」——動作發生在剪接裡，聲音替畫面補完
-    # ⚠ 用預渲染檔：ffmpeg 7.1.1 的 atempo 會讓後面的 adelay 整個失效（NOPTS 地雷），
-    #    配方 extra 裡禁用 atempo／atrim，變速素材一律先渲染進 lib\_prerendered\
-    ("_prerendered/mud_splat_slow70.wav", 6.10, -17, "", False),
-
-    # S2 抬頭轉向鏡頭 → 吊牌
-    ("ceramic/Apparel,bracelet,silver,ceramic,glass,leather,shake,single,bright,alternate.M.wav",
-     8.75, -25, "atrim=0:0.3,highpass=f=650", False),
-
-    # 結尾 punchline：Nova 的嗚咽吐槽（真狗聲，全片最大聲，音高壓低裝大狗）
-    ("_prerendered/nova_whimper_at1105.wav", 0.0, -6, "", False),  # 延遲已烤進檔案（見下註）
+    ("_prerendered/tag_at205.wav",        0.0,  -4, "", False),
+    ("_prerendered/tag_at875.wav",        0.0,  -7, "", False),
+    ("_prerendered/nova_whine_at1105.wav", 0.0,  -8, "", False),
 ]
 
 if __name__ == "__main__":
