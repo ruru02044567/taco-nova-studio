@@ -1,23 +1,27 @@
 # -*- coding: utf-8 -*-
-"""D9S1 紅酒地毯的音效配方（6.17 秒：慢速開頭 1.8s ＋ 正常速 4.34s）。
+"""D9S1 紅酒地毯 12 秒雙鏡版的音效配方（新聲音文法第一支）。
 
-對齊的是**剪輯後**的時間軸（clips\d9s1-edit.mp4，慢速開頭版），
-不是 Wan 原片——原片 t 秒對應剪輯後：t<0.7 → t*2.6；t>=0.7 → t+1.12。
+新文法出處：2026-08-18 賢賢聽出四支片「聲音超奇怪」，逐秒實測他打 9 分的
+標準片（Chihuahua Pushes Remote，10 秒）得到的數據：
+    0s -91dB（靜音開場）→ 1-3s -42~-63（幾乎無聲）→ 4s -27（落地咚）
+    → 7s -52（回歸安靜）→ 8-9s -17（結尾 Nova 吐槽，全片最大聲）
+    整體平均 -25.3 dB，峰值打滿＝動態範圍極大。
 
-畫面事件（真 v3 密集幀確認，19:24 版）：
-  0.00-1.80s  慢速定格：酒杯倒著、酒漬滿毯、Taco 前爪抬著站在正中
-              → 只有環境底噪＋Nova 鼻息＋一次極輕的濕地毯微聲
-  1.90-2.75s  Taco 轉頭看向 Nova（心虛確認有沒有被看到）
-              → 吊牌輕響一聲
-  3.80-4.60s  面對鏡頭裝無辜瞪大眼（全片核心 beat）
-              → Nova 一聲鼻哼（審判感），其他全靜
-  4.75-5.60s  撇頭裝沒事（動量峰值 4.75s）
-              → 吊牌再輕一聲＋濕毯微聲收尾
-  5.60-6.17s  定格餘韻 → 只留呼吸
+規則（跟舊配方的差異）：
+  1. 不鋪全程底噪——只留 -45dB 的空氣感讓噪聲地板活著，其他時間就是安靜
+  2. 每支片只放少數「真實物理事件」聲，對齊畫面
+  3. 禁止豬／馬採樣冒充狗呼吸（舊配方最怪的來源）
+  4. 結尾允許一聲真實狗聲當 punchline（全片最大聲）
+  5. build() 帶 target_lufs=None——不准正規化拉大聲，安靜就是設計
 
-聲音方向：**濕、安靜、尷尬**。紅酒是已經潑完的——不要倒酒聲、
-不要玻璃聲（杯子從頭到尾沒動）；狗四腳踩在濕毯上，只有極輕的
-濕纖維聲。沒有低頻怪物（那是黑洞／傳送門語彙），沒有乾粉音。
+畫面時間軸（12.07 秒剪輯版）：
+  0.00-1.82  S1 慢速開場：災難定格   → 靜音
+  2.0-2.9    S1 轉頭看 Nova          → 吊牌輕響一聲
+  5.1-6.0    S1 撇頭裝沒事           → 極輕吊牌
+  6.16       ── 硬切 ──              → 濕黏「啪唧」跨在剪接點（污漬變大的暗示）
+  6.7-7.7    S2 低頭看著滿毯災難     → 安靜
+  8.7-9.7    S2 抬頭轉向鏡頭瞪大眼   → 吊牌輕響
+  10.2-12.0  S2 慢速定格凝視         → Nova 一聲嗚咽吐槽（全片最大聲）
 
 用法：python mix_d9s1.py <影片> <輸出>
 """
@@ -29,34 +33,30 @@ import mix  # noqa: E402
 
 # (檔案, 起始秒, dB, ffmpeg 濾鏡, 是否全程鋪底)
 RECIPE = [
-    # ── bed 層：同一間客廳，跟 d8s1 同底保持聽感連續性 ──────────────
+    # 空氣感：勉強高於數位靜音的噪聲地板，不是「環境音」
     ("roomtone/Hvac,Cooling unit,Refrigerator,Int,Drone,Rattle,Roomtone,Loop.mp3",
-     0.0, -29, "highpass=f=90,lowpass=f=6000", True),
-    ("amb-birds/AMB SUBURB Solo Bird Call, Early Morning, Distant Traffic Passbys, Montreal, Canada, LOOP.mp3",
-     0.0, -32, "lowpass=f=1300", True),
+     0.0, -45, "highpass=f=120,lowpass=f=4000", True),
 
-    # ── 0.00-1.80s（慢速定格）：Nova 的鼻息是唯一的生命跡象 ──────────
-    ("dog-sleep/G4F SFX06 - HORSES - Snort 03.mp3", 0.55, -21, "atempo=0.7,lowpass=f=900", False),
-    # 濕地毯極輕微聲：泥漿聲放很慢＋重低通＝濕纖維，不是水花
-    ("liquid/mud_splat_heavy_03.mp3", 1.30, -26, "atempo=0.5,lowpass=f=1500", False),
-
-    # ── 1.90-2.75s：轉頭看 Nova → 吊牌輕響 ────────────────────────
+    # S1 轉頭看 Nova → 吊牌輕碰
     ("ceramic/Apparel,bracelet,silver,ceramic,glass,leather,shake,single,bright,alternate.M.wav",
-     1.95, -19, "atrim=0:0.3,highpass=f=650", False),
-
-    # ── 3.80-4.60s：面對鏡頭裝無辜 → Nova 鼻哼一聲當審判 ────────────
-    ("dog-sleep/G4F SFX06 - HORSES - Snort 03.mp3", 4.05, -19, "atempo=0.85,lowpass=f=1100", False),
-
-    # ── 4.75-5.60s：撇頭裝沒事 → 吊牌＋濕毯收尾 ────────────────────
+     2.05, -24, "atrim=0:0.3,highpass=f=650", False),
+    # S1 撇頭 → 更輕的一聲
     ("ceramic/Apparel,bracelet,silver,ceramic,glass,leather,shake,single,bright,alternate.M.wav",
-     4.80, -20, "atrim=0:0.28,highpass=f=650", False),
-    ("liquid/mud_splat_heavy_03.mp3", 5.35, -27, "atempo=0.5,lowpass=f=1300", False),
+     5.30, -27, "atrim=0:0.25,highpass=f=650", False),
 
-    # ── 5.60-6.17s：餘韻只留呼吸 ──────────────────────────────────
-    ("dog-sleep/G4F SFX06 - HORSES - Snort 03.mp3", 5.75, -23, "atempo=0.6,lowpass=f=800", False),
+    # 剪接點 6.16s：濕黏一聲「啪唧」——動作發生在剪接裡，聲音替畫面補完
+    ("liquid/mud_splat_heavy_03.mp3", 6.10, -17, "atempo=0.7,lowpass=f=2200", False),
+
+    # S2 抬頭轉向鏡頭 → 吊牌
+    ("ceramic/Apparel,bracelet,silver,ceramic,glass,leather,shake,single,bright,alternate.M.wav",
+     8.75, -25, "atrim=0:0.3,highpass=f=650", False),
+
+    # 結尾 punchline：Nova 的嗚咽吐槽（真狗聲，全片最大聲，音高壓低裝大狗）
+    ("dog-whimper/EFX INT Dog Wimper 06 A.M.wav",
+     11.05, -13, "atrim=0.2:1.5,atempo=0.85,lowpass=f=2500", False),
 ]
 
 if __name__ == "__main__":
     video, out = sys.argv[1], sys.argv[2]
-    if mix.build(video, out, RECIPE):
+    if mix.build(video, out, RECIPE, target_lufs=None):
         print("完成：", out)

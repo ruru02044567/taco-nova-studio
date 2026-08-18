@@ -390,7 +390,15 @@ RECIPES = {
 }
 
 
-def build(video, out, recipe):
+def build(video, out, recipe, target_lufs=-14.0):
+    """target_lufs=None 時跳過響度正規化（只留防爆表 limiter）。
+
+    2026-08-18 加：賢賢聽出四支片「聲音超奇怪」，逐秒量 9 分標準片
+    （Chihuahua Pushes Remote）發現它整體遠比 -14 LUFS 安靜——
+    靜音開場、全片只有 2-3 個真實事件、動態範圍極大。
+    「一律拉到 -14」會把安靜文法整個毀掉，所以改成配方可選。
+    舊配方不帶參數＝行為不變。
+    """
     out = Path(out)          # 命令列傳進來是字串，下面 with_suffix 需要 Path
     dur = float(subprocess.run(
         ["ffprobe", "-v", "quiet", "-show_entries", "format=duration", "-of", "csv=p=0", video],
@@ -450,11 +458,15 @@ def build(video, out, recipe):
             except Exception:
                 pass
     probe.unlink(missing_ok=True)
+    if target_lufs is None:
+        if lufs is not None:
+            print(f"混音後 {lufs:.1f} LUFS → 不正規化（安靜文法），只掛防爆表 limiter")
+        return run("[mixed]alimiter=limit=-1.5dB:level=disabled[aout]", out)
     if lufs is None:
         print("量不到響度，退回 loudnorm")
-        return run("[mixed]loudnorm=I=-14:TP=-1.5:LRA=11[aout]", out)
+        return run(f"[mixed]loudnorm=I={target_lufs}:TP=-1.5:LRA=11[aout]", out)
 
-    gain = -14.0 - lufs
+    gain = target_lufs - lufs
     print(f"混音後 {lufs:.1f} LUFS → 套用固定增益 {gain:+.1f} dB（動態完整保留）")
     # 第二階段：純線性增益 + 只在真的爆表時才動作的 limiter
     return run(f"[mixed]volume={gain:.2f}dB,alimiter=limit=-1.5dB:level=disabled[aout]", out)
