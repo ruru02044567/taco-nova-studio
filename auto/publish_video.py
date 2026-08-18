@@ -215,4 +215,40 @@ with sync_playwright() as pw:
         print("FAILED: 沒按到發布")
         sys.exit(1)
     time.sleep(8)
+
+    # ── 2026-08-18 D9S1 事故補課：按完「發布」不等於發布成功 ──
+    # 那天按鈕有按到、也拿到了網址，但影片留在草稿，本腳本仍回報 PUBLISHED。
+    # 從此以後：回內容清單，看到這支影片那一列「不是草稿」才算數。
+    click_exact(up, "關閉")   # 發布完的分享畫面（沒有也無妨）
+    time.sleep(2)
+    verify_key = title[:18]
+    verified = False
+    for attempt in range(6):
+        try:
+            cur = up.url
+            chan = cur.split("/channel/")[1].split("/")[0] if "/channel/" in cur else None
+            dest = (f"https://studio.youtube.com/channel/{chan}/videos/upload"
+                    if chan else "https://studio.youtube.com/")
+            up.goto(dest, wait_until="domcontentloaded")
+        except Exception:
+            pass
+        time.sleep(6)
+        row = up.evaluate(
+            """(k) => {
+                for (const r of document.querySelectorAll('ytcp-video-row')) {
+                    const t = r.innerText || '';
+                    if (t.includes(k)) return t;
+                }
+                return null;
+            }""",
+            verify_key,
+        )
+        flat = (row or "清單沒有這一列").replace("\n", " ")[:120]
+        print(f"  發布後驗證 {attempt + 1}/6：{flat}")
+        if row and "草稿" not in row:
+            verified = True
+            break
+    if not verified:
+        print("FAILED: 按了發布但內容清單仍是草稿（或找不到），不得視為已發布")
+        sys.exit(8)
     print("PUBLISHED", url)
