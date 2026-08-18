@@ -41,6 +41,9 @@ import mix  # noqa: E402
 RECIPE = [
     ("_prerendered/bgm_happyclappy12.wav", 0.0, 0,
      "volume=enable='between(t,10.9,12)':volume=0.5", True),
+    # 特寫插入鏡（5.0-6.0s）：whoosh 帶切入＋玻璃杯「叮」點題（畫面正是酒杯）
+    ("_prerendered/whoosh_at490.wav", 0.0, -12, "", False),
+    ("_prerendered/ting_at510.wav",   0.0, -9, "", False),
     ("_prerendered/nova_whine_v2_at1105.wav", 0.0, -2, "", False),
 ]
 
