@@ -32,18 +32,16 @@ sys.path.insert(0, str(Path(__file__).resolve().parent))
 import mix  # noqa: E402
 
 # (檔案, 起始秒, dB, ffmpeg 濾鏡, 是否全程鋪底)
-# v3（2026-08-19 規則 11/12 版）：三個事件全部「延遲烤進檔案」start=0，
-# 不用 adelay（atempo/NOPTS 地雷徹底繞開）。每聲都有畫面根據：
-#   2.05s 吊牌微響 ＝ S1 轉頭（項圈吊牌看得見）——新素材（車鑰匙微動），不再用舊手鍊聲
-#   8.75s 吊牌微響 ＝ S2 轉頭（同一顆吊牌，同檔不同段）
-#  11.05s Nova 低嗚 ＝ 結尾吐槽（閉嘴能發的音；降音高 0.88 裝大狗）——新素材 Wimper 26
-# 剪接點 6.16s 刻意無聲：畫面上沒有東西掉落或噴濺（規則 11）。
+# v6（2026-08-19 音樂驅動版）：實測對標三支＝歡樂 BGM 鋪滿（平均 -19.5~-22.9dB、
+# 節奏直紋＋低頻地基），不是稀疏寫實派。改法：
+#   - CC0 快樂拍手循環鋪滿 12 秒（素材本身 -23dB，0dB 增益直接對齊對標量級）
+#   - BGM 在結尾 10.9s 起自動壓低一半，讓 Nova 的低嗚穿出來（punchline）
+#   - 吊牌細針聲全撤（在拍手節奏裡聽不見，留著只是雜訊）
+#   - Nova 低嗚 v2：保留泛音（頻譜課：諧波扇形才像生物），只降調不濾波
 RECIPE = [
-    ("roomtone/Hvac,Cooling unit,Refrigerator,Int,Drone,Rattle,Roomtone,Loop.mp3",
-     0.0, -21, "highpass=f=120,lowpass=f=4000,afade=t=in:st=0.8:d=1.5", True),
-    ("_prerendered/tag_at205.wav",        0.0,  -1, "aecho=0.8:0.88:32:0.18,lowpass=f=7000", False),
-    ("_prerendered/tag_at875.wav",        0.0,  -4, "aecho=0.8:0.88:32:0.18,lowpass=f=7000", False),
-    ("_prerendered/nova_whine_at1105.wav", 0.0,  -5, "aecho=0.8:0.88:32:0.18,lowpass=f=7000", False),
+    ("_prerendered/bgm_happyclappy12.wav", 0.0, 0,
+     "volume=enable='between(t,10.9,12)':volume=0.5", True),
+    ("_prerendered/nova_whine_v2_at1105.wav", 0.0, -2, "", False),
 ]
 
 if __name__ == "__main__":
