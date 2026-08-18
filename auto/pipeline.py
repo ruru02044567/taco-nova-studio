@@ -403,15 +403,23 @@ def cmd_tick():
     if not scene.exists():
         prompt_file = CLIPS / f"{key}_scene.txt"
         prompt_file.write_text(item["scenePrompt"], encoding="utf-8")
-        ok, _ = run("make_scene.py", prompt_file, scene)
-        if not ok or not scene.exists():
-            # Gemini 生圖卡住就直接改用本機，不要停在這裡等下一輪。
-            # 賢賢 2026-08-11 定的方向：本機管線已經夠好，不要再被雲端綁住。
-            # 品質確實差一截（黑點眉生不出來），但有圖才有片，卡住等於整條產線停擺。
-            log("  Gemini 生圖失敗 → 改用本機生圖")
-            if not ensure_comfy():
-                log("  本機 ComfyUI 起不來，下次再試")
-                return
+        # 2026-08-18 賢賢裁示：生圖也全本機，雲端 Gemini 從自動流程移除
+        # （make_scene.py 檔案保留當手動救急工具，比照 Veo 死碼慣例）。
+        # 主路 FLUX schnell（可鎖 seed、約 45 秒/張）；黑點眉偏弱是已知代價：
+        # gate 抽幀會抓，弱到不行就用 PIL 原地放大（作法見 _fix_d9_dots.py 的格線校準）。
+        # 注意：gen_scene_flux 是直接複製 png bytes 到指定路徑，scene 副檔名是 .jpg
+        # 也沒關係——下游 ffmpeg／PIL 都認內容不認副檔名。
+        if not ensure_comfy():
+            log("  本機 ComfyUI 起不來，下次再試")
+            return
+        ok, _ = run("gen_scene_flux.py",
+                    "--prompt-file", prompt_file, "--out", scene,
+                    "--width", "704", "--height", "1280", timeout=900)
+        if ok and scene.exists():
+            st["scene_source"] = "flux"
+            log("  場景圖 OK（FLUX 本機）")
+        else:
+            log("  FLUX 生圖失敗 → 改用 SDXL 本機")
             ok2, _ = run("gen_scene_local.py",
                          "--prompt-file", prompt_file, "--out", scene,
                          "--ref", "taco_face.png", "--tag", key, timeout=900)
@@ -419,9 +427,7 @@ def cmd_tick():
                 log("  本機生圖也失敗，下次再試")
                 return
             st["scene_source"] = "local"
-            log("  場景圖 OK（本機）")
-        else:
-            st["scene_source"] = "gemini"
+            log("  場景圖 OK（SDXL 本機）")
     st["scene"] = str(scene)
     state[key] = st
     save(STATE, state)
