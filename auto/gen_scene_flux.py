@@ -28,6 +28,38 @@ import comfy_api  # noqa: E402
 WORKFLOW = Path(r"C:\Users\TUF Gaming\ai-video-local\workflows\flux_schnell_api.json")
 CLIPS = Path(__file__).resolve().parent / "clips"
 
+# 抗 AI 感尾段（BENCHMARK 08-exp-realism 三臂同 seed 實測的 B 版，2026-08-19）。
+# 原則：AI 感來自「零缺陷」，場景缺陷靠 prompt 要（模型畫得出「東西」）；
+# 顆粒／失焦／歪斜這類「相機行為」模型畫不出來，交給 postfx.py 後製，不要寫在這。
+REALISM_TAIL = (
+    "Amateur iPhone snapshot, harsh direct phone flash, slightly overexposed highlights, "
+    "everyday clutter in the background, scuffed floor, a few crumbs and a stray sock on the floor, "
+    "nothing staged, nothing tidied up."
+)
+REALISM_MARKER = "nothing staged"  # prompt 裡已有這句就不重複接
+
+
+def apply_realism(prompt: str) -> tuple[str, list]:
+    """回傳 (處理後 prompt, 動了什麼的說明清單)。"""
+    notes = []
+    low = prompt.lower()
+    # 「Photorealistic photo」會把模型推向完美攝影作品，是 AI 感的幫兇 → 換掉
+    for bad in ("photorealistic photo of", "photorealistic photo,", "photorealistic photo"):
+        if low.startswith(bad):
+            prompt = "Amateur iPhone snapshot of" + prompt[len(bad):] if bad.endswith("of") \
+                else "Amateur iPhone snapshot," + prompt[len(bad):]
+            notes.append("開頭 Photorealistic photo → Amateur iPhone snapshot")
+            break
+    if REALISM_MARKER not in prompt.lower():
+        tail = REALISM_TAIL
+        if "amateur iphone snapshot" in prompt.lower():
+            tail = tail.replace("Amateur iPhone snapshot, ", "", 1).capitalize()
+        prompt = prompt.rstrip().rstrip(".") + ". " + tail
+        notes.append("已接抗 AI 感尾段（B 版）")
+    else:
+        notes.append("prompt 已含缺陷句，不重複接")
+    return prompt, notes
+
 
 def main():
     ap = argparse.ArgumentParser()
@@ -38,6 +70,8 @@ def main():
     ap.add_argument("--height", type=int, default=1216)
     ap.add_argument("--seed", type=int, default=None, help="不給就用時間戳")
     ap.add_argument("--steps", type=int, default=4, help="schnell 建議 4")
+    ap.add_argument("--no-realism", action="store_true",
+                    help="不接抗 AI 感尾段（做對照實驗時用）")
     args = ap.parse_args()
 
     if args.key:
@@ -56,6 +90,10 @@ def main():
     if len(prompt) < 20:
         print(f"[X] prompt 太短（{len(prompt)} 字元），像是空檔")
         sys.exit(1)
+    if not args.no_realism:
+        prompt, notes = apply_realism(prompt)
+        for n in notes:
+            print(f"[realism] {n}")
 
     if not WORKFLOW.is_file():
         print(f"[X] 找不到 FLUX workflow：{WORKFLOW}")
