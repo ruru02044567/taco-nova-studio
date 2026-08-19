@@ -386,6 +386,14 @@ def cmd_tick():
         f"（{plan.get('motion_class') or '未分類'}，"
         f"瓶頸「{plan.get('bottleneck') or '比對不到已知任務，當沒測過處理'}」）")
 
+    # 出拍前 30 秒體檢：六崩壞規律（2026-08-20 制度化）。只預警不擋拍 ——
+    # 硬閘門是 plan_model／preflight／score_video；這裡是最便宜的一道提醒，
+    # 成片翻車時先回頭看這份體檢有沒有早就說過。
+    cp_ok, cp_out = run("check_prompt.py", "--day", str(item["day"]), timeout=120)
+    if not cp_ok:
+        fails = [l.strip() for l in cp_out.splitlines() if l.strip().startswith("✗")]
+        log(f"  ⚠ prompt 健檢 {len(fails)} 個 FAIL（不擋拍）：" + "；".join(fails[:3]))
+
     # Edge 起不來就這輪不做。2026-08-16 曾短暫改成「靜默改走本機生圖」，當天撤回：
     # 那是沒有測試依據的降級，而且本機生圖畫不出 Taco 的黑點眉 —— 片子照樣生、照樣送審，
     # 招牌卻不見了。停下來吵人，好過安靜地變爛。

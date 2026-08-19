@@ -70,6 +70,8 @@ def main():
                     help="通用配方名（僅在沒有 sfx\\mix_{key}.py 時允許）")
     ap.add_argument("--dry-run", action="store_true",
                     help="輸出 -final-test.mp4，不動 state、不進待審核")
+    ap.add_argument("--skip-score", action="store_true",
+                    help="跳過 score_video 自審（剪輯探索期用；正式送審不可跳）")
     args = ap.parse_args()
     key = args.key
 
@@ -116,6 +118,17 @@ def main():
     if rc != 0:
         print("[X] preflight 未過，成片保留但不進待審核、不動 state")
         sys.exit(2)
+
+    # 3.5) score_video 自審硬閘門（2026-08-19 定案 10/10 才准送賢賢；8/20 制度化接進來）
+    #      賢賢是驗收官不是陪練員 —— 量得出來的先自己過，量不出來的才留給他。
+    if args.skip_score:
+        print("[!] --skip-score：跳過自審（探索用；正式送審必須過 score_video 10/10）")
+    else:
+        rc, out = sh([sys.executable, AUTO / "score_video.py", final], timeout=600)
+        print(out.strip())
+        if rc != 0:
+            print("[X] score_video 自審未過，成片保留但不進待審核、不動 state")
+            sys.exit(3)
 
     # 4) 收尾
     if args.dry_run:

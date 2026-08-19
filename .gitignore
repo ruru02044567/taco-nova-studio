@@ -38,3 +38,5 @@ LOCAL-AI-STUDIO/**/out_taco*/
 LOCAL-AI-STUDIO/**/cache_*/
 *.safetensors
 *.pt
+
+auto/tick_task.log
