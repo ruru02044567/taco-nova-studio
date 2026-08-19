@@ -538,3 +538,45 @@
 [2026-08-18 19:29:03]     | compliance: {'VIDEO_MADE_FOR_KIDS_NOT_MFK': 'true', 'VIDEO_AGE_RESTRICTION_NONE': 'true', 'VIDEO_HAS_ALTERED_CONTENT_YES': 'true'}
 [2026-08-18 19:29:03]     | PUBLISHED https://youtube.com/shorts/FGYr7aMaMs8
 [2026-08-18 19:29:03]   已發布：https://youtube.com/shorts/FGYr7aMaMs8
+[2026-08-19 08:35:26] 處理 D10S1：Taco Tried To Hide 12 Broken Eggs Under The Blanket 🥚😱（預定 08-18 08:00，晚 24.6h）
+[2026-08-19 08:35:26]   超過容忍 6h，改為立即補做（不再等原時段）
+[2026-08-19 08:35:26]   模型判斷：LOCAL_WAN_TRIAL（M1，瓶頸「眼神變化」）
+[2026-08-19 08:35:28] Edge/CDP 沒開，啟動中
+[2026-08-19 08:35:31] CDP 就緒
+[2026-08-19 08:36:16]   $ gen_scene_flux.py --prompt-file C:\Users\TUF Gaming\Desktop\我的專案\財富密碼\auto\clips\d10s1_s -> rc=0
+[2026-08-19 08:36:16]     |   ...排隊中 running=1 pending=0 (14s)
+[2026-08-19 08:36:16]     |   ...排隊中 running=1 pending=0 (16s)
+[2026-08-19 08:36:16]     |   ...排隊中 running=1 pending=0 (18s)
+[2026-08-19 08:36:16]     |   ...排隊中 running=1 pending=0 (20s)
+[2026-08-19 08:36:16]     |   ...排隊中 running=1 pending=0 (22s)
+[2026-08-19 08:36:16]     |   ...排隊中 running=1 pending=0 (24s)
+[2026-08-19 08:36:16]     |   ...排隊中 running=1 pending=0 (26s)
+[2026-08-19 08:36:16]     |   ...排隊中 running=1 pending=0 (28s)
+[2026-08-19 08:36:16]     |   ...排隊中 running=1 pending=0 (30s)
+[2026-08-19 08:36:16]     |   ...排隊中 running=1 pending=0 (32s)
+[2026-08-19 08:36:16]     |   ...排隊中 running=1 pending=0 (34s)
+[2026-08-19 08:36:16]     |   ...排隊中 running=1 pending=0 (36s)
+[2026-08-19 08:36:16]     |   ...排隊中 running=1 pending=0 (38s)
+[2026-08-19 08:36:16]     |   ...排隊中 running=1 pending=0 (40s)
+[2026-08-19 08:36:16]     |   ...排隊中 running=1 pending=0 (42s)
+[2026-08-19 08:36:16]     | [ok] 45s → C:\Users\TUF Gaming\Desktop\我的專案\財富密碼\auto\clips\d10s1_scene.jpg
+[2026-08-19 08:36:16]   場景圖 OK（FLUX 本機）
+[2026-08-19 08:36:16]   場景圖 OK：d10s1_scene.jpg
+[2026-08-19 08:44:13] 處理 D10S1：Taco Tried To Hide 12 Broken Eggs Under The Blanket 🥚😱（預定 08-18 08:00，晚 24.7h）
+[2026-08-19 08:44:13]   超過容忍 6h，改為立即補做（不再等原時段）
+[2026-08-19 08:44:13]   模型判斷：LOCAL_WAN_TRIAL（M1，瓶頸「眼神變化」）
+[2026-08-19 08:44:15] Edge/CDP 沒開，啟動中
+[2026-08-19 08:44:18] CDP 就緒
+[2026-08-19 08:44:18]   場景圖 OK：d10s1_scene.jpg
+[2026-08-19 08:50:35]   $ make_video_local_5s.py C:\Users\TUF Gaming\Desktop\我的專案\財富密碼\auto\clips\d10s1_scene.jpg C:\Us -> rc=0
+[2026-08-19 08:50:35]     | ComfyUI 已在跑
+[2026-08-19 08:50:35]     | 起始圖已備好
+[2026-08-19 08:50:35]     |   （/free 沒成功，不影響生成：Expecting value: line 1 column 1 (char 0)）
+[2026-08-19 08:50:35]     |   seed = 100258（時間戳隨機） / steps = 8 / shift = 8.0 / length = 121 / euler+simple
+[2026-08-19 08:50:35]     | 已排入佇列，開始算圖…
+[2026-08-19 08:50:35]     | 算完了，花了 6.3 分鐘
+[2026-08-19 08:50:35]     | saved C:\Users\TUF Gaming\Desktop\我的專案\財富密碼\auto\clips\d10s1.mp4
+[2026-08-19 08:50:35]   影片 OK（本機 Wan 2.2，steps 8）：d10s1.mp4
+[2026-08-19 08:50:36]   ⏸ 已送待審（未發布）：d10s1.mp4　→ 賢賢過目後跑 `pipeline.py ok d10s1`
+[2026-08-19 13:02:35]   ComfyUI 沒開，啟動中
+[2026-08-19 13:03:58]   ComfyUI 就緒

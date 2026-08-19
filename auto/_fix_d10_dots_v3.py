@@ -42,7 +42,7 @@ mask_im = Image.fromarray((mask * 255).astype(np.uint8)).filter(ImageFilter.Gaus
 mask = np.asarray(mask_im).astype(np.float32)[..., None] / 255.0
 
 # 乘暗保留毛絲：黑毛=原紋理×0.16 再加一點暖底，避免死黑
-dark = arr * 0.16 + np.array([9, 7, 6], np.float32)
+dark = arr * 0.09 + np.array([8, 6, 5], np.float32)
 out = arr * (1 - mask) + dark * mask
 
 bak = src.with_name(src.stem + "_無眉備份.jpg")
