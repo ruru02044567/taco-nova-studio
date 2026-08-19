@@ -60,13 +60,17 @@ def check(text: str, kind: str, clip_len: int):
         else:
             out.append(("PASS", "單肢動作", "OK"))
 
-        # R4 耳朵動作詞（耳朵會扭成角狀物）——只看 ear 前後 80 字，
-        # 不用整句共現：cast 句動輒 400 字，別處的 fold/curl 會冤枉耳朵
+        # R4 耳朵動作詞（耳朵會扭成角狀物）——以「壞詞」為圓心判定：
+        # 壞詞自己前 100 字有 never＝鎖定句，跳過；否則壞詞 ±80 字內有 ear 才算冤有頭。
+        # （舊版以 ear 為圓心開窗，鎖定句的 never 會被窗界切掉造成誤報，d11 實案）
         bad = []
-        for m in re.finditer(r"\bears?\b", text, re.I):
-            win = text[max(0, m.start() - 80): m.end() + 80]
-            if EAR_BAD.search(win) and "never" not in win.lower():
-                bad.append(win)
+        for m in EAR_BAD.finditer(text):
+            neg = text[max(0, m.start() - 100): m.end()].lower()
+            if "never" in neg or "not " in neg:
+                continue
+            near = text[max(0, m.start() - 80): m.end() + 80]
+            if re.search(r"\bears?\b", near, re.I):
+                bad.append(near)
         if bad:
             out.append(("FAIL", "耳朵", "有耳朵擺動詞且不是鎖定句 → 耳朵會扭成角。用：ears stay upright, triangular, straight and rigid — never fold, flap, bend, curl, droop, or twist"))
         elif re.search(r"\bears?\b", low) and not re.search(r"ears?[^.]{0,80}(upright|rigid|stay|keep)", low):
