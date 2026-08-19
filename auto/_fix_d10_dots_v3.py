@@ -33,16 +33,16 @@ rng = np.random.default_rng(20260819)
 for (cx, cy) in DOTS:
     ang = np.arctan2(yy - cy, xx - cx)
     # 8 瓣低頻噪聲擾動半徑：邊緣參差得像毛，不像圓規畫的
-    wob = 1.0 + 0.18 * np.sin(ang * 8 + rng.uniform(0, 6.28)) \
-              + 0.10 * np.sin(ang * 3 + rng.uniform(0, 6.28))
+    wob = 1.0 + 0.08 * np.sin(ang * 8 + rng.uniform(0, 6.28)) \
+              + 0.05 * np.sin(ang * 3 + rng.uniform(0, 6.28))
     dist = np.hypot(xx - cx, yy - cy) / (R * wob)
     mask = np.maximum(mask, np.clip(1.35 - dist * 1.35, 0, 1))
 
-mask_im = Image.fromarray((mask * 255).astype(np.uint8)).filter(ImageFilter.GaussianBlur(1.0))
+mask_im = Image.fromarray((mask * 255).astype(np.uint8)).filter(ImageFilter.GaussianBlur(0.8))
 mask = np.asarray(mask_im).astype(np.float32)[..., None] / 255.0
 
 # 乘暗保留毛絲：黑毛=原紋理×0.16 再加一點暖底，避免死黑
-dark = arr * 0.09 + np.array([8, 6, 5], np.float32)
+dark = arr * 0.12 + np.array([10, 8, 7], np.float32)
 out = arr * (1 - mask) + dark * mask
 
 bak = src.with_name(src.stem + "_無眉備份.jpg")
