@@ -5,13 +5,13 @@ r"""d10s1 畫面組裝（2026-08-19，對標結構）。
   0.00-2.10   S1a 正面罪惡感直視（第 0 秒即前提：站在蛋黃災難中央）
   2.10-2.95   INS1 哈士奇睡臉特寫（第二鉤子 2.1s 起，0.85s；證人睡死）
   2.95-5.15   S1b 撇頭裝沒事（跳過 S1 的 2.10-2.40，jump cut 藏在插入鏡後）
-  5.15-6.15   INS2 蛋黃腳掌罪證特寫（1.0s；冷觀眾審回饋：蛋盒空鏡零資訊，改罪證）
+  5.15-6.15   INS2 湊近蛋盒查看罪證 punch-in（1.0s；接 S1b 轉頭視線，8/20 冷觀眾審回饋修正版）
   6.15-11.19  S2  整段主鏡 5.04s ≥3.8s（低頭聞災難→抬頭被抓包→正面定住）
   11.19-12.25 TAIL S2 尾段 0.65x 慢動作正面凝視，動作中斷收尾；
               末鏡重建開場構圖=無縫 loop（對標五招 #5）
 
 插入鏡裁框（1080x1920 座標系，r966 場景實測；486x864 → 1080x1920）：
-  INS1 哈士奇頭 (547,848)   INS2 腳掌+蛋黃 (271,504)
+  INS1 哈士奇頭 (560,960)   INS2 湊近蛋盒 (520,288)   —— 8/20 R11 新片重校
 
 用法：python auto\_build_d10.py [S1路徑] [S2路徑] [輸出路徑]
 預設 S1=clips\d10s1.mp4、S2=clips\d10s1_s2.mp4、輸出=clips\d10s1-cut.mp4
@@ -32,9 +32,9 @@ out_src = Path(sys.argv[3]) if len(sys.argv) > 3 else CLIPS / "d10s1-cut.mp4"
 
 FC = """
 [0:v]trim=0.00:2.10,setpts=PTS-STARTPTS[s1a];
-[0:v]trim=0.60:1.45,setpts=PTS-STARTPTS,crop=486:864:547:848,scale=1080:1920:flags=lanczos,unsharp=5:5:0.4[ins1];
-[0:v]trim=2.40:4.60,setpts=PTS-STARTPTS[s1b];
-[0:v]trim=0.30:1.30,setpts=PTS-STARTPTS,crop=486:864:271:504,scale=1080:1920:flags=lanczos,unsharp=5:5:0.4[ins2];
+[0:v]trim=0.60:1.45,setpts=PTS-STARTPTS,crop=486:864:560:960,scale=1080:1920:flags=lanczos,unsharp=5:5:0.4[ins1];
+[0:v]trim=2.60:4.80,setpts=PTS-STARTPTS[s1b];
+[0:v]trim=4.04:5.04,setpts=PTS-STARTPTS,crop=486:864:520:288,scale=1080:1920:flags=lanczos,unsharp=5:5:0.4[ins2];
 [1:v]trim=0.00:5.04,setpts=PTS-STARTPTS[s2];
 [1:v]trim=4.35:5.04,setpts=(PTS-STARTPTS)/0.65[tail];
 [s1a][ins1][s1b][ins2][s2][tail]concat=n=6:v=1:a=0[cat];

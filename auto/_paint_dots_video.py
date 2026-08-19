@@ -27,27 +27,44 @@ sys.stdout.reconfigure(encoding="utf-8")
 
 
 def find_eyes(arr, win):
-    """在窗內找兩顆暗斑。回 [(x,y),(x,y)]（依 x 排序）或 None。"""
+    """窗內找「白毛上的兩顆黑眼」。環形亮度+幾何配對雙重約束。"""
+    from scipy import ndimage
     x0, y0, x1, y1 = win
     g = arr[y0:y1, x0:x1].mean(axis=2)
-    th = np.percentile(g, 2.5)          # 最暗 2.5%
-    ys, xs = np.where(g <= th)
-    if len(xs) < 20:
+    th = np.percentile(g, 3.0)
+    dark = g <= max(th, 90)             # 眼睛是真黑（<90），不是灰陰影
+    lab, n = ndimage.label(dark)
+    if n < 2:
         return None
-    pts = np.stack([xs, ys], axis=1).astype(np.float32)
-    # 2-means：以左右極值起始，收斂兩群
-    c = np.array([pts[pts[:, 0].argmin()], pts[pts[:, 0].argmax()]], np.float32)
-    for _ in range(8):
-        d = ((pts[:, None, :] - c[None]) ** 2).sum(-1)
-        lab = d.argmin(1)
-        for k in (0, 1):
-            if (lab == k).any():
-                c[k] = pts[lab == k].mean(0)
-    if abs(c[0][0] - c[1][0]) < 12:      # 兩群黏在一起＝偵測失敗（可能是鼻子）
+    cands = []
+    H, W = g.shape
+    for k in range(1, n + 1):
+        ys, xs = np.where(lab == k)
+        if not (8 <= len(xs) <= 900):    # 太小=雜訊，太大=陰影帶
+            continue
+        cx, cy = xs.mean(), ys.mean()
+        # 環形亮度：以候選為中心 18~26px 的環，白毛應該亮
+        yy, xx = np.ogrid[0:H, 0:W]
+        rr = np.hypot(xx - cx, yy - cy)
+        ring = g[(rr > 18) & (rr < 26)]
+        if len(ring) == 0 or ring.mean() < 150:
+            continue
+        cands.append((cx, cy, len(xs)))
+    best = None
+    for i in range(len(cands)):
+        for j in range(i + 1, len(cands)):
+            a, b = cands[i], cands[j]
+            dx, dy = abs(a[0] - b[0]), abs(a[1] - b[1])
+            if not (35 <= dx <= 110 and dy <= 0.6 * dx):
+                continue
+            score = a[2] + b[2]          # 兩斑總面積大者優先（眼睛比雜點大）
+            if best is None or score > best[0]:
+                best = (score, a, b)
+    if best is None:
         return None
-    c = c[c[:, 0].argsort()]
-    return [(float(c[0][0] + x0), float(c[0][1] + y0)),
-            (float(c[1][0] + x0), float(c[1][1] + y0))]
+    _, a, b = best
+    pts = sorted([(a[0] + x0, a[1] + y0), (b[0] + x0, b[1] + y0)])
+    return [tuple(map(float, pts[0])), tuple(map(float, pts[1]))]
 
 
 def paint(arr, eyes, rng):
