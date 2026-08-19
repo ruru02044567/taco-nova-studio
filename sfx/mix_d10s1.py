@@ -34,8 +34,7 @@ RECIPE = [
     ("_prerendered/nova_whimper_low.wav", 2.25, -10, "", False),
     ("whoosh/Whoosh_Rod_Pole_022.mp3", 5.07, -12, "", False),
     ("_prerendered/mud_splat_slow70.wav", 7.15, -12, "", False),  # 鼻子貼近蛋黃
-    ("_prerendered/tag_at205.wav", 6.85, 4, "", False),      # 響在 8.90s：抬頭瞬間
-    ("_prerendered/mud_splat_slow70.wav", 11.15, -6, "", False),  # 慢動作踩蛋黃
+    ("_prerendered/tag_at205.wav", 7.05, 4, "", False),      # 響在 9.10s：正對新 S2 抬頭
     ("_prerendered/taco_whine_d10.wav", 11.35, 29, "", False),
 ]
 
