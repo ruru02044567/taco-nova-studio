@@ -66,7 +66,7 @@ def drop_shadow(base, cx, cy, rx, ry, alpha=60):
 im = Image.open(DST).convert("RGB")
 
 # ── 0) 先用床單布料把舊空盤整塊擦掉（不然羽化邊會透出鬼影）──
-sheet = im.crop((150, 850, 410, 1010)).resize((280, 175), Image.LANCZOS)
+sheet = im.crop((40, 1060, 240, 1210)).resize((280, 175), Image.LANCZOS)
 mask0 = Image.new("L", (280, 175), 0)
 ImageDraw.Draw(mask0).rounded_rectangle([8, 8, 272, 167], radius=20, fill=255)
 mask0 = mask0.filter(ImageFilter.GaussianBlur(7))

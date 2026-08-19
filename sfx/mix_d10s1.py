@@ -28,11 +28,14 @@ import mix  # noqa: E402
 
 # (檔案, 起始秒, dB, ffmpeg 濾鏡, 是否全程鋪底)
 RECIPE = [
-    ("_prerendered/bgm_happyclappy_nofade.wav", 0.0, 6,
+    # 8/20 換曲：d9s1 剛用過 happyclappy，閘門規則 12 連續兩支同檔=FAIL。
+    # apple-cider（audition.py 量測 94 分冠軍）母帶比舊曲熱 7.8dB，
+    # 又要壓整體 -1.5 過 Profile A 上限 → 增益 6-7.8-1.5 ≈ -3
+    ("_prerendered/bgm_applecider_d10.wav", 0.0, -3,
      "volume=enable='between(t,10.6,12.25)':volume=0.4", False),
     ("whoosh/Organic_Whoosh_14.mp3", 2.02, -9, "", False),
     ("_prerendered/nova_whimper_low.wav", 2.25, -10, "", False),
-    ("whoosh/Whoosh_Rod_Pole_022.mp3", 5.07, -12, "", False),
+    ("whoosh/Whoosh_Rod_Pole_022.mp3", 5.07, -15, "", False),  # 8/20 面板嫌無畫面錨點，壓輕當純轉場
     ("_prerendered/mud_splat_slow70.wav", 7.15, -12, "", False),  # 鼻子貼近蛋黃
     ("_prerendered/tag_at205.wav", 7.05, 4, "", False),      # 響在 9.10s：正對新 S2 抬頭
     ("_prerendered/taco_whine_d10.wav", 11.35, 29, "", False),
