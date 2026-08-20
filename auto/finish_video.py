@@ -32,6 +32,7 @@ from pathlib import Path
 sys.stdout.reconfigure(encoding="utf-8", errors="replace")
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 import studio_lock  # noqa: E402
+import frame_gate  # noqa: E402
 
 AUTO = Path(__file__).resolve().parent
 PROJECT = AUTO.parent
@@ -87,6 +88,21 @@ def main():
         print(f"[X] 找不到原片：{raw_src!r}（用 --src 明示）")
         sys.exit(1)
     src = Path(raw_src)
+
+    # 逐幀 gate 硬閘門（2026-08-20 加）：起因是賢賢抓到 D10 插入鏡裡哈士奇的身體
+    # 是一團沒有關節的白肉——那個問題第二輪審片就抓到過，第三輪清單也寫了要看，
+    # 結果只看兩三張幀圖就宣告過關。數字有 score_video 擋所以從不出錯，視覺沒有東西
+    # 擋所以每輪都在打地鼠。這裡把視覺審查也變成硬閘門。
+    # dry-run 放行（迭代音效時要能反覆測），正式出片一定要有憑證。
+    if not frame_gate.has_pass(src):
+        mark = "!" if args.dry_run else "X"
+        print(f"[{mark}] 逐幀 gate 未通過：{src.name}")
+        print(f"    先跑：python auto/frame_gate.py {src} --init")
+        print("    逐幀填完再跑 --verify 拿憑證")
+        if args.dry_run:
+            print("    （--dry-run 放行，但正式出片會被擋）")
+        else:
+            sys.exit(1)
 
     suffix = "-final-test.mp4" if args.dry_run else "-final.mp4"
     final = CLIPS / f"{key}{suffix}"
