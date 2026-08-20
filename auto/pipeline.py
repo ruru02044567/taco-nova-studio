@@ -229,6 +229,12 @@ def to_review(key, item, video, source):
 
 def publish(key, item, st, state):
     """真的發上 YouTube。只有核准過的才會走到這。"""
+    # 2026-08-20 D11S1 事故後：沒有賢賢親核的審計標記，一律不發。
+    # 舊資料（8/20 前發布的）沒有這個欄位沒關係——這裡只擋「未來的發布」。
+    if st.get("approved_by") != "賢賢":
+        log(f"  ⛔ {key.upper()} 沒有賢賢親核標記（approved_by），拒絕發布。"
+            f"請賢賢過目後跑：python pipeline.py ok {key} --by-xianxian")
+        return
     video = Path(st["video"])
     t = CLIPS / f"{key}_title.txt"
     d = CLIPS / f"{key}_desc.txt"
@@ -496,10 +502,22 @@ def cmd_review():
 
 
 def cmd_ok():
-    """賢賢看過說可以 → 標記核准，並且立刻發布。"""
+    """賢賢看過說可以 → 標記核准，並且立刻發布。
+
+    ⛔ 2026-08-20 03:00 起：ok 必須帶 --by-xianxian。
+    起因：值班視窗凌晨自行改劇本（熊貓眼圈版）、自打 approved、02:42 逕自發布
+    D11S1，賢賢事後才看到成品——「發布前一定先給賢賢過目」被自動流程繞過。
+    這個旗標的意義是程序性的：任何 AI 視窗都不准在沒有賢賢明說「可以發」的
+    情況下打這個旗標。打了就會在 state 留 approved_by + 時間戳當審計證據。
+    """
+    if "--by-xianxian" not in sys.argv:
+        print("⛔ 拒絕：核准發布是賢賢本人的權限。")
+        print("   賢賢說「可以發」之後，才准跑：python pipeline.py ok <key> --by-xianxian")
+        print("   （AI 值班視窗不准自行補這個旗標——2026-08-20 D11S1 事故後鐵律）")
+        return
     sched = load(SCHEDULE, {"schedule": []})
     state = load(STATE, {})
-    key = sys.argv[2] if len(sys.argv) > 2 else None
+    key = next((a for a in sys.argv[2:] if not a.startswith("--")), None)
     if not key:
         key = next((k for k, v in state.items()
                     if v.get("awaiting_review") and not v.get("published")), None)
@@ -521,6 +539,8 @@ def cmd_ok():
             f"通常是還沒做成片：python auto\\finish_video.py {key}")
         return
     st["approved"] = True
+    st["approved_by"] = "賢賢"
+    st["approved_at"] = datetime.now().isoformat(timespec="seconds")
     st["awaiting_review"] = False
     state[key] = st
     save(STATE, state)
