@@ -96,6 +96,9 @@ def main():
     ap.add_argument("src"); ap.add_argument("dst")
     ap.add_argument("--search", required=True, help="首幀頭部窗 x0,y0,x1,y1")
     ap.add_argument("--fps", type=int, default=24)
+    ap.add_argument("--miss-tolerance", type=int, default=3,
+                    help="連續偵測失敗幾幀之內還沿用上一幀的眼位；超過就停手不畫"
+                         "（預設 3；D10 抬頭側望那 24 幀就是被無條件沿用畫歪的）")
     a = ap.parse_args()
     win0 = tuple(int(v) for v in a.search.split(","))
 
@@ -107,12 +110,22 @@ def main():
 
     rng = np.random.default_rng(7)
     hist, win, miss = [], win0, 0
+    run_miss, skipped = 0, 0
     for i, f in enumerate(frames):
         arr = np.asarray(Image.open(f).convert("RGB")).astype(np.float32)
         eyes = find_eyes(arr, win)
         if eyes is None:
             miss += 1
-            eyes = hist[-1] if hist else None
+            # ⚠ 2026-08-21 D10 教訓：無條件沿用上一幀，在狗大幅轉頭時會把黑點畫到
+            # 耳朵和臉頰上 —— 錯位的招牌比沒有招牌更像 bug。
+            # 沿用只在「短暫失手」時才合理（眨眼、一瞬間的反光）；連續失敗代表
+            # 臉已經轉走或被遮住，那就該停手不畫。--miss-tolerance 是容忍幾幀。
+            run_miss += 1
+            eyes = hist[-1] if (hist and run_miss <= a.miss_tolerance) else None
+            if eyes is None:
+                skipped += 1
+        else:
+            run_miss = 0
         if eyes is not None:
             hist.append(eyes)
             sm = np.mean([np.array(e) for e in hist[-5:]], axis=0)  # 5 幀平滑
@@ -128,7 +141,7 @@ def main():
                     "-i", str(td / "f_%04d.png"),
                     "-c:v", "libx264", "-crf", "17", "-pix_fmt", "yuv420p",
                     a.dst], check=True)
-    print(f"✅ 完成 {a.dst}（偵測失敗沿用前幀：{miss} 幀）")
+    print(f"✅ 完成 {a.dst}（偵測失敗 {miss} 幀，其中 {skipped} 幀超過容忍值不畫點）")
 
 
 if __name__ == "__main__":
