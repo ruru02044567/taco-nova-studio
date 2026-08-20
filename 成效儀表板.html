@@ -1,0 +1,346 @@
+<title>五支被推，八支沒有</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@600;700&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&family=Noto+Sans+TC:wght@400;500;700&display=swap">
+
+<style>
+:root{
+  --bg:#FBFAF8; --surface:#FFFFFF; --surface-2:#F3F1ED; --surface-3:#EBE8E2;
+  --ink:#17161C; --ink-2:#55525F; --ink-3:#8A8794;
+  --line:#E2DFD8; --line-2:#D2CEC5;
+  --accent:#2B4FD9;
+  --good:#00795C; --warn:#9E700B; --crit:#AE2B2B;
+  --good-bg:#E3F1EC; --warn-bg:#F4EDDD; --crit-bg:#F6E5E3;
+  --shadow:0 1px 2px rgba(23,22,28,.05), 0 8px 24px -16px rgba(23,22,28,.18);
+}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){
+    --bg:#141319; --surface:#1A1920; --surface-2:#232128; --surface-3:#2B2932;
+    --ink:#EFEDF2; --ink-2:#A8A4B2; --ink-3:#74707E;
+    --line:#2E2C36; --line-2:#3B3844;
+    --accent:#8CA0FF;
+    --good:#2AA882; --warn:#C08A10; --crit:#D9556B;
+    --good-bg:#12291F; --warn-bg:#2A2110; --crit-bg:#2D161B;
+    --shadow:0 1px 2px rgba(0,0,0,.4), 0 8px 24px -16px rgba(0,0,0,.7);
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#141319; --surface:#1A1920; --surface-2:#232128; --surface-3:#2B2932;
+  --ink:#EFEDF2; --ink-2:#A8A4B2; --ink-3:#74707E;
+  --line:#2E2C36; --line-2:#3B3844;
+  --accent:#8CA0FF;
+  --good:#2AA882; --warn:#C08A10; --crit:#D9556B;
+  --good-bg:#12291F; --warn-bg:#2A2110; --crit-bg:#2D161B;
+  --shadow:0 1px 2px rgba(0,0,0,.4), 0 8px 24px -16px rgba(0,0,0,.7);
+}
+
+*{box-sizing:border-box}
+body{
+  margin:0; background:var(--bg); color:var(--ink);
+  font-family:"IBM Plex Sans","Noto Sans TC",system-ui,-apple-system,"Segoe UI",sans-serif;
+  font-size:15.5px; line-height:1.68;
+  -webkit-font-smoothing:antialiased;
+}
+.wrap{max-width:1080px; margin:0 auto; padding:56px 28px 96px; display:flex; flex-direction:column; gap:48px}
+@media (max-width:640px){ .wrap{padding:36px 18px 64px; gap:38px} }
+
+h1,h2,h3{font-family:Archivo,"Noto Sans TC",system-ui,sans-serif; text-wrap:balance; margin:0}
+h1{font-size:clamp(30px,5.4vw,46px); font-weight:700; letter-spacing:-.022em; line-height:1.12}
+h2{font-size:20px; font-weight:700; letter-spacing:-.01em}
+h3{font-size:15px; font-weight:600; letter-spacing:-.005em}
+p{margin:0}
+.eyebrow{
+  font-size:11px; font-weight:600; letter-spacing:.14em; text-transform:uppercase;
+  color:var(--ink-3); font-family:"IBM Plex Mono",monospace;
+}
+
+header{display:flex; flex-direction:column; gap:16px}
+.hrule{height:3px; background:var(--accent); width:52px; border-radius:2px}
+.lede{font-size:17px; color:var(--ink-2); max-width:60ch}
+.lede b{color:var(--ink); font-weight:600}
+.meta{
+  display:flex; flex-wrap:wrap; gap:8px 20px; font-size:12.5px; color:var(--ink-3);
+  font-family:"IBM Plex Mono",monospace; padding-top:4px;
+}
+.meta code{background:var(--surface-2); padding:2px 6px; border-radius:4px; color:var(--ink-2)}
+
+.tiles{display:grid; grid-template-columns:repeat(4,1fr); gap:12px}
+@media (max-width:760px){ .tiles{grid-template-columns:repeat(2,1fr)} }
+.tile{
+  background:var(--surface); border:1px solid var(--line); border-radius:10px;
+  padding:16px 16px 14px; display:flex; flex-direction:column; gap:2px; box-shadow:var(--shadow);
+}
+.tile .k{font-size:11px; letter-spacing:.09em; text-transform:uppercase; color:var(--ink-3); font-family:"IBM Plex Mono",monospace}
+.tile .v{font-family:Archivo,sans-serif; font-size:29px; font-weight:700; letter-spacing:-.02em; font-variant-numeric:tabular-nums; line-height:1.15}
+.tile .s{font-size:12.5px; color:var(--ink-2)}
+
+section{display:flex; flex-direction:column; gap:16px}
+.shead{display:flex; flex-direction:column; gap:5px; border-top:1px solid var(--line); padding-top:20px}
+.shead p{font-size:14.5px; color:var(--ink-2); max-width:66ch}
+
+.plot{background:var(--surface); border:1px solid var(--line); border-radius:10px; padding:20px 18px 12px; box-shadow:var(--shadow)}
+.plot svg{display:block; width:100%; height:auto}
+.legend{display:flex; flex-wrap:wrap; gap:6px 18px; padding:12px 2px 2px; font-size:12.5px; color:var(--ink-2)}
+.legend span{display:inline-flex; align-items:center; gap:7px}
+.dot{width:10px; height:10px; border-radius:50%; flex:none; display:inline-block}
+
+.tscroll{overflow-x:auto; border:1px solid var(--line); border-radius:10px; background:var(--surface); box-shadow:var(--shadow)}
+table{border-collapse:collapse; width:100%; font-size:13.5px; min-width:720px}
+th,td{padding:9px 13px; text-align:left; border-bottom:1px solid var(--line); white-space:nowrap}
+thead th{
+  font-size:10.5px; letter-spacing:.1em; text-transform:uppercase; color:var(--ink-3);
+  font-family:"IBM Plex Mono",monospace; font-weight:500;
+  background:var(--surface-2);
+}
+tbody tr:last-child td{border-bottom:none}
+tbody tr:hover td{background:var(--surface-2)}
+td.r,th.r{text-align:right; font-family:"IBM Plex Mono",monospace; font-variant-numeric:tabular-nums}
+td.title{white-space:normal; min-width:230px; color:var(--ink-2); font-size:13px}
+td.title b{color:var(--ink); font-weight:600; font-family:"IBM Plex Mono",monospace; font-size:12px; margin-right:7px}
+.pill{
+  display:inline-flex; align-items:center; gap:6px; padding:2px 9px; border-radius:99px;
+  font-size:11.5px; font-weight:600; letter-spacing:.02em;
+}
+.pill .dot{width:7px; height:7px}
+.p-good{background:var(--good-bg); color:var(--good)}
+.p-warn{background:var(--warn-bg); color:var(--warn)}
+.p-crit{background:var(--crit-bg); color:var(--crit)}
+.src{font-size:11px; font-family:"IBM Plex Mono",monospace; color:var(--ink-3); text-transform:uppercase; letter-spacing:.06em}
+
+.finds{display:flex; flex-direction:column; gap:10px}
+.find{
+  display:grid; grid-template-columns:26px 1fr; gap:14px; align-items:start;
+  background:var(--surface); border:1px solid var(--line); border-left:3px solid var(--line-2);
+  border-radius:8px; padding:15px 17px;
+}
+.find.killed{border-left-color:var(--crit)}
+.find.stands{border-left-color:var(--good)}
+.find.open{border-left-color:var(--warn)}
+.mark{
+  font-family:"IBM Plex Mono",monospace; font-size:16px; font-weight:500; line-height:1.4;
+  text-align:center;
+}
+.killed .mark{color:var(--crit)} .stands .mark{color:var(--good)} .open .mark{color:var(--warn)}
+.find .body{display:flex; flex-direction:column; gap:5px}
+.find .body p{font-size:14px; color:var(--ink-2)}
+.find .body p b{color:var(--ink); font-weight:600}
+
+.callout{
+  background:var(--surface-2); border:1px solid var(--line); border-radius:10px;
+  padding:20px 22px; display:flex; flex-direction:column; gap:10px;
+}
+.callout .big{font-family:Archivo,"Noto Sans TC",sans-serif; font-size:22px; font-weight:700; letter-spacing:-.015em; line-height:1.35; text-wrap:balance; color:var(--ink)}
+.callout p{font-size:14.5px; color:var(--ink-2); max-width:70ch}
+.vs{display:flex; align-items:baseline; gap:14px; flex-wrap:wrap; padding:4px 0}
+.vs .n{font-family:Archivo,sans-serif; font-weight:700; font-size:34px; font-variant-numeric:tabular-nums; letter-spacing:-.02em}
+.vs .lbl{font-size:12.5px; color:var(--ink-3); font-family:"IBM Plex Mono",monospace}
+.vs .sep{color:var(--ink-3); font-size:19px}
+
+footer{border-top:1px solid var(--line); padding-top:18px; font-size:12.5px; color:var(--ink-3); display:flex; flex-direction:column; gap:5px}
+footer code{background:var(--surface-2); padding:2px 6px; border-radius:4px}
+a{color:var(--accent)}
+a:focus-visible{outline:2px solid var(--accent); outline-offset:2px}
+@media (prefers-reduced-motion:reduce){ *{animation:none !important; transition:none !important} }
+</style>
+
+<div class="wrap">
+
+<header>
+  <div class="hrule"></div>
+  <div class="eyebrow">Taco &amp; Nova · 已發布 13 支 · 2026-08-20</div>
+  <h1>五支被推，八支沒有</h1>
+  <p class="lede">同一條產線、同一隻狗、同一套自審分數，結果差 <b>3,312 倍</b>。破萬的和不到一千的中間幾乎是空的——這不是品質的漸層，是<b>推薦閘門的開關</b>。</p>
+  <div class="meta">
+    <span>訂閱 <code>169</code></span>
+    <span>對標頻道 Tim and Jeffy <code>667,000</code></span>
+    <span>資料來源 yt-dlp（免 API）</span>
+    <span>重跑 <code>python auto\track_stats.py</code></span>
+  </div>
+</header>
+
+<div class="tiles">
+  <div class="tile"><span class="k">總觀看</span><span class="v">175,796</span><span class="s">13 支累積</span></div>
+  <div class="tile"><span class="k">破萬</span><span class="v">5 <span style="font-size:17px;color:var(--ink-3)">/ 13</span></span><span class="s">38% 通過閘門</span></div>
+  <div class="tile"><span class="k">最好 ÷ 最差</span><span class="v">3,312×</span><span class="s">82,805 對 25</span></div>
+  <div class="tile"><span class="k">中間地帶</span><span class="v">1 支</span><span class="s">1,400–15,000 之間</span></div>
+</div>
+
+<section>
+  <div class="shead">
+    <h2>13 支影片落在哪裡</h2>
+    <p>橫軸是對數刻度，每往右一格就是 10 倍。注意中間那條空白帶——13 支裡只有 1 支落在裡面。影片不是「表現好一點或差一點」，是被推或不被推兩種狀態。</p>
+  </div>
+  <div class="plot">
+    <svg viewBox="0 0 1000 158" role="img" aria-label="13 支影片觀看數的對數分佈圖，呈現明顯雙峰：7 支在 300 以下，5 支在 15,000 以上，中間 1,000 到 10,000 之間只有 1 支。">
+      <rect x="526" y="26" width="238" height="70" fill="var(--surface-3)" rx="4"></rect>
+      <text x="645" y="19" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="12" fill="var(--ink-3)">空白帶 · 只有 1 支</text>
+      <line x1="60" y1="96" x2="940" y2="96" stroke="var(--line-2)" stroke-width="1"></line>
+      <g font-family="IBM Plex Mono, monospace" font-size="12" fill="var(--ink-3)" text-anchor="middle">
+        <line x1="60"  y1="96" x2="60"  y2="102" stroke="var(--line-2)"></line><text x="60"  y="120">10</text>
+        <line x1="280" y1="96" x2="280" y2="102" stroke="var(--line-2)"></line><text x="280" y="120">100</text>
+        <line x1="500" y1="96" x2="500" y2="102" stroke="var(--line-2)"></line><text x="500" y="120">1,000</text>
+        <line x1="720" y1="96" x2="720" y2="102" stroke="var(--line-2)"></line><text x="720" y="120">1 萬</text>
+        <line x1="940" y1="96" x2="940" y2="102" stroke="var(--line-2)"></line><text x="940" y="120">10 萬</text>
+      </g>
+      <text x="500" y="146" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="11" fill="var(--ink-3)">觀看數（對數刻度）</text>
+      <g stroke="var(--surface)" stroke-width="2">
+        <circle cx="148" cy="61" r="7" fill="var(--crit)"><title>d11s1 熊貓 · 25 觀看</title></circle>
+        <circle cx="214" cy="61" r="7" fill="var(--crit)"><title>d8s1 粉紅史萊姆 · 50 觀看</title></circle>
+        <circle cx="223" cy="61" r="7" fill="var(--crit)"><title>d14s1 點石成金 · 55 觀看</title></circle>
+        <circle cx="274" cy="61" r="7" fill="var(--crit)"><title>d7s1 傳送門 · 94 觀看</title></circle>
+        <circle cx="323" cy="61" r="7" fill="var(--crit)"><title>d2s1 巧克力 · 157 觀看</title></circle>
+        <circle cx="357" cy="61" r="7" fill="var(--crit)"><title>舊 d1s2 小床（重複標題） · 225 觀看</title></circle>
+        <circle cx="373" cy="61" r="7" fill="var(--crit)"><title>d5s1 岩漿 · 264 觀看</title></circle>
+        <circle cx="526" cy="61" r="7" fill="var(--warn)"><title>d9s1 紅酒 · 1,319 觀看</title></circle>
+        <circle cx="764" cy="61" r="7" fill="var(--good)"><title>舊 d1s1 小床 · 15,865 觀看</title></circle>
+        <circle cx="791" cy="61" r="7" fill="var(--good)"><title>d6s1 拔草 · 21,002 觀看</title></circle>
+        <circle cx="796" cy="61" r="7" fill="var(--good)"><title>d4s1 麵粉 · 22,090 觀看</title></circle>
+        <circle cx="831" cy="61" r="7" fill="var(--good)"><title>d3s1 淹水 · 31,845 觀看</title></circle>
+        <circle cx="922" cy="61" r="7" fill="var(--good)"><title>d1s1 黑洞 · 82,805 觀看</title></circle>
+      </g>
+      <text x="148" y="44" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="11.5" fill="var(--ink-2)">25</text>
+      <text x="922" y="44" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="11.5" fill="var(--ink-2)">82,805</text>
+    </svg>
+    <div class="legend">
+      <span><i class="dot" style="background:var(--good)"></i> 被推了（1 萬以上）· 5 支</span>
+      <span><i class="dot" style="background:var(--warn)"></i> 半推（1 千到 1 萬）· 1 支</span>
+      <span><i class="dot" style="background:var(--crit)"></i> 沒被推（不到 1 千）· 7 支</span>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="shead">
+    <h2>最乾淨的一組對照</h2>
+    <p>8 月 8 日同一天發了兩支片，標題一模一樣、題材一模一樣、都是 10 秒。</p>
+  </div>
+  <div class="callout">
+    <div class="vs">
+      <span class="n" style="color:var(--good)">15,865</span>
+      <span class="sep">對</span>
+      <span class="n" style="color:var(--crit)">225</span>
+      <span class="lbl">Big Dog Got The Tiny Bed</span>
+    </div>
+    <p class="big">同一天、同標題、同題材，差 70 倍。</p>
+    <p>這組數字把兩個最常見的解釋一起排除掉了：<b>不是標題的問題，也不是題材的問題</b>。決定生死的東西發生在這兩者之外。</p>
+  </div>
+</section>
+
+<section>
+  <div class="shead">
+    <h2>逐支成效</h2>
+    <p>依觀看數排序。「生成」欄是這支片怎麼做出來的——雲端 Veo 還是本機 Wan。</p>
+  </div>
+  <div class="tscroll">
+    <table>
+      <thead>
+        <tr>
+          <th>影片</th><th class="r">觀看</th><th class="r">讚</th><th class="r">讚／看</th>
+          <th>生成</th><th>發布</th><th class="r">秒</th><th>狀態</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td class="title"><b>d1s1</b>Taco Tried To Hide A Black Hole Under The Rug</td><td class="r">82,805</td><td class="r">395</td><td class="r">0.48%</td><td class="src">veo</td><td class="src">08-09</td><td class="r">10</td><td><span class="pill p-good"><i class="dot" style="background:var(--good)"></i>被推了</span></td></tr>
+        <tr><td class="title"><b>d3s1</b>Taco Flooded The Whole House And Brought One Tiny Towel</td><td class="r">31,845</td><td class="r">224</td><td class="r">0.70%</td><td class="src">local</td><td class="src">08-10</td><td class="r">12</td><td><span class="pill p-good"><i class="dot" style="background:var(--good)"></i>被推了</span></td></tr>
+        <tr><td class="title"><b>d4s1</b>Taco Detonated A Whole Bag Of Flour</td><td class="r">22,090</td><td class="r">122</td><td class="r">0.55%</td><td class="src">local</td><td class="src">08-13</td><td class="r">5</td><td><span class="pill p-good"><i class="dot" style="background:var(--good)"></i>被推了</span></td></tr>
+        <tr><td class="title"><b>d6s1</b>Taco Uprooted The Entire Plant And Says It Was Like That</td><td class="r">21,002</td><td class="r">129</td><td class="r">0.61%</td><td class="src">local</td><td class="src">08-13</td><td class="r">6</td><td><span class="pill p-good"><i class="dot" style="background:var(--good)"></i>被推了</span></td></tr>
+        <tr><td class="title"><b>舊 d1s1</b>Big Dog Got The Tiny Bed</td><td class="r">15,865</td><td class="r">159</td><td class="r">1.00%</td><td class="src">—</td><td class="src">08-08</td><td class="r">10</td><td><span class="pill p-good"><i class="dot" style="background:var(--good)"></i>被推了</span></td></tr>
+        <tr><td class="title"><b>d9s1</b>Taco Wiped Up The Red Wine And Made It 3x Worse</td><td class="r">1,319</td><td class="r">9</td><td class="r">0.68%</td><td class="src">local</td><td class="src">08-18</td><td class="r">6</td><td><span class="pill p-warn"><i class="dot" style="background:var(--warn)"></i>半推</span></td></tr>
+        <tr><td class="title"><b>d5s1</b>Taco Throws The Sofa Pillows Into The Lava Floor</td><td class="r">264</td><td class="r">6</td><td class="r">2.27%</td><td class="src">local</td><td class="src">08-11</td><td class="r">10</td><td><span class="pill p-crit"><i class="dot" style="background:var(--crit)"></i>沒被推</span></td></tr>
+        <tr><td class="title"><b>舊 d1s2</b>Big Dog Got The Tiny Bed（重複標題）</td><td class="r">225</td><td class="r">4</td><td class="r">1.78%</td><td class="src">—</td><td class="src">08-08</td><td class="r">10</td><td><span class="pill p-crit"><i class="dot" style="background:var(--crit)"></i>沒被推</span></td></tr>
+        <tr><td class="title"><b>d2s1</b>Taco Sat On The Melted Chocolate To Hide It</td><td class="r">157</td><td class="r">2</td><td class="r">1.27%</td><td class="src">local</td><td class="src">08-10</td><td class="r">5</td><td><span class="pill p-crit"><i class="dot" style="background:var(--crit)"></i>沒被推</span></td></tr>
+        <tr><td class="title"><b>d7s1</b>Taco Threw The Slipper Into A Glowing Portal</td><td class="r">94</td><td class="r">5</td><td class="r">5.32%</td><td class="src">local</td><td class="src">08-14</td><td class="r">9</td><td><span class="pill p-crit"><i class="dot" style="background:var(--crit)"></i>沒被推</span></td></tr>
+        <tr><td class="title"><b>d14s1</b>Taco Turns Everything He Touches Into GOLD</td><td class="r">55</td><td class="r">0</td><td class="r">0%</td><td class="src">local</td><td class="src">08-17</td><td class="r">5</td><td><span class="pill p-crit"><i class="dot" style="background:var(--crit)"></i>沒被推</span></td></tr>
+        <tr><td class="title"><b>d8s1</b>Taco Is Glued To The Floor By Pink Slime</td><td class="r">50</td><td class="r">1</td><td class="r">2.00%</td><td class="src">local</td><td class="src">08-17</td><td class="r">5</td><td><span class="pill p-crit"><i class="dot" style="background:var(--crit)"></i>沒被推</span></td></tr>
+        <tr><td class="title"><b>d11s1</b>Taco Spilled Black Paint And Turned Into A Tiny Panda</td><td class="r">25</td><td class="r">0</td><td class="r">0%</td><td class="src">local</td><td class="src">08-19</td><td class="r">13</td><td><span class="pill p-crit"><i class="dot" style="background:var(--crit)"></i>沒被推</span></td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<section>
+  <div class="shead">
+    <h2>同一個題材，對標頻道做起來是多少</h2>
+    <p>整張排程表都是照 Tim and Jeffy 抄的，所以題材這個變因<b>已經被控制住了</b>。下面這張表要證明的不是「該抄什麼」，而是「抄對了也沒用」。</p>
+  </div>
+  <div class="tscroll">
+    <table>
+      <thead><tr><th>題材</th><th class="r">我們</th><th class="r">對標頻道同題材</th><th class="r">差距</th></tr></thead>
+      <tbody>
+        <tr><td class="title">黑洞</td><td class="r">82,805</td><td class="r">535,000,000</td><td class="r">6,461×</td></tr>
+        <tr><td class="title">拔草／打翻盆栽</td><td class="r">21,002</td><td class="r">74,000,000</td><td class="r">3,523×</td></tr>
+        <tr><td class="title">灑飲料／紅酒</td><td class="r">1,319</td><td class="r">51,000,000</td><td class="r">38,666×</td></tr>
+        <tr><td class="title">岩漿</td><td class="r">264</td><td class="r">1,200,000</td><td class="r">4,545×</td></tr>
+        <tr><td class="title">巧克力沾地毯</td><td class="r">157</td><td class="r">52,000,000</td><td class="r">331,210×</td></tr>
+        <tr><td class="title">紫色傳送門</td><td class="r">94</td><td class="r">75,000,000</td><td class="r">797,872×</td></tr>
+        <tr><td class="title">點石成金</td><td class="r">55</td><td class="r">1,700,000</td><td class="r">30,909×</td></tr>
+        <tr><td class="title">粉紅史萊姆</td><td class="r">50</td><td class="r">57,000,000</td><td class="r">1,140,000×</td></tr>
+        <tr><td class="title">變成熊貓</td><td class="r">25</td><td class="r">21,000,000</td><td class="r">840,000×</td></tr>
+        <tr><td class="title">破蛋<span class="src" style="margin-left:8px">已放棄</span></td><td class="r">—</td><td class="r">25,000,000</td><td class="r">—</td></tr>
+        <tr><td class="title">灑漆／黑墨<span class="src" style="margin-left:8px">待審核</span></td><td class="r">—</td><td class="r">1,400,000</td><td class="r">—</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="callout">
+    <p class="big">對方的成績完全預測不了我們的成績。</p>
+    <p>對方巧克力那支 <b>5,200 萬</b>，我們同題材做出來 <b>157</b>。反過來，對方岩漿只有 <b>120 萬</b>（他們最弱的之一），我們也只有 <b>264</b>。兩邊的排名毫無關聯——所以「再去挑一個更爆的題材」這條路，證據上是走不通的。</p>
+  </div>
+</section>
+
+<section>
+  <div class="shead">
+    <h2>這批數據推翻了什麼</h2>
+    <p>前三條是先前寫進專案文件、今天被實際數字打掉的判斷。</p>
+  </div>
+  <div class="finds">
+    <div class="find killed">
+      <span class="mark">✕</span>
+      <div class="body">
+        <h3>「只有雲端 Veo 能爆，本機不行」</h3>
+        <p>破萬的 5 支裡，<b>3 支確定是本機生的</b>（淹水 31,845、麵粉 22,090、拔草 21,002）。本機不是死因，動作能力也不是那道閘門。</p>
+      </div>
+    </div>
+    <div class="find killed">
+      <span class="mark">✕</span>
+      <div class="body">
+        <h3>「48 小時的數字就能判生死」</h3>
+        <p>8/12 那份分析把 d3s1 記成 <b>64 觀看的失敗品</b>，那支後來跑到 <b>31,845</b>。Shorts 會延遲綻放，單一時間點的快照會騙人——這也是為什麼這份追蹤存的是時間序列，不是快照。</p>
+      </div>
+    </div>
+    <div class="find killed">
+      <span class="mark">✕</span>
+      <div class="body">
+        <h3>「抄對題材就會爆」</h3>
+        <p>題材全部抄自對標頻道，而且抄的是他們 <b>5,200 萬到 5.35 億</b> 的片。結果依然有 7 支不到一千。同一天同標題差 70 倍的那組對照，更是把題材和標題一起排除。</p>
+      </div>
+    </div>
+    <div class="find stands">
+      <span class="mark">✓</span>
+      <div class="body">
+        <h3>雙峰分佈是真的，而且很穩</h3>
+        <p>13 支裡有 12 支落在兩端，中間只有 1 支。這是<b>二元閘門</b>的形狀，不是品質分佈的形狀。要提高命中率，得先知道閘門在看什麼。</p>
+      </div>
+    </div>
+    <div class="find open">
+      <span class="mark">?</span>
+      <div class="body">
+        <h3>還沒答案：閘門到底在看什麼</h3>
+        <p>yt-dlp 抓不到流量來源。8/12 手動看 Studio 時發現 d5s1 的「Shorts 推薦內容」只佔一小部分——<b>演算法根本沒把它推進 feed</b>。要再往下查，只能從 YouTube Studio 拿逐支的流量來源與前 3 秒留存。</p>
+      </div>
+    </div>
+    <div class="find open">
+      <span class="mark">?</span>
+      <div class="body">
+        <h3>還沒答案：最近 4 支是死了還是還沒開</h3>
+        <p>8/17 之後的 4 支都在低檔（50、55、1,319、25）。但 d3s1 也曾經在第 2 天只有 64。<b>要連續幾次快照都不動，才算真的死了</b>——這正是這份追蹤要回答的第一個問題。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <span>紀錄檔 <code>財富密碼\成效追蹤.md</code>　·　原始時間序列 <code>auto\成效追蹤.json</code>　·　抓取工具 <code>auto\track_stats.py</code></span>
+  <span>對標頻道數字是 2026-08-20 快照，YouTube 對大數字會四捨五入顯示（例如 535,000,000）。我們這邊的數字是精確值。</span>
+</footer>
+
+</div>
