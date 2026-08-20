@@ -24,6 +24,7 @@ from pathlib import Path
 sys.stdout.reconfigure(encoding="utf-8", errors="replace")
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 import comfy_api  # noqa: E402
+import studio_lock  # noqa: E402
 
 WORKFLOW = Path(r"C:\Users\TUF Gaming\ai-video-local\workflows\flux_schnell_api.json")
 CLIPS = Path(__file__).resolve().parent / "clips"

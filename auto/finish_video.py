@@ -30,6 +30,8 @@ import tempfile
 from pathlib import Path
 
 sys.stdout.reconfigure(encoding="utf-8", errors="replace")
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+import studio_lock  # noqa: E402
 
 AUTO = Path(__file__).resolve().parent
 PROJECT = AUTO.parent

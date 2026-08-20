@@ -22,6 +22,7 @@ from pathlib import Path
 # 開拍前判斷「這鏡本機拍不拍得出來」。全本機之後這步不能省 ——
 # 判錯的代價從「多花 15 點雲端額度」變成「白燒 6.5 分鐘算力再加一輪審片」。
 import plan_model
+import studio_lock
 
 sys.stdout.reconfigure(encoding="utf-8")
 
@@ -576,5 +577,11 @@ def cmd_no():
 
 if __name__ == "__main__":
     cmd = sys.argv[1] if len(sys.argv) > 1 else "tick"
+    # 產線互斥（8/20 加）：會動顯卡或寫 state.json 的指令要先拿鎖。
+    # 唯讀指令不用鎖 —— 另一個視窗在生片時，還是要能查狀態。
+    # 用「不在唯讀清單就鎖」而不是「在清單裡才鎖」：未知指令會 fallback 成 tick，
+    # 那也會動產線，漏鎖比多鎖危險。
+    if cmd not in ("status", "plan", "review"):
+        studio_lock.acquire(f"pipeline {cmd}")
     {"tick": cmd_tick, "status": cmd_status, "plan": cmd_plan,
      "review": cmd_review, "ok": cmd_ok, "no": cmd_no}.get(cmd, cmd_tick)()
