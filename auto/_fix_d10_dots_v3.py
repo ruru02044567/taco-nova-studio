@@ -32,9 +32,12 @@ mask = np.zeros((H, W), np.float32)
 rng = np.random.default_rng(20260819)
 for (cx, cy) in DOTS:
     ang = np.arctan2(yy - cy, xx - cx)
-    # 8 瓣低頻噪聲擾動半徑：邊緣參差得像毛，不像圓規畫的
-    wob = 1.0 + 0.08 * np.sin(ang * 8 + rng.uniform(0, 6.28)) \
-              + 0.05 * np.sin(ang * 3 + rng.uniform(0, 6.28))
+    # 8 瓣低頻噪聲擾動半徑：邊緣參差得像毛，不像圓規畫的。
+    # ⚠ 係數要隨半徑降：擾動是乘上 R 的，R 一大絕對振幅就跟著大，點會被拉成星芒。
+    # 2026-08-21 D13（臉大、R=12）實證，8/19 的筆記也早記過這條。
+    k1, k2 = (0.08, 0.05) if R <= 10 else (0.04, 0.025)
+    wob = 1.0 + k1 * np.sin(ang * 8 + rng.uniform(0, 6.28)) \
+              + k2 * np.sin(ang * 3 + rng.uniform(0, 6.28))
     dist = np.hypot(xx - cx, yy - cy) / (R * wob)
     mask = np.maximum(mask, np.clip(1.35 - dist * 1.35, 0, 1))
 
