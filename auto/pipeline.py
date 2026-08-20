@@ -377,7 +377,13 @@ def cmd_tick():
 
     # 這鏡本機拍不拍得出來？拍不出來就不要浪費算力，直接請賢賢改劇本。
     # 2026-08-16 全本機之後，plan_model 的輸出從「選模型」變成「能不能拍」。
-    plan = plan_model.decide(item.get("videoPrompt") or item["title"])
+    # topic_text 走 title+oneLine+scenePrompt（2026-08-21 加）：材質硬規則要看的是
+    # 「這支在拍什麼東西」，而發光／透明這種屬性寫在選題和場景圖那邊，
+    # videoPrompt 只寫運動與運鏡，只餵它會整片漏掉。
+    plan = plan_model.decide(
+        item.get("videoPrompt") or item["title"],
+        topic_text=" ".join(str(item.get(f, "")) for f in ("title", "oneLine", "scenePrompt")),
+    )
     if plan["model"] == "BLOCKED":
         st["blocked"] = plan
         state[key] = st

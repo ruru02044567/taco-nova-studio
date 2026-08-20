@@ -194,14 +194,25 @@ with sync_playwright() as pw:
         click_exact(up, "下一步")
         time.sleep(3)
 
+    # ⚠ 2026-08-21 D12S1 事故補課：這裡以前只確認「有沒有點到」，沒確認「有沒有選中」。
+    # 那天 picked=True、後面 click_exact(up, "發布") 也回 True，結果影片留在草稿 ——
+    # 因為 PUBLIC 沒真的選中時，那顆按鈕的字是「儲存」不是「發布」，
+    # click_exact 找不到「發布」時撈到了畫面上別的東西，回傳 True 卻什麼都沒發生。
+    # 改成看 aria-checked 是不是真的變 true，最多重試 3 次。
     picked = False
-    for r in up.locator("tp-yt-paper-radio-button").all():
-        if (r.get_attribute("name") or "").upper() == "PUBLIC":
-            r.evaluate("el => el.click()")
-            picked = True
+    for _ in range(3):
+        for r in up.locator("tp-yt-paper-radio-button").all():
+            if (r.get_attribute("name") or "").upper() == "PUBLIC":
+                r.evaluate("el => el.click()")
+                time.sleep(2)
+                if (r.get_attribute("aria-checked") or "") == "true":
+                    picked = True
+                break
+        if picked:
             break
+        time.sleep(2)
     if not picked:
-        print("FAILED: 找不到公開選項")
+        print("FAILED: 『公開』選不起來（沒選中就不會出現發布鍵，只會有儲存鍵）")
         sys.exit(1)
     time.sleep(2)
 
@@ -223,26 +234,33 @@ with sync_playwright() as pw:
     time.sleep(2)
     verify_key = title[:18]
     verified = False
+    # ⚠ 2026-08-21 修：以前只查 /videos/upload（「影片」分頁）。
+    # 這個頻道發的全部是 60 秒內的直式片，YouTube 一律歸到 **Shorts 分頁**，
+    # 「影片」分頁永遠是空的 —— 所以驗證每次都回「清單沒有這一列」，
+    # 明明發成功了也會被判失敗。兩個分頁都要查。
     for attempt in range(6):
-        try:
-            cur = up.url
-            chan = cur.split("/channel/")[1].split("/")[0] if "/channel/" in cur else None
-            dest = (f"https://studio.youtube.com/channel/{chan}/videos/upload"
-                    if chan else "https://studio.youtube.com/")
-            up.goto(dest, wait_until="domcontentloaded")
-        except Exception:
-            pass
-        time.sleep(6)
-        row = up.evaluate(
-            """(k) => {
-                for (const r of document.querySelectorAll('ytcp-video-row')) {
-                    const t = r.innerText || '';
-                    if (t.includes(k)) return t;
-                }
-                return null;
-            }""",
-            verify_key,
-        )
+        row = None
+        cur = up.url
+        chan = cur.split("/channel/")[1].split("/")[0] if "/channel/" in cur else TACO_CHANNEL_ID
+        for tab in ("short", "upload"):
+            try:
+                up.goto(f"https://studio.youtube.com/channel/{chan}/videos/{tab}",
+                        wait_until="domcontentloaded")
+            except Exception:
+                continue
+            time.sleep(6)
+            row = up.evaluate(
+                """(k) => {
+                    for (const r of document.querySelectorAll('ytcp-video-row')) {
+                        const t = r.innerText || '';
+                        if (t.includes(k)) return t;
+                    }
+                    return null;
+                }""",
+                verify_key,
+            )
+            if row:
+                break
         flat = (row or "清單沒有這一列").replace("\n", " ")[:120]
         print(f"  發布後驗證 {attempt + 1}/6：{flat}")
         if row and "草稿" not in row:

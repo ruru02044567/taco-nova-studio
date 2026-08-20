@@ -378,26 +378,7 @@
     "source_note": "FLUX schnell 本機場景圖 (seed 1053085121, 704x1280) → PIL 手工補特徵(黑點眉/銀吊牌/金托盤, 詳 d14s1_scene_flux.txt) → 本機 Wan 2.2 單段 i2v (make_video_local_5s.py, seed 141001, steps 8) → lanczos 1080x1920 → 迴力鏢剪輯(正播0-2.60s+反播回首幀, 125幀5.208s) → gold 音效(mix_d14s1.py) → -14.3 LUFS"
   },
   "d10s1": {
-    "model_selection": {
-      "motion_class": "M1",
-      "matched_tasks": [
-        "靜態表情",
-        "眼神變化",
-        "頭部轉動"
-      ],
-      "bottleneck": "眼神變化",
-      "local_min_score": 6,
-      "needs_human": false,
-      "policy_version": "2026-08-16.1",
-      "model": "LOCAL_WAN_TRIAL",
-      "reason": "動作複雜度 M1；瓶頸任務「眼神變化」本機 6 分，可以先本機試拍，但不保證能用；失敗一次就改劇本，不要重試同一條 workflow（實測重試不會變好）"
-    },
-    "scene_source": "flux",
-    "scene": "C:\\Users\\TUF Gaming\\Desktop\\我的專案\\財富密碼\\auto\\clips\\d10s1_scene.jpg",
-    "video": "C:\\Users\\TUF Gaming\\Desktop\\我的專案\\財富密碼\\auto\\clips\\d10s1.mp4",
-    "source": "local",
-    "local_fails": 0,
-    "awaiting_review": true
+    "_reset_note": "2026-08-21 賢賢核准復活 D10：劇本改成單狗版（哈士奇是三輪崩壞的根因），舊場景圖與舊影片已改名為 d10s1_*_v1雙狗_20260821 保留在 clips/，沒有刪除。state 清空讓 pipeline tick 重生。"
   },
   "d11s1": {
     "model_selection": {
@@ -428,6 +409,14 @@
     "publish_note": "8/20 02:44 值班發布：publish_video 按發布後清單仍草稿(rc=8)，遙控補走瀏覽權限精靈完成，非重複上傳"
   },
   "d12s1": {
-    "video": "C:\\Users\\TUF Gaming\\Desktop\\我的專案\\財富密碼\\auto\\clips\\d12s1-final.mp4"
+    "video": "C:\\Users\\TUF Gaming\\Desktop\\我的專案\\財富密碼\\auto\\clips\\d12s1-final.mp4",
+    "approved": true,
+    "approved_by": "賢賢",
+    "approved_at": "2026-08-21T00:22:14",
+    "awaiting_review": false,
+    "published": true,
+    "url": "https://youtube.com/shorts/dMJavbkX6C8",
+    "at": "2026-08-21T00:31:18",
+    "_publish_note": "2026-08-21 00:2x 賢賢核准發布。publish_video.py 的最後一步驗證誤判為失敗（它只看『影片』分頁，Shorts 在另一個分頁），實際草稿是由 finish_draft.py 手動走完 wizard 才真的公開。"
   }
 }

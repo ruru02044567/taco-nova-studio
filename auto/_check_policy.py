@@ -29,10 +29,17 @@ def evidence(prompt, task):
 rows = []
 for it in sched:
     key = f"d{it['day']}s{it['slot']}"
-    d = plan_model.decide(it["videoPrompt"])
+    topic = " ".join(str(it.get(f, "")) for f in ("title", "oneLine", "scenePrompt"))
+    d = plan_model.decide(it["videoPrompt"], topic_text=topic)
     verdict = d.get("model", "?")
+    if d.get("blocked_by") == "material":
+        verdict = "BLOCKED(材質)"
     bn = d.get("bottleneck") or ""
-    ev = evidence(it["videoPrompt"], bn) if bn else []
+    # 材質規則的 bottleneck 是「材質：發光體」，不在 tasks 表裡 —— 直接用它自己的命中詞
+    if d.get("material"):
+        ev = d["material"]["hits"]
+    else:
+        ev = evidence(it["videoPrompt"], bn) if bn in POL else []
     rows.append((key, verdict, bn, ev))
 
 print("判定分布：", dict(Counter(v for _, v, _, _ in rows)))

@@ -58,6 +58,34 @@ def _match(kw, text):
     return kw in text
 
 
+MATERIAL = POLICY.get("material_blocklist", {})
+
+
+def material_check(text):
+    """材質硬規則：模型畫不出來的材質，開拍前直接擋掉。
+
+    2026-08-21 加。這條跟動作複雜度是**兩個獨立的維度** ——
+    一支片可以動作簡單到 M0（只是站在那裡發光），照樣必死。
+    8/20 用 track_stats.py 抓回 13 支已發布片的真實觀看數才量出來：
+    發光／半透明／金屬／身體變形 5 支裡 0 支破萬、最高 264；
+    真實材質（水、土、麵粉、酒漬、暗洞）8 支裡 5 支破萬、最高 82,805。
+
+    ⚠️ 擋的是「材質」不是「題材」，這個分界很重要：
+    黑洞那支反而爆 8 萬，因為黑洞在畫面上就是純黑橢圓，模型畫得出來。
+    所以 keywords 只放「需要打光或透明感」的詞 ——
+    water／mud／flour／wine 這些絕對不可以加進去，那是這個頻道的命脈。
+    """
+    if not MATERIAL:
+        return None
+    t = _NEG.sub(" ", text.lower())
+    for name, spec in MATERIAL.get("categories", {}).items():
+        hit = [k for k in spec["keywords"] if _match(k.lower(), t)]
+        if hit:
+            return {"category": name, "hits": hit,
+                    "why": spec["why"], "rewrite": spec["rewrite"]}
+    return None
+
+
 def classify(text):
     """把劇本描述比對到能力表上的任務類型。
 
@@ -73,7 +101,30 @@ def classify(text):
     return hits
 
 
-def decide(text, force=None):
+def decide(text, force=None, topic_text=None):
+    # ── 材質硬規則擋在最前面（2026-08-21 賢賢核准）────────────────
+    # 放在動作判斷之前，因為動作再簡單也救不了畫不出來的材質。
+    # topic_text 沒給就退回用 text；pipeline 會把 title + oneLine + scenePrompt
+    # 一起餵進來 —— 「發光」通常寫在選題和場景圖那邊，videoPrompt 只寫運動，
+    # 只看 videoPrompt 會整片漏掉（D13/D15 那次 BLOCKED 誤報就是餵錯欄位）。
+    mat = material_check(topic_text or text)
+    if mat and not force:
+        return {
+            "model": "BLOCKED",
+            "blocked_by": "material",
+            "motion_class": None,
+            "matched_tasks": [],
+            "bottleneck": f"材質：{mat['category']}",
+            "local_min_score": 0,
+            "needs_human": True,
+            "material": mat,
+            "rewrite_hint": mat["rewrite"],
+            "policy_version": POLICY["version"],
+            "reason": (f"⛔ 選題硬規則命中「{mat['category']}」"
+                       f"（{'、'.join(mat['hits'][:4])}）。{mat['why']}。"
+                       f"實測：{MATERIAL.get('evidence', '')} → 這類材質不要拍，改劇本繞開。"),
+        }
+
     hits = classify(text)
     tasks = POLICY["tasks"]
 
