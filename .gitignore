@@ -40,3 +40,7 @@ LOCAL-AI-STUDIO/**/cache_*/
 *.pt
 
 auto/tick_task.log
+
+# 產線互斥鎖（執行期狀態，不進版控）
+auto/.studio.lock
+auto/.browser.lock
