@@ -75,6 +75,9 @@ def main():
     args = ap.parse_args()
     key = args.key
 
+    # 產線互斥（8/20 加）：會寫 state.json，兩個視窗同時寫是整檔覆蓋、後寫的贏。
+    studio_lock.acquire(f"成片 {key}")
+
     state = json.loads(STATE.read_text(encoding="utf-8"))
     raw_src = args.src or (state.get(key) or {}).get("video", "")
     # 空字串會變成 Path(".")，exists() 誤回 True，所以先擋空值再用 is_file

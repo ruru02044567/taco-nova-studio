@@ -62,6 +62,8 @@ def apply_realism(prompt: str) -> tuple[str, list]:
 
 
 def main():
+    # 產線互斥（8/20 加）：跟生影片搶同一張顯卡，同時跑會排隊互踩。
+    studio_lock.acquire("生場景圖 FLUX")
     ap = argparse.ArgumentParser()
     ap.add_argument("--key", help="影片 key（如 d14s1），自動找 clips\\{key}_scene_flux.txt")
     ap.add_argument("--prompt-file", help="prompt 檔路徑（與 --key 二選一）")

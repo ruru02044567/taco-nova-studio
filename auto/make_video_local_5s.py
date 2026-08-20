@@ -14,7 +14,13 @@ from pathlib import Path
 
 sys.stdout.reconfigure(encoding="utf-8")
 
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+import studio_lock  # noqa: E402
+
 scene, prompt_file, out = Path(sys.argv[1]), Path(sys.argv[2]), Path(sys.argv[3])
+
+# 產線互斥（8/20 加）：這台只有一張顯卡，兩個視窗同時生片只會排隊互踩。
+studio_lock.acquire(f"生影片 {out.name}")
 
 # --seed：2026-08-13 加。原本 seed 寫死成 int(stamp) % 900000，也就是每次跑都不一樣，
 # 而且不會印出來 —— 生出好結果重現不了，生出壞結果也分不清是 prompt 問題還是 seed 運氣。
