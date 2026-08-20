@@ -439,5 +439,13 @@
     "url": "https://youtube.com/shorts/dMJavbkX6C8",
     "at": "2026-08-21T00:31:18",
     "_publish_note": "2026-08-21 00:2x 賢賢核准發布。publish_video.py 的最後一步驗證誤判為失敗（它只看『影片』分頁，Shorts 在另一個分頁），實際草稿是由 finish_draft.py 手動走完 wizard 才真的公開。"
+  },
+  "d13s1": {
+    "scene": "C:\\Users\\TUF Gaming\\Desktop\\我的專案\\財富密碼\\auto\\clips\\d13s1_scene.jpg",
+    "scene_source": "flux",
+    "video": "C:\\Users\\TUF Gaming\\Desktop\\我的專案\\財富密碼\\auto\\clips\\d13s1.mp4",
+    "source": "local",
+    "local_fails": 0,
+    "_note": "2026-08-21 手動生的（不是 tick，因為 tick 被 d10s1 的 awaiting_review 擋住）。只有 5.04 秒 S1 原片，還沒生 S2、沒組裝、沒音效、沒逐幀 gate。場景圖已補黑點眉（DOTS 292,492 / 378,491 R=12）。"
   }
 }
