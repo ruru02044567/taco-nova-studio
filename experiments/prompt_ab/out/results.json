@@ -1,0 +1,149 @@
+[
+  {
+    "id": "PA",
+    "chars": 1868,
+    "desc": "現行完整 prompt（外觀＋身分鎖全開）",
+    "meta": {
+      "minutes": 6.4,
+      "vram_peak_mb": 6908,
+      "ok": true
+    },
+    "metrics": {
+      "file": "PA.mp4",
+      "spec": "1080x1920",
+      "frames": 121,
+      "duration": 5.04,
+      "motion": {
+        "mean": 2.729,
+        "max": 27.544,
+        "std": 2.778
+      },
+      "flow": {
+        "flow_mean": 0.276,
+        "flow_max": 0.95,
+        "jitter": 0.241
+      },
+      "sharpness": {
+        "mean": 868.8,
+        "min": 519.3
+      },
+      "luma_drift": {
+        "head": 156.3,
+        "tail": 161.02,
+        "drift": 4.72
+      },
+      "rgb_mean": [
+        168.63,
+        158.5,
+        138.35
+      ],
+      "hist_drift": {
+        "max": 12.63,
+        "mean": 10.99
+      },
+      "subject_area": {
+        "mean": 0.2282,
+        "max": 0.4921,
+        "cv": 0.328
+      }
+    }
+  },
+  {
+    "id": "PB",
+    "chars": 706,
+    "desc": "最小 prompt：鏡頭＋動作＋環境＋風格",
+    "meta": {
+      "minutes": 6.4,
+      "vram_peak_mb": 6332,
+      "ok": true
+    },
+    "metrics": {
+      "file": "PB.mp4",
+      "spec": "1080x1920",
+      "frames": 121,
+      "duration": 5.04,
+      "motion": {
+        "mean": 3.485,
+        "max": 30.522,
+        "std": 3.068
+      },
+      "flow": {
+        "flow_mean": 0.389,
+        "flow_max": 1.211,
+        "jitter": 0.209
+      },
+      "sharpness": {
+        "mean": 946.2,
+        "min": 555.4
+      },
+      "luma_drift": {
+        "head": 153.88,
+        "tail": 156.51,
+        "drift": 2.63
+      },
+      "rgb_mean": [
+        165.28,
+        154.5,
+        135.29
+      ],
+      "hist_drift": {
+        "max": 13.75,
+        "mean": 11.79
+      },
+      "subject_area": {
+        "mean": 0.2751,
+        "max": 0.4974,
+        "cv": 0.308
+      }
+    }
+  },
+  {
+    "id": "PB2",
+    "chars": 943,
+    "desc": "最小 prompt ＋ 數量／解剖鎖",
+    "meta": {
+      "minutes": 6.39,
+      "vram_peak_mb": 6972,
+      "ok": true
+    },
+    "metrics": {
+      "file": "PB2.mp4",
+      "spec": "1080x1920",
+      "frames": 121,
+      "duration": 5.04,
+      "motion": {
+        "mean": 3.362,
+        "max": 31.375,
+        "std": 3.256
+      },
+      "flow": {
+        "flow_mean": 0.37,
+        "flow_max": 1.26,
+        "jitter": 0.217
+      },
+      "sharpness": {
+        "mean": 945.2,
+        "min": 555.4
+      },
+      "luma_drift": {
+        "head": 152.95,
+        "tail": 156.49,
+        "drift": 3.55
+      },
+      "rgb_mean": [
+        165.15,
+        154.49,
+        135.17
+      ],
+      "hist_drift": {
+        "max": 14.41,
+        "mean": 12.11
+      },
+      "subject_area": {
+        "mean": 0.2589,
+        "max": 0.5037,
+        "cv": 0.315
+      }
+    }
+  }
+]

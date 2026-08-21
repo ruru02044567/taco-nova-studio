@@ -1,0 +1,16 @@
+── PA｜1868 字元｜現行完整 prompt（外觀＋身分鎖全開）
+   ↳ 沿用 multi_frame_chain 的 A17，未重跑
+   動作 2.729　光流 0.276　直方圖漂移 12.63　前景面積 CV 0.328
+── PB｜706 字元｜最小 prompt：鏡頭＋動作＋環境＋風格
+[08:42:01]   ▶ PB.mp4
+[08:42:01]     - C:\Users\TUF Gaming\Desktop\我的專案\財富密碼\experiments\prompt_ab\prompt_B_min.txt C:\Users\TUF Gaming\Desktop\我的專案\財富密碼\experiments\prompt_ab\out\PB.mp4 --continue C:\Users\TUF Gaming\Desktop\我的專案\財富密碼\auto\clips\d10s1.raw704.mp4 --anchor 17 --seed 990821 --steps 8 --shift 8.0 --length 121 --sampler euler
+[08:48:25]     ✅ 6.4 分鐘 / VRAM 峰值 6332 MB
+   動作 3.485　光流 0.389　直方圖漂移 13.75　前景面積 CV 0.308
+── PB2｜943 字元｜最小 prompt ＋ 數量／解剖鎖
+[08:48:32]   ▶ PB2.mp4
+[08:48:32]     - C:\Users\TUF Gaming\Desktop\我的專案\財富密碼\experiments\prompt_ab\prompt_B2_min_plus_count.txt C:\Users\TUF Gaming\Desktop\我的專案\財富密碼\experiments\prompt_ab\out\PB2.mp4 --continue C:\Users\TUF Gaming\Desktop\我的專案\財富密碼\auto\clips\d10s1.raw704.mp4 --anchor 17 --seed 990821 --steps 8 --shift 8.0 --length 121 --sampler euler
+[08:54:55]     ✅ 6.39 分鐘 / VRAM 峰值 6972 MB
+   動作 3.362　光流 0.37　直方圖漂移 14.41　前景面積 CV 0.315
+
+[ok] 3 組 → C:\Users\TUF Gaming\Desktop\我的專案\財富密碼\experiments\prompt_ab\out\results.json
+⚠️ 「有沒有長出第二隻狗／第三條腿」自動指標判不了，看 *_sheet.png，必要時跑 auto\frame_gate.py 逐幀審。
