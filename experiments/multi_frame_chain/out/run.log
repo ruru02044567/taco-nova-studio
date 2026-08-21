@@ -1,0 +1,31 @@
+接龍來源：d10s1.raw704.mp4　704x1280　121 格
+prompt：1868 字元　seed 990821
+固定參數：{'seed': 990821, 'steps': 8, 'shift': 8.0, 'length': 121, 'sampler': 'euler'}
+
+── A01｜anchor 1｜只餵最後 1 格（＝傳統單張圖接龍，走同一條 LoadVideo 路徑）
+[08:08:27]   ▶ A01_anchor01.mp4
+[08:08:27]     - C:\Users\TUF Gaming\Desktop\我的專案\財富密碼\experiments\multi_frame_chain\prompt.txt C:\Users\TUF Gaming\Desktop\我的專案\財富密碼\experiments\multi_frame_chain\out\A01_anchor01.mp4 --continue C:\Users\TUF Gaming\Desktop\我的專案\財富密碼\auto\clips\d10s1.raw704.mp4 --anchor 1 --seed 990821 --steps 8 --shift 8.0 --length 121 --sampler euler
+[08:15:24]     ✅ 6.94 分鐘 / VRAM 峰值 6364 MB
+   量測完成：動作 3.439　光流 0.489　抖動 0.203　亮度漂移 -7.08
+── A13｜anchor 13｜最後 13 格 = 0.54 秒
+[08:15:34]   ▶ A13_anchor13.mp4
+[08:15:34]     - C:\Users\TUF Gaming\Desktop\我的專案\財富密碼\experiments\multi_frame_chain\prompt.txt C:\Users\TUF Gaming\Desktop\我的專案\財富密碼\experiments\multi_frame_chain\out\A13_anchor13.mp4 --continue C:\Users\TUF Gaming\Desktop\我的專案\財富密碼\auto\clips\d10s1.raw704.mp4 --anchor 13 --seed 990821 --steps 8 --shift 8.0 --length 121 --sampler euler
+[08:21:58]     ✅ 6.41 分鐘 / VRAM 峰值 6332 MB
+   量測完成：動作 2.687　光流 0.319　抖動 0.295　亮度漂移 -1.0
+── A17｜anchor 17｜最後 17 格 = 0.71 秒（現行預設；同時是重現性檢查）
+[08:22:06]   ▶ A17_anchor17.mp4
+[08:22:06]     - C:\Users\TUF Gaming\Desktop\我的專案\財富密碼\experiments\multi_frame_chain\prompt.txt C:\Users\TUF Gaming\Desktop\我的專案\財富密碼\experiments\multi_frame_chain\out\A17_anchor17.mp4 --continue C:\Users\TUF Gaming\Desktop\我的專案\財富密碼\auto\clips\d10s1.raw704.mp4 --anchor 17 --seed 990821 --steps 8 --shift 8.0 --length 121 --sampler euler
+[08:28:30]     ✅ 6.4 分鐘 / VRAM 峰值 6908 MB
+   量測完成：動作 2.729　光流 0.276　抖動 0.241　亮度漂移 4.72
+── A21｜anchor 21｜最後 21 格 = 0.88 秒
+[08:28:39]   ▶ A21_anchor21.mp4
+[08:28:39]     - C:\Users\TUF Gaming\Desktop\我的專案\財富密碼\experiments\multi_frame_chain\prompt.txt C:\Users\TUF Gaming\Desktop\我的專案\財富密碼\experiments\multi_frame_chain\out\A21_anchor21.mp4 --continue C:\Users\TUF Gaming\Desktop\我的專案\財富密碼\auto\clips\d10s1.raw704.mp4 --anchor 21 --seed 990821 --steps 8 --shift 8.0 --length 121 --sampler euler
+[08:35:02]     ✅ 6.39 分鐘 / VRAM 峰值 6396 MB
+   量測完成：動作 2.735　光流 0.274　抖動 0.246　亮度漂移 3.89
+── A25｜anchor 25｜最後 25 格 = 1.04 秒
+[08:35:09]   ▶ A25_anchor25.mp4
+[08:35:09]     - C:\Users\TUF Gaming\Desktop\我的專案\財富密碼\experiments\multi_frame_chain\prompt.txt C:\Users\TUF Gaming\Desktop\我的專案\財富密碼\experiments\multi_frame_chain\out\A25_anchor25.mp4 --continue C:\Users\TUF Gaming\Desktop\我的專案\財富密碼\auto\clips\d10s1.raw704.mp4 --anchor 25 --seed 990821 --steps 8 --shift 8.0 --length 121 --sampler euler
+[08:41:33]     ✅ 6.4 分鐘 / VRAM 峰值 6364 MB
+   量測完成：動作 2.582　光流 0.26　抖動 0.248　亮度漂移 2.06
+
+[ok] 5 組 → C:\Users\TUF Gaming\Desktop\我的專案\財富密碼\experiments\multi_frame_chain\out\results.json

@@ -1,0 +1,47 @@
+{
+  "d9s1-final.mp4": {
+    "frames": 292,
+    "dur": 12.17,
+    "luma_drift": 0.45,
+    "hist_max": 15.19,
+    "subject_cv": 0.396,
+    "sharp": 1473.2,
+    "motion": 4.301
+  },
+  "d11s1-final.mp4": {
+    "frames": 312,
+    "dur": 13.0,
+    "luma_drift": -2.69,
+    "hist_max": 8.21,
+    "subject_cv": 0.242,
+    "sharp": 1288.0,
+    "motion": 1.964
+  },
+  "d12s1-final.mp4": {
+    "frames": 288,
+    "dur": 12.12,
+    "luma_drift": -13.96,
+    "hist_max": 11.0,
+    "subject_cv": 0.469,
+    "sharp": 309.8,
+    "motion": 3.499
+  },
+  "d10s1-cut.mp4": {
+    "frames": 290,
+    "dur": 12.04,
+    "luma_drift": -6.89,
+    "hist_max": 13.78,
+    "subject_cv": 0.492,
+    "sharp": 587.1,
+    "motion": 3.002
+  },
+  "d12s1-cut.mp4": {
+    "frames": 292,
+    "dur": 12.13,
+    "luma_drift": -13.48,
+    "hist_max": 11.0,
+    "subject_cv": 0.46,
+    "sharp": 310.9,
+    "motion": 3.491
+  }
+}

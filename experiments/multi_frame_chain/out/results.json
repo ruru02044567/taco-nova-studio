@@ -1,0 +1,292 @@
+[
+  {
+    "id": "A01",
+    "anchor": 1,
+    "desc": "只餵最後 1 格（＝傳統單張圖接龍，走同一條 LoadVideo 路徑）",
+    "meta": {
+      "minutes": 6.94,
+      "vram_peak_mb": 6364,
+      "ok": true
+    },
+    "metrics": {
+      "file": "A01_anchor01.mp4",
+      "spec": "1080x1920",
+      "frames": 121,
+      "duration": 5.04,
+      "motion": {
+        "mean": 3.439,
+        "max": 5.651,
+        "std": 1.018
+      },
+      "flow": {
+        "flow_mean": 0.489,
+        "flow_max": 0.909,
+        "jitter": 0.203
+      },
+      "sharpness": {
+        "mean": 577.6,
+        "min": 485.0
+      },
+      "luma_drift": {
+        "head": 162.8,
+        "tail": 155.72,
+        "drift": -7.08
+      },
+      "rgb_mean": [
+        168.1,
+        156.22,
+        138.65
+      ],
+      "hist_drift": {
+        "max": 9.76,
+        "mean": 6.18
+      },
+      "subject_area": {
+        "mean": 0.3763,
+        "max": 0.4975,
+        "cv": 0.171
+      },
+      "anchor_fidelity": {
+        "frames_compared": 1,
+        "rgb_shift": [
+          -1.03,
+          -0.89,
+          -0.9
+        ],
+        "mean_abs_diff": 1.66
+      }
+    }
+  },
+  {
+    "id": "A13",
+    "anchor": 13,
+    "desc": "最後 13 格 = 0.54 秒",
+    "meta": {
+      "minutes": 6.41,
+      "vram_peak_mb": 6332,
+      "ok": true
+    },
+    "metrics": {
+      "file": "A13_anchor13.mp4",
+      "spec": "1080x1920",
+      "frames": 121,
+      "duration": 5.04,
+      "motion": {
+        "mean": 2.687,
+        "max": 12.961,
+        "std": 1.742
+      },
+      "flow": {
+        "flow_mean": 0.319,
+        "flow_max": 1.435,
+        "jitter": 0.295
+      },
+      "sharpness": {
+        "mean": 809.0,
+        "min": 533.5
+      },
+      "luma_drift": {
+        "head": 159.29,
+        "tail": 158.29,
+        "drift": -1.0
+      },
+      "rgb_mean": [
+        166.55,
+        156.38,
+        137.04
+      ],
+      "hist_drift": {
+        "max": 10.78,
+        "mean": 7.73
+      },
+      "subject_area": {
+        "mean": 0.2482,
+        "max": 0.4421,
+        "cv": 0.271
+      },
+      "anchor_fidelity": {
+        "frames_compared": 13,
+        "rgb_shift": [
+          -1.15,
+          -1.07,
+          -1.02
+        ],
+        "mean_abs_diff": 1.926
+      }
+    }
+  },
+  {
+    "id": "A17",
+    "anchor": 17,
+    "desc": "最後 17 格 = 0.71 秒（現行預設；同時是重現性檢查）",
+    "meta": {
+      "minutes": 6.4,
+      "vram_peak_mb": 6908,
+      "ok": true
+    },
+    "metrics": {
+      "file": "A17_anchor17.mp4",
+      "spec": "1080x1920",
+      "frames": 121,
+      "duration": 5.04,
+      "motion": {
+        "mean": 2.729,
+        "max": 27.544,
+        "std": 2.778
+      },
+      "flow": {
+        "flow_mean": 0.276,
+        "flow_max": 0.95,
+        "jitter": 0.241
+      },
+      "sharpness": {
+        "mean": 868.8,
+        "min": 519.3
+      },
+      "luma_drift": {
+        "head": 156.3,
+        "tail": 161.02,
+        "drift": 4.72
+      },
+      "rgb_mean": [
+        168.63,
+        158.5,
+        138.35
+      ],
+      "hist_drift": {
+        "max": 12.63,
+        "mean": 10.99
+      },
+      "subject_area": {
+        "mean": 0.2282,
+        "max": 0.4921,
+        "cv": 0.328
+      },
+      "anchor_fidelity": {
+        "frames_compared": 17,
+        "rgb_shift": [
+          -1.15,
+          -1.05,
+          -1.02
+        ],
+        "mean_abs_diff": 1.887
+      }
+    }
+  },
+  {
+    "id": "A21",
+    "anchor": 21,
+    "desc": "最後 21 格 = 0.88 秒",
+    "meta": {
+      "minutes": 6.39,
+      "vram_peak_mb": 6396,
+      "ok": true
+    },
+    "metrics": {
+      "file": "A21_anchor21.mp4",
+      "spec": "1080x1920",
+      "frames": 121,
+      "duration": 5.04,
+      "motion": {
+        "mean": 2.735,
+        "max": 12.038,
+        "std": 1.661
+      },
+      "flow": {
+        "flow_mean": 0.274,
+        "flow_max": 0.808,
+        "jitter": 0.246
+      },
+      "sharpness": {
+        "mean": 954.7,
+        "min": 646.7
+      },
+      "luma_drift": {
+        "head": 161.47,
+        "tail": 165.36,
+        "drift": 3.89
+      },
+      "rgb_mean": [
+        173.66,
+        163.6,
+        142.52
+      ],
+      "hist_drift": {
+        "max": 11.9,
+        "mean": 9.41
+      },
+      "subject_area": {
+        "mean": 0.1964,
+        "max": 0.5111,
+        "cv": 0.485
+      },
+      "anchor_fidelity": {
+        "frames_compared": 21,
+        "rgb_shift": [
+          -1.16,
+          -1.05,
+          -1.02
+        ],
+        "mean_abs_diff": 1.86
+      }
+    }
+  },
+  {
+    "id": "A25",
+    "anchor": 25,
+    "desc": "最後 25 格 = 1.04 秒",
+    "meta": {
+      "minutes": 6.4,
+      "vram_peak_mb": 6364,
+      "ok": true
+    },
+    "metrics": {
+      "file": "A25_anchor25.mp4",
+      "spec": "1080x1920",
+      "frames": 121,
+      "duration": 5.04,
+      "motion": {
+        "mean": 2.582,
+        "max": 7.286,
+        "std": 1.157
+      },
+      "flow": {
+        "flow_mean": 0.26,
+        "flow_max": 0.506,
+        "jitter": 0.248
+      },
+      "sharpness": {
+        "mean": 973.9,
+        "min": 781.7
+      },
+      "luma_drift": {
+        "head": 164.89,
+        "tail": 166.95,
+        "drift": 2.06
+      },
+      "rgb_mean": [
+        175.0,
+        165.13,
+        143.69
+      ],
+      "hist_drift": {
+        "max": 8.92,
+        "mean": 6.65
+      },
+      "subject_area": {
+        "mean": 0.1573,
+        "max": 0.3154,
+        "cv": 0.432
+      },
+      "anchor_fidelity": {
+        "frames_compared": 25,
+        "rgb_shift": [
+          -1.15,
+          -1.05,
+          -1.02
+        ],
+        "mean_abs_diff": 1.841
+      }
+    }
+  }
+]

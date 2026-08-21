@@ -1,0 +1,28 @@
+
+═══ 情境 甲：同場景殘餘接縫（接龍段沒切乾淨時的樣子） ═══
+    A=d10s1.mp4　B=d10s1_s2.mp4（從第 17 格起）
+  hardcut          prominence 0.537　ratio 3.25　△ 部分
+  rush_to_camera   prominence 0.302　ratio 8.97　✅ 刀口被蓋住
+  whip_pan         prominence 0.741　ratio 23.77　△ 部分
+  foreground_wipe  prominence 0.984　ratio 20.54　❌ 藏不住
+  white_flash      prominence 0.007　ratio 0.15　✅ 刀口被蓋住
+  dip_to_black     prominence 0.01　ratio 0.27　✅ 刀口被蓋住
+  whip_zoom        prominence 0.967　ratio 22.75　❌ 藏不住
+  motion_blur      prominence 0.684　ratio 3.96　△ 部分
+  object_fills     prominence 0.11　ratio 3.14　✅ 刀口被蓋住
+  shared_occluder  prominence 0.007　ratio 0.11　✅ 刀口被蓋住
+
+═══ 情境 乙：換場景硬切（蛋液房 → 藍漆房，最壞情況） ═══
+    A=d10s1.mp4　B=d12s1.mp4（從第 0 格起）
+  hardcut          prominence 1.0　ratio 45.53　❌ 藏不住
+  rush_to_camera   prominence 1.0　ratio 41.81　❌ 藏不住
+  whip_pan         prominence 0.994　ratio 39.99　❌ 藏不住
+  foreground_wipe  prominence 1.0　ratio 39.41　❌ 藏不住
+  white_flash      prominence 0.063　ratio 1.61　✅ 刀口被蓋住
+  dip_to_black     prominence 0.046　ratio 1.55　✅ 刀口被蓋住
+  whip_zoom        prominence 1.0　ratio 36.8　❌ 藏不住
+  motion_blur      prominence 1.0　ratio 45.95　❌ 藏不住
+  object_fills     prominence 1.0　ratio 38.25　❌ 藏不住
+  shared_occluder  prominence 0.007　ratio 0.14　✅ 刀口被蓋住
+
+[ok] 20 組 → C:\Users\TUF Gaming\Desktop\我的專案\財富密碼\experiments\hidden_cut\out\results.json

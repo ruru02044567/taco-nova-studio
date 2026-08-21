@@ -1,0 +1,43 @@
+{
+  "out": "C:\\Users\\TUF Gaming\\Desktop\\我的專案\\財富密碼\\experiments\\multi_frame_chain\\out\\A01_anchor01.mp4",
+  "cmd": [
+    "C:\\Users\\TUF Gaming\\AppData\\Local\\Programs\\Python\\Python313\\python.exe",
+    "C:\\Users\\TUF Gaming\\Desktop\\我的專案\\財富密碼\\auto\\make_video_local_5s.py",
+    "-",
+    "C:\\Users\\TUF Gaming\\Desktop\\我的專案\\財富密碼\\experiments\\multi_frame_chain\\prompt.txt",
+    "C:\\Users\\TUF Gaming\\Desktop\\我的專案\\財富密碼\\experiments\\multi_frame_chain\\out\\A01_anchor01.mp4",
+    "--continue",
+    "C:\\Users\\TUF Gaming\\Desktop\\我的專案\\財富密碼\\auto\\clips\\d10s1.raw704.mp4",
+    "--anchor",
+    "1",
+    "--seed",
+    "990821",
+    "--steps",
+    "8",
+    "--shift",
+    "8.0",
+    "--length",
+    "121",
+    "--sampler",
+    "euler"
+  ],
+  "returncode": 0,
+  "ok": true,
+  "minutes": 6.94,
+  "vram_peak_mb": 6364,
+  "when": "2026-08-21T08:15:24",
+  "params": {
+    "scene": null,
+    "prev": "C:\\Users\\TUF Gaming\\Desktop\\我的專案\\財富密碼\\auto\\clips\\d10s1.raw704.mp4",
+    "anchor": 1,
+    "seed": 990821,
+    "steps": 8,
+    "shift": 8.0,
+    "length": 121,
+    "sampler": "euler",
+    "prompt_file": "C:\\Users\\TUF Gaming\\Desktop\\我的專案\\財富密碼\\experiments\\multi_frame_chain\\prompt.txt",
+    "prompt_chars": 1868
+  },
+  "stdout": "ComfyUI 已在跑\n錨點已備好：d10s1.raw704.mp4 的第 120–120 格（1 格 = 0.04 秒）\n  （/free 沒成功，不影響生成：Expecting value: line 1 column 1 (char 0)）\n  seed = 990821（指定） / steps = 8 / shift = 8.0 / length = 121 / euler+simple / 接龍錨點 1 格\n已排入佇列，開始算圖…\n算完了，花了 6.8 分鐘\n  接縫診斷：錨點 vs 生成的前 1 格，RGB 平均位移 -1.01/-0.88/-0.92、逐像素平均絕對差 2.66　✅ 接縫對齊，段間不用調色\n  段內漂移：新內容頭 9 格亮度 159.46 → 尾 9 格 153.19（-6.28）\nsaved C:\\Users\\TUF Gaming\\Desktop\\我的專案\\財富密碼\\experiments\\multi_frame_chain\\out\\A01_anchor01.mp4（121 格 = 5.04 秒，前 1 格是前段尾巴的還原版）\n      接龍用原生檔：A01_anchor01.raw704.mp4\n      ⚠️ 組裝時前一段只取前 120 格再接這段，兩段都整段接會重播 0.04 秒。懶得算就加 --join。\n",
+  "stderr": ""
+}
