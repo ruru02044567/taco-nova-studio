@@ -8,14 +8,26 @@ r"""score_video.py — 候選影片自審腳本（2026-08-19 建立）。
 只放程式量得出來的項目；「感覺類」（笑點、表情、音色自然度）量不出來，
 仍由賢賢的耳朵眼睛把關。
 
+2026-08-22 補：加上「全片運動量」。在此之前十項裡只有「結尾非定格」碰到運動，
+而且只量末 0.55 秒、門檻 0.0008 低到任何緩慢推鏡都能過，導致 D13S1 拿到 10/10
+卻整支像靜態圖。全片幀間變化中位數從來沒有人量過 —— 不是漏看，是規則不存在。
+現在中位數是硬門檻，另加逐鏡診斷抓出最死的那一顆鏡頭。
+
 用法：python score_video.py <影片.mp4>
 Exit code：0＝全過；1＝有 FAIL。
 """
 import re
+import statistics
 import subprocess
 import sys
 import tempfile
 from pathlib import Path
+
+# ── 運動量門檻（2026-08-21 實測校準，見 PUBLISH_GATE.md 第三個盲區）──
+#   Tim & Jeffy 對標片 幀間變化中位數 = 0.0137
+#   D13S1（過了全部閘門卻像靜態圖）    = 0.0052
+MOTION_MEDIAN_MIN = 0.0100      # 硬門檻：實測校準值
+SHOT_MOTION_WARN  = 0.0050      # 逐鏡警示：由硬門檻的一半推得，**尚未用對標片校準**
 
 sys.stdout.reconfigure(encoding="utf-8", errors="replace")
 
@@ -34,9 +46,17 @@ def main(video):
         shutil.copy2(video, v)
         v = str(v)
 
-        rows = []          # (名稱, 實測, 區間, PASS/FAIL/SKIP)
+        rows = []          # (名稱, 實測, 區間, PASS/FAIL/WARN/INFO)
         def add(name, value, cond_desc, ok):
             rows.append((name, value, cond_desc, "PASS" if ok else "FAIL"))
+
+        def warn(name, value, cond_desc, ok):
+            """未經對標片校準的項目：不擋發布，只出聲。"""
+            rows.append((name, value, cond_desc, "PASS" if ok else "WARN"))
+
+        def info(name, value, cond_desc):
+            """純診斷數字，不判定。"""
+            rows.append((name, value, cond_desc, "INFO"))
 
         # 1. 片長
         dur = float(sh(["ffprobe", "-v", "quiet", "-show_entries", "format=duration",
@@ -91,23 +111,68 @@ def main(video):
         tmean = float(m.group(1)) if m else -99.0
         add("無淡出結尾", f"末 0.5s {tmean:.1f} dB", ">=-33（戛然而止）", tmean >= -33.0)
 
-        # 10. 結尾非定格（末 0.5 秒幀間差）
-        fd = sh(["ffmpeg", "-ss", str(max(0, dur - 0.55)), "-i", v,
+        # ── 全片逐幀運動量：跑一次全片 scene_score，結尾與全片共用 ──
+        # 舊版只取末 0.55 秒，導致「全片像靜態圖」完全量不到（2026-08-21 盲區）
+        fd = sh(["ffmpeg", "-i", v,
                  "-vf", "select='gte(scene,0)',metadata=print", "-f", "null", "-"])
-        diffs = [float(x) for x in re.findall(r"scene_score=([0-9.]+)", fd)]
-        avg_motion = (sum(diffs) / len(diffs)) if diffs else 0.0
+        samples = []          # (t, score)
+        t_cur = None
+        for line in fd.splitlines():
+            mt = re.search(r"pts_time:([0-9.]+)", line)
+            if mt:
+                t_cur = float(mt.group(1))
+                continue
+            ms = re.search(r"scene_score=([0-9.]+)", line)
+            if ms and t_cur is not None:
+                samples.append((t_cur, float(ms.group(1))))
+        scores = [s for _, s in samples]
+
+        # 10. 結尾非定格（末 0.55 秒，門檻與行為與舊版一致）
+        tail_scores = [s for t, s in samples if t >= dur - 0.55]
+        avg_motion = (sum(tail_scores) / len(tail_scores)) if tail_scores else 0.0
         add("結尾非定格", f"末段平均變化 {avg_motion:.4f}",
             ">0.0008（動作中斷收尾，8/8 對標如此）", avg_motion > 0.0008)
 
+        # 11. 全片運動量 ← 這一項就是 D13S1 明明 10/10 卻像靜態圖的漏洞
+        med = statistics.median(scores) if scores else 0.0
+        add("全片運動量", f"幀間變化中位數 {med:.4f}（{len(scores)} 幀）",
+            f">={MOTION_MEDIAN_MIN:.4f}（對標 0.0137／D13S1 0.0052）",
+            med >= MOTION_MEDIAN_MIN)
+
+        # 12. 逐鏡運動量：全片中位數可能被單一活躍鏡頭拉高，要抓出最死的那一顆
+        shot_meds = []
+        for i in range(len(bounds) - 1):
+            seg = [s for t, s in samples if bounds[i] <= t < bounds[i + 1]]
+            shot_meds.append(statistics.median(seg) if seg else 0.0)
+        if shot_meds:
+            worst = min(shot_meds)
+            widx = shot_meds.index(worst) + 1
+            detail = "／".join(f"S{j+1} {m:.4f}" for j, m in enumerate(shot_meds))
+            warn("逐鏡運動量", f"最低 S{widx} {worst:.4f}　（{detail}）",
+                 f">={SHOT_MOTION_WARN:.4f}（推得值，尚未用對標片校準）",
+                 worst >= SHOT_MOTION_WARN)
+
+        # 13. 靜止幀比例（診斷用，不判定）
+        # 8/21 實測：我們 23%、對標 22%，兩邊幾乎一樣 —— 所以問題不是「靜止幀太多」，
+        # 而是「該動的時候動得太小」。這個數字放著是為了防止把歸因again 弄錯。
+        if scores:
+            still = sum(1 for s in scores if s < 0.002)
+            info("靜止幀比例", f"{still}/{len(scores)}＝{still/len(scores)*100:.0f}%",
+                 "對標同為 22%，此項不判定，只防止歸因錯誤")
+
         # 輸出
         print(f"\n═══ 自審：{Path(video).name} ═══")
-        fails = 0
+        MARK = {"PASS": "✅", "FAIL": "❌", "WARN": "⚠️", "INFO": "ℹ️"}
+        fails = sum(1 for r in rows if r[3] == "FAIL")
+        warns = sum(1 for r in rows if r[3] == "WARN")
+        judged = [r for r in rows if r[3] in ("PASS", "FAIL", "WARN")]
         for name, val, cond, res in rows:
-            mark = "✅" if res == "PASS" else "❌"
-            if res == "FAIL":
-                fails += 1
-            print(f" {mark} {name:8}  {val}　（要求：{cond}）")
-        print(f"═══ {len(rows) - fails}/{len(rows)} 過 ═══")
+            print(f" {MARK[res]} {name:10}{val}　（要求：{cond}）")
+        passed = sum(1 for r in judged if r[3] == "PASS")
+        tail = f"，{warns} 項警示" if warns else ""
+        print(f"═══ {passed}/{len(judged)} 過{tail} ═══")
+        if fails:
+            print("   ⚠️ 有 FAIL，不得送交賢賢過目。")
         return 0 if fails == 0 else 1
 
 
