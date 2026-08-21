@@ -443,9 +443,12 @@
   "d13s1": {
     "scene": "C:\\Users\\TUF Gaming\\Desktop\\我的專案\\財富密碼\\auto\\clips\\d13s1_scene.jpg",
     "scene_source": "flux",
-    "video": "C:\\Users\\TUF Gaming\\Desktop\\我的專案\\財富密碼\\auto\\clips\\d13s1.mp4",
+    "video": "C:\\Users\\TUF Gaming\\Desktop\\我的專案\\財富密碼\\auto\\clips\\d13s1-final.mp4",
     "source": "local",
     "local_fails": 0,
-    "_note": "2026-08-21 手動生的（不是 tick，因為 tick 被 d10s1 的 awaiting_review 擋住）。只有 5.04 秒 S1 原片，還沒生 S2、沒組裝、沒音效、沒逐幀 gate。場景圖已補黑點眉（DOTS 292,492 / 378,491 R=12）。"
+    "_note": "2026-08-21 手動生的（不是 tick，因為 tick 被 d10s1 的 awaiting_review 擋住）。只有 5.04 秒 S1 原片，還沒生 S2、沒組裝、沒音效、沒逐幀 gate。場景圖已補黑點眉（DOTS 292,492 / 378,491 R=12）。",
+    "video_raw": "C:\\Users\\TUF Gaming\\Desktop\\我的專案\\財富密碼\\auto\\clips\\d13s1.mp4",
+    "awaiting_review": true,
+    "orchestrator_task": "TASK-0004"
   }
 }
