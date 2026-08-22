@@ -965,3 +965,63 @@
 [2026-08-22 22:14:02] ⏸ D10S1, D13S1 還在等賢賢過目，先不動作
 [2026-08-22 22:34:02] ⏸ D10S1, D13S1 還在等賢賢過目，先不動作
 [2026-08-22 23:14:03] ⏸ D10S1, D13S1 還在等賢賢過目，先不動作
+[2026-08-22 23:33:25]   $ preflight.py C:\Users\TUF Gaming\Desktop\我的專案\財富密碼\auto\clips\d16s1-final.mp4 --key -> rc=0
+[2026-08-22 23:33:25]     | ── preflight d16s1-final.mp4 ──
+[2026-08-22 23:33:25]     |   ✓ 檔案大小: 30.5 MB
+[2026-08-22 23:33:25]     |   ✓ 黑名單: d16s1-final.mp4 不在 12 筆黑名單中
+[2026-08-22 23:33:25]     |   ✓ 有聲音軌: aac
+[2026-08-22 23:33:25]     |   ✓ 音量: mean_volume -19.1 dB
+[2026-08-22 23:33:25]     |   ✓ 時長 3–60s: 12.2 s
+[2026-08-22 23:33:25]     |   ✓ 直式畫面: 1080x1920
+[2026-08-22 23:33:25]     | ── 全部通過 ──
+[2026-08-22 23:33:27] Edge/CDP 沒開，啟動中
+[2026-08-22 23:33:30] CDP 就緒
+[2026-08-22 23:33:30] 賢賢核准 D16S1，發布中
+[2026-08-22 23:33:30]   $ publish_video.py C:\Users\TUF Gaming\Desktop\我的專案\財富密碼\auto\clips\d16s1-final.mp4 C:\Us -> rc=9
+[2026-08-22 23:33:30]     | FAILED: 說明文案不符合高流量版格式，拒絕發布
+[2026-08-22 23:33:30]     |   - 第 2 條必須是**第三人稱劇情描述**（句中要出現 Taco／chihuahua／husky／Nova，而且不能用 i／my 這種第一人稱），說清楚畫面發生什麼事。這是兩支高流量片的共同特徵，也是演算法唯一讀得懂內容的線索 —— 不要換成 Taco 的第一人稱吐槽
+[2026-08-22 23:33:30]     |   （確定要照發就加 --force）
+[2026-08-22 23:33:30]   發布失敗，下次再試
+[2026-08-22 23:34:02] ✅ D16S1 已核准，等 08-24 08:00 發布（還有 1946 分鐘）
+[2026-08-22 23:34:02] ⏸ D10S1, D13S1 還在等賢賢過目，先不動作
+[2026-08-22 23:34:23]   $ preflight.py C:\Users\TUF Gaming\Desktop\我的專案\財富密碼\auto\clips\d16s1-final.mp4 --key -> rc=0
+[2026-08-22 23:34:23]     | ── preflight d16s1-final.mp4 ──
+[2026-08-22 23:34:23]     |   ✓ 檔案大小: 30.5 MB
+[2026-08-22 23:34:23]     |   ✓ 黑名單: d16s1-final.mp4 不在 12 筆黑名單中
+[2026-08-22 23:34:23]     |   ✓ 有聲音軌: aac
+[2026-08-22 23:34:23]     |   ✓ 音量: mean_volume -19.1 dB
+[2026-08-22 23:34:23]     |   ✓ 時長 3–60s: 12.2 s
+[2026-08-22 23:34:23]     |   ✓ 直式畫面: 1080x1920
+[2026-08-22 23:34:23]     | ── 全部通過 ──
+[2026-08-22 23:34:23] 賢賢核准 D16S1，發布中
+[2026-08-22 23:35:11]   $ publish_video.py C:\Users\TUF Gaming\Desktop\我的專案\財富密碼\auto\clips\d16s1-final.mp4 C:\Us -> rc=2
+[2026-08-22 23:35:11]     | 說明文案格式檢查：通過
+[2026-08-22 23:35:11]     | FAILED: 目前作用中的頻道不是 Taco & Nova，中止發布
+[2026-08-22 23:35:11]     |   現在的 Studio 網址：https://studio.youtube.com/
+[2026-08-22 23:35:11]     |   → 請先到 youtube.com/channel_switcher 手動切回 Taco & Nova 再重跑
+[2026-08-22 23:35:11]   發布失敗，下次再試
+[2026-08-22 23:36:08]   $ preflight.py C:\Users\TUF Gaming\Desktop\我的專案\財富密碼\auto\clips\d16s1-final.mp4 --key -> rc=0
+[2026-08-22 23:36:08]     | ── preflight d16s1-final.mp4 ──
+[2026-08-22 23:36:08]     |   ✓ 檔案大小: 30.5 MB
+[2026-08-22 23:36:08]     |   ✓ 黑名單: d16s1-final.mp4 不在 12 筆黑名單中
+[2026-08-22 23:36:08]     |   ✓ 有聲音軌: aac
+[2026-08-22 23:36:08]     |   ✓ 音量: mean_volume -19.1 dB
+[2026-08-22 23:36:08]     |   ✓ 時長 3–60s: 12.2 s
+[2026-08-22 23:36:08]     |   ✓ 直式畫面: 1080x1920
+[2026-08-22 23:36:08]     | ── 全部通過 ──
+[2026-08-22 23:36:08] 賢賢核准 D16S1，發布中
+[2026-08-22 23:38:13]   $ publish_video.py C:\Users\TUF Gaming\Desktop\我的專案\財富密碼\auto\clips\d16s1-final.mp4 C:\Us -> rc=8
+[2026-08-22 23:38:13]     | 說明文案格式檢查：通過
+[2026-08-22 23:38:13]     | 頻道確認：Taco & Nova（畫面顯示：Taco & Nova）
+[2026-08-22 23:38:13]     | file selected
+[2026-08-22 23:38:13]     | details filled
+[2026-08-22 23:38:13]     | compliance: {'VIDEO_MADE_FOR_KIDS_NOT_MFK': 'true', 'VIDEO_AGE_RESTRICTION_NONE': 'true', 'VIDEO_HAS_ALTERED_CONTENT_YES': 'true'}
+[2026-08-22 23:38:13]     |   發布後驗證 1/6：0:13 Taco Glued Himself To The Floor With A Whole Jar Of Honey 🍯😳 official statement from Taco: 1. the honey jar opened 
+[2026-08-22 23:38:13]     |   發布後驗證 2/6：0:13 Taco Glued Himself To The Floor With A Whole Jar Of Honey 🍯😳 official statement from Taco: 1. the honey jar opened 
+[2026-08-22 23:38:13]     |   發布後驗證 3/6：0:13 Taco Glued Himself To The Floor With A Whole Jar Of Honey 🍯😳 official statement from Taco: 1. the honey jar opened 
+[2026-08-22 23:38:13]     |   發布後驗證 4/6：0:13 Taco Glued Himself To The Floor With A Whole Jar Of Honey 🍯😳 official statement from Taco: 1. the honey jar opened 
+[2026-08-22 23:38:13]     |   發布後驗證 5/6：0:13 Taco Glued Himself To The Floor With A Whole Jar Of Honey 🍯😳 official statement from Taco: 1. the honey jar opened 
+[2026-08-22 23:38:13]     |   發布後驗證 6/6：0:13 Taco Glued Himself To The Floor With A Whole Jar Of Honey 🍯😳 official statement from Taco: 1. the honey jar opened 
+[2026-08-22 23:38:13]     | FAILED: 按了發布但內容清單仍是草稿（或找不到），不得視為已發布
+[2026-08-22 23:38:13]   發布失敗，下次再試
+[2026-08-22 23:54:03] ⏸ D10S1, D13S1 還在等賢賢過目，先不動作
