@@ -1,0 +1,51 @@
+{
+ "_說明": "角色聖經的唯一真相。程式讀這個檔，不要讀 character/角色設定.md（那份是給人看的沿革，已有過期內容）。",
+ "version": "2026-08-23",
+ "_接線": "auto/character_bible.py 讀本檔；gen_scene_flux.py 與 make_video_local_5s.py 生成前會強制檢查，缺招牌特徵就擋下（--skip-bible 可略過，但會大聲警告）。",
+ "characters": {
+  "taco": {
+   "name": "Taco",
+   "role": "主角",
+   "canonical_prompt": "a tiny pure snow-white smooth-coat chihuahua with exactly two identical small solid black round dots on his forehead, one directly above each eye, perfectly symmetrical and exactly the same size as each other — they are round dots, not eyebrow lines, not curved strokes, not arched brows, oversized pointy ears, wearing a thin blue collar with a small round silver tag",
+   "使用次數": 40,
+   "must_appear": [
+    "snow-white",
+    "chihuahua",
+    "black round dots",
+    "blue collar"
+   ],
+   "signature": "兩顆圓形黑點眉：對稱、等大、位於左右眼正上方。這是頻道辨識物，每支都要看得到。",
+   "ref_images": [
+    "character/taco-ref-v5-max.jpg",
+    "character/taco-ref-v4a-meme.jpg"
+   ],
+   "已知問題": "FLUX 生不出黑點眉，場景圖一律要用 auto/_fix_d10_dots_v3.py 手動補繪；Wan 生影片時會逐漸洗掉，約撐 8 秒。逐幀補繪(_paint_dots_video.py)兩次實測都失敗（點會閃爍、左右不對稱），不要再試。"
+  },
+  "nova": {
+   "name": "Nova",
+   "role": "配角",
+   "canonical_prompt": "a large fluffy grey and white Siberian husky with pale blue eyes",
+   "使用次數": 38,
+   "must_appear": [
+    "Siberian husky",
+    "grey and white"
+   ],
+   "signature": "灰白雙層毛、藍眼、大體型。跟 Taco 的體型對比是笑點來源，不可互換。",
+   "ref_images": [
+    "character/duo-scene-remote.jpg"
+   ],
+   "已知問題": "雙狗同框是崩壞高風險。目前唯一穩定的配置是「Nova 在背景睡著、完全不動」（D13/D16 驗證）。清醒的見證者寫法讓 D10 崩了三輪。FLUX 會把牠增生成兩隻，要用量化約束（no closer to the camera than the sofa / ONE single）壓住。"
+  }
+ },
+ "scene": {
+  "canonical": "a bright modern living room with light wood floor, a grey fabric sofa, green potted plants and warm afternoon window light",
+  "camera": "Shot on a smartphone at floor level, eye-level pet photography, natural colours, candid home-video framing"
+ },
+ "redlines": [
+  "不做殘酷虐待橋段；狼狽要可愛不要危險",
+  "不用別人的角色或素材；全部自己生成",
+  "標題永遠帶 Taco",
+  "災難的載體只能選模型畫得出來的：液體、粉末、散落物。家具毀損／餐具翻覆／東西缺一塊一律不行（D19 三張、D15 五張場景圖全滅）",
+  "發光／半透明／金屬反光材質一律不選（5 支實測 0 支破萬），細節見 model_policy.json 的 material_blocklist"
+ ]
+}

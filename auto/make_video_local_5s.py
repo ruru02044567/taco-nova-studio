@@ -145,6 +145,13 @@ COMFY = HERE / "ComfyUI"
 API = "http://127.0.0.1:8188"
 
 PROMPT = prompt_file.read_text(encoding="utf-8").split("|||")[0].strip()
+
+# 角色聖經硬閘門（2026-08-23，賢賢裁示「以後製作影片就把角色聖經掛上」）：
+# 招牌特徵沒寫進 prompt 就不要浪費 6.3 分鐘生片。實驗片可加 --skip-bible。
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+import character_bible  # noqa: E402
+character_bible.require(PROMPT, character_bible.which(PROMPT),
+                        skip="--skip-bible" in sys.argv)
 NEG = ("blurry, low quality, worst quality, cartoon, anime, 3d render, text, letters, words, "
        "captions, watermark, subtitles, deformed, extra limbs, extra legs, mutated, jpeg artifacts, "
        "static image, overexposed, human, person, hand, arm, fingers, smartphone, phone, "

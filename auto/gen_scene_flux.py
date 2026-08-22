@@ -23,6 +23,7 @@ from pathlib import Path
 
 sys.stdout.reconfigure(encoding="utf-8", errors="replace")
 sys.path.insert(0, str(Path(__file__).resolve().parent))
+import character_bible  # noqa: E402
 import comfy_api  # noqa: E402
 import studio_lock  # noqa: E402
 
@@ -75,6 +76,8 @@ def main():
     ap.add_argument("--steps", type=int, default=4, help="schnell 建議 4")
     ap.add_argument("--no-realism", action="store_true",
                     help="不接抗 AI 感尾段（做對照實驗時用）")
+    ap.add_argument("--skip-bible", action="store_true",
+                    help="略過角色聖經檢查（只警告不擋；角色一致性自己負責）")
     args = ap.parse_args()
 
     if args.key:
@@ -93,6 +96,9 @@ def main():
     if len(prompt) < 20:
         print(f"[X] prompt 太短（{len(prompt)} 字元），像是空檔")
         sys.exit(1)
+    # 角色聖經硬閘門（2026-08-23）：招牌特徵沒寫進 prompt 就不要浪費 40 秒生圖。
+    character_bible.require(prompt, character_bible.which(prompt), skip=args.skip_bible)
+
     if not args.no_realism:
         prompt, notes = apply_realism(prompt)
         for n in notes:
