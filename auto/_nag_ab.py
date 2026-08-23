@@ -45,6 +45,9 @@ if "--cfg" in sys.argv:
 STEPS = 8
 SHIFT = 8.0
 LENGTH = 25          # 約 1 秒（正式產線是 121）
+if "--length" in sys.argv:
+    LENGTH = int(sys.argv[sys.argv.index("--length") + 1])
+SKIP_NAG = "--skip-nag" in sys.argv   # 只跑對照組，省一半時間
 WIDTH, HEIGHT = 704, 1280
 SAMPLER, SCHEDULER = "euler", "simple"
 FPS = 24
@@ -92,7 +95,7 @@ def build(image_name, neg, use_nag, tag):
                          "tile_size": 256, "overlap": 64, "temporal_size": 12, "temporal_overlap": 4}},
         "10": {"class_type": "CreateVideo", "inputs": {"images": ["9", 0], "fps": float(FPS)}},
         "11": {"class_type": "SaveVideo",
-               "inputs": {"video": ["10", 0], "filename_prefix": f"nagab_{tag}_cfg{CFG:g}",
+               "inputs": {"video": ["10", 0], "filename_prefix": f"nagab_{tag}_cfg{CFG:g}_L{LENGTH}",
                           "format": "mp4", "codec": "h264"}},
     }
     if use_nag:
@@ -161,10 +164,12 @@ if __name__ == "__main__":
     print("【對照組】不掛 NAG（預期：兩版完全相同）")
     a1 = run(build(img, NEG_BAD, False, "off_bad"), "off_bad")
     a2 = run(build(img, NEG_GOOD, False, "off_good"), "off_good")
-    print()
-    print("【實驗組】掛 NAG（若有差＝負面分支被算回來了）")
-    b1 = run(build(img, NEG_BAD, True, "on_bad"), "on_bad")
-    b2 = run(build(img, NEG_GOOD, True, "on_good"), "on_good")
+    b1 = b2 = None
+    if not SKIP_NAG:
+        print()
+        print("【實驗組】掛 NAG（若有差＝負面分支被算回來了）")
+        b1 = run(build(img, NEG_BAD, True, "on_bad"), "on_bad")
+        b2 = run(build(img, NEG_GOOD, True, "on_good"), "on_good")
 
     print("\n" + "=" * 60)
     diff(a1, a2, "不掛 NAG")
