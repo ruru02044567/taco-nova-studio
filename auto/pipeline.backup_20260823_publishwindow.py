@@ -75,24 +75,8 @@ BROWSER_SCRIPTS = {"publish_video.py", "gbot.py", "studio_stats.py",
 GBRAIN_INDEX = Path(r"C:\Users\TUF Gaming\.claude\G-Brain\01-專案\_索引.md")
 
 # 發布時段（台北時間，小時）
-#
-# 2026-08-23 改：原本是 {1: 8, 2: 20, 3: 0}，slot 3 直接排在凌晨 00:00。
-# 加上下面的 LATE_TOLERANCE_H「立即補做」，實際發布時刻被推得更晚——
-# 8/18 的 02:39 與 02:41（相隔 2 分鐘連發兩支）、8/20 的 02:42、8/21 的 00:31
-# 全是這樣掉出去的。這四支的觀看數分別是 49／54／28／20。
-#
-# 逐支對照（來源 state.json 的 at 欄）：
-#   凌晨 00–03 發的 5 支全滅，最高 264
-#   白天 06–15 發的 6 支有 4 支破萬
-# ⚠ 但「時段」跟「時期」在資料上完全重疊，分不開，這不是已證實的因果。
-# 這次調整是為了**把變因拆開**：三格全部移進白天，之後才有得比。
-SLOT_HOURS = {1: 9, 2: 12, 3: 15}
-
-# 發布時刻的硬窗口（台北時間，含頭不含尾）。不在這區間一律不發，等下一次 tick。
-# 這道閘門是給「遲到補發」用的——沒有它，LATE_TOLERANCE_H 觸發時會在半夜直接送出去。
-PUBLISH_WINDOW = (8, 16)
-
-# 超過幾小時就算「錯過」，改成盡快補發（但仍受 PUBLISH_WINDOW 限制）
+SLOT_HOURS = {1: 8, 2: 20, 3: 0}
+# 超過幾小時就算「錯過」，改成盡快補發
 LATE_TOLERANCE_H = 6
 
 # 提前多久開始生片。生成＋審核都要時間，排在發布時刻才開工一定遲到。
@@ -252,17 +236,6 @@ def publish(key, item, st, state):
         log(f"  ⛔ {key.upper()} 沒有賢賢親核標記（approved_by），拒絕發布。"
             f"請賢賢過目後跑：python pipeline.py ok {key} --by-xianxian")
         return
-
-    # 2026-08-23 加：凌晨不准發。
-    # 在此之前，遲到超過 LATE_TOLERANCE_H 就「立即補做」，於是片子被送到 02:39／02:42／00:31。
-    # 這裡只是延後，不是取消——下一次 tick 進到窗口內就會發。
-    # 要手動硬發（例如賢賢自己在旁邊盯著）：pipeline.py ok <key> --by-xianxian --now
-    lo, hi = PUBLISH_WINDOW
-    now_h = datetime.now().hour
-    if not (lo <= now_h < hi) and "--now" not in sys.argv:
-        log(f"  ⏳ 現在 {now_h:02d}:xx 不在發布窗口 {lo:02d}:00–{hi:02d}:00，{key.upper()} 延到下次 tick 再發")
-        return
-
     video = Path(st["video"])
     t = CLIPS / f"{key}_title.txt"
     d = CLIPS / f"{key}_desc.txt"
