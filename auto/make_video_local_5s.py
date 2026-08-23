@@ -80,6 +80,33 @@ if "--seed" in sys.argv:
 # 詳見 LOCAL-AI-STUDIO/PRODUCTION/MODEL_CAPABILITY.md 第六節。
 # ⛔ 2026-08-20：爬網研究建議「降到 4 省一半時間」，依據只有模型卡一句通論，
 #    而本機 13 份實驗 log 是反的（而且成本也講反了，4→8 是多 30% 不是多一倍）。維持 8。
+# CFG：2026-08-23 從 1.0 改成 2.5。
+#
+# 原因：ComfyUI `comfy\samplers.py:610` 在 cfg 接近 1.0 時直接 `uncond_ = None`，
+# **整條負面分支不計算**。所以下面 NEG 那一長串（two huskies / extra limbs /
+# duplicate dog / 幻覺幼犬那幾條…）從產線上線到今天，一次都沒有生效過。
+#
+# 實測（`auto\_nag_ab.py`，同起始圖、同 seed 909090、只換負面詞）：
+#   cfg 1.0，25 幀   兩組意思完全相反的負面詞 → 逐像素完全相同，最大差 0
+#   cfg 1.0，121 幀  同上 → 5 個抽樣幀全部最大差 0
+#   cfg 2.5，25 幀   → 最大差 255、平均 12.15
+#   cfg 2.5，121 幀  → 最大差 255、平均 12.63（差異隨時間累積，第 120 幀平均 21.35）
+#
+# 先試過 NAGuidance 節點（號稱能把分支強制算回來）——**沒有用**：
+# 它確實改變畫面（最大 97）也確實多花時間，但餵 NEG_BAD 和 NEG_GOOD
+# 產生的偏移值一模一樣（1.99／2.83／3.00），代表它做的事跟負面詞內容無關。
+# cfg>1 時它對輸出的影響直接歸零。
+#
+# 「turbo 蒸餾模型 cfg>1 會崩」這個預期**實測沒有發生**：121 幀跑完，
+# 最後一幀兩隻動物都在、四肢正常、臉沒糊，而且比 cfg 1.0 更銳利、
+# 更聽動作指令（cfg 1.0 那版 prompt 寫了轉頭卻沒轉）。
+#
+# 代價是生成時間：121 幀從 373 秒變 545 秒（+46%）。
+# 要臨時退回舊行為：--cfg 1.0
+CFG = 2.5
+if "--cfg" in sys.argv:
+    CFG = float(sys.argv[sys.argv.index("--cfg") + 1])
+
 STEPS = 8
 if "--steps" in sys.argv:
     STEPS = int(sys.argv[sys.argv.index("--steps") + 1])
@@ -287,7 +314,7 @@ g = {
           "inputs": {"model": ["2", 0], "positive": ["4", 0], "negative": ["5", 0],
                      "latent_image": ["7", 0],
                      "seed": SEED if SEED is not None else int(stamp) % 900000, "steps": STEPS,
-                     "cfg": 1.0, "sampler_name": SAMPLER, "scheduler": SCHEDULER, "denoise": 1.0}},
+                     "cfg": CFG, "sampler_name": SAMPLER, "scheduler": SCHEDULER, "denoise": 1.0}},
     "9": {"class_type": "VAEDecodeTiled",
           "inputs": {"samples": ["8", 0], "vae": ["6", 0], "tile_size": 256, "overlap": 64,
                      "temporal_size": 64, "temporal_overlap": 8}},
