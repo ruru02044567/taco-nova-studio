@@ -37,6 +37,11 @@ HERE = Path(__file__).resolve().parent
 COMFY = Path(r"C:\Users\TUF Gaming\ai-video-local\ComfyUI")
 
 SEED = 909090
+# --cfg：對照用。cfg=1.0 走 samplers.py:610 的捷徑（負面分支被跳過），
+# 提高到 >1 就不會走捷徑。用來驗證「沒差異」是真的沒生效，不是實驗設計寫錯。
+CFG = 1.0
+if "--cfg" in sys.argv:
+    CFG = float(sys.argv[sys.argv.index("--cfg") + 1])
 STEPS = 8
 SHIFT = 8.0
 LENGTH = 25          # 約 1 秒（正式產線是 121）
@@ -80,14 +85,14 @@ def build(image_name, neg, use_nag, tag):
         "8": {"class_type": "KSampler",
               "inputs": {"model": ["2", 0], "positive": ["4", 0], "negative": ["5", 0],
                          "latent_image": ["7", 0], "seed": SEED, "steps": STEPS,
-                         "cfg": 1.0, "sampler_name": SAMPLER, "scheduler": SCHEDULER,
+                         "cfg": CFG, "sampler_name": SAMPLER, "scheduler": SCHEDULER,
                          "denoise": 1.0}},
         "9": {"class_type": "VAEDecodeTiled",
               "inputs": {"samples": ["8", 0], "vae": ["6", 0],
                          "tile_size": 256, "overlap": 64, "temporal_size": 12, "temporal_overlap": 4}},
         "10": {"class_type": "CreateVideo", "inputs": {"images": ["9", 0], "fps": float(FPS)}},
         "11": {"class_type": "SaveVideo",
-               "inputs": {"video": ["10", 0], "filename_prefix": f"nagab_{tag}",
+               "inputs": {"video": ["10", 0], "filename_prefix": f"nagab_{tag}_cfg{CFG:g}",
                           "format": "mp4", "codec": "h264"}},
     }
     if use_nag:

@@ -113,6 +113,126 @@ def click_exact(page, text):
     )
 
 
+def _video_id_of(page, key):
+    """在內容清單裡找出標題含 key 的那一列的影片 id。草稿沒有連結，回 None。"""
+    return page.evaluate(
+        """(k) => {
+            for (const r of document.querySelectorAll('ytcp-video-row')) {
+                if (!(r.innerText || '').includes(k)) continue;
+                const a = r.querySelector('a[href*="/video/"]');
+                if (!a) return null;
+                const m = a.getAttribute('href').match(/\\/video\\/([^\\/]+)/);
+                return m ? m[1] : null;
+            }
+            return null;
+        }""",
+        key,
+    )
+
+
+def _rescue_draft(page, chan, key):
+    r"""上傳成功但停在草稿時的補救：點『編輯草稿』把流程走完。
+
+    2026-08-23 D13 實測出來的三個坑，改這支之前先看懂：
+      1. 『繼續上傳』住在未展開的 overflow 選單裡，永遠 not visible，
+         連 click(force=True) 都會被擋。同一列的『編輯草稿』才是可見的（88x36）。
+      2. `ytcp-uploads-dialog` 的 getBoundingClientRect().height 是 0，
+         用 wait_for(state="visible") 會誤判成沒開。真正的內容在
+         `tp-yt-paper-dialog`（960x646），要改看步驟標題有沒有出現。
+      3. 顯示設定那一步在中文介面叫「瀏覽權限」，不叫「顯示設定」。
+    """
+    try:
+        page.goto(f"https://studio.youtube.com/channel/{chan}/videos/short",
+                  wait_until="domcontentloaded", timeout=90000)
+        time.sleep(10)
+        row = None
+        for r in page.locator("ytcp-video-row").all():
+            if key in r.inner_text()[:200]:
+                row = r
+                break
+        if row is None:
+            print("    補救失敗：清單裡找不到這一列")
+            return None
+        row.hover()
+        time.sleep(1.5)
+
+        clicked = False
+        btns = row.locator("ytcp-icon-button, ytcp-button, button")
+        for i in range(btns.count()):
+            b = btns.nth(i)
+            try:
+                if not b.is_visible():
+                    continue
+                lab = (b.get_attribute("aria-label") or b.inner_text() or "")
+            except Exception:
+                continue
+            if "編輯草稿" in lab:
+                b.click(timeout=20000)
+                clicked = True
+                break
+        if not clicked:
+            print("    補救失敗：找不到可見的『編輯草稿』")
+            return None
+
+        # 對話框開了沒 —— 看步驟標題，不要看 dialog 的可見性（見 docstring 第 2 點）
+        for _ in range(20):
+            time.sleep(3)
+            el = page.locator("#step-title-text, .step-title").first
+            if el.count() and el.inner_text().strip():
+                break
+        else:
+            print("    補救失敗：對話框沒開")
+            return None
+
+        for name in WANT:
+            rb = page.locator(f'tp-yt-paper-radio-button[name="{name}"]').first
+            if rb.count():
+                try:
+                    rb.click(timeout=8000)
+                    time.sleep(0.7)
+                except Exception:
+                    pass
+
+        for _ in range(6):
+            el = page.locator("#step-title-text, .step-title").first
+            step = el.inner_text().strip() if el.count() else ""
+            if any(s in step for s in ("瀏覽權限", "顯示設定", "Visibility")):
+                break
+            nxt = page.get_by_role("button", name="下一步").first
+            if not nxt.count():
+                break
+            try:
+                nxt.click(timeout=15000)
+            except Exception:
+                break
+            time.sleep(4.5)
+
+        pub = page.locator('tp-yt-paper-radio-button[name="PUBLIC"]').first
+        if pub.count():
+            pub.click(timeout=15000)
+            time.sleep(3)
+
+        for label in ("發布", "儲存"):
+            bt = page.get_by_role("button", name=label).first
+            if bt.count():
+                try:
+                    bt.click(timeout=15000)
+                    break
+                except Exception:
+                    continue
+        time.sleep(25)
+
+        page.goto(f"https://studio.youtube.com/channel/{chan}/videos/short",
+                  wait_until="domcontentloaded", timeout=90000)
+        time.sleep(10)
+        vid = _video_id_of(page, key)
+        print(f"    補救{'成功' if vid else '失敗'}：{vid or '仍無影片連結'}")
+        return vid
+    except Exception as e:
+        print(f"    補救流程出錯：{type(e).__name__}: {e}")
+        return None
+
+
 TACO_CHANNEL_ID = "UC4Bf0lB05GrYF8Q4l6NnjEA"      # Taco & Nova
 
 with sync_playwright() as pw:
@@ -263,9 +383,21 @@ with sync_playwright() as pw:
                 break
         flat = (row or "清單沒有這一列").replace("\n", " ")[:120]
         print(f"  發布後驗證 {attempt + 1}/6：{flat}")
-        if row and "草稿" not in row:
+        # 2026-08-23 改判準：原本看 row 裡有沒有「草稿」兩字，但那一列的動作按鈕
+        # （繼續上傳／取消上傳／編輯草稿／刪除影片）文字也在 innerText 裡，
+        # 於是已發布的片也會被誤判成草稿。8/22 D16 和 8/23 D13 都栽在這。
+        # 可靠訊號是 <a href="/video/<id>">：草稿沒有這個連結，已發布才有。
+        vid = _video_id_of(up, verify_key)
+        if vid:
             verified = True
+            url = f"https://youtube.com/shorts/{vid}"
             break
+    if not verified:
+        print("  清單裡仍是草稿，改走補救流程（編輯草稿 → 瀏覽權限 → 公開 → 發布）")
+        vid = _rescue_draft(up, chan, verify_key)
+        if vid:
+            verified = True
+            url = f"https://youtube.com/shorts/{vid}"
     if not verified:
         print("FAILED: 按了發布但內容清單仍是草稿（或找不到），不得視為已發布")
         sys.exit(8)
