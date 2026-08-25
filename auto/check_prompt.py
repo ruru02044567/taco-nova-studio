@@ -24,7 +24,7 @@ AUTO = Path(__file__).resolve().parent
 CLIPS = AUTO / "clips"
 
 TS = re.compile(r"\[?(\d{1,2}):(\d{2})\s*[-–]\s*(\d{1,2}):(\d{2})\]?|\[(\d{1,2}):(\d{2})\]")
-SINGLE_PAW = re.compile(r"\b(one|a|single)\s+(front\s+|back\s+|hind\s+|left\s+|right\s+)?paw\b[^.]{0,60}", re.I)
+SINGLE_PAW = re.compile(r"\b(one|a|single)\s+(front\s+|back\s+|hind\s+|left\s+|right\s+)?paw\b", re.I)
 PAW_MOTION = re.compile(r"\b(lift|rais|wav|dig|scratch|swip|tap|push|pull|point|paws?\s+at)\w*", re.I)
 EAR_BAD = re.compile(r"\b(flap|flop|floppy|bend|fold|curl|droop|twist|wiggl)\w*", re.I)
 FACE_DIRT = re.compile(r"\b(mud|dirt|stain|mess|sauce|yolk|paint|cream|flour|smear|goo|slime)\w*", re.I)
@@ -52,8 +52,18 @@ def check(text: str, kind: str, clip_len: int):
         else:
             out.append(("PASS", "時間軸", "OK" if not ends else f"最長 {max(ends)}s ≤ {clip_len}s"))
 
-        # R2 局部單肢動作（會長第三條腿）
-        hits = [m.group(0) for m in SINGLE_PAW.finditer(text) if PAW_MOTION.search(m.group(0))]
+        # R2 局部單肢動作（會長第三條腿）——以「paw」為圓心前後開窗：
+        # 前 60 字（英文動詞在名詞前，"lifts one front paw"）＋後 60 字（"one paw lifts"）。
+        # 舊版把動作詞限定在 SINGLE_PAW 自己的匹配範圍內（paw 之後 60 字），
+        # 於是最常見的英文語序整條規則失效——2026-08-25 實測：
+        # "The dog lifts one front paw high." → PASS（應 FAIL）、"he raises a paw" → PASS（應 FAIL），
+        # 只有把動詞倒裝到後面的 "one front paw lifts high." 才抓得到。
+        # 現役 _expB_video.txt 就是這樣漏掉的。
+        hits = []
+        for m in SINGLE_PAW.finditer(text):
+            win = text[max(0, m.start() - 60): m.end() + 60]
+            if PAW_MOTION.search(win):
+                hits.append(win.strip())
         if hits:
             lvl = "WARN" if "all four paws" in low else "FAIL"
             out.append((lvl, "單肢動作", f"「{hits[0][:50]}…」→ 會長第三條腿。改全身同步動作＋all four paws staying planted flat"))
