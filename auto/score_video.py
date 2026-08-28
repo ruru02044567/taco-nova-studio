@@ -98,11 +98,19 @@ def main(video):
         add("整體音量", f"{mean:.1f} dB", "-25.0～-16.5", -25.0 <= mean <= -16.5)
         add("峰值音量", f"{peak:.1f} dB", ">=-3.0（打近滿刻度）", peak >= -3.0)
 
-        # 8. 零靜音段
+        # 8. 靜音段（2026-08-28 賢賢核准放寬：允許最多一段 ≤1.0 秒的「刻意壓低」——
+        #    新聲音文法（D9/D13/D16）要求 punchline 前壓低再爆最響，
+        #    舊的零容忍規則會把正確做法判死。兩段以上或超過 1 秒仍然 FAIL。）
         sil = sh(["ffmpeg", "-i", v, "-af", "silencedetect=noise=-35dB:d=0.4",
                   "-f", "null", "-"])
-        n_sil = len(re.findall(r"silence_start", sil))
-        add("零靜音段", f"{n_sil} 段", "0 段（聲底必須連續）", n_sil == 0)
+        sil_starts = [float(x) for x in re.findall(r"silence_start: ([\d.]+)", sil)]
+        sil_ends = [float(x) for x in re.findall(r"silence_end: ([\d.]+)", sil)]
+        seg_lens = [e - s for s, e in zip(sil_ends, sil_starts)]
+        if len(sil_starts) > len(sil_ends):      # 靜音一路到片尾＝沒有 end
+            seg_lens.append(dur - sil_starts[-1])
+        ok_sil = (not sil_starts) or (len(sil_starts) == 1 and seg_lens[0] <= 1.0)
+        sil_desc = f"{len(sil_starts)} 段" + (f"（最長 {max(seg_lens):.2f}s）" if seg_lens else "")
+        add("靜音段", sil_desc, "0 段，或僅 1 段 ≤1.0s 刻意壓低", ok_sil)
 
         # 9. 無淡出結尾
         tail = sh(["ffmpeg", "-ss", str(max(0, dur - 0.5)), "-i", v,
