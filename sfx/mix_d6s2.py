@@ -35,7 +35,9 @@ RECIPE = [
     # ── BGM 鋪滿全程（Profile A）；9.0 起壓低給 punchline 讓路，結尾不淡出 ──
     # （v3 片長 12.125s，punch-in 剪點 1.6/2.6/9.5/10.7，尾段 10.7 起放慢 2 倍）
     ("_prerendered/bgm_playful_mood_12.3s.wav", 0.0, -6,
-     "volume=enable='between(t,9.0,12.3)':volume=0.40", False),
+     "volume=enable='between(t,9.0,11.4)':volume=0.40,"
+     "volume=enable='between(t,11.4,12.3)':volume=0.18", False),
+    # ↑ 11.4 起壓更低：這首的結尾 stinger 實測 max 0.0dB（驗片師抓到結尾比鼻息爆點還響）
 
     # ── punch-in 1（1.6 切入臉部特寫、2.6 切回）──
     ("_prerendered/d6s2v2_whoosh_b.wav", 1.52, -15, "", False),
@@ -61,7 +63,7 @@ RECIPE = [
     ("_prerendered/d6s2_tag_a.wav",   5.30, -15, "", False),
     ("_prerendered/d6s2_paw_c.wav",   5.80, -16, "", False),
     ("_prerendered/d6s2_drop_b.wav",  6.40, -17, "", False),
-    ("_prerendered/d6s2_paw_a.wav",   6.90, -18, "", False),
+    # （6.90 的爪步已刪：驗片師抓到 8 秒後站定仍有腳步聲的錨點違規風險）
 
     # ── 7.96 接點：停步。whoosh 反向＋一聲土屑落定 ──
     ("_prerendered/d6s2v2_whoosh_b.wav", 7.90, -15, "", False),
@@ -69,8 +71,8 @@ RECIPE = [
 
     # ── 第三幕 8.2-12.13：僵住回頭。BGM 已壓低，9.6 嗚咽、10.6 Nova 鼻息爆點 ──
     ("_prerendered/d6s2v2_whoosh_a.wav",   9.45, -14, "", False),  # punch-in 到臉（9.5）
-    ("_prerendered/d6s2v2_taco_whine.wav", 9.58, 4, "", False),    # 回頭裝無辜，全片第二響
-    ("_prerendered/d6s2v2_nova_snort.wav", 10.58, 6, "", False),   # Nova 品頭論足，全片最響（峰值打近滿刻度）
+    ("_prerendered/d6s2v2_taco_whine.wav", 9.58, 6, "", False),    # 回頭裝無辜，全片第二響
+    ("_prerendered/d6s2v2_nova_snort.wav", 10.58, 9, "", False),   # Nova 品頭論足，全片最響（峰值打近滿刻度）
     ("_prerendered/d6s2_tag_c.wav",        11.70, -16, "", False), # 慢放區內，吊牌輕響收尾
 ]
 
