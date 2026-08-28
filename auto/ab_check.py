@@ -21,6 +21,8 @@ import statistics
 import subprocess
 import sys
 
+sys.stdout.reconfigure(encoding="utf-8")  # Windows cp950 印 emoji/中文會炸
+
 
 def sh(args):
     r = subprocess.run(args, capture_output=True, text=True, encoding="utf-8",
@@ -43,8 +45,10 @@ def mean_volume(path):
 
 def rms_body(path):
     """0.5 秒一段的 RMS 包絡取中位數＝聲音主體水位（48kHz 下 reset=24000 約 0.5s）。"""
+    # lavfi 的 amovie 會把 C: 的冒號當參數分隔——必須轉義（Windows 絕對路徑地雷）
+    esc = path.replace("\\", "/").replace(":", "\\:")
     r = subprocess.run(["ffprobe", "-v", "error", "-f", "lavfi", "-i",
-                        f"amovie='{path}',astats=metadata=1:reset=24000",
+                        f"amovie='{esc}',astats=metadata=1:reset=24000",
                         "-show_entries", "frame_tags=lavfi.astats.Overall.RMS_level",
                         "-of", "csv=p=0"],
                        capture_output=True, text=True, encoding="utf-8",
