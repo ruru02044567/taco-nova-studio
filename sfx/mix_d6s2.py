@@ -74,7 +74,7 @@ RECIPE = [
     ("_prerendered/d6s2v2_nova_snort.wav", 10.58, 9, "atrim=0:0.9", False),  # Nova 品頭論足，全片最響
     # ↑ 兩個素材原長偏長、尾巴一路拖到片尾撞 limiter（結尾持續 -1.5dB 的真兇）；
     #   atrim 從 0 起算是 NOPTS 閘門允許的，砍尾不砍頭
-    ("_prerendered/d6s2_tag_c.wav",        11.70, -16, "", False), # 慢放區內，吊牌輕響收尾
+    ("_prerendered/d6s2_tag_c.wav",        11.85, -9, "", False), # 最後半秒的吊牌聲收尾（撐住無淡出門檻 ≥-33）
 ]
 
 if __name__ == "__main__":
