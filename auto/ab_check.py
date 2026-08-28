@@ -59,6 +59,21 @@ def rms_body(path):
     return statistics.median(vals) if vals else None
 
 
+def rms_head(path, skip=1, take=6):
+    """開頭水位：0.5s 段的第 2~7 段（跳過起手靜音）取平均。"""
+    r = subprocess.run(["ffprobe", "-v", "error", "-f", "lavfi", "-i",
+                        f"amovie='{path.replace(chr(92), '/').replace(':', chr(92) + ':')}'"
+                        ",astats=metadata=1:reset=24000",
+                        "-show_entries", "frame_tags=lavfi.astats.Overall.RMS_level",
+                        "-of", "csv=p=0"],
+                       capture_output=True, text=True, encoding="utf-8",
+                       errors="replace")
+    vals = [float(x) for x in re.findall(r"^(-?\d+(?:\.\d+)?)\s*$",
+                                         r.stdout or "", re.MULTILINE)]
+    seg = vals[skip:skip + take]
+    return (sum(seg) / len(seg)) if seg else None
+
+
 def main():
     if len(sys.argv) != 3:
         sys.exit(__doc__)
@@ -94,6 +109,13 @@ def main():
     if cb is not None and rb is not None:
         add("聲音主體水位（RMS 中位）", f"{cb:.1f} dB", f"{rb:.1f} dB",
             "差距 <= 5.0 dB", abs(cb - rb) <= 5.0)
+
+    # 開頭 3 秒水位（跳過第 1 段的起手靜音）。中位數會抹平「開頭是空的」——
+    # d6s2 v1 就是三項全過但前 4 秒比參考片小 15 dB，賢賢一耳聽出「跟不上」。
+    ch, rh = rms_head(cand), rms_head(ref)
+    if ch is not None and rh is not None:
+        add("開頭 3 秒水位", f"{ch:.1f} dB", f"{rh:.1f} dB",
+            "差距 <= 6.0 dB", abs(ch - rh) <= 6.0)
 
     w = max(len(r[0]) for r in rows)
     print(f"{'項目'.ljust(w)}  候選            參考            標準              判定")
