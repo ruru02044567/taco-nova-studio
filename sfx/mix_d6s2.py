@@ -70,8 +70,10 @@ RECIPE = [
 
     # ── 第三幕 8.2-12.13：僵住回頭。BGM 已壓低，9.6 嗚咽、10.6 Nova 鼻息爆點 ──
     ("_prerendered/d6s2v2_whoosh_a.wav",   9.45, -14, "", False),  # punch-in 到臉（9.5）
-    ("_prerendered/d6s2v2_taco_whine.wav", 9.58, 6, "", False),    # 回頭裝無辜，全片第二響
-    ("_prerendered/d6s2v2_nova_snort.wav", 10.58, 9, "", False),   # Nova 品頭論足，全片最響（峰值打近滿刻度）
+    ("_prerendered/d6s2v2_taco_whine.wav", 9.58, 6, "atrim=0:1.0", False),   # 回頭裝無辜，全片第二響
+    ("_prerendered/d6s2v2_nova_snort.wav", 10.58, 9, "atrim=0:0.9", False),  # Nova 品頭論足，全片最響
+    # ↑ 兩個素材原長偏長、尾巴一路拖到片尾撞 limiter（結尾持續 -1.5dB 的真兇）；
+    #   atrim 從 0 起算是 NOPTS 閘門允許的，砍尾不砍頭
     ("_prerendered/d6s2_tag_c.wav",        11.70, -16, "", False), # 慢放區內，吊牌輕響收尾
 ]
 
