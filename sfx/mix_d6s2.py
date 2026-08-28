@@ -34,10 +34,9 @@ import mix  # noqa: E402
 RECIPE = [
     # ── BGM 鋪滿全程（Profile A）；9.0 起壓低給 punchline 讓路，結尾不淡出 ──
     # （v3 片長 12.125s，punch-in 剪點 1.6/2.6/9.5/10.7，尾段 10.7 起放慢 2 倍）
-    ("_prerendered/bgm_playful_mood_12.3s.wav", 0.0, -6,
-     "volume=enable='between(t,9.0,11.4)':volume=0.40,"
-     "volume=enable='between(t,11.4,12.3)':volume=0.18", False),
-    # ↑ 11.4 起壓更低：這首的結尾 stinger 實測 max 0.0dB（驗片師抓到結尾比鼻息爆點還響）
+    ("_prerendered/d6s2v3_bgm_ducked.wav", 0.0, -6, "", False),
+    # ↑ 壓低已直接烤進檔案（9.0-11.4 ×0.40、11.4 後 ×0.15）：
+    #   volume enable 濾鏡經混音鏈沒生效（結尾 stinger 實測仍 -1.5dB），預渲染才是正解
 
     # ── punch-in 1（1.6 切入臉部特寫、2.6 切回）──
     ("_prerendered/d6s2v2_whoosh_b.wav", 1.52, -15, "", False),
