@@ -1,25 +1,25 @@
 {
  "_說明": "角色聖經的唯一真相。程式讀這個檔，不要讀 character/角色設定.md（那份是給人看的沿革，已有過期內容）。",
- "version": "2026-08-29",
+ "version": "2026-08-23",
  "_接線": "auto/character_bible.py 讀本檔；gen_scene_flux.py 與 make_video_local_5s.py 生成前會強制檢查，缺招牌特徵就擋下（--skip-bible 可略過，但會大聲警告）。",
  "characters": {
   "taco": {
    "name": "Taco",
    "role": "主角",
-   "canonical_prompt": "a tiny pure snow-white smooth-coat chihuahua with two dark fur patches above his eyes, natural and slightly uneven like real coat markings, oversized pointy ears, wearing a thin blue collar with a small round silver tag",
+   "canonical_prompt": "a tiny pure snow-white smooth-coat chihuahua with exactly two identical small solid black round dots on his forehead, one directly above each eye, perfectly symmetrical and exactly the same size as each other — they are round dots, not eyebrow lines, not curved strokes, not arched brows, oversized pointy ears, wearing a thin blue collar with a small round silver tag",
    "使用次數": 40,
    "must_appear": [
     "snow-white",
     "chihuahua",
+    "black round dots",
     "blue collar"
    ],
-   "signature": "主識別＝雪白短毛＋藍項圈銀吊牌＋大立耳。眼睛上方兩塊深色毛斑是次要特徵，自然不對稱即可，不數顆數、不要求等大。",
+   "signature": "兩顆圓形黑點眉：對稱、等大、位於左右眼正上方。這是頻道辨識物，每支都要看得到。",
    "ref_images": [
     "character/taco-ref-v5-max.jpg",
     "character/taco-ref-v4a-meme.jpg"
    ],
-   "已知問題": "2026-08-29 賢賢裁示放寬：那本來就是毛色斑，不是畫上去的眉毛。舊版要求「正好兩顆、對稱、等大」與 8/19「要像天生毛斑」的原始裁示互相矛盾，導致 FLUX 生不出來、要手動補繪、影片中被洗掉。新規則：毛斑有就好，2～3 塊、略不對稱都放行；驗片不再數點。_fix_d10_dots_v3.py 由強制降為可選；_paint_dots_video.py 已證實無效不要再用。Nova 的雙狗增生問題不變，仍需量化約束。",
-   "_變更紀錄": "2026-08-29 放寬黑點眉；原版備份在 角色聖經.json.bak-20260829-改黑點眉前"
+   "已知問題": "FLUX 生不出黑點眉，場景圖一律要用 auto/_fix_d10_dots_v3.py 手動補繪；Wan 生影片時會逐漸洗掉，約撐 8 秒。逐幀補繪(_paint_dots_video.py)兩次實測都失敗（點會閃爍、左右不對稱），不要再試。"
   },
   "nova": {
    "name": "Nova",
