@@ -1,0 +1,404 @@
+<title>AI 四軌學習計畫</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@500;700&family=Noto+Sans+TC:wght@400;500;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap">
+<style>
+  :root{
+    --paper:#EFEDE6;
+    --card:#F8F7F2;
+    --ink:#23241F;
+    --ink-2:#54574D;
+    --ink-3:#86887C;
+    --rule:#D4D2C7;
+    --rule-soft:#E3E1D8;
+    --accent:#3B4E6B;
+    --accent-soft:#DFE4EC;
+    --shadow:0 1px 0 rgba(35,36,31,.05);
+  }
+  @media (prefers-color-scheme: dark){
+    :root:not([data-theme="light"]){
+      --paper:#171815; --card:#20221E; --ink:#E9E8E0; --ink-2:#ABADA1;
+      --ink-3:#7D7F73; --rule:#34362F; --rule-soft:#292B25;
+      --accent:#94AFD0; --accent-soft:#1E2731; --shadow:none;
+    }
+  }
+  :root[data-theme="dark"]{
+    --paper:#171815; --card:#20221E; --ink:#E9E8E0; --ink-2:#ABADA1;
+    --ink-3:#7D7F73; --rule:#34362F; --rule-soft:#292B25;
+    --accent:#94AFD0; --accent-soft:#1E2731; --shadow:none;
+  }
+
+  *{box-sizing:border-box}
+  body{
+    background:var(--paper);color:var(--ink);
+    font-family:"Noto Sans TC",system-ui,-apple-system,"Segoe UI",sans-serif;
+    font-size:16px;line-height:1.75;-webkit-font-smoothing:antialiased;
+  }
+  .wrap{max-width:920px;margin:0 auto;padding:56px 22px 96px}
+
+  .eyebrow{
+    font-family:"IBM Plex Mono",ui-monospace,monospace;
+    font-size:11.5px;letter-spacing:.16em;text-transform:uppercase;
+    color:var(--ink-3);margin:0 0 18px;
+  }
+  h1{
+    font-family:"Noto Serif TC",Georgia,serif;font-weight:700;
+    font-size:clamp(30px,6vw,44px);line-height:1.25;margin:0 0 14px;
+    text-wrap:balance;letter-spacing:-.01em;
+  }
+  .standfirst{font-size:17px;color:var(--ink-2);margin:0;max-width:60ch}
+
+  /* tables */
+  .tw{overflow-x:auto;margin:0 0 8px;border:1px solid var(--rule);border-radius:3px}
+  table{border-collapse:collapse;width:100%;min-width:520px;background:var(--card);font-size:14.5px}
+  th,td{text-align:left;padding:10px 14px;border-bottom:1px solid var(--rule-soft);vertical-align:top}
+  tr:last-child td{border-bottom:none}
+  th{
+    font-family:"IBM Plex Mono",ui-monospace,monospace;font-size:11px;font-weight:600;
+    letter-spacing:.09em;text-transform:uppercase;color:var(--ink-3);
+    border-bottom:1px solid var(--rule);white-space:nowrap;
+  }
+  td.n{
+    font-family:"IBM Plex Mono",ui-monospace,monospace;font-variant-numeric:tabular-nums;
+    color:var(--accent);font-weight:600;white-space:nowrap;font-size:13px;
+  }
+  td b{font-weight:700}
+  .cap{font-size:13px;color:var(--ink-3);margin:0 0 34px;line-height:1.6}
+
+  /* sections */
+  h2{
+    font-family:"Noto Serif TC",Georgia,serif;font-size:25px;font-weight:700;
+    margin:0 0 8px;letter-spacing:-.008em;text-wrap:balance;
+  }
+  .sec{margin-top:56px;padding-top:34px;border-top:2px solid var(--rule)}
+  .badge{
+    display:inline-block;font-family:"IBM Plex Mono",ui-monospace,monospace;
+    font-size:11px;letter-spacing:.09em;padding:3px 9px;border-radius:2px;
+    background:var(--accent-soft);color:var(--accent);font-weight:600;margin-bottom:12px;
+  }
+  .lede{font-size:16px;color:var(--ink-2);margin:0 0 6px;max-width:62ch}
+  .pre{
+    font-size:14px;color:var(--ink-2);margin:12px 0 22px;max-width:62ch;
+    padding:10px 14px;background:var(--accent-soft);border-left:2px solid var(--accent);border-radius:3px;
+  }
+  h3{
+    font-family:"IBM Plex Mono",ui-monospace,monospace;font-size:11.5px;font-weight:600;
+    letter-spacing:.12em;text-transform:uppercase;color:var(--ink-3);
+    margin:30px 0 10px;
+  }
+
+  /* resources */
+  .res{display:grid;gap:10px}
+  .r{
+    background:var(--card);border:1px solid var(--rule-soft);border-radius:3px;
+    padding:14px 16px;box-shadow:var(--shadow);
+  }
+  .rt{font-size:15.5px;font-weight:700;margin:0 0 2px;line-height:1.45}
+  .rt a{color:var(--accent);text-decoration:none;border-bottom:1px solid var(--rule)}
+  .rt a:hover,.rt a:focus{border-bottom-color:var(--accent)}
+  .rt a:focus-visible{outline:2px solid var(--accent);outline-offset:2px;border-radius:2px}
+  .rk{
+    font-family:"IBM Plex Mono",ui-monospace,monospace;font-size:10.5px;
+    letter-spacing:.08em;text-transform:uppercase;color:var(--ink-3);margin:0 0 6px;
+  }
+  .r p{margin:0 0 5px;font-size:14px;line-height:1.65;color:var(--ink-2)}
+  .r p:last-child{margin-bottom:0}
+  .r p b{color:var(--ink);font-weight:700}
+
+  .close{
+    margin-top:56px;padding:26px;border:1px solid var(--rule);border-radius:3px;background:var(--card);
+  }
+  .close h2{font-size:20px;margin-bottom:12px}
+  .close p{margin:0 0 12px;color:var(--ink-2);font-size:15.5px;max-width:62ch}
+  .close p:last-child{margin-bottom:0}
+  .close b{color:var(--ink);font-weight:700}
+  code{
+    font-family:"IBM Plex Mono",ui-monospace,monospace;font-size:12.5px;
+    background:var(--rule-soft);padding:1px 5px;border-radius:2px;color:var(--ink);
+  }
+</style>
+
+<div class="wrap">
+
+  <p class="eyebrow">六步提示詞鏈 ／ 四條學習軌道</p>
+  <h1>AI 四軌學習計畫</h1>
+  <p class="standfirst">「學 AI」不是一個題目，是四個彼此獨立的題目。這裡把它拆成四軌，每一軌給你五個難度層級、一份 20 小時課表、五個查證過的資源。</p>
+
+  <h3>四軌總覽</h3>
+  <div class="tw"><table>
+    <thead><tr><th>順序</th><th>軌道</th><th>時數</th><th>它回答的問題</th><th>前置</th></tr></thead>
+    <tbody>
+      <tr><td class="n">1</td><td><b>C｜產業版圖</b></td><td class="n">8–10 h</td><td>誰在做什麼、哪個工具解決哪件事</td><td>無</td></tr>
+      <tr><td class="n">2</td><td><b>A｜用 AI 做事</b></td><td class="n">20 h</td><td>怎麼把 AI 用得比別人好</td><td>無</td></tr>
+      <tr><td class="n">3</td><td><b>B｜AI 怎麼運作</b></td><td class="n">12–15 h</td><td>它為什麼會亂講、為什麼記不住</td><td>建議先跑完 A</td></tr>
+      <tr><td class="n">4</td><td><b>D｜自己做 AI 應用</b></td><td class="n">30–40 h</td><td>怎麼把 AI 接進自己的程式</td><td><b>要會 Python</b></td></tr>
+    </tbody>
+  </table></div>
+  <p class="cap">為什麼 B 排在 A 後面：先撞到「AI 亂講、記不住」這些怪事，再學原理，才記得住。順序反過來會變成背名詞。<br>
+  C 最便宜也最快過期 —— 讀完先建立地圖，之後每月花 1–2 小時維護就好。</p>
+
+  <h3>每一軌怎麼跑（那六張提示詞的順序）</h3>
+  <div class="tw"><table>
+    <thead><tr><th>階段</th><th>步驟</th><th>提示詞</th><th>做什麼</th></tr></thead>
+    <tbody>
+      <tr><td rowspan="3"><b>規劃</b><br><span style="font-size:12.5px;color:var(--ink-3)">每軌做一次</span></td><td class="n">1</td><td>分級路徑</td><td>先看地圖 —— Level 1 到 5、每級通關標準</td></tr>
+      <tr><td class="n">2</td><td>學習計畫</td><td>排時程 —— 20 小時拆成 10 次 × 2 小時</td></tr>
+      <tr><td class="n">3</td><td>資源清單</td><td>備料 —— 5 個資源，各能教什麼</td></tr>
+      <tr><td rowspan="3"><b>執行</b><br><span style="font-size:12.5px;color:var(--ink-3)">每次上課都跑</span></td><td class="n">4</td><td>費曼法</td><td>學懂 —— 聽解釋、自己複述、被抓錯、重來</td></tr>
+      <tr><td class="n">5</td><td>一頁筆記</td><td>固定 —— 濃縮成一頁，5 分鐘能複習</td></tr>
+      <tr><td class="n">6</td><td>測驗檢查</td><td>驗收 —— 10 題遞增，評分＋指錯</td></tr>
+    </tbody>
+  </table></div>
+  <p class="cap"><b>第 6 步沒過就回第 4 步</b>重跑那個概念。這是迴圈，不是直線。<br>
+  下面每一軌的「五級路徑」和「課表」，就是第 1、2 步的成品 —— 已經幫你跑完了。第 4、5、6 步要你自己跟 AI 對話時用。</p>
+
+  <!-- ============ C ============ -->
+  <section class="sec">
+    <span class="badge">軌道 C · 8–10 小時</span>
+    <h2>AI 產業版圖</h2>
+    <p class="lede">誰在做什麼、哪些工具解決哪些問題、錢往哪裡流。<b>這是資訊，不是技能</b> —— 看懂就會，但也最快過期。</p>
+    <div class="pre"><b>先讀這個的理由：</b>它最便宜。花 10 小時建立地圖之後，你才知道 A／B／D 這三軌自己到底要不要學、要學多深。</div>
+
+    <h3>五級路徑</h3>
+    <div class="tw"><table>
+      <thead><tr><th>級</th><th>你會什麼</th><th>通關標準</th></tr></thead>
+      <tbody>
+        <tr><td class="n">L1</td><td>知道有哪幾家、各自主力是什麼</td><td>能講出 Anthropic／OpenAI／Google／Meta 各自的模型名稱與定位</td></tr>
+        <tr><td class="n">L2</td><td>看得懂生態圖的分層</td><td>拿一張沒看過的 AI 工具圖，能說出每一層在幹嘛</td></tr>
+        <tr><td class="n">L3</td><td>分得出「新聞」與「行銷」</td><td>看到一則發布，能判斷它是真突破還是換皮</td></tr>
+        <tr><td class="n">L4</td><td>知道商業模式與成本結構</td><td>能解釋為什麼有些模型免費、有些一個月幾千塊</td></tr>
+        <tr><td class="n">L5</td><td>能持續追蹤且不被淹沒</td><td>建立自己的資訊源清單，每週 30 分鐘掌握重點</td></tr>
+      </tbody>
+    </table></div>
+
+    <h3>10 次課表 · 每次 2 小時（含結尾 15 分鐘複習）</h3>
+    <div class="tw"><table>
+      <thead><tr><th>次</th><th>主題</th><th>產出</th></tr></thead>
+      <tbody>
+        <tr><td class="n">01</td><td>四大玩家與各自的模型家族</td><td>一張自己畫的廠商對照表</td></tr>
+        <tr><td class="n">02</td><td>閉源 vs 開源：差在哪、誰該用哪個</td><td>一頁筆記</td></tr>
+        <tr><td class="n">03</td><td>生態圖的九層：從模型到上線</td><td>能默寫出九層</td></tr>
+        <tr><td class="n">04</td><td>AI 工具的商業模式與定價邏輯</td><td>算一次「我用一個月要多少錢」</td></tr>
+        <tr><td class="n">05</td><td>Agent 是什麼、為什麼 2026 年大家都在講</td><td>一頁筆記</td></tr>
+        <tr><td class="n">06</td><td>生圖／生影片這一條支線</td><td>列出目前主流工具與各自強項</td></tr>
+        <tr><td class="n">07</td><td>法規與版權：EU AI Act、訓練資料爭議</td><td>一頁筆記</td></tr>
+        <tr><td class="n">08</td><td>怎麼分辨真突破與行銷稿</td><td>拿三則近期新聞實際判斷一次</td></tr>
+        <tr><td class="n">09</td><td>建立自己的追蹤清單</td><td>訂閱 3–5 個資訊源</td></tr>
+        <tr><td class="n">10</td><td>總複習＋10 題測驗</td><td>通關評分</td></tr>
+      </tbody>
+    </table></div>
+
+    <h3>五個資源</h3>
+    <div class="res">
+      <div class="r"><p class="rk">年度報告 · 英文</p><p class="rt"><a href="https://press.airstreet.com/">Air Street Press — State of AI</a></p>
+        <p><b>能教你：</b>投資人視角的產業全景，附大量圖表與資金流向。</p>
+        <p><b>為什麼值得：</b>它是少數把研究、產業、政治、安全一起放進同一份報告的來源，而且有資料撐著，不是意見。</p></div>
+
+      <div class="r"><p class="rk">圖庫 · GitHub</p><p class="rt"><a href="https://github.com/joylarkin/Awesome-AI-Market-Maps">Awesome AI Market Maps</a></p>
+        <p><b>能教你：</b>500＋ 張 2025–2026 的 AI 市場地圖，按類別分好。</p>
+        <p><b>為什麼值得：</b>你手上那張 IG 生態圖只是其中一張。看過十張不同人畫的分類，你就會發現分類是觀點而不是事實 —— 這是 L3 的關鍵。</p></div>
+
+      <div class="r"><p class="rk">部落格 · 每日更新</p><p class="rt"><a href="https://simonwillison.net/">Simon Willison's Weblog</a></p>
+        <p><b>能教你：</b>每一個新模型、新工具發布後的實測與冷靜評論。</p>
+        <p><b>為什麼值得：</b>他自己動手測，不轉發新聞稿。想練「分辨真突破與行銷」，看他怎麼寫是最快的方法。</p></div>
+
+      <div class="r"><p class="rk">新聞聚合 · 每週</p><p class="rt"><a href="https://aiweekly.co/">AI Weekly</a></p>
+        <p><b>能教你：</b>排序過的每週重點，不用自己刷。</p>
+        <p><b>為什麼值得：</b>L5 的目標是「每週 30 分鐘掌握重點」，這類聚合就是為了那 30 分鐘存在的。</p></div>
+
+      <div class="r"><p class="rk">一手來源 · 官方</p><p class="rt">各家官方部落格</p>
+        <p><b>能教你：</b><a href="https://www.anthropic.com/news">Anthropic</a>、<a href="https://openai.com/news/">OpenAI</a>、<a href="https://deepmind.google/discover/blog/">Google DeepMind</a> 的第一手發布。</p>
+        <p><b>為什麼值得：</b>所有二手報導都是從這裡抄的，而且常常抄錯。養成回頭看原文的習慣，比多訂十份電子報有用。</p></div>
+    </div>
+  </section>
+
+  <!-- ============ A ============ -->
+  <section class="sec">
+    <span class="badge">軌道 A · 20 小時打底</span>
+    <h2>用 AI 做事</h2>
+    <p class="lede">把 AI 當工具用得好 —— 提示詞、Claude Code、生圖生影片工作流。<b>這是技能不是知識</b>，要靠手感。</p>
+    <div class="pre"><b>誠實的期待值：</b>20 小時能讓你「上手」，但真正熟練需要 60–100 小時的實際使用累積。這條軌沒有捷徑，也沒有終點 —— 課表只是把前 20 小時排整齊。</div>
+
+    <h3>五級路徑</h3>
+    <div class="tw"><table>
+      <thead><tr><th>級</th><th>你會什麼</th><th>通關標準</th></tr></thead>
+      <tbody>
+        <tr><td class="n">L1</td><td>問得到堪用的答案</td><td>知道給脈絡、給範例、給格式要求，比只丟一句話好</td></tr>
+        <tr><td class="n">L2</td><td>會拆任務、會要求它照步驟走</td><td>能把一個複雜請求拆成 AI 做得動的幾步</td></tr>
+        <tr><td class="n">L3</td><td>會迭代與除錯</td><td>答案不好時知道要改哪裡，而不是重問一次</td></tr>
+        <tr><td class="n">L4</td><td>會讓 AI 碰你的檔案與工具</td><td>能用 Claude Code 之類的工具讓 AI 直接動專案</td></tr>
+        <tr><td class="n">L5</td><td>會把重複工作變成流程</td><td>把常做的事寫成可重用的提示詞／設定檔，不用每次重講</td></tr>
+      </tbody>
+    </table></div>
+
+    <h3>10 次課表 · 每次 2 小時（含結尾 15 分鐘複習）</h3>
+    <div class="tw"><table>
+      <thead><tr><th>次</th><th>主題</th><th>產出</th></tr></thead>
+      <tbody>
+        <tr><td class="n">01</td><td>一個好提示詞的四個零件：脈絡／任務／格式／範例</td><td>把自己常用的三句話改寫成完整提示詞</td></tr>
+        <tr><td class="n">02</td><td>給範例（few-shot）與要它一步步想</td><td>同一題用三種寫法比較結果</td></tr>
+        <tr><td class="n">03</td><td>指定角色、語氣、輸出格式</td><td>做出一個自己的常用模板</td></tr>
+        <tr><td class="n">04</td><td>迭代與除錯：答案爛的時候改什麼</td><td>一份「常見失敗 → 怎麼修」清單</td></tr>
+        <tr><td class="n">05</td><td>長文件處理：怎麼餵、怎麼問</td><td>拿一份真的長文件實作一次</td></tr>
+        <tr><td class="n">06</td><td>Claude Code 上手：裝好、跑出第一個結果</td><td>在自己的專案裡完成一次修改</td></tr>
+        <tr><td class="n">07</td><td>用 <code>CLAUDE.md</code> 讓它記得你的規矩</td><td>寫出自己專案的 CLAUDE.md</td></tr>
+        <tr><td class="n">08</td><td>探索→計畫→執行→提交的工作節奏</td><td>照這個節奏完成一個小任務</td></tr>
+        <tr><td class="n">09</td><td>把重複工作固化成可重用的提示詞</td><td>建立自己的提示詞庫（3–5 個）</td></tr>
+        <tr><td class="n">10</td><td>總複習＋10 題測驗</td><td>通關評分</td></tr>
+      </tbody>
+    </table></div>
+
+    <h3>五個資源</h3>
+    <div class="res">
+      <div class="r"><p class="rk">官方課程 · 免費 · 有證書</p><p class="rt"><a href="https://academy.claude.com/">Anthropic Academy</a></p>
+        <p><b>能教你：</b>從零基礎的 AI Fluency，到 Claude 101、Claude Code 101、MCP，全部免費，完成有官方證書。</p>
+        <p><b>為什麼值得：</b>官方出的課，內容跟產品同步更新，不會教你已經被改掉的作法。<b>這條軌的主幹就走這個。</b></p></div>
+
+      <div class="r"><p class="rk">官方文件 · 一手</p><p class="rt"><a href="https://code.claude.com/docs/">Claude Code 官方文件</a></p>
+        <p><b>能教你：</b>所有指令、設定、hooks、MCP、遙控的正確用法。</p>
+        <p><b>為什麼值得：</b>網路上關於 Claude Code 的教學過期得很快。遇到「這個指令怎麼沒反應」，答案幾乎都在這裡。</p></div>
+
+      <div class="r"><p class="rk">影片 · 2 小時 11 分 · 英文</p><p class="rt"><a href="https://www.youtube.com/watch?v=EWvNQjAaOHw">Andrej Karpathy — How I Use LLMs</a></p>
+        <p><b>能教你：</b>一個頂尖從業者實際怎麼在日常裡用 LLM，包含他自己的例子。</p>
+        <p><b>為什麼值得：</b>大部分教學教「功能」，這支教「習慣」。看完你會知道哪些事根本不該問 AI。</p></div>
+
+      <div class="r"><p class="rk">線上課 · Coursera · 非技術取向</p><p class="rt"><a href="https://www.coursera.org/learn/prompt-engineering">Vanderbilt — Prompt Engineering for ChatGPT</a></p>
+        <p><b>能教你：</b>系統化的提示詞模式（persona、template、chain-of-thought 等），不需要寫程式。</p>
+        <p><b>為什麼值得：</b>它把你憑感覺在做的事命名、分類 —— 有名字之後才叫得動，也才教得會別人。</p></div>
+
+      <div class="r"><p class="rk">YouTube · 短影片</p><p class="rt"><a href="https://www.youtube.com/@JeffSu">Jeff Su</a></p>
+        <p><b>能教你：</b>8 分鐘一支的實用技巧，辦公室與生產力場景為主。</p>
+        <p><b>為什麼值得：</b>節奏快、可以當零碎時間的補充。適合在正課之間維持手感，不適合當主線。</p></div>
+    </div>
+  </section>
+
+  <!-- ============ B ============ -->
+  <section class="sec">
+    <span class="badge">軌道 B · 12–15 小時</span>
+    <h2>AI 怎麼運作</h2>
+    <p class="lede">模型是什麼、token 是什麼、為什麼會幻覺、為什麼記不住上一次對話。<b>概念為主，不用動手。</b></p>
+    <div class="pre"><b>深度的界線：</b>這一軌的目標是「能解釋為什麼」，不是「能自己訓練模型」。後者要數學底子、是幾百小時的另一個量級。12–15 小時足以到達非工程師需要的深度。</div>
+
+    <h3>五級路徑</h3>
+    <div class="tw"><table>
+      <thead><tr><th>級</th><th>你會什麼</th><th>通關標準</th></tr></thead>
+      <tbody>
+        <tr><td class="n">L1</td><td>知道它在做「預測下一個字」</td><td>能用一句話解釋 LLM 在幹嘛，不用比喻成人腦</td></tr>
+        <tr><td class="n">L2</td><td>懂 token、context window、參數量</td><td>能解釋「為什麼貼太長會被截斷」</td></tr>
+        <tr><td class="n">L3</td><td>懂訓練與推論的差別</td><td>能解釋「為什麼它不知道昨天的新聞」「為什麼講過的它會忘」</td></tr>
+        <tr><td class="n">L4</td><td>懂幻覺的成因與對策</td><td>能說出三種降低幻覺的實際作法，並解釋各自為什麼有效</td></tr>
+        <tr><td class="n">L5</td><td>大致懂 transformer 與 attention</td><td>能對非技術的人講清楚 attention 在做什麼</td></tr>
+      </tbody>
+    </table></div>
+
+    <h3>10 次課表 · 每次 2 小時（含結尾 15 分鐘複習）</h3>
+    <div class="tw"><table>
+      <thead><tr><th>次</th><th>主題</th><th>產出</th></tr></thead>
+      <tbody>
+        <tr><td class="n">01</td><td>最小可用心智模型：預測下一個字</td><td>用自己的話寫三句解釋</td></tr>
+        <tr><td class="n">02</td><td>token 是什麼、為什麼中文比較吃 token</td><td>實際數一段自己的文字有幾個 token</td></tr>
+        <tr><td class="n">03</td><td>context window：它的「短期記憶」</td><td>一頁筆記</td></tr>
+        <tr><td class="n">04</td><td>訓練 vs 推論：知識為什麼有截止日</td><td>能解釋「為什麼它不知道今天的事」</td></tr>
+        <tr><td class="n">05</td><td>預訓練→微調→RLHF 三階段</td><td>畫出三階段流程圖</td></tr>
+        <tr><td class="n">06</td><td>幻覺：為什麼會發生、怎麼壓低</td><td>三種對策清單＋各自原理</td></tr>
+        <tr><td class="n">07</td><td>參數、溫度、取樣：那些旋鈕在調什麼</td><td>一頁筆記</td></tr>
+        <tr><td class="n">08</td><td>Transformer 的骨架</td><td>能默畫出大致結構</td></tr>
+        <tr><td class="n">09</td><td>Attention 到底在做什麼</td><td>用自己的話講給非技術的人聽</td></tr>
+        <tr><td class="n">10</td><td>總複習＋10 題測驗</td><td>通關評分</td></tr>
+      </tbody>
+    </table></div>
+
+    <h3>五個資源</h3>
+    <div class="res">
+      <div class="r"><p class="rk">影片 · 3 小時 31 分 · 英文（有字幕）</p><p class="rt"><a href="https://www.youtube.com/watch?v=7xTGNNLPyMI">Andrej Karpathy — Deep Dive into LLMs like ChatGPT</a></p>
+        <p><b>能教你：</b>從預訓練到 RLHF 的完整訓練流程，外加「怎麼看待模型的心理」。明確為一般大眾設計。</p>
+        <p><b>為什麼值得：</b><b>這一軌的主幹。</b>作者是 OpenAI 與 Tesla 的核心研究者，他講的是第一手理解，不是二手轉述。一支抵十篇文章。</p></div>
+
+      <div class="r"><p class="rk">影片系列 · 視覺化 · 英文</p><p class="rt"><a href="https://www.3blue1brown.com/topics/neural-networks">3Blue1Brown — Neural Networks 系列</a></p>
+        <p><b>能教你：</b>第 5 章 <a href="https://www.3blue1brown.com/lessons/gpt">But what is a GPT?</a> 與第 6 章 <a href="https://www.3blue1brown.com/lessons/attention">Attention in transformers</a>，把 transformer 完全畫出來。</p>
+        <p><b>為什麼值得：</b>目前公認最好懂的 transformer 解釋，沒有之一。L5 那一級就靠這兩支。</p></div>
+
+      <div class="r"><p class="rk">大學課程 · 繁體中文 · 免費</p><p class="rt"><a href="https://www.youtube.com/watch?v=8iFvM7WUUs8">台大 李宏毅 — 生成式人工智慧導論</a></p>
+        <p><b>能教你：</b>大學等級的完整課程，全繁體中文，涵蓋 LLM 解剖、訓練、應用。</p>
+        <p><b>為什麼值得：</b><b>唯一一個中文的深度來源。</b>英文影片聽不下去的時候，這是同等深度的替代品，而且術語用的是台灣的講法。</p></div>
+
+      <div class="r"><p class="rk">短課 · 45 分鐘 · 免費</p><p class="rt"><a href="https://www.cloudskillsboost.google/course_templates/536">Google — Introduction to Generative AI</a></p>
+        <p><b>能教你：</b>生成式 AI 與 LLM 的最基本概念，45 分鐘結束。</p>
+        <p><b>為什麼值得：</b>第 1 次上課的暖身用。它不深，但它把名詞先鋪好，後面看 Karpathy 就不會卡在術語。</p></div>
+
+      <div class="r"><p class="rk">官方文件 · 一手</p><p class="rt"><a href="https://docs.claude.com/en/docs/build-with-claude/prompt-engineering/overview">Anthropic — Prompt Engineering 文件</a></p>
+        <p><b>能教你：</b>模型實際上怎麼反應各種寫法，以及背後的原因。</p>
+        <p><b>為什麼值得：</b>這份文件是「原理」與「實用」的交界 —— 它解釋的每一條技巧都對應到模型的某個特性，讀它能把 A 軌和 B 軌接起來。</p></div>
+    </div>
+  </section>
+
+  <!-- ============ D ============ -->
+  <section class="sec">
+    <span class="badge">軌道 D · 30–40 小時（需 Python）</span>
+    <h2>自己做 AI 應用</h2>
+    <p class="lede">串 API、寫 agent、把 AI 接進自己的程式。<b>這一軌是真的在寫程式。</b></p>
+    <div class="pre"><b>前置條件會讓總時數差 60 小時：</b>完全沒碰過 Python → 先補 40–60 小時，這一軌總共要 70–100 小時。看得懂、改得動別人的程式 → 30–40 小時。自己寫得出來 → 可能 20 小時就夠。<br>
+    <b>另外：這一軌最可能你根本不需要。</b>先跑完 C 和 A，再回頭判斷。</div>
+
+    <h3>五級路徑</h3>
+    <div class="tw"><table>
+      <thead><tr><th>級</th><th>你會什麼</th><th>通關標準</th></tr></thead>
+      <tbody>
+        <tr><td class="n">L1</td><td>能發出第一個 API 請求</td><td>用 SDK 送一句話進去、拿到回覆印出來</td></tr>
+        <tr><td class="n">L2</td><td>懂訊息結構與參數</td><td>能控制系統提示、串流、輸出長度</td></tr>
+        <tr><td class="n">L3</td><td>會用 tool use（函式呼叫）</td><td>讓模型呼叫你自己寫的函式並用回結果</td></tr>
+        <tr><td class="n">L4</td><td>會寫一個會自己跑迴圈的 agent</td><td>做出一個多步驟、會重試的小 agent</td></tr>
+        <tr><td class="n">L5</td><td>會處理成本、錯誤、快取</td><td>能算出每次呼叫花多少、並用快取把它壓下來</td></tr>
+      </tbody>
+    </table></div>
+
+    <h3>10 次課表 · 每次 2 小時（含結尾 15 分鐘複習）</h3>
+    <div class="tw"><table>
+      <thead><tr><th>次</th><th>主題</th><th>產出</th></tr></thead>
+      <tbody>
+        <tr><td class="n">01</td><td>環境設定、API key、第一個請求</td><td>成功印出模型回覆</td></tr>
+        <tr><td class="n">02</td><td>messages 結構、system prompt、參數</td><td>做一個可以調語氣的小腳本</td></tr>
+        <tr><td class="n">03</td><td>串流輸出與錯誤處理</td><td>邊生成邊顯示，錯誤不會炸掉</td></tr>
+        <tr><td class="n">04</td><td>結構化輸出：讓它回傳你能用的 JSON</td><td>一個穩定回傳固定格式的函式</td></tr>
+        <tr><td class="n">05</td><td>Tool use 概念與第一個工具</td><td>模型成功呼叫你寫的函式</td></tr>
+        <tr><td class="n">06</td><td>多工具與平行呼叫</td><td>兩個以上工具協作完成一件事</td></tr>
+        <tr><td class="n">07</td><td>Agent 迴圈：什麼時候該停</td><td>一個會自己跑幾輪的小 agent</td></tr>
+        <tr><td class="n">08</td><td>MCP：把外部工具接進來</td><td>接上一個現成的 MCP server</td></tr>
+        <tr><td class="n">09</td><td>成本、快取、token 計算</td><td>算出自己 agent 的每次成本並優化一次</td></tr>
+        <tr><td class="n">10</td><td>總複習＋10 題測驗</td><td>通關評分</td></tr>
+      </tbody>
+    </table></div>
+
+    <h3>五個資源</h3>
+    <div class="res">
+      <div class="r"><p class="rk">官方課程 · 免費 · 有證書</p><p class="rt"><a href="https://academy.claude.com/">Anthropic Academy — Claude Platform 101 與 MCP 課程</a></p>
+        <p><b>能教你：</b>API 從入門到上線，以及怎麼自己寫一個 MCP server。</p>
+        <p><b>為什麼值得：</b>跟 A 軌同一個平台，但走開發者路線。官方教材，範例可以直接跑。</p></div>
+
+      <div class="r"><p class="rk">官方文件 · 一手</p><p class="rt"><a href="https://docs.claude.com/">Claude API 官方文件</a></p>
+        <p><b>能教你：</b>所有參數、tool use、串流、快取、結構化輸出的正確寫法。</p>
+        <p><b>為什麼值得：</b>API 改得比教學文章快很多。<b>寫程式的時候看這個，不要看部落格。</b></p></div>
+
+      <div class="r"><p class="rk">程式碼範例 · GitHub</p><p class="rt"><a href="https://github.com/anthropics/anthropic-cookbook">Anthropic Cookbook</a></p>
+        <p><b>能教你：</b>可以直接跑的範例：tool use、RAG、視覺、agent 模式。</p>
+        <p><b>為什麼值得：</b>照著文件寫常常卡在「兜不起來」。Cookbook 給你完整可跑的東西，改比寫快。</p></div>
+
+      <div class="r"><p class="rk">短課 · DeepLearning.AI</p><p class="rt"><a href="https://www.deeplearning.ai/courses/">DeepLearning.AI — Agentic AI 系列短課</a></p>
+        <p><b>能教你：</b>Andrew Ng 的 <a href="https://www.deeplearning.ai/courses/agentic-ai/">Agentic AI</a>、<a href="https://www.deeplearning.ai/courses/ai-agents-in-langgraph/">AI Agents in LangGraph</a> 等，多為 1–2 小時。</p>
+        <p><b>為什麼值得：</b>agent 的設計模式（規劃、反思、工具、多代理）講得比官方文件系統。看概念用它，寫程式回官方文件。</p></div>
+
+      <div class="r"><p class="rk">前置 · 只有不會 Python 才需要</p><p class="rt"><a href="https://automatetheboringstuff.com/">Automate the Boring Stuff with Python</a></p>
+        <p><b>能教你：</b>Python 基礎，全書免費線上閱讀，以實用腳本為導向。</p>
+        <p><b>為什麼值得：</b>它不教你當軟體工程師，教你寫能動的小工具 —— 這正好是接 API 需要的程度。<b>已經會 Python 就跳過。</b></p></div>
+    </div>
+  </section>
+
+  <div class="close">
+    <h2>怎麼開始</h2>
+    <p><b>從 C 軌第 1 次開始。</b>那 2 小時的成本最低，而且做完你會更清楚後面三軌自己要不要碰。</p>
+    <p>每一次上課，把那六張提示詞的<b>第 4、5、6 步</b>拿出來用：先讓 AI 用最簡單的方式講一遍，你複述、被抓錯、重來；弄懂了做成一頁筆記；最後讓它出 10 題驗收。沒過就回去重跑。</p>
+    <p>上面所有課表都是建議值。<b>跑起來覺得某一次太簡單就併掉，太難就拆成兩次</b> —— 20 小時是估計，不是規定。</p>
+    <p style="font-size:13.5px;color:var(--ink-3);padding-top:12px;border-top:1px solid var(--rule)">資源連結查證於 2026 年 8 月 30 日。AI 領域的課程與工具變動很快，若連結失效或內容明顯過期，以各官方網站當下的版本為準。</p>
+  </div>
+
+</div>
