@@ -1,24 +1,24 @@
 {
  "_說明": "角色聖經的唯一真相。程式讀這個檔，不要讀 character/角色設定.md（那份是給人看的沿革，已有過期內容）。",
- "version": "2026-08-31",
+ "version": "2026-08-29",
  "_接線": "auto/character_bible.py 讀本檔；gen_scene_flux.py 與 make_video_local_5s.py 生成前會強制檢查，缺招牌特徵就擋下（--skip-bible 可略過，但會大聲警告）。",
  "characters": {
   "taco": {
    "name": "Taco",
    "role": "主角",
-   "canonical_prompt": "a small white chihuahua with two distinct dark brown fur patches directly above his eyes like natural eyebrow markings, oversized pointy ears, wearing a thin blue collar with a small round silver tag",
+   "canonical_prompt": "a tiny pure snow-white smooth-coat chihuahua with two dark fur patches above his eyes, natural and slightly uneven like real coat markings, oversized pointy ears, wearing a thin blue collar with a small round silver tag",
    "使用次數": 40,
    "must_appear": [
+    "snow-white",
     "chihuahua",
-    "white",
     "blue collar"
    ],
-   "signature": "賢賢 2026-08-31 一句話定案：「一隻吉娃娃，眉毛上面有兩個黑色的毛」。就這樣，不要再加條件。白色吉娃娃＋眼睛上方兩塊深色毛斑＋藍項圈銀吊牌＋大立耳。毛斑要看得見，但不數顆數、不要求對稱等大。",
+   "signature": "主識別＝雪白短毛＋藍項圈銀吊牌＋大立耳。眼睛上方兩塊深色毛斑是次要特徵，自然不對稱即可，不數顆數、不要求等大。",
    "ref_images": [
     "character/taco-ref-v5-max.jpg",
     "character/taco-ref-v4a-meme.jpg"
    ],
-   "已知問題": "2026-08-31 統一：此前設定散落在 76 份檔案裡（角色設定.md 的考古段、DATASET_STATUS.md 的 TRAIN/REJECT、各版 schedule 備份），害 AI 讀錯版本。現在唯一真相就是本檔的 canonical_prompt，其餘一律不算數。歷史問題保留：FLUX 有時生不出毛斑（可接受，不重生）；Nova 雙狗增生仍需量化約束（ONE single / no closer than the sofa）。",
+   "已知問題": "2026-08-29 賢賢裁示放寬：那本來就是毛色斑，不是畫上去的眉毛。舊版要求「正好兩顆、對稱、等大」與 8/19「要像天生毛斑」的原始裁示互相矛盾，導致 FLUX 生不出來、要手動補繪、影片中被洗掉。新規則：毛斑有就好，2～3 塊、略不對稱都放行；驗片不再數點。_fix_d10_dots_v3.py 由強制降為可選；_paint_dots_video.py 已證實無效不要再用。Nova 的雙狗增生問題不變，仍需量化約束。",
    "_變更紀錄": "2026-08-29 放寬黑點眉；原版備份在 角色聖經.json.bak-20260829-改黑點眉前"
   },
   "nova": {
@@ -47,6 +47,5 @@
   "標題永遠帶 Taco",
   "災難的載體只能選模型畫得出來的：液體、粉末、散落物。家具毀損／餐具翻覆／東西缺一塊一律不行（D19 三張、D15 五張場景圖全滅）",
   "發光／半透明／金屬反光材質一律不選（5 支實測 0 支破萬），細節見 model_policy.json 的 material_blocklist"
- ],
- "_唯一真相": "⚠️ 角色長相只看本檔的 canonical_prompt。專案裡其他 75 份檔案提到角色的段落（含 character\\角色設定.md、LOCAL-AI-STUDIO\\DATASET_STATUS.md、auto\newsched\\*.json 等）全部是歷史沿革或封存，不算數，不要照做。程式只讀本檔（auto\\character_bible.py:30）。"
+ ]
 }

@@ -487,11 +487,13 @@
     "video": "C:\\Users\\TUF Gaming\\Desktop\\我的專案\\財富密碼\\待審核\\d20s1-黑白史萊姆-15秒-有聲.mp4",
     "awaiting_review": false,
     "approved": true,
-    "published": false,
+    "published": true,
     "source": "local-h3",
     "made_at": "2026-08-30T23:02:00",
     "source_note": "對標 Felinemeow Ai HcF4AghIfKs（4,927萬）。H3 三段各自錨定 d20s1_scene_ACCEPTED.png（不接尾幀，v1 接龍導致角色崩壞已廢棄）。s3 切在 3.75s 避開嘴部變形。音訊：每段先 loudnorm I=-22，s2 頭尾靜音以 s1 環境音補，拼接後 alimiter 0.891。成片 14.4s / -22.9 LUFS / 峰值 -0.36dB / 靜音段 0。",
     "approved_by": "賢賢",
-    "approved_at": "2026-08-30T23:04:56"
+    "approved_at": "2026-08-31T10:51:02",
+    "url": "https://youtube.com/shorts/hQFd_cNvg1o",
+    "at": "2026-08-31T10:57:20"
   }
 }
