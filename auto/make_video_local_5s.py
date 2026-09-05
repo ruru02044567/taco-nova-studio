@@ -52,6 +52,7 @@ length 與 anchor 都必須是 4n+1（Wan 的潛在空間時間軸 4 倍壓縮�
 給 `--continue` 一個成品路徑時，本程式會自動改用旁邊的 .raw704.mp4。
 """
 import json
+import os
 import shutil
 import subprocess
 import sys
@@ -236,10 +237,15 @@ def comfy_up():
     except Exception:
         pass
     proc = subprocess.Popen(
-        [str(HERE / "venv/Scripts/python.exe"), "main.py", "--listen", "127.0.0.1",
+        # 2026-09-05：一定要 pythonw.exe。venv 的 python.exe 是 launcher，會 re-exec 出一個
+        # 帶 console 的孫子程序，那個 console 收攤時廣播 CTRL_CLOSE_EVENT 讓 numpy/MKL 直接 abort。
+        [str(HERE / "venv/Scripts/pythonw.exe"), "main.py", "--listen", "127.0.0.1",
          "--port", "8188", "--disable-auto-launch"],
         cwd=str(COMFY), stdout=open(HERE / "comfyui.log", "w", encoding="utf-8"),
-        stderr=subprocess.STDOUT)
+        stderr=subprocess.STDOUT,
+        env=dict(os.environ, FOR_IGNORE_EXCEPTIONS="1", FOR_DISABLE_CONSOLE_CTRL_HANDLER="1"),
+        creationflags=(subprocess.CREATE_NEW_PROCESS_GROUP | subprocess.DETACHED_PROCESS
+                       | subprocess.CREATE_NO_WINDOW) if os.name == "nt" else 0)
     for _ in range(120):
         try:
             api("/system_stats", timeout=5)
